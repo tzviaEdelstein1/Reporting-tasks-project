@@ -47,7 +47,7 @@
     * UserId - int, requiered
     * ProjectId - int, requiered 
     * CountHours - double, requiered 
-    * date - int, requiered
+    * date - date, requiered
 ### Global Properties
 * `List<User>`
 * `List<Game>`
