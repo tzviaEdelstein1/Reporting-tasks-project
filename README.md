@@ -37,9 +37,6 @@
     * Ui/UxHours -int,reqiered 
     * StartDate -date,reqiered 
     * FinishDate -date,reqiered 
-    * WorkerToProject-
-    * KindUserId - int, requiered,unique, identity
-    * KindUserName - string, requiered,
  * WorkerToProject:
     * WorkerToProjectId - int, requiered,unique, identity
     * UserId - int, requiered
