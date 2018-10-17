@@ -49,7 +49,7 @@
     * ActualHoursId - int, requiered,unique, identity
     * UserId - int, requiered
     * ProjectId - int, requiered 
-    * CountHours - int, requiered 
+    * CountHours - double, requiered 
     * date - int, requiered
 ### Global Properties
 * `List<User>`
