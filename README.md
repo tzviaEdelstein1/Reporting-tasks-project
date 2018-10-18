@@ -52,19 +52,19 @@
 
 ### Controllers
 * User controller:
-    * Get -getAllUsers
+    * Get -getAllUsers.
          We will return all the users from the db.
     
-    * Post - Register    
+    * Post - Register.    
          requierd data: 
            * User
     If the user is valid - we will add him to the db, and return true, Else - we will return a matching error
-    * Get - Login
+    * Get - Login.
          requierd data: 
            * UserName 
            * Password 
      If the user whith the UserName and Password is exist in the db we will return the UserId object, Else - we will return not found.
-    * Get - GetUserById
+    * Get - GetUserById.
          requierd data: 
            * UserId
     If there is in the db user with this UserId ,we will return the user object ,Else we will return not found.
