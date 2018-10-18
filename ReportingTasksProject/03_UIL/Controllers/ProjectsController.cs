@@ -21,7 +21,17 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
+        //לא נבדק
+        // GET: api/Projects/4
+        public HttpResponseMessage Get(int teamLeaderId)
 
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Project>>(LogicProjects.GetProjectsAccordingTeamLeader(teamLeaderId), new JsonMediaTypeFormatter())
+            };
+        }
+        // POST: api/Projects
         public HttpResponseMessage Post([FromBody]Project value)
         {
             if (ModelState.IsValid)
@@ -47,8 +57,8 @@ namespace _03_UIL.Controllers
             };
 
         }
-
-        //    // PUT: api/Projects
+        //לא נבדק
+     // PUT: api/Projects
         public HttpResponseMessage Put([FromBody]Project value)
         {
 
@@ -73,6 +83,16 @@ namespace _03_UIL.Controllers
             {
                 Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
             };
+        }
+        // DELETE: api/Projects/5
+        public HttpResponseMessage Delete(int id)
+        {
+            return (LogicProjects.RemoveProject(id)) ?
+                    new HttpResponseMessage(HttpStatusCode.OK) :
+                    new HttpResponseMessage(HttpStatusCode.BadRequest)
+                    {
+                        Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
+                    };
         }
 
 
