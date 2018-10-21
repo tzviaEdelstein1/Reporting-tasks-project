@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 namespace BOL
 {
     public class User
-    { 
+    {
         public int UserId { get; set; }
         [Required]
-        [MinLength(2),MaxLength(10)]
-   
+        [MinLength(2), MaxLength(10)]
+        [UniqueUser]
         public string UserName { get; set; }
         [Required]
         [EmailAddress]

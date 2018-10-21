@@ -11,7 +11,7 @@ namespace BOL
    public class Project
     {
         public int ProjectId { get; set; }
-        //[UniqueProject]
+        [UniqueProject]
         [Required]
         public string ProjectName { get; set; }
         [Required]
