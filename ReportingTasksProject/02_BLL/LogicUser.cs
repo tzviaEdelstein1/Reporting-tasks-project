@@ -16,7 +16,7 @@ namespace _02_BLL
         {
             try
             {
-                string query = $"SELECT * FROM tasks.users";
+                string query = $"SELECT * FROM tasks.users";            
                 Func<MySqlDataReader, List<User>> func = (reader) =>
                 {
                     List<User> users = new List<User>();
@@ -44,7 +44,7 @@ namespace _02_BLL
             }
         }
 
-
+     
 
         //public static string GetUser(int id)
         //{
@@ -70,47 +70,49 @@ namespace _02_BLL
         //    return DBaccess.RunOneReader(query, func);
         //}
 
-        public static bool RemoveUser(int id)
+        public static bool RemoveUser(int id,int userId)
         {
-            string query = $"DELETE FROM tasks.users  WHERE  user_id={id}";
-            return DBaccess.RunNonQuery(query) == 1;
-        }
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
 
-        public static bool UpdateUser(User user)
-        {
-            string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId} WHERE user_id={user.UserId}";
-            return DBaccess.RunNonQuery(query) == 1;
-        }
-
-        public static bool AddUser(User user)
-        {
-
-            string query = $"INSERT INTO tasks.users(`user_name`, `user_email`, `password`, `team_leader_id`, `user_kind_id`) VALUES ('{user.UserName}','{user.UserEmail}','{user.Password}',{user.TeamLeaderId},{user.UserKindId})";
-            return DBaccess.RunNonQuery(query) == 1;
-        }
-
-        public static List<User> SignIn(string userName, string password)
-        {
-            string query = $"SELECT * FROM tasks.users WHERE user_name='{userName}'and password='{password}'";
-            Func<MySqlDataReader, List<User>> func = (reader) =>
             {
-                List<User> users = new List<User>();
-                while (reader.Read())
-                {
-                    users.Add(new User
-                    {
-                        UserId = reader.GetInt32(0),
-                        UserName = reader.GetString(1),
-                        UserEmail = reader.GetString(2),
-                        Password = reader.GetString(3),
-                        TeamLeaderId = reader.GetInt32(4),
-                        UserKindId = reader.GetInt32(5),
-                    });
-                }
-                return users;
-            };
+                string query = $"DELETE FROM tasks.users  WHERE  user_id={id}";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
+        }
 
-            return DBaccess.RunReader(query, func);
+        public static bool UpdateUser(User user, int userId)
+        {
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId} WHERE user_id={user.UserId}";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
+        }
+
+        public static bool AddUser(User user,int userId)
+        {
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $"INSERT INTO tasks.users(`user_name`, `user_email`, `password`, `team_leader_id`, `user_kind_id`) VALUES ('{user.UserName}','{user.UserEmail}','{user.Password}',{user.TeamLeaderId},{user.UserKindId})";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
+        }
+
+        public static string GetUserId(string userName,string password)
+        {
+            string query = $"SELECT user_id FROM tasks.users WHERE user_name='{userName}'&&password='{password}'";
+            return DBaccess.RunScalar(query).ToString();
         }
 
 

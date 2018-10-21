@@ -30,28 +30,20 @@ namespace _03_UIL.Controllers
         //    };
         //}
         // GET: api/Users/wewe/11234
-        [Route("users/{userName}/{password}")]
         public HttpResponseMessage Get(string userName,string password)
-
         {
-            User user = new User();
-            List<User> users = LogicUser.SignIn(userName, password);
-            if (users.Count > 0)
+            return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                user = users[0];
-                return new HttpResponseMessage(HttpStatusCode.OK)
-                {
-                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
-                };
-            }
-            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError,"error");
+                Content = new ObjectContent<String>(LogicUser.GetUserId(userName,password), new JsonMediaTypeFormatter())
+            };
         }
         // POST: api/Users
-        public HttpResponseMessage Post([FromBody]User value)
+        [Route("api/Users/{userId}")]
+        public HttpResponseMessage Post([FromBody]User value,[FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
-                return (LogicUser.AddUser(value)) ?
+                return (LogicUser.AddUser(value, userId)) ?
                    new HttpResponseMessage(HttpStatusCode.Created) :
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {
