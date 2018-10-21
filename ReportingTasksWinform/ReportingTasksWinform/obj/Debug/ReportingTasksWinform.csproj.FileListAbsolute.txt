@@ -11,3 +11,4 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\R
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.exe
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.pdb
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.EnterManager.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.AddProject.resources
