@@ -30,16 +30,26 @@ namespace _03_UIL.Controllers
         //    };
         //}
         // GET: api/Users/wewe/11234
-        public HttpResponseMessage Get(string userName,string password)
+        [Route("users/{userName}/{password}")]
+        public HttpResponseMessage Get(string userName, string password)
+
         {
-            return new HttpResponseMessage(HttpStatusCode.OK)
+            User user = new User();
+            List<User> users = LogicUser.SignIn(userName, password);
+            if (users.Count > 0)
             {
-                Content = new ObjectContent<String>(LogicUser.GetUserId(userName,password), new JsonMediaTypeFormatter())
-            };
+                user = users[0];
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
+                };
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "error");
         }
+
         // POST: api/Users
         [Route("api/Users/{userId}")]
-        public HttpResponseMessage Post([FromBody]User value,[FromUri]int userId)
+        public HttpResponseMessage Post([FromBody]User value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
@@ -65,13 +75,14 @@ namespace _03_UIL.Controllers
 
         }
 
-        //    // PUT: api/Users/5
-        public HttpResponseMessage Put([FromBody]User value)
+        [HttpPut]
+        [Route("api/Users/{userId}")]
+        public HttpResponseMessage Put([FromBody]User value, [FromUri]int userId)
         {
 
             if (ModelState.IsValid)
             {
-                return (LogicUser.UpdateUser(value)) ?
+                return (LogicUser.UpdateUser(value, userId)) ?
                     new HttpResponseMessage(HttpStatusCode.OK) :
                     new HttpResponseMessage(HttpStatusCode.BadRequest)
                     {
@@ -93,14 +104,18 @@ namespace _03_UIL.Controllers
         }
 
         //    // DELETE: api/Users/5
-        public HttpResponseMessage Delete(int id)
+        [HttpDelete]
+        [Route("api/Users/{id}/{userId}")]
+        public HttpResponseMessage Delete(int id, [FromUri]int userId)
         {
-            return (LogicUser.RemoveUser(id)) ?
+            return (LogicUser.RemoveUser(id, userId)) ?
                     new HttpResponseMessage(HttpStatusCode.OK) :
                     new HttpResponseMessage(HttpStatusCode.BadRequest)
                     {
                         Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
                     };
         }
+
+
     }
 }

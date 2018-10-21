@@ -46,7 +46,7 @@ namespace _02_BLL
         }
         public static bool AddProject(Project project,int userId)
         {
-            string queryChecking=$"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            string queryChecking=$" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo=DBaccess.RunScalar(queryChecking);
           if(isAbleTo!=null)
 
@@ -63,7 +63,7 @@ namespace _02_BLL
         public static bool UpdateProject(Project project,int userId)
         {
 
-            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo = DBaccess.RunScalar(queryChecking);
             if (isAbleTo != null)
 
