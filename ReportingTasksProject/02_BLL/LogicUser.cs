@@ -43,6 +43,9 @@ namespace _02_BLL
                 throw ex;
             }
         }
+
+     
+
         //public static string GetUser(int id)
         //{
         //    string query = $"SELECT user FROM tasks.users WHERE user_id={id}";

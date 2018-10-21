@@ -12,15 +12,8 @@ namespace _03_UIL.Controllers
 {
     public class UsersController : ApiController
     {
-//     {"userName":"zzz",
-//	"UserEmail":"zvia@gmail.com",
-//	"Password":123345,
-//	"TeamLeaderId":8,
-//	"UserKindId":2,
-//}
-
-    // GET: api/Users
-    public HttpResponseMessage Get()
+        // GET: api/Users
+        public HttpResponseMessage Get()
 
         {
             return new HttpResponseMessage(HttpStatusCode.OK)

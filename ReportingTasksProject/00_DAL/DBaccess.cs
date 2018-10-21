@@ -34,8 +34,6 @@ namespace DAL
 
         }
 
-
-
         public static object RunScalar(string query)
         {
             try
@@ -80,31 +78,28 @@ namespace DAL
             }
 
         }
+        public static T RunOneReader<T>(string query, Func<MySqlDataReader,T> func)
+        {
+            try
+            {
+                Connection.Open();
+                MySqlCommand command = new MySqlCommand(query, Connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                return func(reader);
+            }
+            catch (Exception)
+            {
+               return default(T);
+            }
+            finally
+            {
+                if (Connection.State != System.Data.ConnectionState.Closed)
+                {
+                    Connection.Close();
+                }
+            }
 
-
-
-        //public static T RunOneReader<T>(string query, Func<MySqlDataReader,T> func)
-        //{
-        //    try
-        //    {
-        //        Connection.Open();
-        //        MySqlCommand command = new MySqlCommand(query, Connection);
-        //        MySqlDataReader reader = command.ExecuteReader();
-        //        return func(reader);
-        //    }
-        //    catch (Exception)
-        //    {
-        //       return default(T);
-        //    }
-        //    finally
-        //    {
-        //        if (Connection.State != System.Data.ConnectionState.Closed)
-        //        {
-        //            Connection.Close();
-        //        }
-        //    }
-
-        //}
+        }
 
     }
 }

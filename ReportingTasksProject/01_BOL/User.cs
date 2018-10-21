@@ -1,5 +1,4 @@
-﻿using _01_BOL.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,14 +8,12 @@ using System.Threading.Tasks;
 namespace BOL
 {
     public class User
-    {
+    { 
         public int UserId { get; set; }
         [Required]
-        [MinLength(2), MaxLength(10)]
-        [UniqueUser]
+        [MinLength(2),MaxLength(10)]
         public string UserName { get; set; }
         [Required]
-        [EmailAddress]
         public string UserEmail { get; set; }
         [Required]
         [MinLength(6), MaxLength(10)]
