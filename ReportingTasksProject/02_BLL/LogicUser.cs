@@ -70,23 +70,43 @@ namespace _02_BLL
         //    return DBaccess.RunOneReader(query, func);
         //}
 
-        public static bool RemoveUser(int id)
+        public static bool RemoveUser(int id,int userId)
         {
-            string query = $"DELETE FROM tasks.users  WHERE  user_id={id}";
-            return DBaccess.RunNonQuery(query) == 1;
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $"DELETE FROM tasks.users  WHERE  user_id={id}";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
         }
 
-        public static bool UpdateUser(User user)
+        public static bool UpdateUser(User user, int userId)
         {
-            string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId} WHERE user_id={user.UserId}";
-            return DBaccess.RunNonQuery(query) == 1;
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId} WHERE user_id={user.UserId}";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
         }
 
-        public static bool AddUser(User user)
+        public static bool AddUser(User user,int userId)
         {
-           
-            string query = $"INSERT INTO tasks.users(`user_name`, `user_email`, `password`, `team_leader_id`, `user_kind_id`) VALUES ('{user.UserName}','{user.UserEmail}','{user.Password}',{user.TeamLeaderId},{user.UserKindId})";
-            return DBaccess.RunNonQuery(query) == 1;
+            string queryChecking = $"select * from tasks.userkind_to_access where( user_kind_id={userId} and access_id=2)";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $"INSERT INTO tasks.users(`user_name`, `user_email`, `password`, `team_leader_id`, `user_kind_id`) VALUES ('{user.UserName}','{user.UserEmail}','{user.Password}',{user.TeamLeaderId},{user.UserKindId})";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
         }
 
         public static string GetUserId(string userName,string password)

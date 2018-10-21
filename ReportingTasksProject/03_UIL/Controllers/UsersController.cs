@@ -38,11 +38,12 @@ namespace _03_UIL.Controllers
             };
         }
         // POST: api/Users
-        public HttpResponseMessage Post([FromBody]User value)
+        [Route("api/Users/{userId}")]
+        public HttpResponseMessage Post([FromBody]User value,[FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
-                return (LogicUser.AddUser(value)) ?
+                return (LogicUser.AddUser(value, userId)) ?
                    new HttpResponseMessage(HttpStatusCode.Created) :
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {
