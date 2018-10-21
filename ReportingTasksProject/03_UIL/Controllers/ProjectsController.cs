@@ -21,13 +21,12 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
-    
-        [Route("api/Projects/{userId}")]
-        public HttpResponseMessage Post([FromBody]Project value,[FromUri]int userId)
+
+        public HttpResponseMessage Post([FromBody]Project value)
         {
             if (ModelState.IsValid)
             {
-                return (LogicProjects.AddProject(value,userId)) ?
+                return (LogicProjects.AddProject(value)) ?
                    new HttpResponseMessage(HttpStatusCode.Created) :
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {
@@ -50,13 +49,12 @@ namespace _03_UIL.Controllers
         }
 
         //    // PUT: api/Projects
-        [Route("api/Projects/{userId}")]
-        public HttpResponseMessage Put([FromBody]Project value, [FromUri]int userId)
+        public HttpResponseMessage Put([FromBody]Project value)
         {
 
             if (ModelState.IsValid)
             {
-                return (LogicProjects.UpdateProject(value, userId)) ?
+                return (LogicProjects.UpdateProject(value)) ?
                     new HttpResponseMessage(HttpStatusCode.OK) :
                     new HttpResponseMessage(HttpStatusCode.BadRequest)
                     {

@@ -1,0 +1,13 @@
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\bin\Debug\ReportingTasksWinform.exe.config
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\bin\Debug\ReportingTasksWinform.exe
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\bin\Debug\ReportingTasksWinform.pdb
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\bin\Debug\Newtonsoft.Json.dll
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.csprojAssemblyReference.cache
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Login.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Properties.Resources.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.csproj.GenerateResource.cache
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.csproj.CoreCompileInputs.cache
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.csproj.CopyComplete
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.exe
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.pdb
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.EnterManager.resources
