@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _01_BOL.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace BOL
    public class Project
     {
         public int ProjectId { get; set; }
+        //[UniqueProject]
         [Required]
-       
         public string ProjectName { get; set; }
         [Required]
         public string ClientName { get; set; }
@@ -23,7 +24,6 @@ namespace BOL
         public int QaHours { get; set; }
         [Required]
         public int UiUxHours { get; set; }
-
         [Required]
         public DateTime StartDate { get; set; }
         [Required]

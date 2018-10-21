@@ -12,6 +12,15 @@ namespace _03_UIL.Controllers
 {
     public class ProjectsController : ApiController
     {
+        //     {"ProjectName":"zzz",
+        //    	"ClientName":"cccccc",
+        //    	"TeamLeaderId":123345,
+        //    	"DevelopersHours":8,
+        //    	"QaHours":2,
+        //    "UiUxHours":3,
+        //    "StartDate":"2012-02-12",
+        //    "FinishDate":"2012-02-12"
+        //    }
         // GET: api/Projects
         public HttpResponseMessage Get()
 

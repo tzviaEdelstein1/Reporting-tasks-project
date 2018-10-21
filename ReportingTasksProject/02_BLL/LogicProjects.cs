@@ -77,8 +77,7 @@ namespace _02_BLL
         }
         public static bool UpdateProject(Project project)
         {
-        
-
+ 
             string query = $"UPDATE tasks.projects SET  project_name='{project.ProjectName}',client_name='{project.ClientName}',team_leader_id={project.TeamLeaderId},develope_hours={project.DevelopersHours},qa_hours={project.QaHours},ui/ux_hours={project.UiUxHours},start_date='{project.StartDate}',finish_date='{project.FinishDate}' WHERE (project_id={project.ProjectId})";
             return DBaccess.RunNonQuery(query) == 1;
         }
