@@ -42,11 +42,12 @@ namespace _03_UIL.Controllers
 
         // POST: api/Hours
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]ActualHours value)
+        [Route("api/Hours/{userId}")]
+        public HttpResponseMessage Post([FromBody]ActualHours value,[FromUri]int userId)
         {//לבדוק אם עובד
             if (ModelState.IsValid)
             {
-                return (LogicHours.AddActualHours(value)) ?
+                return (LogicHours.AddActualHours(value, userId)) ?
                    new HttpResponseMessage(HttpStatusCode.Created) :
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {

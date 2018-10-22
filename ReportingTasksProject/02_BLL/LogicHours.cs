@@ -62,12 +62,16 @@ namespace _02_BLL
             return DBaccess.RunReader(query, func);
         }
 
-        public static bool AddActualHours(ActualHours actualHours)
+        public static bool AddActualHours(ActualHours actualHours,int userId)
         {
-           
-
-            string query = $"INSERT INTO `tasks`.`actual_hours`(`user_id`, `project_id`, `count_houers`, `work_date`) VALUES ('{actualHours.UserId}','{actualHours.ProjectId}','{actualHours.CountHours}',{actualHours.date})";
-            return DBaccess.RunNonQuery(query) == 1;
+            string checkingIfTeamLeaderQuery = $"SELECT team_leader_id FROM tasks.users WHERE user_id={actualHours.UserId};";
+            var teamLeaderResult = DBaccess.RunScalar(checkingIfTeamLeaderQuery);
+            if ((int)teamLeaderResult == userId)
+            {
+                string query = $"INSERT INTO `tasks`.`actual_hours`(`user_id`, `project_id`, `count_houers`, `work_date`) VALUES ('{actualHours.UserId}','{actualHours.ProjectId}','{actualHours.CountHours}',{actualHours.date})";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else return false;
         }
 
         public static List<ActualHours> GetActualHoursByUserKindToProject(string projectName, string UserKindName)
