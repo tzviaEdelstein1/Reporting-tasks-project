@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserKind.cs" />
     <Compile Include="Models\WorkerToProject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
