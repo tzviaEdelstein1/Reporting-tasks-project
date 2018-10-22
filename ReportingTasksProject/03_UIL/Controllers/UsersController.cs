@@ -12,8 +12,9 @@ namespace _03_UIL.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET: api/Users
-        public HttpResponseMessage Get()
+        [HttpGet]
+        [Route("api/Users/GetAllUsers")]
+        public HttpResponseMessage GetAllUsers()
 
         {
             return new HttpResponseMessage(HttpStatusCode.OK)
@@ -21,14 +22,16 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<User>>(LogicUser.GetAllUsers(), new JsonMediaTypeFormatter())
             };
         }
-        // GET: api/Users/5
-        //public HttpResponseMessage Get(int id)
-        //{
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new ObjectContent<String>(LogicUser.GetUser(id), new JsonMediaTypeFormatter())
-        //    };
-        //}
+        [HttpGet]
+        [Route("api/Users/GetTeamLeaders")]
+        public HttpResponseMessage GetTeamLeaders()
+
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<User>>(LogicUser.GetTeamLeaders(), new JsonMediaTypeFormatter())
+            };
+        }
         // GET: api/Users/wewe/11234
         [Route("users/{userName}/{password}")]
         public HttpResponseMessage Get(string userName, string password)

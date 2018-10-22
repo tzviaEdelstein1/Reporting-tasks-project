@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BOL
 {
-    class WorkerToProject
+   public class WorkerToProject
     {
         [Required]
         public int WorkerToProjectId { get; set; }
@@ -15,7 +15,7 @@ namespace BOL
         public int UserId { get; set; }
         [Required]
         public int ProjectId { get; set; }
-        [Required]
+      
         public int Hours { get; set; }
     }
 }

@@ -21,18 +21,33 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
-    
+
         [Route("api/Projects/{userId}")]
-        public HttpResponseMessage Post([FromBody]Project value,[FromUri]int userId)
+        public HttpResponseMessage Post([FromBody]Project value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
-                return (LogicProjects.AddProject(value,userId)) ?
-                   new HttpResponseMessage(HttpStatusCode.Created) :
-                   new HttpResponseMessage(HttpStatusCode.BadRequest)
-                   {
-                       Content = new ObjectContent<String>("Can not add to DB", new JsonMediaTypeFormatter())
-                   };
+                if (LogicProjects.AddProject(value, userId))
+                {
+                    List<User> users = LogicWorkerToProject.getUsersByTeamLeaderId(value.TeamLeaderId);
+                    
+                    var id = LogicProjects.getProjectId(value.ProjectName);
+                    value.ProjectId = id;
+                    foreach (var item in users)
+                    {
+                        LogicWorkerToProject.AddWorkersByTeamLeaderId(id, item.UserId);
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.Created, value);
+                }
+                  
+                else
+                {
+                    new HttpResponseMessage(HttpStatusCode.BadRequest)
+                    {
+                        Content = new ObjectContent<String>("Can not add to DB", new JsonMediaTypeFormatter())
+                    };
+                }
             };
 
             List<string> ErrorList = new List<string>();

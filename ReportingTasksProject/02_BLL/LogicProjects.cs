@@ -51,7 +51,7 @@ namespace _02_BLL
           if(isAbleTo!=null)
 
               {
-            string query = $"INSERT INTO tasks.projects(`project_id`, `project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`) VALUES ({project.ProjectId},'{project.ProjectName}','{project.ClientName}','{project.TeamLeaderId}','{project.DevelopersHours}','{project.QaHours}','{project.UiUxHours}','{project.StartDate}','{project.FinishDate}')";
+            string query = $"INSERT INTO tasks.projects(`project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`) VALUES ('{project.ProjectName}','{project.ClientName}','{project.TeamLeaderId}','{project.DevelopersHours}','{project.QaHours}','{project.UiUxHours}','{project.StartDate}','{project.FinishDate}')";
             return DBaccess.RunNonQuery(query) == 1;
 
               }
@@ -73,6 +73,11 @@ namespace _02_BLL
             }
             else return false;
 
+        }
+        public static int getProjectId(string projectName)
+        {
+            string query = $"SELECT project_id FROM tasks.projects WHERE project_name='{projectName}'";
+            return (int)DBaccess.RunScalar(query);
         }
 
 

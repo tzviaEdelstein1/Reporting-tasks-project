@@ -41,5 +41,46 @@ namespace ReportingTasksWinform
             ManageReports manageReports = new ManageReports();
             manageReports.Show();
         }
+
+        private void AddProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EnterManager_Load(object sender, EventArgs e)
+        {
+        //    loadAddProject();
+        //    AddProject frmChild = new AddProject();
+        //AddNewTab(frmChild);
+        }
+
+        private void loadAddProject()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void tabForms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+       
+        //private void AddNewTab(Form frm)
+        //{
+
+        //    TabPage tab = new TabPage(frm.Text);
+
+        //    frm.TopLevel = false;
+
+        //    frm.Parent = tab;
+
+        //    frm.Visible = true;
+
+        //    tabControl.TabPages.Add(tab);
+
+        //    frm.Location = new Point((tab.Width - frm.Width) / 2, (tab.Height - frm.Height) / 2);
+
+        //    tabControl.SelectedTab = tab;
+
+        //}
     }
 }

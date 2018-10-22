@@ -14,35 +14,29 @@ namespace _02_BLL
     {
         public static List<User> GetAllUsers()
         {
-            try
+            string query = $"SELECT * FROM tasks.users";
+            Func<MySqlDataReader, List<User>> func = (reader) =>
             {
-                string query = $"SELECT * FROM tasks.users";            
-                Func<MySqlDataReader, List<User>> func = (reader) =>
+                List<User> users = new List<User>();
+                while (reader.Read())
                 {
-                    List<User> users = new List<User>();
-                    while (reader.Read())
+                    users.Add(new User
                     {
-                        users.Add(new User
-                        {
-                            UserId = reader.GetInt32(0),
-                            UserName = reader.GetString(1),
-                            UserEmail = reader.GetString(2),
-                            Password = reader.GetString(3),
-                            TeamLeaderId = reader.GetInt32(4),
-                            UserKindId = reader.GetInt32(5),
-                        });
-                    }
-                    return users;
-                };
+                        UserId = reader.GetInt32(0),
+                        UserName = reader.GetString(1),
+                        UserEmail = reader.GetString(2),
+                        Password = reader.GetString(3),
+                        TeamLeaderId = reader.GetInt32(4),
+                        UserKindId = reader.GetInt32(5),
+                    });
+                }
+                return users;
+            };
 
-                return DBaccess.RunReader(query, func);
-            }
-            catch (Exception ex)
-            {
-                var x = ex.StackTrace;
-                throw ex;
-            }
+            return DBaccess.RunReader(query, func);
         }
+
+
 
         public static List<User> SignIn(string userName, string password)
         {
@@ -68,6 +62,29 @@ namespace _02_BLL
             return DBaccess.RunReader(query, func);
         }
 
+        public static List<User> GetTeamLeaders()
+        {
+            string query = $"SELECT * FROM tasks.users WHERE user_id in(SELECT team_leader_id from tasks.users)";
+            Func<MySqlDataReader, List<User>> func = (reader) =>
+            {
+                List<User> users = new List<User>();
+                while (reader.Read())
+                {
+                    users.Add(new User
+                    {
+                        UserId = reader.GetInt32(0),
+                        UserName = reader.GetString(1),
+                        UserEmail = reader.GetString(2),
+                        Password = reader.GetString(3),
+                        TeamLeaderId = reader.GetInt32(4),
+                        UserKindId = reader.GetInt32(5),
+                    });
+                }
+                return users;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
 
 
         //public static string GetUser(int id)
@@ -94,7 +111,7 @@ namespace _02_BLL
         //    return DBaccess.RunOneReader(query, func);
         //}
 
-        public static bool RemoveUser(int id,int userId)
+        public static bool RemoveUser(int id, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo = DBaccess.RunScalar(queryChecking);
@@ -120,7 +137,7 @@ namespace _02_BLL
             else return false;
         }
 
-        public static bool AddUser(User user,int userId)
+        public static bool AddUser(User user, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo = DBaccess.RunScalar(queryChecking);
@@ -133,11 +150,12 @@ namespace _02_BLL
             else return false;
         }
 
-        public static string GetUserId(string userName,string password)
+        public static string GetUserId(string userName, string password)
         {
             string query = $"SELECT user_id FROM tasks.users WHERE user_name='{userName}'&&password='{password}'";
             return DBaccess.RunScalar(query).ToString();
         }
+
 
 
     }

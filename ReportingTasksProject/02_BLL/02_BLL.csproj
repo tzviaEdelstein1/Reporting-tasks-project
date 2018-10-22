@@ -47,6 +47,7 @@
     <Compile Include="LogicProjects.cs" />
     <Compile Include="LogicUser.cs" />
     <Compile Include="LogicUserKinds.cs" />
+    <Compile Include="LogicWorkerToProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

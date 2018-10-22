@@ -11,11 +11,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
 using ReportingTasksWinform.Models;
+using Newtonsoft.Json;
 
 namespace ReportingTasksWinform
 {
     public partial class AddProject : Form
     {
+        List<User> teamLeaders = new List<User>();
+        List<User> allUsers = new List<User>();
+        List<User> usersToChoose = new List<User>();
         public AddProject()
         {
             InitializeComponent();
@@ -23,6 +27,7 @@ namespace ReportingTasksWinform
 
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
+          
             string result = "";
             Project project = new Project()
             {
@@ -31,7 +36,7 @@ namespace ReportingTasksWinform
                 DevelopersHours = (int)numericDevelopersHours.Value,
                 QaHours = (int)numericQaHours.Value,
                 UiUxHours = (int)numericUiUxhours.Value,
-                TeamLeaderId = 1,
+                TeamLeaderId =(int)comboBoxTeamLeader.SelectedValue,
                 FinishDate = dateFinish.Value,
                 StartDate = dateStart.Value
 
@@ -60,12 +65,11 @@ namespace ReportingTasksWinform
 
                     {
                         result = streamReader.ReadToEnd();
-                        if (result == "true")
+                        Project pro = JsonConvert.DeserializeObject<Project>(result);
+                        if (result != "")
                         {
                             MessageBox.Show("ok");
-                            //ChoosePartner choosePartner = new ChoosePartner(user.UserName);
-                            //choosePartner.Show();
-
+                            addWorkersToProject(pro.ProjectId);
 
                         }
                         else
@@ -82,6 +86,81 @@ namespace ReportingTasksWinform
             }
 
 
+        }
+
+        private void addWorkersToProject(int projectId)
+        {
+            WorkerToProject workerToProject = new WorkerToProject();
+            foreach (var item in listBoxUsers.SelectedItems)
+            {
+                workerToProject.UserId = (item as User).UserId;
+                workerToProject.ProjectId =projectId;
+               
+                string result = "";
+              
+                try
+                {
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/WorkerToProject/12");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = new JavaScriptSerializer().Serialize(workerToProject);
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+
+                    }
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("error", ex.Message.ToString());
+
+                }
+            }
+
+        }
+
+        private void AddProject_Load(object sender, EventArgs e)
+        {
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+           //fill comboBox With teamLeaders
+             request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/GetTeamLeaders");
+             response = (HttpWebResponse)request.GetResponse();
+             content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            teamLeaders = JsonConvert.DeserializeObject<List<User>>(content);
+            comboBoxTeamLeader.DataSource = teamLeaders;
+            comboBoxTeamLeader.ValueMember = "UserId";
+            comboBoxTeamLeader.DisplayMember = "UserName";
+
+            //get all the another workers
+
+             request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/GetAllUsers");
+             response = (HttpWebResponse)request.GetResponse();
+             content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            allUsers = JsonConvert.DeserializeObject<List<User>>(content);
+  
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        
+        }
+
+        private void comboBoxTeamLeader_SelectedIndexChanged(object sender, EventArgs e)
+        { var teamLeaderId = (comboBoxTeamLeader.SelectedItem as User).UserId;
+            usersToChoose = allUsers.Where(u => u.TeamLeaderId != teamLeaderId && u.UserId != teamLeaderId).ToList();
+            listBoxUsers.DataSource = usersToChoose;
+            listBoxUsers.DisplayMember = "UserName";
         }
     }
 }

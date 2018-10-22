@@ -67,22 +67,66 @@ namespace _02_BLL
         }
 
 
-        public static bool AddWorkerToProject(WorkerToProject workerToProject)
+        public static bool AddWorkerToProject(WorkerToProject workerToProject,int userId)
         {
-            string query = $" INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`, `hours`) VALUES ('{workerToProject.UserId}','{workerToProject.ProjectId}','{workerToProject.Hours}',)";
-            return DBaccess.RunNonQuery(query) == 1;
+            string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
+            var isAbleTo = DBaccess.RunScalar(queryChecking);
+            if (isAbleTo != null)
+
+            {
+                string query = $" INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`) VALUES ({workerToProject.UserId},{workerToProject.ProjectId})";
+                return DBaccess.RunNonQuery(query) == 1;
+            }
+            else
+                return false;
         }
         public static bool UpdateWorkerToProject(WorkerToProject workerToProject)
-        {
+        {//אין בדיקת הרשאות
             string query = $"UPDATE `tasks`.`worker_to_project SET user_id='{workerToProject.UserId}',project_id='{workerToProject.ProjectId}',hours={workerToProject.Hours})";
             return DBaccess.RunNonQuery(query) == 1;
         }
 
         public static bool RemoveWorkerToProject(int id)
-        {
+        {//אין בדיקת הרשאות
             string query = $"DELETE FROM tasks.worker_to_project WHERE  project_id={id}";
             return DBaccess.RunNonQuery(query) == 1;
         }
+       
+        public static bool AddWorkersByTeamLeaderId(int projectId,int userId)
+        {//אין בדיקת הרשאות
 
+
+                string query = $" INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`) VALUES ('{userId}','{projectId}')";
+                return DBaccess.RunNonQuery(query) == 1;
+
+       
+
+         
+          
+        }
+
+        public static List<User> getUsersByTeamLeaderId(int teamLeaderId)
+        {
+            string query = $"SELECT * FROM tasks.users WHERE team_leader_id={teamLeaderId}";
+            Func<MySqlDataReader, List<User>> func = (reader) =>
+            {
+                List<User> users = new List<User>();
+                while (reader.Read())
+                {
+                    users.Add(new User
+                    {
+                        UserId = reader.GetInt32(0),
+                        UserName = reader.GetString(1),
+                        UserEmail = reader.GetString(2),
+                        Password = reader.GetString(3),
+                        TeamLeaderId = reader.GetInt32(4),
+                        UserKindId = reader.GetInt32(5),
+                    });
+                }
+                return users;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
     }
 }

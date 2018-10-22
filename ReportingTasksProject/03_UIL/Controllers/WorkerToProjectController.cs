@@ -12,7 +12,7 @@ namespace _03_UIL.Controllers
 {
     public class WorkerToProjectController : ApiController
     {  [HttpGet]
-        [Route("WorkerToProject/GetProjectsbyUserName/{userName}")]
+        [Route("api/WorkerToProject/GetProjectsbyUserName/{userName}")]
         public HttpResponseMessage GetProjectsbyUserName(string userName)
 
         {
@@ -22,7 +22,7 @@ namespace _03_UIL.Controllers
             };
         }
         [HttpGet]
-        [Route("WorkerToProject/GetWorkerbyProjectName/{projectname}")]
+        [Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
         public HttpResponseMessage GetWorkerbyProjectName(string projectname)
 
         {
@@ -32,11 +32,13 @@ namespace _03_UIL.Controllers
             };
         }
         // POST: api/Users
-        public HttpResponseMessage Post([FromBody]WorkerToProject value)
+        
+        [Route("api/WorkerToProject/{userId}")]
+        public HttpResponseMessage Post([FromBody]WorkerToProject value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
-                return (LogicWorkerToProject.AddWorkerToProject(value)) ?
+                return (LogicWorkerToProject.AddWorkerToProject(value,userId)) ?
                    new HttpResponseMessage(HttpStatusCode.Created) :
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {

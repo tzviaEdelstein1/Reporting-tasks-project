@@ -92,6 +92,7 @@
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UserKindsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\WorkerToProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
