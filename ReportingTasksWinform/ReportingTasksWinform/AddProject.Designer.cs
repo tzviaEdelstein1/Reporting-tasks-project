@@ -30,7 +30,6 @@
         {
             this.textBoxNameProject = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBoxTeamLeader = new System.Windows.Forms.TextBox();
             this.textBoxClientName = new System.Windows.Forms.TextBox();
             this.numericDevelopersHours = new System.Windows.Forms.NumericUpDown();
             this.numericQaHours = new System.Windows.Forms.NumericUpDown();
@@ -47,6 +46,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonAddProduct = new System.Windows.Forms.Button();
+            this.comboBoxTeamLeader = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericDevelopersHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericQaHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUiUxhours)).BeginInit();
@@ -65,13 +65,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(178, 20);
             this.textBox2.TabIndex = 1;
-            // 
-            // textBoxTeamLeader
-            // 
-            this.textBoxTeamLeader.Location = new System.Drawing.Point(384, 117);
-            this.textBoxTeamLeader.Name = "textBoxTeamLeader";
-            this.textBoxTeamLeader.Size = new System.Drawing.Size(178, 20);
-            this.textBoxTeamLeader.TabIndex = 2;
             // 
             // textBoxClientName
             // 
@@ -147,9 +140,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(283, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "label4";
+            this.label4.Text = "anotherWorkers";
             // 
             // label5
             // 
@@ -206,11 +199,20 @@
             this.buttonAddProduct.UseVisualStyleBackColor = true;
             this.buttonAddProduct.Click += new System.EventHandler(this.buttonAddProduct_Click);
             // 
+            // comboBoxTeamLeader
+            // 
+            this.comboBoxTeamLeader.FormattingEnabled = true;
+            this.comboBoxTeamLeader.Location = new System.Drawing.Point(384, 116);
+            this.comboBoxTeamLeader.Name = "comboBoxTeamLeader";
+            this.comboBoxTeamLeader.Size = new System.Drawing.Size(182, 21);
+            this.comboBoxTeamLeader.TabIndex = 19;
+            // 
             // AddProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxTeamLeader);
             this.Controls.Add(this.buttonAddProduct);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -227,7 +229,6 @@
             this.Controls.Add(this.numericQaHours);
             this.Controls.Add(this.numericDevelopersHours);
             this.Controls.Add(this.textBoxClientName);
-            this.Controls.Add(this.textBoxTeamLeader);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBoxNameProject);
             this.Name = "AddProject";
@@ -244,7 +245,6 @@
 
         private System.Windows.Forms.TextBox textBoxNameProject;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBoxTeamLeader;
         private System.Windows.Forms.TextBox textBoxClientName;
         private System.Windows.Forms.NumericUpDown numericDevelopersHours;
         private System.Windows.Forms.NumericUpDown numericQaHours;
@@ -261,5 +261,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonAddProduct;
+        private System.Windows.Forms.ComboBox comboBoxTeamLeader;
     }
 }
