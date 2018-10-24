@@ -56,6 +56,12 @@
     <Compile Include="AddProject.Designer.cs">
       <DependentUpon>AddProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConactingTheManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConactingTheManager.Designer.cs">
+      <DependentUpon>ConactingTheManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="EnterManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,12 @@
     </Compile>
     <Compile Include="EnterTeamLeader.Designer.cs">
       <DependentUpon>EnterTeamLeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnterWorkers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterWorkers.Designer.cs">
+      <DependentUpon>EnterWorkers.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -115,11 +127,17 @@
     <EmbeddedResource Include="AddProject.resx">
       <DependentUpon>AddProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConactingTheManager.resx">
+      <DependentUpon>ConactingTheManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EnterManager.resx">
       <DependentUpon>EnterManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EnterTeamLeader.resx">
       <DependentUpon>EnterTeamLeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterWorkers.resx">
+      <DependentUpon>EnterWorkers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

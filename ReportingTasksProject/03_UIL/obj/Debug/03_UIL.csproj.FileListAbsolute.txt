@@ -223,3 +223,6 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\0
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\MySql.Data.xml
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\00_DAL.pdb
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\obj\Debug\03_UIL.csproj.CopyComplete
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Cors.dll
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.dll
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.xml

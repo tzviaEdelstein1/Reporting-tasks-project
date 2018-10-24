@@ -21,8 +21,17 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicWorkerToProject.GetProjectsbyUserName(userName), new JsonMediaTypeFormatter())
             };
         }
-      
-    
+        [HttpGet]
+        [Route("api/WorkerToProject/GetWorkersToProjectByProjectId/{projectId}")]
+        public HttpResponseMessage GetWorkersToProjectByProjectId(int projectId)
+
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<WorkerToProject>>(LogicWorkerToProject.GetWorkersToProjectByProjectId(projectId), new JsonMediaTypeFormatter())
+            };
+        }
+
         [HttpGet]
         [Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
         public HttpResponseMessage GetWorkerbyProjectName(string projectname)

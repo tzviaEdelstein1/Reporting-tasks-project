@@ -16,7 +16,8 @@ namespace ReportingTasksWinform
 {
     public partial class ViewingProjects : Form
     {
-        List<User> workersToProject = new List<User>();
+        List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
+        List<User> usersToProject = new List<User>();
         List<Project> ProjectsForteamLeader = new List<Project>();
         List<ActualHours> actualHours = new List<ActualHours>();
         public ViewingProjects()
@@ -62,7 +63,7 @@ namespace ReportingTasksWinform
             labelUiUxHours.Text = (comboBoxAllYourProjects.SelectedItem as Project).UiUxHours.ToString();
             labelProjectName.Text = (comboBoxAllYourProjects.SelectedItem as Project).ProjectName;
 
-            //get the workers to project
+            //get the users to project
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
@@ -71,11 +72,24 @@ namespace ReportingTasksWinform
                 request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/WorkerToProject/GetWorkerbyProjectName/" + (comboBoxAllYourProjects.SelectedItem as Project).ProjectName);
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                workersToProject = JsonConvert.DeserializeObject<List<User>>(content);
+                usersToProject = JsonConvert.DeserializeObject<List<User>>(content);
                 MessageBox.Show("success");
-                listBox1.DataSource = workersToProject;
-                listBox1.DisplayMember = "UserName";
-                listBox1.ValueMember = "UserId";
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error");
+            }
+
+            //get the workers to project
+
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/WorkerToProject/GetWorkersToProjectByProjectId/" + comboBoxAllYourProjects.SelectedValue);
+                response = (HttpWebResponse)request.GetResponse();
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                workerToProjects = JsonConvert.DeserializeObject<List<WorkerToProject>>(content);
+                MessageBox.Show("success");
             }
             catch (Exception ex)
             {
@@ -86,7 +100,7 @@ namespace ReportingTasksWinform
             try
             {
                 double count = 0;
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/GetActualHoursByProjectId/" +comboBoxAllYourProjects.SelectedValue);
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/GetActualHoursByProjectId/" + comboBoxAllYourProjects.SelectedValue);
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 actualHours = JsonConvert.DeserializeObject<List<ActualHours>>(content);
@@ -94,16 +108,23 @@ namespace ReportingTasksWinform
                 tableLayoutPanel1.RowStyles.Clear();  //first you must clear rowStyles
                 tableLayoutPanel1.Controls.Clear();
                 tableLayoutPanel1.ColumnStyles.Clear();
-                for (int i = 0; i < workersToProject.Count; i++)
+                for (int i = 0; i < usersToProject.Count; i++)
                 {
                     Label l1 = new Label();
                     Label l2 = new Label();
-                    l1.Text = workersToProject[i].UserName;
+                    Label l3 = new Label();
+                    l1.Text = usersToProject[i].UserName;
+                    for (int j = 0; j < workerToProjects.Count; j++)
+                    {
+                        if (workerToProjects[j].UserId == usersToProject[i].UserId)
+                            l3.Text = workerToProjects[j].Hours.ToString();
+                    }
+
                     count = 0;
-                   if (actualHours.Count > 0)
+                    if (actualHours.Count > 0)
                         foreach (var item in actualHours)
                         {
-                            if(item.UserId==workersToProject[i].UserId)
+                            if (item.UserId == usersToProject[i].UserId)
                             {
                                 count += item.CountHours;
                             }
@@ -111,7 +132,7 @@ namespace ReportingTasksWinform
                     l2.Text = count.ToString();
                     tableLayoutPanel1.Controls.Add(l1, 0, i);  // add button in column0
                     tableLayoutPanel1.Controls.Add(l2, 1, i);  // add button in column1
-
+                    tableLayoutPanel1.Controls.Add(l3, 2, i);  // add button in column1
                     tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30)); // 30 is the rows space
                 }
             }
@@ -128,6 +149,11 @@ namespace ReportingTasksWinform
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

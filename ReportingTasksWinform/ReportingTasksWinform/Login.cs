@@ -51,6 +51,12 @@ namespace ReportingTasksWinform
                     EnterTeamLeader enterTeamLeader = new EnterTeamLeader();
                     enterTeamLeader.Show();
                 }
+                if (user.UserKindId == 3|| user.UserKindId==4|| user.UserKindId==5)
+
+                {
+                    EnterWorkers enterWorkers = new EnterWorkers();
+                    enterWorkers.Show();
+                }
 
             }
 
