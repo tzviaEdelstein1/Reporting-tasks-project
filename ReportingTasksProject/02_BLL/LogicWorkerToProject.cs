@@ -41,10 +41,9 @@ namespace _02_BLL
 
 
         }
-
         public static List<User> GetWorkerbyProjectName(string projectName)
         {
-            string query = $"SELECT * FROM tasks.users u JOIN tasks.worker_to_project w on u.user_id = w.user_id WHERE w.project_id =(SELECT project_id FROM tasks.projects WHERE project_name={projectName} )";
+            string query = $"SELECT * FROM tasks.users u JOIN tasks.worker_to_project w on u.user_id = w.user_id WHERE w.project_id =(SELECT project_id FROM tasks.projects WHERE project_name='{projectName}' )";
             Func<MySqlDataReader, List<User>> func = (reader) =>
             {
                 List<User> users = new List<User>();

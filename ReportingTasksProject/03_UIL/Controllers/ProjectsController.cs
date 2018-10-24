@@ -21,8 +21,40 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
+        //get the projects by teamleader id
+        [Route("api/Projects/{teamLeaderId}")]
+        [HttpGet]
+        public HttpResponseMessage Get(int teamLeaderId)
+        {
+            List<Project> projects = LogicProjects.GetAllProjects();
+            projects = projects.Where(u => u.TeamLeaderId == teamLeaderId).ToList();
+            if(projects.Count>0)
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Project>>( projects, new JsonMediaTypeFormatter())
+            };
+            else
+            {
+               return new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new ObjectContent<String>("there is not projects", new JsonMediaTypeFormatter())
+                };
+            }
+        }
+        //get the projects by userid 
+        [Route("api/Projects/GetProjectsByUserId/{userId}")]
+        [HttpGet]
+        public HttpResponseMessage GetProjectsByUserId(int userId)
+        {
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Project>>(LogicProjects.GetProjectsByUserId(userId), new JsonMediaTypeFormatter())
+            };
+        }
 
         [Route("api/Projects/{userId}")]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody]Project value, [FromUri]int userId)
         {
             if (ModelState.IsValid)

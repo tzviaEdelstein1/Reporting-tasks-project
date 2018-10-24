@@ -11,9 +11,9 @@ namespace _02_BLL
 {
     public class LogicHours
     {
-        public static List<ActualHours> GetActualHoursByProjectName(string ProjectName)
+        public static List<ActualHours> GetActualHoursByProjectId(string projectId)
         {
-            string query = $"SELECT * FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id=p.project_id where p.project_name={ProjectName}";
+            string query = $"SELECT * FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id=p.project_id where p.project_id={projectId}";
             Func<MySqlDataReader, List<ActualHours>> func = (reader) =>
             {
                 List<ActualHours> actualHours = new List<ActualHours>();
@@ -68,7 +68,7 @@ namespace _02_BLL
             var teamLeaderResult = DBaccess.RunScalar(checkingIfTeamLeaderQuery);
             if ((int)teamLeaderResult == userId)
             {
-                string query = $"INSERT INTO `tasks`.`actual_hours`(`user_id`, `project_id`, `count_houers`, `work_date`) VALUES ('{actualHours.UserId}','{actualHours.ProjectId}','{actualHours.CountHours}',{actualHours.date})";
+                string query = $"INSERT INTO `tasks`.`actual_hours`(`user_id`, `project_id`, `count_houers`, `date`) VALUES ('{actualHours.UserId}','{actualHours.ProjectId}','{actualHours.CountHours}','{actualHours.date.Year}-{actualHours.date.Month}-{actualHours.date.Day}')";
                 return DBaccess.RunNonQuery(query) == 1;
             }
             else return false;

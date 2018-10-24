@@ -15,13 +15,13 @@ namespace _03_UIL.Controllers
 
         // Get - get actual hours count to project requierd data: * ProjectId If the ProjectId is exist, we will return all the hours that belong to it, Else - we will return matching error.
         [HttpGet]
-        [Route("api/GetActualHoursByProjectName/{ProjectName}")]
-        public HttpResponseMessage GetActualHoursByProjectName(string ProjectName)
+        [Route("api/GetActualHoursByProjectId/{projectId}")]
+        public HttpResponseMessage GetActualHoursByProjectId(string projectId)
 
         {//- לבדוק מחזיר  null למה?
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new ObjectContent<List<ActualHours>>(LogicHours.GetActualHoursByProjectName(ProjectName), new JsonMediaTypeFormatter())
+                Content = new ObjectContent<List<ActualHours>>(LogicHours.GetActualHoursByProjectId(projectId), new JsonMediaTypeFormatter())
             };
         }
 

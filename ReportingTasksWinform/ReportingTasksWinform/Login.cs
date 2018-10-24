@@ -36,16 +36,23 @@ namespace ReportingTasksWinform
             user = JsonConvert.DeserializeObject<User>(content);
             if(user!=null)
             {
+                Global.UserName = user.UserName;
+                Global.UserId = user.UserId;
             MessageBox.Show(user.UserName);
-                if (user.UserKindId == 4)
+                if (user.UserKindId == 1)
 
                 {
                     EnterManager enterManager = new EnterManager();
                     enterManager.Show();
                 }
+                if (user.UserKindId == 2)
 
-            
-             }
+                {
+                    EnterTeamLeader enterTeamLeader = new EnterTeamLeader();
+                    enterTeamLeader.Show();
+                }
+
+            }
 
         }
     }

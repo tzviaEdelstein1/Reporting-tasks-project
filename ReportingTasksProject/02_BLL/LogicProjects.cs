@@ -11,6 +11,7 @@ namespace _02_BLL
   public  class LogicProjects
     {
         public static List<Project> GetAllProjects()
+
         {
             try
             {
@@ -44,6 +45,43 @@ namespace _02_BLL
                 throw ex;
             }
         }
+
+        public static List<Project> GetProjectsByUserId(int userId)
+
+        {
+            try
+            {
+                string query = $"SELECT * FROM tasks.projects p JOIN TASKS.worker_to_project w ON p.project_id=w.project_id WHERE user_id={userId}";
+                Func<MySqlDataReader, List<Project>> func = (reader) =>
+                {
+                    List<Project> projects = new List<Project>();
+                    while (reader.Read())
+                    {
+                        projects.Add(new Project
+                        {
+                            ProjectId = reader.GetInt32(0),
+                            ProjectName = reader.GetString(1),
+                            ClientName = reader.GetString(2),
+                            TeamLeaderId = reader.GetInt32(3),
+                             DevelopersHours= reader.GetInt32(4),
+                            QaHours = reader.GetInt32(5),
+                            UiUxHours = reader.GetInt32(6),
+                           StartDate = reader.GetDateTime(7),
+                           FinishDate = reader.GetDateTime(8),
+                        });
+                    }
+                    return projects;
+                };
+
+                return DBaccess.RunReader(query, func);
+            }
+            catch (Exception ex)
+            {
+                var x = ex.StackTrace;
+                throw ex;
+            }
+        }
+        
         public static bool AddProject(Project project,int userId)
         {
             string queryChecking=$" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
@@ -51,7 +89,13 @@ namespace _02_BLL
           if(isAbleTo!=null)
 
               {
-            string query = $"INSERT INTO tasks.projects(`project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`) VALUES ('{project.ProjectName}','{project.ClientName}','{project.TeamLeaderId}','{project.DevelopersHours}','{project.QaHours}','{project.UiUxHours}','{project.StartDate}','{project.FinishDate}')";
+
+                string query = $"INSERT INTO tasks.projects  " +
+                               $"(`project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`)" +
+                               $" VALUES ('{project.ProjectName}','{project.ClientName}'," +
+                               $"'{project.TeamLeaderId}',{project.DevelopersHours},{project.QaHours},{project.UiUxHours}," +
+                               $"'{project.StartDate.Year}-{project.StartDate.Month}-{project.StartDate.Day}','{project.FinishDate.Year}-{project.FinishDate.Month}-{project.FinishDate.Day}')";
+                //string query = $"INSERT INTO tasks.projects(`project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`) VALUES ('{project.ProjectName}','{project.ClientName}','{project.TeamLeaderId}','{project.DevelopersHours}','{project.QaHours}','{project.UiUxHours}','{project.StartDate}','{project.FinishDate}')";
             return DBaccess.RunNonQuery(query) == 1;
 
               }
@@ -79,6 +123,7 @@ namespace _02_BLL
             string query = $"SELECT project_id FROM tasks.projects WHERE project_name='{projectName}'";
             return (int)DBaccess.RunScalar(query);
         }
+  
 
 
 

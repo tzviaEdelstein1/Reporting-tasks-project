@@ -23,6 +23,17 @@ namespace _03_UIL.Controllers
             };
         }
         [HttpGet]
+        [Route("api/Users/GetUsersForTeamLeader/{TeamLeaderId}")]
+        public HttpResponseMessage GetUsersForTeamLeader(int TeamLeaderId)
+
+        {
+            List<User> users = LogicUser.GetAllUsers().Where(u => u.TeamLeaderId == TeamLeaderId).ToList();
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<User>>(users, new JsonMediaTypeFormatter())
+            };
+        }
+        [HttpGet]
         [Route("api/Users/GetTeamLeaders")]
         public HttpResponseMessage GetTeamLeaders()
 
@@ -109,7 +120,7 @@ namespace _03_UIL.Controllers
         //    // DELETE: api/Users/5
         [HttpDelete]
         [Route("api/Users/{id}/{userId}")]
-        public HttpResponseMessage Delete(int id, [FromUri]int userId)
+        public HttpResponseMessage Delete(int id, int userId)
         {
             return (LogicUser.RemoveUser(id, userId)) ?
                     new HttpResponseMessage(HttpStatusCode.OK) :

@@ -45,7 +45,7 @@ namespace ReportingTasksWinform
 
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Projects/12");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Projects/"+Global.UserId);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -100,7 +100,7 @@ namespace ReportingTasksWinform
               
                 try
                 {
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/WorkerToProject/12");
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/WorkerToProject/"+Global.UserId);
                     httpWebRequest.ContentType = "application/json";
                     httpWebRequest.Method = "POST";
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;

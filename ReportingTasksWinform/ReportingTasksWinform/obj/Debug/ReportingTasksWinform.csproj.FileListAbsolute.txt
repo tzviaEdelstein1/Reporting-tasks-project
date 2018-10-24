@@ -13,3 +13,7 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\R
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.EnterManager.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.AddProject.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.ManageUsers.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.ManagementTeam.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.ViewingProjects.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.EnterTeamLeader.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.UpdateHours.resources
