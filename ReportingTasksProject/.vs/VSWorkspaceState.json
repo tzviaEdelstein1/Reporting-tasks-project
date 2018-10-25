@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\01_BOL\\Validation",
     "\\03_UIL",
     "\\03_UIL\\Controllers"
   ],
+  "SelectedNode": "\\03_UIL\\Controllers\\WorkerToProjectController.cs",
   "PreviewInSolutionExplorer": false
 }
