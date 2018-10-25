@@ -35,6 +35,8 @@
             this.buttonTask = new System.Windows.Forms.Button();
             this.labelTimer = new System.Windows.Forms.Label();
             this.buttonContacting = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -71,7 +73,7 @@
             // 
             // buttonContacting
             // 
-            this.buttonContacting.Location = new System.Drawing.Point(483, 240);
+            this.buttonContacting.Location = new System.Drawing.Point(597, 346);
             this.buttonContacting.Name = "buttonContacting";
             this.buttonContacting.Size = new System.Drawing.Size(137, 62);
             this.buttonContacting.TabIndex = 3;
@@ -79,11 +81,21 @@
             this.buttonContacting.UseVisualStyleBackColor = true;
             this.buttonContacting.Click += new System.EventHandler(this.buttonContacting_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(366, 25);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(297, 262);
+            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // EnterWorkers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonContacting);
             this.Controls.Add(this.labelTimer);
             this.Controls.Add(this.buttonTask);
@@ -91,6 +103,7 @@
             this.Name = "EnterWorkers";
             this.Text = "EnterWorkers";
             this.Load += new System.EventHandler(this.EnterWorkers_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Button buttonTask;
         private System.Windows.Forms.Label labelTimer;
         private System.Windows.Forms.Button buttonContacting;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

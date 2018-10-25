@@ -45,6 +45,7 @@
     <Compile Include="ActualHours.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unknown.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserKind.cs" />
     <Compile Include="UserKindToAccess.cs" />

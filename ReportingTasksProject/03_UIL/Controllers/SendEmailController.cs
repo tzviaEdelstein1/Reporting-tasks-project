@@ -27,7 +27,7 @@ namespace _03_UIL.Controllers
             string emailTo = "Tzvia.edelstein@seldatinc.com";
                 // users.FirstOrDefault(user => user.UserKindId == 1).UserEmail;
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("mail.reckonbits.com.pk");
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(emailTo);

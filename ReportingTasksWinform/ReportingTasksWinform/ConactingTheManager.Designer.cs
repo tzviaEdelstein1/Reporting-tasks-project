@@ -30,6 +30,7 @@
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonSendEmail = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -41,7 +42,7 @@
             // 
             // buttonSendEmail
             // 
-            this.buttonSendEmail.Location = new System.Drawing.Point(313, 158);
+            this.buttonSendEmail.Location = new System.Drawing.Point(413, 172);
             this.buttonSendEmail.Name = "buttonSendEmail";
             this.buttonSendEmail.Size = new System.Drawing.Size(255, 60);
             this.buttonSendEmail.TabIndex = 1;
@@ -49,15 +50,27 @@
             this.buttonSendEmail.UseVisualStyleBackColor = true;
             this.buttonSendEmail.Click += new System.EventHandler(this.buttonSendEmail_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(58, 161);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(218, 82);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ConactingTheManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonSendEmail);
             this.Controls.Add(this.textBox1);
             this.Name = "ConactingTheManager";
             this.Text = "ConactingTheManager";
+            this.Load += new System.EventHandler(this.ConactingTheManager_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +80,6 @@
 
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonSendEmail;
+        private System.Windows.Forms.Button button1;
     }
 }

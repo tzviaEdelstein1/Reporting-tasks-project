@@ -1,4 +1,5 @@
-﻿using _02_BLL;
+﻿using _01_BOL;
+using _02_BLL;
 using BOL;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,17 @@ namespace _03_UIL.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetProjectsByUserId(userId), new JsonMediaTypeFormatter())
+            };
+        }
+        //get the projects and the hours by user id
+        [Route("api/Projects/GetProjectsAndHoursByUserId/{userId}")]
+        [HttpGet]
+        public HttpResponseMessage GetProjectsAndHoursByUserId(int userId)
+        {
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByUserId(userId), new JsonMediaTypeFormatter())
             };
         }
 
