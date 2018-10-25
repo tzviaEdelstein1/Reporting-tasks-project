@@ -13,7 +13,7 @@ namespace _02_BLL
     {
         public static List<Project> GetAllProjects()
 
-        {
+        {//ff
             try
             {
                 string query = $"SELECT * FROM tasks.projects";
