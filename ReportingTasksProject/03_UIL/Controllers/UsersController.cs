@@ -62,6 +62,7 @@ namespace _03_UIL.Controllers
         }
 
         // POST: api/Users
+        [HttpPost]
         [Route("api/Users/{userId}")]
         public HttpResponseMessage Post([FromBody]User value, [FromUri]int userId)
         {

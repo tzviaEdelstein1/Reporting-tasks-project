@@ -28,5 +28,11 @@ namespace ReportingTasksWinform
             UpdateHours updateHours = new UpdateHours();
             updateHours.Show();
         }
+
+        private void buttonChar_Click(object sender, EventArgs e)
+        {
+            TeamLeaderChar teamLeaderChar = new TeamLeaderChar();
+            teamLeaderChar.Show();
+        }
     }
 }

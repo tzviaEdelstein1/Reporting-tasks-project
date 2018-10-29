@@ -30,6 +30,7 @@
         {
             this.buttonViewingProjects = new System.Windows.Forms.Button();
             this.buttonUpdatHours = new System.Windows.Forms.Button();
+            this.buttonChar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonViewingProjects
@@ -52,11 +53,22 @@
             this.buttonUpdatHours.UseVisualStyleBackColor = true;
             this.buttonUpdatHours.Click += new System.EventHandler(this.buttonUpdatHours_Click);
             // 
+            // buttonChar
+            // 
+            this.buttonChar.Location = new System.Drawing.Point(133, 96);
+            this.buttonChar.Name = "buttonChar";
+            this.buttonChar.Size = new System.Drawing.Size(340, 53);
+            this.buttonChar.TabIndex = 2;
+            this.buttonChar.Text = "char";
+            this.buttonChar.UseVisualStyleBackColor = true;
+            this.buttonChar.Click += new System.EventHandler(this.buttonChar_Click);
+            // 
             // EnterTeamLeader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonChar);
             this.Controls.Add(this.buttonUpdatHours);
             this.Controls.Add(this.buttonViewingProjects);
             this.Name = "EnterTeamLeader";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button buttonViewingProjects;
         private System.Windows.Forms.Button buttonUpdatHours;
+        private System.Windows.Forms.Button buttonChar;
     }
 }

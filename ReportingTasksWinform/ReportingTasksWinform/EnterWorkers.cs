@@ -24,6 +24,7 @@ namespace ReportingTasksWinform
         DateTime startDate;
         DateTime endDate;
         List<Unknown> projectDetails = new List<Unknown>();
+        List<Unknown> projectDetailsByDate;
         public EnterWorkers()
         {
             InitializeComponent();
@@ -54,7 +55,40 @@ namespace ReportingTasksWinform
                 MessageBox.Show("error");
             }
 
+
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetProjectsAndHoursByUserIdAccordingTheMonth/" + Global.UserId);
+                response = (HttpWebResponse)request.GetResponse();
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                projectDetailsByDate = JsonConvert.DeserializeObject<List<Unknown>>(content);
+                fillChart();
+                MessageBox.Show("success");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error");
+            }
         }
+
+        private void fillChart()
+        {
+            Dictionary<string, int> allocatedHours = new Dictionary<string, int>();
+            List<float> workedHours = new List<float>();
+            if (projectDetailsByDate != null)
+            {
+                foreach (var item in projectDetailsByDate)
+                {
+                    allocatedHours.Add(item.Name, Convert.ToInt32(item.allocatedHours));
+                    //if (item.Hours !=)
+                    workedHours.Add((float)item.Hours);
+                    //else workedHours.Add(0);
+                }
+                chart1.Series[0].Points.DataBindXY(allocatedHours.Keys, allocatedHours.Values);
+                chart1.Series[1].Points.DataBindXY(allocatedHours.Keys, workedHours);
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             d = DateTime.Now - startDate;
@@ -109,13 +143,13 @@ namespace ReportingTasksWinform
         }
 
         private void addActulHoursToWorker()
-        {
-            ActualHours actualHours = new ActualHours() { CountHours =Convert.ToDouble(countTimer), date = DateTime.Now, UserId = Global.UserId, ProjectId =Convert.ToInt32(projectId) };
+        {  //-----------------------------צריך לסכום את מספר השעות!!!!!!!!!!!!------------
+            ActualHours actualHours = new ActualHours() { CountHours =2, date = DateTime.Now, UserId = Global.UserId, ProjectId =Convert.ToInt32(projectId) };
             try
             {
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Hours/" + Global.UserId);
                 httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "PUT";
+                httpWebRequest.Method = "POST";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -128,19 +162,12 @@ namespace ReportingTasksWinform
                 }
 
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    {
-                        var result = streamReader.ReadToEnd();
-                        MessageBox.Show("Test");
-                    }
-
-                }
+                MessageBox.Show("sucsess");
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("error");
+                MessageBox.Show("error", ex.Message.ToString());
 
             }
         }

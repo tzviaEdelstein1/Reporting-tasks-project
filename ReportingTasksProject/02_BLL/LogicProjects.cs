@@ -115,6 +115,77 @@ namespace _02_BLL
             }
         }
 
+        public static List<Unknown> GetProjectsAndHoursByUserIdAccordingTheMonth(int userId)
+
+        {
+            try
+            {
+                string query = $"SELECT a.project_id,project_name,hours,sum(count_houers) " +
+$"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id " +
+ $" JOIN TASKS.worker_to_project w ON w.project_id = a.project_id " +
+ $"WHERE a.user_id ={userId} AND YEAR(date)={ DateTime.Now.Year} " +
+                $" AND MONTH(date)={ DateTime.Now.Month}"+
+                $" group by a.user_id,a.project_id";
+                Func<MySqlDataReader, List<Unknown>> func = (reader) =>
+                {
+                    List<Unknown> projects = new List<Unknown>();
+                    while (reader.Read())
+                    {
+                        projects.Add(new Unknown
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Hours = reader.GetDouble(2),
+                            allocatedHours = reader.GetDouble(3)
+                        });
+                    }
+                    return projects;
+                };
+
+                return DBaccess.RunReader(query, func);
+            }
+            catch (Exception ex)
+            {
+                var x = ex.StackTrace;
+                throw ex;
+            }
+        }
+
+        public static List<Unknown> GetProjectsAndHoursByTeamLeaderId(int teamLeaderId)
+        {
+            try
+            {
+                string query = $"SELECT a.user_id ,u.user_name, w.hours,sum(count_houers) " +
+                               $" FROM tasks.users u JOIN TASKS.worker_to_project w ON u.user_id = w.user_id" +
+                               $" JOIN tasks.actual_hours a ON a.user_id = u.user_id" +
+                               $" WHERE team_leader_id = {teamLeaderId} AND YEAR(date)={DateTime.Now.Year} AND MONTH(date)={DateTime.Now.Month}" +
+                               $" group by a.user_id";
+                Func<MySqlDataReader, List<Unknown>> func = (reader) =>
+                {
+                    List<Unknown> projects = new List<Unknown>();
+                    while (reader.Read())
+                    {
+
+                        projects.Add(new Unknown
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Hours = reader.GetDouble(2),
+                            allocatedHours = reader.GetDouble(3)
+                        });
+                    }
+                    return projects;
+                };
+
+                return DBaccess.RunReader(query, func);
+            }
+            catch (Exception ex)
+            {
+                var x = ex.StackTrace;
+                throw ex;
+            }
+        }
+
         public static bool AddProject(Project project, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";

@@ -104,7 +104,7 @@ namespace _02_BLL
         }
         public static bool UpdateWorkerToProject(WorkerToProject workerToProject)
         {//אין בדיקת הרשאות
-            string query = $"UPDATE `tasks`.`worker_to_project SET user_id='{workerToProject.UserId}',project_id='{workerToProject.ProjectId}',hours={workerToProject.Hours})";
+            string query = $"UPDATE tasks.worker_to_project SET user_id='{workerToProject.UserId}',project_id='{workerToProject.ProjectId}',hours={workerToProject.Hours} WHERE worker_to_project_id={workerToProject.WorkerToProjectId}";
             return DBaccess.RunNonQuery(query) == 1;
         }
 

@@ -15,8 +15,6 @@ namespace BOL
         public string UserName { get; set; }
         [Required]
         public string UserEmail { get; set; }
-        [Required]
-        [MinLength(6), MaxLength(10)]
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]

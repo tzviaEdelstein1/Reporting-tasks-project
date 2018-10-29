@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -82,7 +83,7 @@ namespace ReportingTasksWinform
         private void ComboBoxAllUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxEmailEdit.Text = (comboBoxAllUsers.SelectedItem as User).UserEmail;
-            textBoxPasswordEdit.Text = (comboBoxAllUsers.SelectedItem as User).Password;
+         
             textBoxUserNameEdit.Text = (comboBoxAllUsers.SelectedItem as User).UserName;
             comboBoxTeamLeaderEdit.SelectedValue = (comboBoxAllUsers.SelectedItem as User).TeamLeaderId;
             comboBoxUserKindEdit.SelectedValue = (comboBoxAllUsers.SelectedItem as User).UserKindId;
@@ -94,7 +95,8 @@ namespace ReportingTasksWinform
           int teamLeaderid;
             if (comboBoxTeamLeader.SelectedIndex > -1)
             {
-                user = new User() { UserEmail = textBoxEmail.Text, Password = textBoxPassword.Text, UserName = textBoxUserName.Text, TeamLeaderId = (int)comboBoxTeamLeader.SelectedValue, UserKindId = (int)comboBoxUserKind.SelectedValue };
+                var password = sha256(textBoxPassword.Text);
+                user = new User() { UserEmail = textBoxEmail.Text, Password = password, UserName = textBoxUserName.Text, TeamLeaderId = (int)comboBoxTeamLeader.SelectedValue, UserKindId = (int)comboBoxUserKind.SelectedValue };
                 FillUserDetails();
             }
             else if ((int)comboBoxUserKind.SelectedValue != 2 && (int)comboBoxUserKind.SelectedValue != 1)
@@ -103,12 +105,37 @@ namespace ReportingTasksWinform
             }
             else
             {
-                user = new User() { UserEmail = textBoxEmail.Text, Password = textBoxPassword.Text, UserName = textBoxUserName.Text, UserKindId = (int)comboBoxUserKind.SelectedValue };
+                var password = sha256(textBoxPassword.Text);
+
+                user = new User() { UserEmail = textBoxEmail.Text, Password = password, UserName = textBoxUserName.Text, UserKindId = (int)comboBoxUserKind.SelectedValue };
                 FillUserDetails();
             }
-         
 
-           
+            foreach (Control control in this.Controls)
+            {
+                // Set focus on control
+                control.Focus();
+                // Validate causes the control's Validating event to be fired,
+                // if CausesValidation is True
+                if (!Validate())
+                {
+                    DialogResult = DialogResult.None;
+                    return;
+                }
+            }
+
+        }
+
+        static string sha256(string password)
+        {
+            var crypt = new SHA256Managed();
+            string hash = String.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password));
+            foreach (byte theByte in crypto)
+            {
+                hash += theByte.ToString("x2");
+            }
+            return hash;
         }
 
         private void FillUserDetails()
@@ -142,7 +169,7 @@ namespace ReportingTasksWinform
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            user = new User() { UserEmail = textBoxEmailEdit.Text, Password = textBoxPasswordEdit.Text, UserName = textBoxUserNameEdit.Text, TeamLeaderId = (int)comboBoxTeamLeaderEdit.SelectedValue, UserKindId = (int)comboBoxUserKindEdit.SelectedValue };
+            user = new User() { UserEmail = textBoxEmailEdit.Text, UserName = textBoxUserNameEdit.Text, TeamLeaderId = (int)comboBoxTeamLeaderEdit.SelectedValue, UserKindId = (int)comboBoxUserKindEdit.SelectedValue };
 
             user.UserId = (int)comboBoxAllUsers.SelectedValue;
             try
@@ -196,6 +223,19 @@ namespace ReportingTasksWinform
         private void comboBoxAllUsersRemove_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxUserName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxUserName.Text))
+            {
+                errorProvider1.SetError(textBoxUserName, "user name required!");
+            }
+            
+            else
+            {
+                errorProvider1.SetError(textBoxUserName, null);
+            }
         }
     }
 }

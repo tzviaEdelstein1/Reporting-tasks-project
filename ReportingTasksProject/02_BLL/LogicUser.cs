@@ -64,7 +64,7 @@ namespace _02_BLL
 
         public static List<User> GetTeamLeaders()
         {
-            string query = $"SELECT * FROM tasks.users WHERE user_id in(SELECT team_leader_id from tasks.users)";
+            string query = $"SELECT * FROM tasks.users WHERE user_kind_id=2";
             Func<MySqlDataReader, List<User>> func = (reader) =>
             {
                 List<User> users = new List<User>();

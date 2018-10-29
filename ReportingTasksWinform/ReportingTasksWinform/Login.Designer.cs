@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LoginButton = new System.Windows.Forms.Button();
+            this.buttonEditPassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxUserName
@@ -57,7 +58,6 @@
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "UserName";
-         
             // 
             // label2
             // 
@@ -70,7 +70,7 @@
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(306, 245);
+            this.LoginButton.Location = new System.Drawing.Point(361, 235);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(220, 94);
             this.LoginButton.TabIndex = 4;
@@ -78,11 +78,21 @@
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
+            // buttonEditPassword
+            // 
+            this.buttonEditPassword.Location = new System.Drawing.Point(360, 204);
+            this.buttonEditPassword.Name = "buttonEditPassword";
+            this.buttonEditPassword.Size = new System.Drawing.Size(228, 25);
+            this.buttonEditPassword.TabIndex = 5;
+            this.buttonEditPassword.Text = "EditPassword";
+            this.buttonEditPassword.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(847, 472);
+            this.Controls.Add(this.buttonEditPassword);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -102,6 +112,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button LoginButton;
+        private System.Windows.Forms.Button buttonEditPassword;
     }
 }
 

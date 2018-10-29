@@ -64,14 +64,15 @@ namespace _02_BLL
 
         public static bool AddActualHours(ActualHours actualHours,int userId)
         {
-            string checkingIfTeamLeaderQuery = $"SELECT team_leader_id FROM tasks.users WHERE user_id={actualHours.UserId};";
-            var teamLeaderResult = DBaccess.RunScalar(checkingIfTeamLeaderQuery);
-            if ((int)teamLeaderResult == userId)
-            {
+            //לעדכן שכל משתמש יוכל לעדכן את עצמו
+            //string checkingIfTeamLeaderQuery = $"SELECT team_leader_id FROM tasks.users WHERE user_id={actualHours.UserId};";
+            //var teamLeaderResult = DBaccess.RunScalar(checkingIfTeamLeaderQuery);
+            //if ((int)teamLeaderResult == userId)
+            //{ } else return false;
                 string query = $"INSERT INTO `tasks`.`actual_hours`(`user_id`, `project_id`, `count_houers`, `date`) VALUES ('{actualHours.UserId}','{actualHours.ProjectId}','{actualHours.CountHours}','{actualHours.date.Year}-{actualHours.date.Month}-{actualHours.date.Day}')";
                 return DBaccess.RunNonQuery(query) == 1;
-            }
-            else return false;
+           
+           
         }
 
         public static List<ActualHours> GetActualHoursByUserKindToProject(string projectName, string UserKindName)

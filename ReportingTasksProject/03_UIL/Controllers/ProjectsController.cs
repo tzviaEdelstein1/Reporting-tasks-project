@@ -64,7 +64,29 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByUserId(userId), new JsonMediaTypeFormatter())
             };
         }
+        //get the projects and the hours by user id according the month
+        [Route("api/Projects/GetProjectsAndHoursByUserIdAccordingTheMonth/{userId}")]
+        [HttpGet]
+        public HttpResponseMessage GetProjectsAndHoursByUserIdAccordingTheMonth(int userId)
+        {
 
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByUserIdAccordingTheMonth(userId), new JsonMediaTypeFormatter())
+            };
+        }
+
+        //get the projects and the hours by teamleader id
+        [Route("api/Projects/GetProjectsAndHoursByTeamLeaderId/{teamLeaderId}")]
+        [HttpGet]
+        public HttpResponseMessage GetProjectsAndHoursByTeamLeaderId(int teamLeaderId)
+        {
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByTeamLeaderId(teamLeaderId), new JsonMediaTypeFormatter())
+            };
+        }
         [Route("api/Projects/{userId}")]
         [HttpPost]
         public HttpResponseMessage Post([FromBody]Project value, [FromUri]int userId)

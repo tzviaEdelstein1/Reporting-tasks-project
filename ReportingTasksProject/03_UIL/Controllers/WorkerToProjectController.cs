@@ -33,6 +33,20 @@ namespace _03_UIL.Controllers
         }
 
         [HttpGet]
+        [Route("api/WorkerToProject/GetWorkerToProjectByPidAndUid/{userId}/{projectId}")]
+        public HttpResponseMessage GetWorkerToProjectByPidAndUid(int userId, int projectId)
+
+        {
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<WorkerToProject>(LogicWorkerToProject.GetWorkersToProjectByProjectId(projectId).FirstOrDefault(u => u.UserId == userId), new JsonMediaTypeFormatter())
+            };
+        }
+
+
+
+        [HttpGet]
         [Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
         public HttpResponseMessage GetWorkerbyProjectName(string projectname)
 

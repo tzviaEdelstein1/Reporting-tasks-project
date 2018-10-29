@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,12 +24,22 @@ namespace ReportingTasksWinform
             InitializeComponent();
         }
 
-
+        static string sha256(string password)
+        {
+            var crypt = new SHA256Managed();
+            string hash = String.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password));
+            foreach (byte theByte in crypto)
+            {
+                hash += theByte.ToString("x2");
+            }
+            return hash;
+        }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
             string userName = textBoxUserName.Text;
-            string password = textBoxPassword.Text;
+            string password = sha256(textBoxPassword.Text);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/"+userName+"/"+password);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             string content = new StreamReader(response.GetResponseStream()).ReadToEnd();

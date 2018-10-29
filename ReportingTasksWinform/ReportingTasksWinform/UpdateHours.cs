@@ -21,6 +21,7 @@ namespace ReportingTasksWinform
         List<Project> ProjectsForteamLeader;
         List<Project> ProjectsForUser;
         List<Project> commonProjectsInTheList=new List<Project>();
+        WorkerToProject workerToProject;
         public UpdateHours()
         {
             InitializeComponent();
@@ -92,9 +93,12 @@ namespace ReportingTasksWinform
                  
                     }
                     //var results = ProjectsForteamLeader.Join(ProjectsForUser, ptl => ptl.ProjectId, p => p.ProjectId, (post, meta) => new { Post = post, Meta = meta });
+                    comboBoxProjects.SelectedIndexChanged -= new EventHandler(comboBoxProjects_SelectedIndexChanged);
                     comboBoxProjects.DataSource = commonProjectsInTheList;
                     comboBoxProjects.DisplayMember = "ProjectName";
                     comboBoxProjects.ValueMember = "ProjectId";
+                    comboBoxProjects.SelectedIndexChanged += comboBoxProjects_SelectedIndexChanged;
+                    numericCountHours.Value = 0;
                     MessageBox.Show("success");
                 }
                 else
@@ -113,41 +117,57 @@ namespace ReportingTasksWinform
 
         private void comboBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
+         
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+            //get the current worker to peoject for update
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/WorkerToProject/GetWorkerToProjectByPidAndUid/" + comboBoxUsers.SelectedValue + "/" + comboBoxProjects.SelectedValue);
+                response = (HttpWebResponse)request.GetResponse();
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                workerToProject = JsonConvert.DeserializeObject<WorkerToProject>(content);
 
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("eror");
+            }
+            numericCountHours.Value = workerToProject.Hours;
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            ActualHours actualHours = new ActualHours() { CountHours =(double)numericCountHours.Value,ProjectId=(int)comboBoxProjects.SelectedValue, date = dateTimePicker1.Value, UserId = (int)comboBoxUsers.SelectedValue };
+          
+            workerToProject.Hours = (int)numericCountHours.Value;
+            //ActualHours actualHours = new ActualHours() { CountHours =(double)numericCountHours.Value,ProjectId=(int)comboBoxProjects.SelectedValue, date = dateTimePicker1.Value, UserId = (int)comboBoxUsers.SelectedValue };
+
+            //update the worker to project with the houers
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Hours/" + Global.UserId);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/WorkerToProject");
                 httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
+                httpWebRequest.Method = "PUT";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    string json = new JavaScriptSerializer().Serialize(actualHours);
+                    string json = new JavaScriptSerializer().Serialize(workerToProject);
                     streamWriter.Write(json);
                     streamWriter.Flush();
                     streamWriter.Close();
 
                 }
-                string result;
+
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
-
                     {
-                        result = streamReader.ReadToEnd();
-                      
-                        if (result != "")
-                        {
-                           
-                        }
-                        else
-                        { MessageBox.Show(result); }
+                        var result = streamReader.ReadToEnd();
+                        MessageBox.Show("Test");
                     }
 
                 }
@@ -155,9 +175,10 @@ namespace ReportingTasksWinform
             catch (Exception ex)
             {
 
-                MessageBox.Show("error", ex.Message.ToString());
+                MessageBox.Show("error");
 
             }
+
         }
     }
 }

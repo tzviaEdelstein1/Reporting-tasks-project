@@ -31,7 +31,7 @@ namespace ReportingTasksWinform
             string content;
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/SendEmail" + Global.UserId);
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/" + Global.UserId + "/" + textBox1.Text);
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 users = JsonConvert.DeserializeObject<List<User>>(content);
@@ -52,10 +52,9 @@ namespace ReportingTasksWinform
             string content;
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/SendEmail" + Global.UserId);
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/SendEmail" + Global.UserId+"/"+textBox1.Text);
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                users = JsonConvert.DeserializeObject<List<User>>(content);
                 MessageBox.Show("success");
 
             }
@@ -67,6 +66,11 @@ namespace ReportingTasksWinform
         }
 
         private void ConactingTheManager_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

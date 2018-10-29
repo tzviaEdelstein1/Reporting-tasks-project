@@ -16,6 +16,7 @@ namespace ReportingTasksWinform
 {
     public partial class ViewingProjects : Form
     {
+        List<Unknown> workersHours;
         List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
         List<User> usersToProject = new List<User>();
         List<Project> ProjectsForteamLeader = new List<Project>();
@@ -49,7 +50,20 @@ namespace ReportingTasksWinform
             comboBoxAllYourProjects.DisplayMember = "ProjectName";
             comboBoxAllYourProjects.ValueMember = "ProjectId";
             comboBoxAllYourProjects.SelectedIndexChanged += comboBoxAllYourProjects_SelectedIndexChanged;
-
+            //get the projects and houers for team leaders
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetProjectsAndHoursByTeamLeaderId/"+ Global.UserId);
+                response = (HttpWebResponse)request.GetResponse();
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                workersHours = JsonConvert.DeserializeObject<List<Unknown>>(content);
+                MessageBox.Show("success");
+                fillChart();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error");
+            }
 
         }
 
@@ -144,8 +158,25 @@ namespace ReportingTasksWinform
 
 
 
+         
+        }
 
-
+        private void fillChart()
+        {
+            Dictionary<string, int> allocatedHours = new Dictionary<string, int>();
+            List<float> workedHours = new List<float>();
+            if (workersHours != null)
+            {
+                foreach (var item in workersHours)
+                {
+                    allocatedHours.Add(item.Name, Convert.ToInt32(item.allocatedHours));
+                    //if (item.Hours !=)
+                        workedHours.Add((float)item.Hours);
+                    //else workedHours.Add(0);
+                }
+                chart1.Series[0].Points.DataBindXY(allocatedHours.Keys, allocatedHours.Values);
+                chart1.Series[1].Points.DataBindXY(allocatedHours.Keys, workedHours);
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,6 +187,11 @@ namespace ReportingTasksWinform
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }
