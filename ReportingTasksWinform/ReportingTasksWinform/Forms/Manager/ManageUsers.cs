@@ -13,11 +13,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using ReportingTasksWinform.Reqests;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReportingTasksWinform
 {
     public partial class ManageUsers : Form
     {
+
+
         User user;
         List<User> allUsers = new List<User>();
         List<User> teamLeaders = new List<User>();
@@ -30,19 +34,13 @@ namespace ReportingTasksWinform
 
         private void ManageUsers_Load(object sender, EventArgs e)
         {
+
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
+
+            teamLeaders = UserRequsts.GetAllTeamLeaders();
             //fill comboBox with team leaders
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/GetTeamLeaders");
-                response = (HttpWebResponse)request.GetResponse();
-                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                teamLeaders = JsonConvert.DeserializeObject<List<User>>(content);
-            }
-            catch (Exception ex)
-            { MessageBox.Show(ex.ToString()); }
             comboBoxTeamLeader.DataSource = teamLeaders;
             comboBoxTeamLeader.ValueMember = "UserId";
             comboBoxTeamLeader.DisplayMember = "UserName";
@@ -52,10 +50,7 @@ namespace ReportingTasksWinform
 
 
             //fill comboBox with userKinds
-            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/UserKinds");
-            response = (HttpWebResponse)request.GetResponse();
-            content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            usersKind = JsonConvert.DeserializeObject<List<UserKind>>(content);
+            usersKind = UsersKindRequst.GetAllUsersKind();
             comboBoxUserKind.DataSource = usersKind;
             comboBoxUserKind.ValueMember = "KindUserId";
             comboBoxUserKind.DisplayMember = "KindUserName";
@@ -63,15 +58,10 @@ namespace ReportingTasksWinform
             comboBoxUserKindEdit.ValueMember = "KindUserId";
             comboBoxUserKindEdit.DisplayMember = "KindUserName";
 
-            //get all the workers
-
-            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/GetAllUsers");
-            response = (HttpWebResponse)request.GetResponse();
-            content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            allUsers = JsonConvert.DeserializeObject<List<User>>(content);
+            //get all the workers and fill the combobox
+            allUsers = UserRequsts.GetAllUsers();
             comboBoxAllUsers.SelectedIndexChanged -= new EventHandler(ComboBoxAllUsers_SelectedIndexChanged);
             comboBoxAllUsers.DataSource = allUsers;
-
             comboBoxAllUsers.ValueMember = "UserId";
             comboBoxAllUsers.DisplayMember = "UserName";
             comboBoxAllUsersRemove.DataSource = allUsers;
@@ -83,7 +73,7 @@ namespace ReportingTasksWinform
         private void ComboBoxAllUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxEmailEdit.Text = (comboBoxAllUsers.SelectedItem as User).UserEmail;
-         
+
             textBoxUserNameEdit.Text = (comboBoxAllUsers.SelectedItem as User).UserName;
             comboBoxTeamLeaderEdit.SelectedValue = (comboBoxAllUsers.SelectedItem as User).TeamLeaderId;
             comboBoxUserKindEdit.SelectedValue = (comboBoxAllUsers.SelectedItem as User).UserKindId;
@@ -91,8 +81,10 @@ namespace ReportingTasksWinform
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
-            string result = "";
-          int teamLeaderid;
+
+
+          
+            int teamLeaderid;
             if (comboBoxTeamLeader.SelectedIndex > -1)
             {
                 var password = sha256(textBoxPassword.Text);
@@ -110,20 +102,6 @@ namespace ReportingTasksWinform
                 user = new User() { UserEmail = textBoxEmail.Text, Password = password, UserName = textBoxUserName.Text, UserKindId = (int)comboBoxUserKind.SelectedValue };
                 FillUserDetails();
             }
-
-            foreach (Control control in this.Controls)
-            {
-                // Set focus on control
-                control.Focus();
-                // Validate causes the control's Validating event to be fired,
-                // if CausesValidation is True
-                if (!Validate())
-                {
-                    DialogResult = DialogResult.None;
-                    return;
-                }
-            }
-
         }
 
         static string sha256(string password)
@@ -140,102 +118,56 @@ namespace ReportingTasksWinform
 
         private void FillUserDetails()
         {
-            try
+            var validationContext = new ValidationContext(user, null, null);
+            var results = new List<ValidationResult>();
+            if (Validator.TryValidateObject(user, validationContext, results, true))
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/"+Global.UserId);
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    string json = new JavaScriptSerializer().Serialize(user);
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-
-                }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                MessageBox.Show("sucsess");
+                if (UserRequsts.AddUser(user))
+                    MessageBox.Show("added success");
+                else
+                    MessageBox.Show("faild");
             }
-            catch (Exception ex)
+            else
             {
-
-                MessageBox.Show("error", ex.Message.ToString());
-
+                MessageBox.Show(string.Join(",\n", results.Select(p => p.ErrorMessage)));
             }
+
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             user = new User() { UserEmail = textBoxEmailEdit.Text, UserName = textBoxUserNameEdit.Text, TeamLeaderId = (int)comboBoxTeamLeaderEdit.SelectedValue, UserKindId = (int)comboBoxUserKindEdit.SelectedValue };
-
             user.UserId = (int)comboBoxAllUsers.SelectedValue;
-            try
+            var validationContext = new ValidationContext(user, null, null);
+            var results = new List<ValidationResult>();
+
+
+            if (Validator.TryValidateObject(user, validationContext, results, true))
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/"+Global.UserId);
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "PUT";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                if (UserRequsts.UpdateUser(user))
+                    MessageBox.Show("update success");
 
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    string json = new JavaScriptSerializer().Serialize(user);
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-
-                }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    {
-                        var result = streamReader.ReadToEnd();
-                        MessageBox.Show("Test");
-                    }
-
-                }
+                else
+                    MessageBox.Show("update filed");
             }
-            catch (Exception ex)
+            else
             {
-
-                MessageBox.Show("error");
-
+                MessageBox.Show(string.Join(",\n", results.Select(p => p.ErrorMessage)));
             }
+
+
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
             int idUser = (int)comboBoxAllUsersRemove.SelectedValue;
 
-            try
-            {
-                WebRequest request = WebRequest.Create("http://localhost:56028/api/Users/" + idUser + "/"+Global.UserId);
-                request.Method = "DELETE";
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            }
-            catch (Exception ex)
-            { MessageBox.Show("error"); }
+            UserRequsts.RemoveUser(idUser);
         }
 
         private void comboBoxAllUsersRemove_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void textBoxUserName_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBoxUserName.Text))
-            {
-                errorProvider1.SetError(textBoxUserName, "user name required!");
-            }
-            
-            else
-            {
-                errorProvider1.SetError(textBoxUserName, null);
-            }
         }
     }
 }

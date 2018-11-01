@@ -1,5 +1,7 @@
-﻿using System;
+﻿using _01_BOL.Validation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,7 @@ namespace BOL
     {
         public int ProjectId { get; set; }
         [Required]
-       
+       [UniqueProjectAttribute]
         public string ProjectName { get; set; }
         [Required]
         public string ClientName { get; set; }
@@ -19,11 +21,12 @@ namespace BOL
         public int TeamLeaderId { get; set; }
         [Required]
         public int DevelopersHours { get; set; }
-        [Required]
+        [Required]      
         public int QaHours { get; set; }
         [Required]
+      
         public int UiUxHours { get; set; }
-
+        [ValidateStartDate]
         [Required]
         public DateTime StartDate { get; set; }
         [Required]

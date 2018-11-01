@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.comboBoxAllYourProjects = new System.Windows.Forms.ComboBox();
             this.labelProjectName = new System.Windows.Forms.Label();
             this.labelClientName = new System.Windows.Forms.Label();
@@ -48,18 +44,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxAllYourProjects
             // 
             this.comboBoxAllYourProjects.FormattingEnabled = true;
-            this.comboBoxAllYourProjects.Location = new System.Drawing.Point(282, 33);
+            this.comboBoxAllYourProjects.Location = new System.Drawing.Point(421, 69);
             this.comboBoxAllYourProjects.Name = "comboBoxAllYourProjects";
             this.comboBoxAllYourProjects.Size = new System.Drawing.Size(159, 21);
             this.comboBoxAllYourProjects.TabIndex = 0;
@@ -68,7 +63,7 @@
             // labelProjectName
             // 
             this.labelProjectName.AutoSize = true;
-            this.labelProjectName.Location = new System.Drawing.Point(106, 33);
+            this.labelProjectName.Location = new System.Drawing.Point(127, 38);
             this.labelProjectName.Name = "labelProjectName";
             this.labelProjectName.Size = new System.Drawing.Size(68, 13);
             this.labelProjectName.TabIndex = 1;
@@ -77,7 +72,7 @@
             // labelClientName
             // 
             this.labelClientName.AutoSize = true;
-            this.labelClientName.Location = new System.Drawing.Point(106, 62);
+            this.labelClientName.Location = new System.Drawing.Point(127, 67);
             this.labelClientName.Name = "labelClientName";
             this.labelClientName.Size = new System.Drawing.Size(61, 13);
             this.labelClientName.TabIndex = 2;
@@ -86,7 +81,7 @@
             // labelDevelopersHours
             // 
             this.labelDevelopersHours.AutoSize = true;
-            this.labelDevelopersHours.Location = new System.Drawing.Point(122, 88);
+            this.labelDevelopersHours.Location = new System.Drawing.Point(143, 93);
             this.labelDevelopersHours.Name = "labelDevelopersHours";
             this.labelDevelopersHours.Size = new System.Drawing.Size(89, 13);
             this.labelDevelopersHours.TabIndex = 3;
@@ -95,7 +90,7 @@
             // labelQaHours
             // 
             this.labelQaHours.AutoSize = true;
-            this.labelQaHours.Location = new System.Drawing.Point(106, 113);
+            this.labelQaHours.Location = new System.Drawing.Point(127, 118);
             this.labelQaHours.Name = "labelQaHours";
             this.labelQaHours.Size = new System.Drawing.Size(49, 13);
             this.labelQaHours.TabIndex = 4;
@@ -104,7 +99,7 @@
             // labelUiUxHours
             // 
             this.labelUiUxHours.AutoSize = true;
-            this.labelUiUxHours.Location = new System.Drawing.Point(106, 141);
+            this.labelUiUxHours.Location = new System.Drawing.Point(127, 146);
             this.labelUiUxHours.Name = "labelUiUxHours";
             this.labelUiUxHours.Size = new System.Drawing.Size(58, 13);
             this.labelUiUxHours.TabIndex = 5;
@@ -113,7 +108,7 @@
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(106, 169);
+            this.labelStartDate.Location = new System.Drawing.Point(127, 174);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(52, 13);
             this.labelStartDate.TabIndex = 6;
@@ -122,7 +117,7 @@
             // labelFinishDate
             // 
             this.labelFinishDate.AutoSize = true;
-            this.labelFinishDate.Location = new System.Drawing.Point(106, 191);
+            this.labelFinishDate.Location = new System.Drawing.Point(127, 196);
             this.labelFinishDate.Name = "labelFinishDate";
             this.labelFinishDate.Size = new System.Drawing.Size(57, 13);
             this.labelFinishDate.TabIndex = 7;
@@ -132,7 +127,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1.Location = new System.Drawing.Point(12, 191);
+            this.label1.Location = new System.Drawing.Point(33, 196);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 14;
@@ -142,7 +137,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(12, 169);
+            this.label2.Location = new System.Drawing.Point(33, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 13;
@@ -152,7 +147,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(12, 141);
+            this.label3.Location = new System.Drawing.Point(33, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 12;
@@ -162,7 +157,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(12, 113);
+            this.label4.Location = new System.Drawing.Point(33, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 11;
@@ -172,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(12, 88);
+            this.label5.Location = new System.Drawing.Point(33, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 10;
@@ -182,7 +177,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label6.Location = new System.Drawing.Point(12, 62);
+            this.label6.Location = new System.Drawing.Point(33, 67);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 9;
@@ -192,7 +187,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label7.Location = new System.Drawing.Point(12, 33);
+            this.label7.Location = new System.Drawing.Point(33, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 8;
@@ -202,105 +197,67 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label8.Location = new System.Drawing.Point(352, 78);
+            this.label8.Location = new System.Drawing.Point(445, 116);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(135, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Workers in this project";
             // 
-            // tableLayoutPanel1
+            // dataGridView1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.49356F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.50644F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(223, 116);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.12214F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.87786F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 262);
-            this.tableLayoutPanel1.TabIndex = 2;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(421, 144);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(227, 235);
+            this.dataGridView1.TabIndex = 16;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.labelFinishDate);
+            this.panel1.Controls.Add(this.labelStartDate);
+            this.panel1.Controls.Add(this.labelUiUxHours);
+            this.panel1.Controls.Add(this.labelQaHours);
+            this.panel1.Controls.Add(this.labelDevelopersHours);
+            this.panel1.Controls.Add(this.labelClientName);
+            this.panel1.Controls.Add(this.labelProjectName);
+            this.panel1.Location = new System.Drawing.Point(125, 69);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(249, 310);
+            this.panel1.TabIndex = 17;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(252, 100);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label9.Location = new System.Drawing.Point(56, 13);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "name workers";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(365, 100);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "actual hours";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(466, 100);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "hours";
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(573, 160);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "ActualHours";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Hours";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(374, 284);
-            this.chart1.TabIndex = 15;
-            this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Project Details";
             // 
             // ViewingProjects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 530);
-            this.Controls.Add(this.chart1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label9);
+            this.ClientSize = new System.Drawing.Size(991, 530);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.labelFinishDate);
-            this.Controls.Add(this.labelStartDate);
-            this.Controls.Add(this.labelUiUxHours);
-            this.Controls.Add(this.labelQaHours);
-            this.Controls.Add(this.labelDevelopersHours);
-            this.Controls.Add(this.labelClientName);
-            this.Controls.Add(this.labelProjectName);
             this.Controls.Add(this.comboBoxAllYourProjects);
             this.Name = "ViewingProjects";
             this.Text = "ViewingProjects";
             this.Load += new System.EventHandler(this.ViewingProjects_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,10 +281,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

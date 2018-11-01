@@ -209,13 +209,12 @@
             this.listBoxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxUsers.Size = new System.Drawing.Size(126, 160);
             this.listBoxUsers.TabIndex = 21;
-            this.listBoxUsers.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // AddProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 529);
             this.Controls.Add(this.listBoxUsers);
             this.Controls.Add(this.comboBoxTeamLeader);
             this.Controls.Add(this.buttonAddProduct);

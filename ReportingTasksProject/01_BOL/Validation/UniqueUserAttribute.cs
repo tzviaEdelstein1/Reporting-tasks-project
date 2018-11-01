@@ -17,13 +17,14 @@ namespace _01_BOL.Validation
             PropertyInfo property = type.GetProperty("UserId");
             object propertyValue = property.GetValue(instance);
             int.TryParse(propertyValue.ToString(), out int UserId);
-            string query = $"SELECT * FROM tasks.users WHERE user_name=value";
-            DBaccess.RunScalar(query).ToString();
-            string query2 = $"SELECT * FROM tasks.users WHERE (user_id={UserId} AND user_name={value})";
-            DBaccess.RunScalar(query2).ToString();
+            string query = $"SELECT user_id FROM tasks.users WHERE user_name='{value}'";
 
-
-            if (query != null &&query2==null)
+            var q1 = DBaccess.RunScalar(query);
+           
+          
+            string query2 = $"SELECT user_id FROM tasks.users WHERE (user_id={UserId} AND user_name='{value}')";
+            var q2 = DBaccess.RunScalar(query2);
+            if (q1 != null &&q2==null)
                 return new ValidationResult("the Name is already exist");
             else return null;
         }

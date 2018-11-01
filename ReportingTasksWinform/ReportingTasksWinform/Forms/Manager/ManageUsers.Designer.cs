@@ -99,10 +99,10 @@
             this.tabControl1.Controls.Add(this.AddUser);
             this.tabControl1.Controls.Add(this.EditUser);
             this.tabControl1.Controls.Add(this.RemoveUser);
-            this.tabControl1.Location = new System.Drawing.Point(23, 41);
+            this.tabControl1.Location = new System.Drawing.Point(23, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(729, 332);
+            this.tabControl1.Size = new System.Drawing.Size(729, 376);
             this.tabControl1.TabIndex = 26;
             // 
             // AddUser
@@ -121,7 +121,7 @@
             this.AddUser.Location = new System.Drawing.Point(4, 22);
             this.AddUser.Name = "AddUser";
             this.AddUser.Padding = new System.Windows.Forms.Padding(3);
-            this.AddUser.Size = new System.Drawing.Size(721, 306);
+            this.AddUser.Size = new System.Drawing.Size(721, 350);
             this.AddUser.TabIndex = 0;
             this.AddUser.Text = "AddUser";
             this.AddUser.UseVisualStyleBackColor = true;
@@ -207,7 +207,6 @@
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(140, 20);
             this.textBoxUserName.TabIndex = 4;
-            this.textBoxUserName.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxUserName_Validating);
             // 
             // EditUser
             // 

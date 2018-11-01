@@ -18,12 +18,11 @@ namespace _01_BOL.Validation
             PropertyInfo property = type.GetProperty("ProjectId");
             object propertyValue = property.GetValue(instance);
             int.TryParse(propertyValue.ToString(), out int ProjectId);
-            string query = $"SELECT * FROM tasks.projects WHERE project_name={value}";
-            DBaccess.RunScalar(query).ToString();
-            string query2 = $"SELECT * FROM tasks.projects WHERE (project_id={ProjectId} AND project_name={value})";
-            DBaccess.RunScalar(query2).ToString();
-
-            if (query != null&&query2==null)
+            string query = $"SELECT project_id FROM tasks.projects WHERE project_name='{value}'";
+         var q1=  DBaccess.RunScalar(query);
+            string query2 = $"SELECT project_id FROM tasks.projects WHERE (project_id={ProjectId} AND project_name='{value}')";
+            var q2 = DBaccess.RunScalar(query2);
+            if (q1 != null&&q2==null)
                 return new ValidationResult("the ProjectName is already exist");
             else return null;
         }

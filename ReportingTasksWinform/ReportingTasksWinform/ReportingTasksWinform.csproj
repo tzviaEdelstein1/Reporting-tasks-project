@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
@@ -51,58 +52,58 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProject.cs">
+    <Compile Include="Forms\Manager\AddProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddProject.Designer.cs">
+    <Compile Include="Forms\Manager\AddProject.Designer.cs">
       <DependentUpon>AddProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConactingTheManager.cs">
+    <Compile Include="Forms\Worker\ConactingTheManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConactingTheManager.Designer.cs">
+    <Compile Include="Forms\Worker\ConactingTheManager.Designer.cs">
       <DependentUpon>ConactingTheManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnterManager.cs">
+    <Compile Include="Forms\Manager\EnterManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EnterManager.Designer.cs">
+    <Compile Include="Forms\Manager\EnterManager.Designer.cs">
       <DependentUpon>EnterManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnterTeamLeader.cs">
+    <Compile Include="Forms\TeamLeader\EnterTeamLeader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EnterTeamLeader.Designer.cs">
+    <Compile Include="Forms\TeamLeader\EnterTeamLeader.Designer.cs">
       <DependentUpon>EnterTeamLeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnterWorkers.cs">
+    <Compile Include="Forms\Worker\EnterWorkers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EnterWorkers.Designer.cs">
+    <Compile Include="Forms\Worker\EnterWorkers.Designer.cs">
       <DependentUpon>EnterWorkers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagementTeam.cs">
+    <Compile Include="Forms\ManagementTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagementTeam.Designer.cs">
+    <Compile Include="Forms\ManagementTeam.Designer.cs">
       <DependentUpon>ManagementTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageReports.cs">
+    <Compile Include="Forms\ManageReports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageReports.Designer.cs">
+    <Compile Include="Forms\ManageReports.Designer.cs">
       <DependentUpon>ManageReports.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageUsers.cs">
+    <Compile Include="Forms\Manager\ManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageUsers.Designer.cs">
+    <Compile Include="Forms\Manager\ManageUsers.Designer.cs">
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ActualHours.cs" />
@@ -114,46 +115,55 @@
     <Compile Include="Models\WorkerToProject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TeamLeaderChar.cs">
+    <Compile Include="Reqests\HoursRequst.cs" />
+    <Compile Include="Reqests\ProjectsRequst.cs" />
+    <Compile Include="Reqests\UserRequsts.cs" />
+    <Compile Include="Reqests\UsersKindRequst.cs" />
+    <Compile Include="Reqests\WokerToProjectRequst.cs" />
+    <Compile Include="Forms\TeamLeader\TeamLeaderChar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TeamLeaderChar.Designer.cs">
+    <Compile Include="Forms\TeamLeader\TeamLeaderChar.Designer.cs">
       <DependentUpon>TeamLeaderChar.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateHours.cs">
+    <Compile Include="Forms\TeamLeader\UpdateHours.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateHours.Designer.cs">
+    <Compile Include="Forms\TeamLeader\UpdateHours.Designer.cs">
       <DependentUpon>UpdateHours.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewingProjects.cs">
+    <Compile Include="Validation\UniqueProjectAttribute.cs" />
+    <Compile Include="Validation\UniqueUserAttribute.cs" />
+    <Compile Include="Validation\ValidateEndDate.cs" />
+    <Compile Include="Validation\ValidateStartDate.cs" />
+    <Compile Include="Forms\TeamLeader\ViewingProjects.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewingProjects.Designer.cs">
+    <Compile Include="Forms\TeamLeader\ViewingProjects.Designer.cs">
       <DependentUpon>ViewingProjects.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddProject.resx">
+    <EmbeddedResource Include="Forms\Manager\AddProject.resx">
       <DependentUpon>AddProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConactingTheManager.resx">
+    <EmbeddedResource Include="Forms\Worker\ConactingTheManager.resx">
       <DependentUpon>ConactingTheManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EnterManager.resx">
+    <EmbeddedResource Include="Forms\Manager\EnterManager.resx">
       <DependentUpon>EnterManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EnterTeamLeader.resx">
+    <EmbeddedResource Include="Forms\TeamLeader\EnterTeamLeader.resx">
       <DependentUpon>EnterTeamLeader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EnterWorkers.resx">
+    <EmbeddedResource Include="Forms\Worker\EnterWorkers.resx">
       <DependentUpon>EnterWorkers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagementTeam.resx">
+    <EmbeddedResource Include="Forms\ManagementTeam.resx">
       <DependentUpon>ManagementTeam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageUsers.resx">
+    <EmbeddedResource Include="Forms\Manager\ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -165,13 +175,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TeamLeaderChar.resx">
+    <EmbeddedResource Include="Forms\TeamLeader\TeamLeaderChar.resx">
       <DependentUpon>TeamLeaderChar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateHours.resx">
+    <EmbeddedResource Include="Forms\TeamLeader\UpdateHours.resx">
       <DependentUpon>UpdateHours.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewingProjects.resx">
+    <EmbeddedResource Include="Forms\TeamLeader\ViewingProjects.resx">
       <DependentUpon>ViewingProjects.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -187,5 +197,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

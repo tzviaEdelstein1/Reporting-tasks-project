@@ -208,6 +208,42 @@ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id
 
 
         }
+        public static List<Unknown> GetProjectsAndHoursByProjectId(int projectId)
+
+        {
+            try
+            {
+                string query = $"SELECT a.user_id ,u.user_name, w.hours,sum(count_houers)" +
+                               $" FROM tasks.users u JOIN TASKS.worker_to_project w ON u.user_id = w.user_id " +
+                               $" JOIN tasks.actual_hours a ON a.user_id = u.user_id" +
+                               $" WHERE a.project_id = {projectId}" +
+                               $" group by a.user_id, a.project_id";
+                Func<MySqlDataReader, List<Unknown>> func = (reader) =>
+                {
+                    List<Unknown> projects = new List<Unknown>();
+                    while (reader.Read())
+                    {
+
+                        projects.Add(new Unknown
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Hours = reader.GetDouble(2),
+                            allocatedHours = reader.GetDouble(3)
+                        });
+                    }
+                    return projects;
+                };
+
+                return DBaccess.RunReader(query, func);
+            }
+            catch (Exception ex)
+            {
+                var x = ex.StackTrace;
+                throw ex;
+            }
+        }
+
         public static bool UpdateProject(Project project, int userId)
         {
 

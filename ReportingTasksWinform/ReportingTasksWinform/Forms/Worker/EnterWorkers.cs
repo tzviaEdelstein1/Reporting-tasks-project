@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ReportingTasksWinform.Models;
+using ReportingTasksWinform.Reqests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ namespace ReportingTasksWinform
         DateTime endDate;
         List<Unknown> projectDetails = new List<Unknown>();
         List<Unknown> projectDetailsByDate;
+        double time;
         public EnterWorkers()
         {
             InitializeComponent();
@@ -38,37 +40,15 @@ namespace ReportingTasksWinform
             HttpWebResponse response;
             string content;
             string countTimer;
-            //get the datails of project
-
-
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetProjectsAndHoursByUserId/" + Global.UserId);
-                response = (HttpWebResponse)request.GetResponse();
-                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                projectDetails = JsonConvert.DeserializeObject<List<Unknown>>(content);
+            //get the datails of project        
+            projectDetails = ProjectsRequst.GetProjectsAndHoursByUserId();
+            if (projectDetails != null)
                 dataGridView1.DataSource = projectDetails;
-                MessageBox.Show("success");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error");
-            }
 
-
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetProjectsAndHoursByUserIdAccordingTheMonth/" + Global.UserId);
-                response = (HttpWebResponse)request.GetResponse();
-                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                projectDetailsByDate = JsonConvert.DeserializeObject<List<Unknown>>(content);
+            projectDetailsByDate = ProjectsRequst.GetProjectsAndHoursByUserIdAccordingTheMonth();
+            if (projectDetailsByDate != null)
                 fillChart();
-                MessageBox.Show("success");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error");
-            }
+
         }
 
         private void fillChart()
@@ -122,18 +102,18 @@ namespace ReportingTasksWinform
                 //dataGridView1.SelectedRows.
                 if (dataGridView1.SelectedCells.Count > 0)
                 {
-                    projectId= dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
+                    projectId = dataGridView1.CurrentRow.Cells["Id"].FormattedValue.ToString();
                 }
             }
             else
             {
-               TimeSpan span= DateTime.Now-startDate;
-                var a = span.Hours;
-                var z = span.Minutes;
+                TimeSpan span = DateTime.Now - startDate;
+                double a = span.Hours;
+                double z = span.Minutes;
                 var x = span.Seconds;
-                double time = a + z / 60 + x / 60 / 60;
+                time = a + z / 60;
                 startDate = DateTime.Now;
-                 countTimer = labelTimer.Text;
+                countTimer = labelTimer.Text;
                 buttonTask.Text = "Start task";
                 timer1.Stop();
                 buttonTask.BackColor = Color.Green;
@@ -144,32 +124,8 @@ namespace ReportingTasksWinform
 
         private void addActulHoursToWorker()
         {  //-----------------------------צריך לסכום את מספר השעות!!!!!!!!!!!!------------
-            ActualHours actualHours = new ActualHours() { CountHours =2, date = DateTime.Now, UserId = Global.UserId, ProjectId =Convert.ToInt32(projectId) };
-            try
-            {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Hours/" + Global.UserId);
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    string json = new JavaScriptSerializer().Serialize(actualHours);
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
-
-                }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                MessageBox.Show("sucsess");
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("error", ex.Message.ToString());
-
-            }
+            ActualHours actualHours = new ActualHours() { CountHours = time, date = DateTime.Now, UserId = Global.UserId, ProjectId = Convert.ToInt32(projectId) };
+            HoursRequst.AddActualHours(actualHours);
         }
 
         private void buttonContacting_Click(object sender, EventArgs e)

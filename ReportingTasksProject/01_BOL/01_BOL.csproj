@@ -49,7 +49,17 @@
     <Compile Include="User.cs" />
     <Compile Include="UserKind.cs" />
     <Compile Include="UserKindToAccess.cs" />
+    <Compile Include="Validation\UniqueProjectAttribute.cs" />
+    <Compile Include="Validation\UniqueUserAttribute.cs" />
+    <Compile Include="Validation\ValidateEndDate.cs" />
+    <Compile Include="Validation\ValidateStartDate.cs" />
     <Compile Include="WorkerToProject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\00_DAL\00_DAL.csproj">
+      <Project>{f44e2101-ee4c-4c3d-8997-09a9537828f8}</Project>
+      <Name>00_DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

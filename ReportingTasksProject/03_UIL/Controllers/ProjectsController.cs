@@ -76,6 +76,16 @@ namespace _03_UIL.Controllers
             };
         }
 
+        [Route("api/Projects/GetProjectsAndHoursByProjectId/{projectId}")]
+        [HttpGet]
+        public HttpResponseMessage GetProjectsAndHoursByProjectId(int projectId)
+        {
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByProjectId(projectId), new JsonMediaTypeFormatter())
+            };
+        }
         //get the projects and the hours by teamleader id
         [Route("api/Projects/GetProjectsAndHoursByTeamLeaderId/{teamLeaderId}")]
         [HttpGet]

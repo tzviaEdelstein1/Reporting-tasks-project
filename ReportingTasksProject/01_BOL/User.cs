@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _01_BOL.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace BOL
     { 
         public int UserId { get; set; }
         [Required]
+        [UniqueUserAttribute]
         [MinLength(2),MaxLength(10)]
         public string UserName { get; set; }
         [Required]
+        [EmailAddress]
         public string UserEmail { get; set; }
+        [Required]
+        [MinLength(5), MaxLength(10)]
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]
