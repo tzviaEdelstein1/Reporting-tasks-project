@@ -84,8 +84,9 @@
             this.buttonEditPassword.Name = "buttonEditPassword";
             this.buttonEditPassword.Size = new System.Drawing.Size(228, 25);
             this.buttonEditPassword.TabIndex = 5;
-            this.buttonEditPassword.Text = "EditPassword";
+            this.buttonEditPassword.Text = "forget password?";
             this.buttonEditPassword.UseVisualStyleBackColor = true;
+            this.buttonEditPassword.Click += new System.EventHandler(this.buttonEditPassword_Click);
             // 
             // Login
             // 

@@ -14,6 +14,7 @@ namespace _03_UIL.Controllers
     {
 
         // Get - get actual hours count to project requierd data: * ProjectId If the ProjectId is exist, we will return all the hours that belong to it, Else - we will return matching error.
+        //לבדוק אם משתמשים בפונקציה????????????????????????????
         [HttpGet]
         [Route("api/GetActualHoursByProjectId/{projectId}")]
         public HttpResponseMessage GetActualHoursByProjectId(string projectId)
@@ -27,7 +28,7 @@ namespace _03_UIL.Controllers
 
 
         // Get - get hours on month to user requierd data: * UserId If the UserId is exist, we will return all the hours that belong to him, Else - we will return matching error.
-        //צריך לשנות ברידמי ולבדוק
+        //צריך לשנות ברידמי ולבדוק לבדוק אם משתמשים????????????
         [HttpGet]
         [Route("api/GetActualHoursByUserIdOnMonth/{UserName}/{month}/{year}")]
         public HttpResponseMessage GetActualHoursByUserIdOnMonth(string UserName, int month,int year)
@@ -68,7 +69,7 @@ namespace _03_UIL.Controllers
             };
 
         }
-
+        //לבדוק אם התשמשנו?????????????????????????????????
         //Get - get hours to project by user kind (Example:get all the QA hours that have done to project 1) requierd data: * ProjectId * UserKindId 
         //We will select and return all the hours that belongs to this project (project id is equals to ProjectId) and their user(get it by user id) kind is UserKindId. If we wont find we will return matching error;
         [HttpGet]

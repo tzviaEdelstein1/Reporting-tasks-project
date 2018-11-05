@@ -40,16 +40,21 @@ namespace ReportingTasksWinform
         {
             string userName = textBoxUserName.Text;
             string password = sha256(textBoxPassword.Text);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/"+userName+"/"+password);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-            user = JsonConvert.DeserializeObject<User>(content);
-            if(user!=null)
+            try
             {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/" + userName + "/" + password);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
+                    user = JsonConvert.DeserializeObject<User>(content);
+                }
+
+
                 Global.UserName = user.UserName;
                 Global.UserId = user.UserId;
-            MessageBox.Show(user.UserName);
+                MessageBox.Show(user.UserName);
                 if (user.UserKindId == 1)
 
                 {
@@ -62,13 +67,40 @@ namespace ReportingTasksWinform
                     EnterTeamLeader enterTeamLeader = new EnterTeamLeader();
                     enterTeamLeader.Show();
                 }
-                if (user.UserKindId == 3|| user.UserKindId==4|| user.UserKindId==5)
+                if (user.UserKindId == 3 || user.UserKindId == 4 || user.UserKindId == 5)
 
                 {
                     EnterWorkers enterWorkers = new EnterWorkers();
                     enterWorkers.Show();
                 }
+            }
 
+            catch (Exception)
+            {
+
+                MessageBox.Show("the user is not exists");
+            }
+
+        }
+
+        private void buttonEditPassword_Click(object sender, EventArgs e)
+        {
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+            string password;
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/sendVerifiPsssword");
+                response = (HttpWebResponse)request.GetResponse();
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                password = JsonConvert.DeserializeObject<string>(content);
+                MessageBox.Show("success");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error");
             }
 
         }

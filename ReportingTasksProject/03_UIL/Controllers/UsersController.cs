@@ -7,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using BOL;
 using _02_BLL;
+using System.Text;
 
 namespace _03_UIL.Controllers
 {
@@ -58,7 +59,7 @@ namespace _03_UIL.Controllers
                     Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
                 };
             }
-            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "error");
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
         }
 
         // POST: api/Users
@@ -129,6 +130,26 @@ namespace _03_UIL.Controllers
                     {
                         Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
                     };
+        }
+
+        [Route("users/sendVerifiPsssword")]
+        [HttpGet]
+        public HttpResponseMessage sendVerifiPsssword()
+        {
+            var password = CreatePassword(4);
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
+        }
+     
+        public string CreatePassword(int length)
+        {
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
         }
 
 

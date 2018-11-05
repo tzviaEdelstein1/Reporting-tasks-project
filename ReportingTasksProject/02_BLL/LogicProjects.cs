@@ -87,9 +87,10 @@ namespace _02_BLL
         {
             try
             {
-                string query = $"SELECT p.project_id ,project_name, hours,count( count_houers)" +
- $"FROM tasks.users u JOIN TASKS.worker_to_project w ON u.user_id = w.user_id JOIN tasks.projects p ON w.project_id = w.project_id JOIN tasks.actual_hours a ON p.project_id = a.project_id" +
- $" WHERE w.user_id = 9 group by w.user_id,project_name,hours,p.project_id";
+                string query = $" SELECT a.project_id,project_name,hours,sum(count_houers)" +
+ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id JOIN TASKS.worker_to_project w ON w.project_id = a.project_id" +
+ $" WHERE a.user_id = {userId} group by a.project_id,a.user_id";
+
                 Func<MySqlDataReader, List<Unknown>> func = (reader) =>
                 {
                     List<Unknown> projects = new List<Unknown>();

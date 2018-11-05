@@ -52,6 +52,12 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\EditPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditPassword.Designer.cs">
+      <DependentUpon>EditPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Manager\AddProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     <Compile Include="Forms\TeamLeader\ViewingProjects.Designer.cs">
       <DependentUpon>ViewingProjects.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\EditPassword.resx">
+      <DependentUpon>EditPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Manager\AddProject.resx">
       <DependentUpon>AddProject.cs</DependentUpon>
     </EmbeddedResource>
