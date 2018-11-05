@@ -95,8 +95,8 @@ namespace ReportingTasksWinform
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 password = JsonConvert.DeserializeObject<string>(content);
-                MessageBox.Show("success");
-
+                MessageBox.Show("succescs");
+                
             }
             catch (Exception ex)
             {
