@@ -15,7 +15,7 @@ namespace _02_BLL
         {
             try
             {
-                string query = $"SELECT * FROM tasks.user_kinds";
+                string query = $"SELECT * FROM tasks.user_kinds WHERE user_kinds_id!=1";
                 Func<MySqlDataReader, List<UserKind>> func = (reader) =>
                 {
                     List<UserKind> usersKind = new List<UserKind>();

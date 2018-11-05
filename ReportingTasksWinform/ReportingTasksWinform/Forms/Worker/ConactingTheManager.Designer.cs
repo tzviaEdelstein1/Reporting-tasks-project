@@ -42,7 +42,7 @@
             // 
             // buttonSendEmail
             // 
-            this.buttonSendEmail.Location = new System.Drawing.Point(413, 172);
+            this.buttonSendEmail.Location = new System.Drawing.Point(386, 163);
             this.buttonSendEmail.Name = "buttonSendEmail";
             this.buttonSendEmail.Size = new System.Drawing.Size(255, 60);
             this.buttonSendEmail.TabIndex = 1;

@@ -16,17 +16,17 @@ namespace _03_UIL.Controllers
     {
 
         [HttpGet]
-        [Route("api/SendEmail/{userId}/{emailBody}")]
-        public void SendEmail(int userId,string emailBody)    
+        [Route("api/SendEmail/{emailBody}")]
+        public void SendEmail(string emailBody)    
         {
-            //List<User>users=LogicSendEmail.SendEmail(userId);
+            List<User> users = LogicUser.GetAllUsers();
             try
             {
   string subject = "Email Subject";
                 string body = emailBody;
-            //users.FirstOrDefault(user => user.UserId == userId).UserEmail;
+          
             string FromMail = "reporting.manage@gmail.com";
-            string emailTo = "zvia.edl@gmail.com";
+            string emailTo = users.FirstOrDefault(user => user.UserKindId == 1).UserEmail;
                 // users.FirstOrDefault(user => user.UserKindId == 1).UserEmail;
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
