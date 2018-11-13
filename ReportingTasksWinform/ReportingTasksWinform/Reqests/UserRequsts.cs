@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -106,6 +107,50 @@ namespace ReportingTasksWinform.Reqests
 
             }
         }
+        public static bool UpdatePassword(User user)
+        {
+
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/EditPassword");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "PUT";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = new JavaScriptSerializer().Serialize(user);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    {
+                        var result = streamReader.ReadToEnd();
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                        {
+                            MessageBox.Show("update password succes");
+                            return true;
+                           
+                        }
+                            
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+
+            }
+        }
         public static bool AddUser(User user)
         {
             try
@@ -158,6 +203,16 @@ namespace ReportingTasksWinform.Reqests
             }
         }
 
-
+       public static string sha256(string password)
+        {
+            var crypt = new SHA256Managed();
+            string hash = String.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password));
+            foreach (byte theByte in crypto)
+            {
+                hash += theByte.ToString("x2");
+            }
+            return hash;
+        }
     }
 }

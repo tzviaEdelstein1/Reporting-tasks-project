@@ -21,3 +21,6 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\R
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.ConactingTheManager.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.TeamLeaderChar.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.EditPassword.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.VerifyEmail.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.VerifyPassword.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.Manager.Reports.resources

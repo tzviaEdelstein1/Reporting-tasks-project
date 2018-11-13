@@ -97,6 +97,7 @@
     <Compile Include="Controllers\HoursController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SendEmailController.cs" />
+    <Compile Include="Controllers\TreeTableController.cs" />
     <Compile Include="Controllers\UserKindsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkerToProjectController.cs" />

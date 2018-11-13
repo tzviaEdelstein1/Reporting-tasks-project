@@ -64,6 +64,24 @@
     <Compile Include="Forms\Manager\AddProject.Designer.cs">
       <DependentUpon>AddProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Manager\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Manager\Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VerifyEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VerifyEmail.Designer.cs">
+      <DependentUpon>VerifyEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VerifyPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VerifyPassword.Designer.cs">
+      <DependentUpon>VerifyPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Worker\ConactingTheManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,8 +131,10 @@
       <DependentUpon>ManageUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ActualHours.cs" />
+    <Compile Include="Models\DetailsWorkerInProjects.cs" />
     <Compile Include="Models\Global.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\TreeTable.cs" />
     <Compile Include="Models\Unknown.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserKind.cs" />
@@ -153,6 +173,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Manager\AddProject.resx">
       <DependentUpon>AddProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Manager\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VerifyEmail.resx">
+      <DependentUpon>VerifyEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VerifyPassword.resx">
+      <DependentUpon>VerifyPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Worker\ConactingTheManager.resx">
       <DependentUpon>ConactingTheManager.cs</DependentUpon>

@@ -136,7 +136,11 @@ namespace _02_BLL
             }
             else return false;
         }
-
+        public static bool UpdatePassword(User user)
+        {        
+                string query = $"UPDATE tasks.users SET password='{user.Password}'WHERE user_id={user.UserId}";
+                return DBaccess.RunNonQuery(query) == 1;    
+        }
         public static bool AddUser(User user, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";

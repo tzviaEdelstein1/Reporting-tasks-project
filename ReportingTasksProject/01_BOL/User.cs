@@ -19,7 +19,7 @@ namespace BOL
         [EmailAddress]
         public string UserEmail { get; set; }
         [Required]
-        [MinLength(5), MaxLength(10)]
+       
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReportingTasksWinform.Models;
+using ReportingTasksWinform.Reqests;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,18 @@ namespace ReportingTasksWinform.Forms
 {
     public partial class EditPassword : Form
     {
-        public EditPassword()
+        User user;
+        public EditPassword(User user)
         {
             InitializeComponent();
+            this.user = user;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.user.Password =UserRequsts.sha256(tbPassword.Text);
+            UserRequsts.UpdatePassword(user);
+            this.Close();
         }
     }
 }

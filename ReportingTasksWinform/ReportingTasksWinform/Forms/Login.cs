@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ReportingTasksWinform.Forms;
 using ReportingTasksWinform.Models;
 using System;
 using System.Collections.Generic;
@@ -85,23 +86,9 @@ namespace ReportingTasksWinform
 
         private void buttonEditPassword_Click(object sender, EventArgs e)
         {
-            HttpWebRequest request;
-            HttpWebResponse response;
-            string content;
-            string password;
-            try
-            {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/sendVerifiPsssword");
-                response = (HttpWebResponse)request.GetResponse();
-                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                password = JsonConvert.DeserializeObject<string>(content);
-                MessageBox.Show("succescs");
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error");
-            }
+            VerifyEmail verifyEmail = new VerifyEmail();
+            verifyEmail.Show();
+
 
         }
     }

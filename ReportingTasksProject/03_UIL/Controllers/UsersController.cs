@@ -8,11 +8,14 @@ using System.Web.Http;
 using BOL;
 using _02_BLL;
 using System.Text;
+using System.Net.Mail;
 
 namespace _03_UIL.Controllers
 {
     public class UsersController : ApiController
     {
+        static User user = new User();
+        static string body;
         [HttpGet]
         [Route("api/Users/GetAllUsers")]
         public HttpResponseMessage GetAllUsers()
@@ -44,6 +47,71 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<User>>(LogicUser.GetTeamLeaders(), new JsonMediaTypeFormatter())
             };
         }
+
+        [HttpGet]
+        [Route("api/Users/VerifyEmail/{userName}")]
+        public HttpResponseMessage VerifyEmail(string userName)
+        {
+            user = LogicUser.GetAllUsers().FirstOrDefault(u => u.UserName == userName);
+            string email = user.UserEmail;
+            if (email != null)
+            {
+
+                SendEmail(email);
+                return new HttpResponseMessage(HttpStatusCode.OK);
+
+            }
+
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
+
+        }
+        [HttpGet]
+        [Route("api/Users/VerifyPassword/{password}")]
+        public HttpResponseMessage VerifyPassword(string password)
+        {
+            if (password == body)
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new ObjectContent<User>(user,new JsonMediaTypeFormatter())
+                };
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
+
+        }
+        private void SendEmail(string email)
+        {
+            List<User> users = LogicUser.GetAllUsers();
+            try
+            {
+                string subject = "Email Subject";
+
+                body = CreatePassword(6); ;
+
+                string FromMail = "reporting.manage@gmail.com";
+                string emailTo = email;
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress(FromMail);
+                mail.To.Add(emailTo);
+                mail.Subject = subject;
+                mail.Body = body;
+                SmtpServer.UseDefaultCredentials = true;
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new NetworkCredential("reporting.manage@gmail.com", "0533121776");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                var x = ex.Message;
+            }
+
+
+
+        }
+
         // GET: api/Users/wewe/11234
         [Route("users/{userName}/{password}")]
         public HttpResponseMessage Get(string userName, string password)
@@ -118,7 +186,33 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
             };
         }
+        [HttpPut]
+        [Route("api/Users/EditPassword")]
+        public HttpResponseMessage EditPassword([FromBody]User value)
+        {
 
+            if (ModelState.IsValid)
+            {
+                return (LogicUser.UpdatePassword(value)) ?
+                    new HttpResponseMessage(HttpStatusCode.OK) :
+                    new HttpResponseMessage(HttpStatusCode.BadRequest)
+                    {
+                        Content = new ObjectContent<String>("Can not update in DB", new JsonMediaTypeFormatter())
+                    };
+            };
+
+            List<string> ErrorList = new List<string>();
+
+            //if the code reached this part - the user is not valid
+            foreach (var item in ModelState.Values)
+                foreach (var err in item.Errors)
+                    ErrorList.Add(err.ErrorMessage);
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest)
+            {
+                Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
+            };
+        }
         //    // DELETE: api/Users/5
         [HttpDelete]
         [Route("api/Users/{id}/{userId}")]
@@ -132,14 +226,6 @@ namespace _03_UIL.Controllers
                     };
         }
 
-        [Route("users/sendVerifiPsssword")]
-        [HttpGet]
-        public HttpResponseMessage sendVerifiPsssword()
-        {
-            var password = CreatePassword(4);
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
-        }
-     
         public string CreatePassword(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

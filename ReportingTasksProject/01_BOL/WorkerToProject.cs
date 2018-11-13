@@ -9,7 +9,7 @@ namespace BOL
 {
    public class WorkerToProject
     {
-        [Required]
+       
         public int WorkerToProjectId { get; set; }
         [Required]
         public int UserId { get; set; }

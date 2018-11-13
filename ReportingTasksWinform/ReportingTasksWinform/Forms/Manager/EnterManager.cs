@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReportingTasksWinform.Forms.Manager;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +46,8 @@ namespace ReportingTasksWinform
             AddNewTab(managementTeam);
             ManageReports manageReports = new ManageReports();
             AddNewTab(manageReports);
-
+            Reports reports = new Reports();
+            AddNewTab(reports);
         }
     }
 }
