@@ -15,7 +15,7 @@ namespace _02_BLL
         static List<TreeTable> treeTables = new List<TreeTable>();
         public static List<TreeTable> GetAllTreeTable()
         {
-            string query = $"SELECT * FROM tasks.projects";
+            string query = $"SELECT p.*,user_id,user_name FROM tasks.projects P  JOIN tasks.users u ON u.user_id=p.team_leader_id ";
             Func<MySqlDataReader, List<TreeTable>> func = (reader) =>
             {
                 treeTables = new List<TreeTable>();
@@ -34,6 +34,7 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
+                      User=new User() { UserId=reader.GetInt32(9),UserName=reader.GetString(10)}
                         }
 
                     });

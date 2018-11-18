@@ -20,7 +20,7 @@ namespace _03_UIL.Controllers
         [Route("api/Users/GetAllUsers")]
         public HttpResponseMessage GetAllUsers()
 
-        {
+       {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<List<User>>(LogicUser.GetAllUsers(), new JsonMediaTypeFormatter())
@@ -224,6 +224,26 @@ namespace _03_UIL.Controllers
                     {
                         Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
                     };
+        }
+
+        [Route("api/Users/GetUserById/{userId}")]
+        [HttpGet]
+        public HttpResponseMessage GetUserById(int userId)
+        {
+
+
+            User user = new User();
+            List<User> users = LogicUser.GetUserById(userId);
+            if (users.Count > 0)
+            {
+                user = users[0];
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
+                };
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "error");
+
         }
 
         public string CreatePassword(int length)

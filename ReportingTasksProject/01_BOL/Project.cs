@@ -31,7 +31,8 @@ namespace BOL
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime FinishDate { get; set; }
-    
+        public User User { get; set; }
+         
 
 
 

@@ -30,7 +30,7 @@ namespace ReportingTasksWinform.Models
         [Required]
         [ValidateEndDate]
         public DateTime FinishDate { get; set; }
-
+        public User User { get; set; }
 
     }
 }

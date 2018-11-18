@@ -24,5 +24,6 @@ namespace BOL
         public int TeamLeaderId { get; set; }
         [Required]
         public int UserKindId { get; set; }
+
     }
 }
