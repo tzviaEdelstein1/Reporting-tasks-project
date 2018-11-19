@@ -50,18 +50,19 @@ namespace _02_BLL
         {
             foreach (var item in treeTables)
             {
-                string query = $"SELECT hours,user_kinds_name,user_name,u.user_id FROM tasks.worker_to_project W JOIN tasks.users u ON w.user_id=u.user_id JOIN tasks.user_kinds uk ON u.user_kind_id=uk.user_kinds_id where project_id={item.Project.ProjectId}";
+                string query = $"SELECT hours,user_kinds_name,u.user_name,u.user_id ,us.user_name teamLeadername FROM tasks.worker_to_project W JOIN tasks.users u ON w.user_id=u.user_id JOIN tasks.user_kinds uk ON u.user_kind_id=uk.user_kinds_id  JOIN tasks.users us ON u.team_leader_id=us.user_id where project_id={item.Project.ProjectId}";
                 Func<MySqlDataReader, List<TreeTable>> func = (reader) =>
                 {
                     item.DetailsWorkerInProjects = new List<DetailsWorkerInProjects>();
                     while (reader.Read())
                     {
                         item.DetailsWorkerInProjects.Add(new DetailsWorkerInProjects()
-                        {
+                        { 
                             Hours = reader.GetInt32(0),
                             Kind = reader.GetString(1),
                             Name = reader.GetString(2),
-                            UserId = reader.GetInt32(3)
+                            UserId = reader.GetInt32(3),
+                            TeamLeaderName=reader.GetString(4)
                         });
                     }
                     return treeTables;
