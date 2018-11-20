@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReportingTasksWinform.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,6 +63,13 @@ namespace ReportingTasksWinform
 
             tabControl1.SelectedTab = tab;
 
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Global.UserId = 0;
+            Global.UserName = null;
+            this.Close();
         }
     }
 }

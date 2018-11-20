@@ -41,5 +41,10 @@ namespace ReportingTasksWinform.Forms
             else
                 MessageBox.Show("error");
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

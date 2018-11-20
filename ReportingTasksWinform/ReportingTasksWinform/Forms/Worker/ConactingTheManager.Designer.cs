@@ -42,6 +42,7 @@
             // 
             // buttonSendEmail
             // 
+            this.buttonSendEmail.Font = new System.Drawing.Font("Aharoni", 15.75F, System.Drawing.FontStyle.Bold);
             this.buttonSendEmail.Location = new System.Drawing.Point(386, 163);
             this.buttonSendEmail.Name = "buttonSendEmail";
             this.buttonSendEmail.Size = new System.Drawing.Size(255, 60);

@@ -10,13 +10,13 @@ using MySql.Data.MySqlClient;
 namespace _02_BLL
 {
     public class LogicProjects
-    {
+    {//changeeeeeeeee
         public static List<Project> GetAllProjects()
 
         {//ff
             try
             {
-                string query = $"SELECT * FROM tasks.projects";
+                string query = $"SELECT p.*,user_id,user_name FROM tasks.projects P  JOIN tasks.users u ON u.user_id=p.team_leader_id ";
                 Func<MySqlDataReader, List<Project>> func = (reader) =>
                 {
                     List<Project> projects = new List<Project>();
@@ -33,6 +33,7 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
+                            User = new User() { UserId = reader.GetInt32(9), UserName = reader.GetString(10) }
                         });
                     }
                     return projects;

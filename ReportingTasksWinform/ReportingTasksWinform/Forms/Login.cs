@@ -56,6 +56,8 @@ namespace ReportingTasksWinform
                 Global.UserName = user.UserName;
                 Global.UserId = user.UserId;
                 MessageBox.Show(user.UserName);
+                textBoxUserName.Text = "";
+                textBoxPassword.Text = "";
                 if (user.UserKindId == 1)
 
                 {
@@ -89,6 +91,11 @@ namespace ReportingTasksWinform
             VerifyEmail verifyEmail = new VerifyEmail();
             verifyEmail.Show();
 
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

@@ -102,5 +102,10 @@ namespace ReportingTasksWinform
             listBoxUsers.DataSource = usersToChoose;
             listBoxUsers.DisplayMember = "UserName";
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

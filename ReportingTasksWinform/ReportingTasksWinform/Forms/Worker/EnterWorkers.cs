@@ -141,5 +141,12 @@ namespace ReportingTasksWinform
                 string id = dataGridView1.SelectedCells[0].Value.ToString();
             }
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Global.UserId = 0;
+            Global.UserName = null;
+            this.Close();
+        }
     }
 }

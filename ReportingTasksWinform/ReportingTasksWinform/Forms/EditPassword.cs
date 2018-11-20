@@ -14,6 +14,8 @@ namespace ReportingTasksWinform.Forms
 {
     public partial class EditPassword : Form
     {
+    
+        
         User user;
         public EditPassword(User user)
         {
@@ -26,6 +28,7 @@ namespace ReportingTasksWinform.Forms
             this.user.Password =UserRequsts.sha256(tbPassword.Text);
             UserRequsts.UpdatePassword(user);
             this.Close();
+         
         }
     }
 }
