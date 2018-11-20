@@ -40,14 +40,18 @@ import {AccordionModule} from 'primeng/accordion';     //accordion and accordion
 import {MenuItem} from 'primeng/api';   
 import {TreeTableModule} from 'primeng/treetable';
 import {TreeNode} from 'primeng/api';
-import {CalendarModule} from 'primeng/calendar';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { VerifyPasswordComponent } from './components/verify-password/verify-password.component';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import * as Excel from "exceljs/dist/exceljs.min.js";
-import * as ExcelProper from "exceljs";
+import * as shajs from 'sha.js';
 import { ExportExcelService } from './shared/services/export-excel.service';
 const routes: Routes = [
   
   { path: '', component: LoginComponent },
+  {path:'forgetPassword',component:ForgetPasswordComponent},
+  {path:'verifyPassword',component:VerifyPasswordComponent},
+  {path:'newPassword/:id',component:NewPasswordComponent},
   { path: 'managers', component: ManagersComponent, children: [
 
       { path: 'addProject', component: AddProjectComponent },
@@ -99,13 +103,17 @@ const routes: Routes = [
     TimerComponent,
     StatusGraphForMonthComponent,
     YourTasksDataComponent,
+    ForgetPasswordComponent,
+    VerifyPasswordComponent,
+    NewPasswordComponent,
    
 
 
 
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(routes),ChartsModule, HttpModule, FormsModule, ReactiveFormsModule , HttpClientModule,TreeTableModule,CalendarModule,  BrowserAnimationsModule,
+    BrowserModule, RouterModule.forRoot(routes),ChartsModule, HttpModule,
+     FormsModule, ReactiveFormsModule , HttpClientModule,TreeTableModule, BrowserAnimationsModule,
   ],
   providers: [UserService, ProjectService,UserKindService,WorkerToProjectService,HoursService,SendEmailService,ExportExcelService],
   bootstrap: [AppComponent]

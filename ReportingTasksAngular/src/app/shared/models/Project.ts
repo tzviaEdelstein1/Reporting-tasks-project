@@ -11,9 +11,10 @@ export class Project {
     public StartDate: Date;
     public FinishDate: Date;
     public User: User;
-    constructor() { }
 
-}
+        constructor(){}
+        
+    }
 
 
 

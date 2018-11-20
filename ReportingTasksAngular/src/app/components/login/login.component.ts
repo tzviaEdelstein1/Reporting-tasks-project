@@ -4,17 +4,20 @@ import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 
-// var SHA256 = require("crypto-js/sha256");
+import sha256 from 'async-sha256';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  //declare var angular: any;
+
   newUser: User;
   formGroup: FormGroup;
   obj: typeof Object = Object;
+  sha256Pass:string;
+  pass:string="";
   constructor(private userservice: UserService, private route: ActivatedRoute,
     private router: Router) {
 
@@ -46,14 +49,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  submitLogin() {
+   async submitLogin() {
+debugger;
+ this.pass=await sha256(this.formGroup.value.userPassword);
+console.log("rrrrrrrr",this.pass);
    
     console.log(this.formGroup.value);
     console.log(this.formGroup.controls);
     alert(this.formGroup.status);
     try
      {
-      this.userservice.Login(this.formGroup.value.userName,this.formGroup.value.userPassword).subscribe(res => {
+      this.userservice.Login(this.formGroup.value.userName,this.pass).subscribe(res => {
         console.warn(res);
         if (res != null) {
           alert("login succees");

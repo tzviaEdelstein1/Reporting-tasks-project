@@ -7,4 +7,5 @@ export class DetailsWorkerInProjects {
     public  Hours :number
     public  ActualHours:ActualHours[];
     public  TeamLeaderName :string;
+    
 }

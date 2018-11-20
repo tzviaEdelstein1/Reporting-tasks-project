@@ -64,5 +64,27 @@ GetUserById(id:number):Observable<User>{
   .catch((r:HttpErrorResponse)=>Observable.throw(r));
 }
 
+
+VerifyUserName(userName:string){
+  return this.http.get("http://localhost:56028/api/Users/VerifyEmail/"+userName)
+  .map((res:any)=>"ok")
+  .catch((res:any)=>"error");
+ 
+}
+
+VerifyPassword(pass:string):Observable<any>
+{
+  return this.http.get("http://localhost:56028/api/Users/VerifyPassword/"+pass)
+  .map((res:User)=>res)
+  .catch((r:HttpErrorResponse)=>'error');
+}
+
+EditPassword(user:User){
+  return this.http.put("http://localhost:56028/api/Users/EditPassword",user)
+  .map((res:any)=>'ok')
+  .catch((r:any)=>'error');
+
+  
+}
 }
 

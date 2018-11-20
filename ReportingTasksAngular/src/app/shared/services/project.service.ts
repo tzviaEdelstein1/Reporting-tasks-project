@@ -3,7 +3,7 @@ import { Project } from '../models/Project';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HelpProjectsAndHours } from '../models/HelpProjectsAndHours';
-//nccccc
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +15,11 @@ export class ProjectService {
     return this.http.post("http://localhost:56028/api/Projects/"+userId,project) .map((res:Project)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));;
   }
-
+  GetAllProjects():Observable<Project[]>{
+    return this.http.get("http://localhost:56028/api/Projects")
+    .map((res:Project[])=>res)
+    .catch((r:HttpErrorResponse)=>Observable.throw(r));
+  }
   GetProjectsByTeamLeaderId(teamLeaderId:number):Observable<Project[]>  {
    
     return this.http.get("http://localhost:56028/api/Projects/"+teamLeaderId)
@@ -37,11 +41,7 @@ export class ProjectService {
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
    
   }
-  GetAllProjects():Observable<Project[]>{
-    return this.http.get("http://localhost:56028/api/Projects")
-    .map((res:Project[])=>res)
-    .catch((r:HttpErrorResponse)=>Observable.throw(r));
-  }
+
 
   //api/Projects/GetProjectsAndHoursByTeamLeaderId/{teamLeaderId}
 

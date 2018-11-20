@@ -22,6 +22,8 @@
   <div *ngIf="formGroup.controls['userPassword'].errors&&formGroup.controls['userPassword'].touched">
       <p *ngFor="let err of obj.values(formGroup.controls['userPassword'].errors)">{{err}}</p>
   </div>
+
+  <a routerLink="forgetPassword"routerLinkActive="active">Forget Your Password?</a>
 <button id="buttonlogintoregister" (click)=submitLogin() [disabled]="formGroup.invalid">Login</button>
   
 </div>

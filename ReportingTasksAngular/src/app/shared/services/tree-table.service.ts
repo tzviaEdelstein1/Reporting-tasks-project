@@ -11,8 +11,7 @@ export class TreeTableService {
   constructor(private http: HttpClient) { }
 
 
-  GetTreeTable():Observable<TreeTable[]>  {
-   
+  GetTreeTable():Observable<TreeTable[]>  { 
     return this.http.get("http://localhost:56028/api/TreeTable")
     .map((res:TreeTable[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
