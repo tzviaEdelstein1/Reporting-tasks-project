@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="LogicAccess.cs" />
     <Compile Include="LogicAccessToUserKind.cs" />
+    <Compile Include="LogicEmail.cs" />
     <Compile Include="LogicHours.cs" />
     <Compile Include="LogicProjects.cs" />
     <Compile Include="LogicTreeTable.cs" />

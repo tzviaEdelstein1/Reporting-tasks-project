@@ -52,10 +52,12 @@ namespace _03_UIL.Controllers
         [Route("api/Users/VerifyEmail/{userName}")]
         public HttpResponseMessage VerifyEmail(string userName)
         {
-            user = LogicUser.GetAllUsers().FirstOrDefault(u => u.UserName == userName);
-            string email = user.UserEmail;
-            if (email != null)
+            List<User> users = LogicUser.GetAllUsers();
+            user = users.FirstOrDefault(u => u.UserName == userName);
+
+            if (user != null)
             {
+                string email = user.UserEmail;
 
                 SendEmail(email);
                 return new HttpResponseMessage(HttpStatusCode.OK);
@@ -66,6 +68,7 @@ namespace _03_UIL.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
 
         }
+
         [HttpGet]
         [Route("api/Users/VerifyPassword/{password}")]
         public HttpResponseMessage VerifyPassword(string password)
