@@ -1,0 +1,54 @@
+<html>
+  <form [formGroup]="formGroup" >
+<div class="box">
+  <h1 id="logintoregister">Retro Hours Of Your Workers:</h1>
+
+<p>Choose the worker :</p>
+<div class="group">
+  <select class="inputMaterial"  (change)=selectWorker($event)>
+    <option  *ngFor="let item of workers" >{{item.UserName}}</option>
+    
+  </select>
+
+  <span class="highlight"></span>
+  <span class="bar"></span>
+  <label>Worker</label>
+</div>
+
+
+
+
+<div class="group">
+  <select class="inputMaterial"  (change)=selectProject($event)>
+    <option  *ngFor="let item of projects" >{{item.ProjectName}}</option>
+    
+  </select>
+
+  <span class="highlight"></span>
+  <span class="bar"></span>
+  <label>Project</label>
+</div>
+
+
+<div class="group">
+<input type="number" formControlName="hours">
+
+  <span class="highlight"></span>
+  <span class="bar"></span>
+  <label>Hours Number</label>
+</div>
+
+
+<input type="submit" value="Update" (click)="onSubmit()">
+</div>
+
+
+
+
+
+
+</form>
+
+
+</html>
+

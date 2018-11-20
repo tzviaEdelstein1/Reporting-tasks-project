@@ -1,0 +1,25 @@
+<div>
+  <h2>your tasks:</h2>
+<table class="employees-table">
+  <thead class="employees-table-head">
+    <tr>
+      <th>Project Name</th>
+      <th>Hours</th> 
+      <th>Actual Hours</th>
+      
+    </tr>
+  </thead>
+  <tbody class="employees-table-body">
+    <tr *ngFor="let item of allYourProjectsAndHoursDetails">
+      <td >{{item.Name}}</td>
+      <td >{{item.Hours}}</td>
+      <td >{{item.allocatedHours | number:'.1-3'}}</td>
+    </tr>
+    
+    
+  </tbody>
+</table>
+</div>
+
+<app-timer></app-timer>
+

@@ -1,0 +1,20 @@
+<header class="navbar">
+
+    <a (click)="LogOut()">LogOut</a>
+  <a  class="navbar-brand">
+    Hello Worker
+  </a>
+  <nav class="navbar-navigation">
+ 
+    <a routerLink="tasksData" routerLinkActive="active">Your Tasks And Hours</a>
+    <a routerLink="monthGraph" routerLinkActive="active">Hours Month Graph</a>
+    <a routerLink="sendMessage" routerLinkActive="active">Send Message To Manager</a>
+  </nav>
+<p>{{now| date : 'h:mm:ss a'}}</p>
+ 
+</header>
+
+<router-outlet></router-outlet>
+
+
+

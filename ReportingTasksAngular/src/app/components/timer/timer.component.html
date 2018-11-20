@@ -1,0 +1,16 @@
+
+
+  <div class="login-wrap">
+    <h2>Report your hours by timer</h2>
+    
+    <div class="form">
+      <select (change)="SelectProject($event)" class="inputMaterial">
+        <option *ngFor="let item of allYourProjectsAndHoursDetails">{{item.Name}}</option>
+      </select>
+
+      <b><span *ngIf="zeroFlagH">0</span>{{timerHours}}:<span *ngIf="zeroFlagM">0</span>{{timerMinutes}}:<span *ngIf="zeroFlagS">0</span>{{timerSeconds}}</b>
+
+      <input type="button" class="buttonlogintoregister" value="Start" (click)="StartTimer()"[disabled]="!selectedProject" >
+      <input type="button" class="buttonlogintoregister"  value="Finish"(click)="StopTimer()">
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+<header class="navbar">
+
+  <a (click)="LogOut()">LogOut</a>
+    <a  class="navbar-brand">
+      Hello Manager
+    </a>
+    <nav class="navbar-navigation">
+      <a routerLink="addProject"routerLinkActive="active">Add Project</a>
+      <a routerLink="reportsManagement"routerLinkActive="active">Reports Management</a>
+      <a routerLink="userManagement"routerLinkActive="active">User Management</a>
+      <a routerLink="teamManagement"routerLinkActive="active">Team Management</a>
+
+    </nav>
+
+   
+  </header>
+  <router-outlet></router-outlet>

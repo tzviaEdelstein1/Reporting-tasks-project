@@ -1,0 +1,64 @@
+<input type="button"(click)="exportToExcel()" value="ExpotToExcel">
+<div>
+    <h3>Start Date</h3>
+    <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="startDateValue" yearRange="2000:2030" (onSelect)="onChangeStartDate()"></p-calendar>
+</div>
+<div>
+    <h3>End Date</h3>
+    <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="endDateValue" yearRange="2000:2030" (onSelect)="onChangeEndDate()"></p-calendar>
+</div>
+<div class="group">
+    <select class="inputMaterial" (change)="onChangeUser($event.target.value)">
+      <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
+      
+    </select>
+
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>allUsers</label>
+  </div>
+  <div class="group">
+    <select class="inputMaterial" (change)="onChangeTeamLeader($event.target.value)">
+      <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
+      
+    </select>
+
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>allTeamLeaders</label>
+  </div>
+  <div class="group">
+    <select class="inputMaterial"  (change)="onChangeProject($event.target.value)">
+      <option  *ngFor="let item of allProjects" >{{item.ProjectName}}</option>
+      
+    </select>
+
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>allProjects</label>
+  </div>
+
+
+<p-treeTable [value]="filterd">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of cols">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr>
+            <td *ngFor="let col of cols; let i = index">
+                <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+                <span>{{rowData[col.field]}}</span>    
+            </td>
+
+        </tr>
+    </ng-template>
+</p-treeTable>
+
+
+
+
+   

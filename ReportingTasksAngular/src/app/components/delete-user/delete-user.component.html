@@ -1,0 +1,25 @@
+<html>
+  <form [formGroup]="formGroup">
+<div class="box">
+  <h1 id="logintoregister">DeleteUser</h1>
+
+<label>Choose the user you wants to delete:</label>
+<div class="group">
+  <select class="inputMaterial" formControlName="DeleteUser" >
+    <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
+    
+  </select>
+
+  <span class="highlight"></span>
+  <span class="bar"></span>
+  <label>User</label>
+</div>
+
+
+
+<button id="buttonlogintoregister" (click)=submitDelete() >Delete</button>
+  
+</div>
+</form>
+
+</html>
