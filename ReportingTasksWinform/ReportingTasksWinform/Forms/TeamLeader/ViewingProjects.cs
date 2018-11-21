@@ -58,12 +58,18 @@ namespace ReportingTasksWinform
             labelUiUxHours.Text = (comboBoxAllYourProjects.SelectedItem as Project).UiUxHours.ToString();
             labelProjectName.Text = (comboBoxAllYourProjects.SelectedItem as Project).ProjectName;
             labelTeamLeader.Text = (comboBoxAllYourProjects.SelectedItem as Project).User.UserName;
+            labelIsActive.Text = (comboBoxAllYourProjects.SelectedItem as Project).IsActive.ToString();
             projectsAndHours = ProjectsRequst.GetProjectsAndHoursByProjectId((int)comboBoxAllYourProjects.SelectedValue);
             dataGridView1.DataSource = projectsAndHours;
 
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnIsActive_Click(object sender, EventArgs e)
         {
 
         }

@@ -71,6 +71,12 @@
     <Compile Include="Forms\Manager\Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Manager\UpdateProjectState.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Manager\UpdateProjectState.Designer.cs">
+      <DependentUpon>UpdateProjectState.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\VerifyEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Manager\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Manager\UpdateProjectState.resx">
+      <DependentUpon>UpdateProjectState.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VerifyEmail.resx">
       <DependentUpon>VerifyEmail.cs</DependentUpon>

@@ -85,11 +85,11 @@ teamLeaderInput:string="";
       this.initProjectsInfo();
     })
     //get all users from service
-      this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
+      //this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
     //get all projects from service
-   this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
+ //  this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
 //get all team leaders 
-this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
+//this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
   fillDate() {
     this.es = {

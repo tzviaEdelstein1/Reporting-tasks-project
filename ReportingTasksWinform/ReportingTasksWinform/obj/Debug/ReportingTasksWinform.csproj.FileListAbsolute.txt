@@ -24,3 +24,4 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\R
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.VerifyEmail.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.VerifyPassword.resources
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.Manager.Reports.resources
+C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksWinform\ReportingTasksWinform\obj\Debug\ReportingTasksWinform.Forms.Manager.UpdateProjectState.resources

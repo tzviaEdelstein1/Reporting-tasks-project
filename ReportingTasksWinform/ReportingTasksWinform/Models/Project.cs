@@ -31,6 +31,6 @@ namespace ReportingTasksWinform.Models
         [ValidateEndDate]
         public DateTime FinishDate { get; set; }
         public User User { get; set; }
-
+        public bool IsActive { get; set; }
     }
 }

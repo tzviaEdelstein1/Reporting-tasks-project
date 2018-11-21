@@ -22,6 +22,15 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
+        [Route("api/Projects/GetActiveProjects")]
+        [HttpGet]
+        public HttpResponseMessage GetActiveProjects()
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects().Where(p=>p.IsActive=true).ToList(), new JsonMediaTypeFormatter())
+            };
+        }
         //get the projects by teamleader id
         [Route("api/Projects/{teamLeaderId}")]
         [HttpGet]
@@ -142,6 +151,7 @@ namespace _03_UIL.Controllers
 
         //    // PUT: api/Projects
         [Route("api/Projects/{userId}")]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody]Project value, [FromUri]int userId)
         {
 

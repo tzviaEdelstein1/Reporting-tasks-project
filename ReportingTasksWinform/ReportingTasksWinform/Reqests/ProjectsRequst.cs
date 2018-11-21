@@ -109,6 +109,30 @@ namespace ReportingTasksWinform.Reqests
             }
             return AllProjects;
         }
+        public static List<Project> GetActiveProjects()
+        {
+            List<Project> ActiveProjects = new List<Project>();
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetActiveProjects");
+                response = (HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                    ActiveProjects = JsonConvert.DeserializeObject<List<Project>>(content);
+                    MessageBox.Show("success");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error");
+            }
+            return ActiveProjects;
+        }
         public static List<Unknown> GetProjectsAndHoursByTeamLeaderId()
         {
             HttpWebRequest request;
@@ -189,6 +213,44 @@ namespace ReportingTasksWinform.Reqests
             return ProjectsAndHours;
 
         }
+        public static bool UpdateProject(Project project)
+        {
 
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Projects/" + Global.UserId);
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "PUT";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = new JavaScriptSerializer().Serialize(project);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    {
+                        var result = streamReader.ReadToEnd();
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+
+            }
+        }
     }
 }

@@ -46,6 +46,7 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as shajs from 'sha.js';
 import { ExportExcelService } from './shared/services/export-excel.service';
+import { CalendarModule } from 'primeng/primeng';
 const routes: Routes = [
   
   { path: '', component: LoginComponent },
@@ -113,7 +114,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes),ChartsModule, HttpModule,
-     FormsModule, ReactiveFormsModule , HttpClientModule,TreeTableModule, BrowserAnimationsModule,
+     FormsModule, ReactiveFormsModule , HttpClientModule,TreeTableModule, BrowserAnimationsModule,CalendarModule
   ],
   providers: [UserService, ProjectService,UserKindService,WorkerToProjectService,HoursService,SendEmailService,ExportExcelService],
   bootstrap: [AppComponent]
