@@ -59,35 +59,40 @@ namespace ReportingTasksWinform
             AddNewTab(managementTeam);
              manageReports = new ManageReports();
             AddNewTab(manageReports);
-             reports = new Reports();
-            AddNewTab(reports);
+           
              updateProjectState = new UpdateProjectState(addProject);
             AddNewTab(updateProjectState);
-            tabControl1.Selecting += TabControl1_Selecting;
+            //tabControl1.Selecting += TabControl1_Selecting;
         }
 
 
-        private void TabControl1_Selecting(object sender, TabControlCancelEventArgs e)
-        {
+        //private void TabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        //{
 
-            addProject = new AddProject();
-          manageUsers = new ManageUsers();
+        //    addProject = new AddProject();
+        //  manageUsers = new ManageUsers();
         
-          managementTeam = new ManagementTeam();
+        //  managementTeam = new ManagementTeam();
            
-          manageReports = new ManageReports();
+        //  manageReports = new ManageReports();
         
-           reports = new Reports();
+        //   reports = new Reports();
           
-           updateProjectState = new UpdateProjectState(addProject);
+        //   updateProjectState = new UpdateProjectState(addProject);
        
-        }
+        //}
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Global.UserId =0;
             Global.UserName = null;
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            reports = new Reports();
+            reports.Show();
         }
     }
 }

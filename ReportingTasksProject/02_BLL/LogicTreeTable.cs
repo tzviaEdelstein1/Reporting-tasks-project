@@ -34,7 +34,8 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
-                      User=new User() { UserId=reader.GetInt32(9),UserName=reader.GetString(10)}
+                       
+                      User=new User() { UserId=reader.GetInt32(10),UserName=reader.GetString(11)}
                         }
 
                     });

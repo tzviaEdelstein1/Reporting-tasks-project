@@ -28,44 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.radVirtualGrid1 = new Telerik.WinControls.UI.RadVirtualGrid();
+            ((System.ComponentModel.ISupportInitialize)(this.radVirtualGrid1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // radVirtualGrid1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(246, 59);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(458, 250);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(1, 59);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(210, 286);
-            this.treeView1.TabIndex = 1;
+            this.radVirtualGrid1.AllowAddNewRow = false;
+            this.radVirtualGrid1.AllowCut = false;
+            this.radVirtualGrid1.AllowDelete = false;
+            this.radVirtualGrid1.AllowEdit = false;
+            this.radVirtualGrid1.AllowFiltering = false;
+            this.radVirtualGrid1.AllowPaste = false;
+            this.radVirtualGrid1.AllowSorting = false;
+            this.radVirtualGrid1.Location = new System.Drawing.Point(0, 0);
+            this.radVirtualGrid1.Name = "radVirtualGrid1";
+            this.radVirtualGrid1.Size = new System.Drawing.Size(684, 533);
+            this.radVirtualGrid1.StandardTab = false;
+            this.radVirtualGrid1.TabIndex = 0;
+            this.radVirtualGrid1.Text = "radVirtualGrid1";
+            this.radVirtualGrid1.CellValueNeeded += new Telerik.WinControls.UI.VirtualGridCellValueNeededEventHandler(this.radVirtualGrid1_CellValueNeeded);
+            this.radVirtualGrid1.CellFormatting += new Telerik.WinControls.UI.VirtualGridCellElementEventHandler(this.radVirtualGrid1_CellFormatting);
+            this.radVirtualGrid1.RowExpanding += new Telerik.WinControls.UI.VirtualGridRowExpandingEventHandler(this.radVirtualGrid1_RowExpanding);
+            this.radVirtualGrid1.QueryHasChildRows += new Telerik.WinControls.UI.VirtualGridQueryHasChildRowsEventHandler(this.radVirtualGrid1_QueryHasChildRows);
+
             // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.radVirtualGrid1);
             this.Name = "Reports";
             this.Text = "Reports";
-            this.Load += new System.EventHandler(this.Reports_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Reports_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.radVirtualGrid1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TreeView treeView1;
+        private Telerik.WinControls.UI.RadPivotGrid radPivotGrid1;
+        private Telerik.WinControls.UI.RadVirtualGrid radVirtualGrid1;
     }
 }
