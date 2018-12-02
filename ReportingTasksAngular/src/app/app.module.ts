@@ -47,14 +47,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import * as shajs from 'sha.js';
 import { ExportExcelService } from './shared/services/export-excel.service';
 import { CalendarModule } from 'primeng/primeng';
+import { AuthGuard } from './shared/auth.guard';
+import { AuthTeam } from './shared/auth.team';
+import { AuthWorker } from './shared/auth.worker';
 const routes: Routes = [
   
   { path: '', component: LoginComponent },
   {path:'forgetPassword',component:ForgetPasswordComponent},
   {path:'verifyPassword',component:VerifyPasswordComponent},
   {path:'newPassword/:id',component:NewPasswordComponent},
-  { path: 'managers', component: ManagersComponent, children: [
-
+  { path: 'managers', component: ManagersComponent,canActivate:[AuthGuard], children: [
+    
       { path: 'addProject', component: AddProjectComponent },
       { path: 'reportsManagement', component: ReportsManagementComponent },
       { path: 'teamManagement', component: TeamLeadersComponent },
@@ -68,12 +71,12 @@ const routes: Routes = [
 
     ]
   },
-  { path: 'team-leaders', component: TeamLeadersComponent ,children:[
+  { path: 'team-leaders', component: TeamLeadersComponent ,canActivate:[AuthTeam],children:[
     {path:'hoursStatusGraph',component:HoursStatusGraphComponent},
     {path:'projectsState',component:ProjectsStateComponent},
     {path:'retroHours',component:RetrohoursComponent},
   ]},
-  { path: 'other-workers', component: OtherWorkerComponent ,children:[
+  { path: 'other-workers', component: OtherWorkerComponent,canActivate:[AuthWorker] ,children:[
     {path:'tasksData',component:YourTasksDataComponent},
     {path:'monthGraph',component:StatusGraphForMonthComponent},
     {path:'sendMessage',component:SendEmailComponent},

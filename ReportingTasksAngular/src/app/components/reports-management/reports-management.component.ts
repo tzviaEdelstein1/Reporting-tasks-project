@@ -49,8 +49,6 @@ teamLeaderInput:string="";
     this.exportExcelService.export(arr);
   }
   ngOnInit() {
-
-
     this.fillDate();
     this.treeTableService.GetTreeTable().subscribe(res => {
 
@@ -85,11 +83,11 @@ teamLeaderInput:string="";
       this.initProjectsInfo();
     })
     //get all users from service
-      //this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
+      this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
     //get all projects from service
- //  this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
+this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
 //get all team leaders 
-//this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
+this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
   fillDate() {
     this.es = {
@@ -146,7 +144,7 @@ teamLeaderInput:string="";
     if (this.endDateValue != null) {
       this.ChangeEndDate();
     }
-    if(this.projectInput!="")
+    if(this.teamLeaderInput!="")
     {
       this.ChangeTeamLeader();
     }
@@ -161,12 +159,13 @@ this.checkFilter();
     this.filterd = this.filterd.filter(t => t.data["teamLeader"] == this.teamLeaderInput);
   }
   onChangeProject(event: any) {
+    debugger;
     this.projectInput = event;
     this.checkFilter();
 
   }
   ChangeProject() {
-
+debugger;
     this.filterd = this.filterd.filter(t => t.data["name"] == this.projectInput);
     console.log(this.filterd);
   }

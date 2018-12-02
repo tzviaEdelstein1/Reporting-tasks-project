@@ -11,6 +11,27 @@ namespace _02_BLL
 {
     public class LogicWorkerToProject
     {
+        public static List<WorkerToProject> GetAllWorkersToProject()
+        {
+            string query = $"SELECT * FROM tasks.worker_to_project";
+            Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
+            {
+                List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
+                while (reader.Read())
+                {
+                    workerToProjects.Add(new WorkerToProject
+                    {
+                        WorkerToProjectId = reader.GetInt32(0),
+                        UserId = reader.GetInt32(1),
+                        ProjectId = reader.GetInt32(2),
+                        Hours = reader.GetInt32(3),
+                    });
+                }
+                return workerToProjects;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
 
         public static List<Project> GetProjectsbyUserName(string userName)
         {

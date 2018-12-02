@@ -33,42 +33,42 @@
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AddUser = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.comboBoxUserKind = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.comboBoxTeamLeader = new System.Windows.Forms.ComboBox();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.EditUser = new System.Windows.Forms.TabPage();
-            this.comboBoxAllUsers = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.comboBoxUserKindEdit = new System.Windows.Forms.ComboBox();
             this.comboBoxTeamLeaderEdit = new System.Windows.Forms.ComboBox();
             this.textBoxEmailEdit = new System.Windows.Forms.TextBox();
             this.textBoxUserNameEdit = new System.Windows.Forms.TextBox();
+            this.comboBoxAllUsers = new System.Windows.Forms.ComboBox();
             this.RemoveUser = new System.Windows.Forms.TabPage();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.buttonRemove = new System.Windows.Forms.Button();
-            this.comboBoxAllUsersRemove = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBoxAllUsersRemove = new System.Windows.Forms.ComboBox();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.AddUser.SuspendLayout();
-            this.EditUser.SuspendLayout();
-            this.RemoveUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.EditUser.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.RemoveUser.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonAddUser
@@ -116,6 +116,60 @@
             this.AddUser.TabIndex = 0;
             this.AddUser.Text = "AddUser";
             this.AddUser.UseVisualStyleBackColor = true;
+            this.AddUser.Click += new System.EventHandler(this.AddUser_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.buttonAddUser);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.textBoxPassword);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.comboBoxUserKind);
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.comboBoxTeamLeader);
+            this.panel3.Controls.Add(this.textBoxEmail);
+            this.panel3.Controls.Add(this.textBoxUserName);
+            this.panel3.Location = new System.Drawing.Point(238, 15);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(344, 321);
+            this.panel3.TabIndex = 43;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(42, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 23);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "password";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label11.Location = new System.Drawing.Point(74, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 23);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "email";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label12.Location = new System.Drawing.Point(27, 127);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 23);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "team leader";
             // 
             // textBoxPassword
             // 
@@ -124,6 +178,17 @@
             this.textBoxPassword.Size = new System.Drawing.Size(140, 20);
             this.textBoxPassword.TabIndex = 7;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label13.Location = new System.Drawing.Point(35, 159);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 23);
+            this.label13.TabIndex = 39;
+            this.label13.Text = "user kind";
+            // 
             // comboBoxUserKind
             // 
             this.comboBoxUserKind.FormattingEnabled = true;
@@ -131,6 +196,17 @@
             this.comboBoxUserKind.Name = "comboBoxUserKind";
             this.comboBoxUserKind.Size = new System.Drawing.Size(140, 21);
             this.comboBoxUserKind.TabIndex = 21;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label14.Location = new System.Drawing.Point(35, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(90, 23);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "UserName";
             // 
             // comboBoxTeamLeader
             // 
@@ -167,14 +243,78 @@
             this.EditUser.Text = "EditUser";
             this.EditUser.UseVisualStyleBackColor = true;
             // 
-            // comboBoxAllUsers
+            // label10
             // 
-            this.comboBoxAllUsers.FormattingEnabled = true;
-            this.comboBoxAllUsers.Location = new System.Drawing.Point(525, 62);
-            this.comboBoxAllUsers.Name = "comboBoxAllUsers";
-            this.comboBoxAllUsers.Size = new System.Drawing.Size(154, 21);
-            this.comboBoxAllUsers.TabIndex = 33;
-            this.comboBoxAllUsers.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAllUsers_SelectedIndexChanged);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label10.Location = new System.Drawing.Point(521, 23);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(182, 23);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "choose user to update";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.comboBoxUserKindEdit);
+            this.panel2.Controls.Add(this.comboBoxTeamLeaderEdit);
+            this.panel2.Controls.Add(this.buttonUpdate);
+            this.panel2.Controls.Add(this.textBoxEmailEdit);
+            this.panel2.Controls.Add(this.textBoxUserNameEdit);
+            this.panel2.Location = new System.Drawing.Point(141, 23);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(361, 306);
+            this.panel2.TabIndex = 38;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label9.Location = new System.Drawing.Point(88, 70);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 23);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "email";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label8.Location = new System.Drawing.Point(33, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 23);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "team leader";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label7.Location = new System.Drawing.Point(56, 141);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 23);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "user kind";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label6.Location = new System.Drawing.Point(62, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 23);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "UserName";
             // 
             // comboBoxUserKindEdit
             // 
@@ -206,6 +346,15 @@
             this.textBoxUserNameEdit.Size = new System.Drawing.Size(140, 20);
             this.textBoxUserNameEdit.TabIndex = 26;
             // 
+            // comboBoxAllUsers
+            // 
+            this.comboBoxAllUsers.FormattingEnabled = true;
+            this.comboBoxAllUsers.Location = new System.Drawing.Point(525, 62);
+            this.comboBoxAllUsers.Name = "comboBoxAllUsers";
+            this.comboBoxAllUsers.Size = new System.Drawing.Size(154, 21);
+            this.comboBoxAllUsers.TabIndex = 33;
+            this.comboBoxAllUsers.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAllUsers_SelectedIndexChanged);
+            // 
             // RemoveUser
             // 
             this.RemoveUser.Controls.Add(this.panel1);
@@ -216,9 +365,25 @@
             this.RemoveUser.Text = "RemoveUser";
             this.RemoveUser.UseVisualStyleBackColor = true;
             // 
-            // errorProvider1
+            // panel1
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.comboBoxAllUsersRemove);
+            this.panel1.Controls.Add(this.buttonRemove);
+            this.panel1.Location = new System.Drawing.Point(256, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(309, 278);
+            this.panel1.TabIndex = 26;
+            // 
+            // comboBoxAllUsersRemove
+            // 
+            this.comboBoxAllUsersRemove.FormattingEnabled = true;
+            this.comboBoxAllUsersRemove.Location = new System.Drawing.Point(62, 50);
+            this.comboBoxAllUsersRemove.Name = "comboBoxAllUsersRemove";
+            this.comboBoxAllUsersRemove.Size = new System.Drawing.Size(171, 21);
+            this.comboBoxAllUsersRemove.TabIndex = 25;
+            this.comboBoxAllUsersRemove.SelectedIndexChanged += new System.EventHandler(this.comboBoxAllUsersRemove_SelectedIndexChanged);
             // 
             // buttonRemove
             // 
@@ -232,173 +397,9 @@
             this.buttonRemove.UseVisualStyleBackColor = false;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
-            // comboBoxAllUsersRemove
+            // errorProvider1
             // 
-            this.comboBoxAllUsersRemove.FormattingEnabled = true;
-            this.comboBoxAllUsersRemove.Location = new System.Drawing.Point(62, 50);
-            this.comboBoxAllUsersRemove.Name = "comboBoxAllUsersRemove";
-            this.comboBoxAllUsersRemove.Size = new System.Drawing.Size(171, 21);
-            this.comboBoxAllUsersRemove.TabIndex = 25;
-            this.comboBoxAllUsersRemove.SelectedIndexChanged += new System.EventHandler(this.comboBoxAllUsersRemove_SelectedIndexChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBoxAllUsersRemove);
-            this.panel1.Controls.Add(this.buttonRemove);
-            this.panel1.Location = new System.Drawing.Point(256, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(309, 278);
-            this.panel1.TabIndex = 26;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label6.Location = new System.Drawing.Point(62, 38);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 23);
-            this.label6.TabIndex = 34;
-            this.label6.Text = "UserName";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label7.Location = new System.Drawing.Point(56, 141);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 23);
-            this.label7.TabIndex = 35;
-            this.label7.Text = "user kind";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label8.Location = new System.Drawing.Point(33, 107);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 23);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "team leader";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label9.Location = new System.Drawing.Point(88, 70);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 23);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "email";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.comboBoxUserKindEdit);
-            this.panel2.Controls.Add(this.comboBoxTeamLeaderEdit);
-            this.panel2.Controls.Add(this.buttonUpdate);
-            this.panel2.Controls.Add(this.textBoxEmailEdit);
-            this.panel2.Controls.Add(this.textBoxUserNameEdit);
-            this.panel2.Location = new System.Drawing.Point(141, 23);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(361, 306);
-            this.panel2.TabIndex = 38;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label10.Location = new System.Drawing.Point(521, 23);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 23);
-            this.label10.TabIndex = 38;
-            this.label10.Text = "choose user to update";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label11.Location = new System.Drawing.Point(74, 56);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 23);
-            this.label11.TabIndex = 41;
-            this.label11.Text = "email";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label12.Location = new System.Drawing.Point(27, 127);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(103, 23);
-            this.label12.TabIndex = 40;
-            this.label12.Text = "team leader";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label13.Location = new System.Drawing.Point(35, 159);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 23);
-            this.label13.TabIndex = 39;
-            this.label13.Text = "user kind";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label14.Location = new System.Drawing.Point(35, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 23);
-            this.label14.TabIndex = 38;
-            this.label14.Text = "UserName";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(42, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 23);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "password";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.buttonAddUser);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.textBoxPassword);
-            this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.comboBoxUserKind);
-            this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.comboBoxTeamLeader);
-            this.panel3.Controls.Add(this.textBoxEmail);
-            this.panel3.Controls.Add(this.textBoxUserName);
-            this.panel3.Location = new System.Drawing.Point(238, 15);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(344, 321);
-            this.panel3.TabIndex = 43;
+            this.errorProvider1.ContainerControl = this;
             // 
             // ManageUsers
             // 
@@ -411,15 +412,15 @@
             this.Load += new System.EventHandler(this.ManageUsers_Load);
             this.tabControl1.ResumeLayout(false);
             this.AddUser.ResumeLayout(false);
-            this.EditUser.ResumeLayout(false);
-            this.EditUser.PerformLayout();
-            this.RemoveUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.EditUser.ResumeLayout(false);
+            this.EditUser.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.RemoveUser.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }

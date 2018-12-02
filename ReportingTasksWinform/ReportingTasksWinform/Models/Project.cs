@@ -10,7 +10,7 @@ namespace ReportingTasksWinform.Models
 {
    public class Project
     {
-        public static  readonly string[] FieldNames = { "ProjectName", "ClientName", "TeamLeaderName", "DevelopersHours", "QaHours", "UiUxHours" };
+        public static  readonly string[] FieldNames = { "ProjectName", "ClientName", "TeamLeaderName","Hours","ActualHours","Precent", "StartDate", "FinishDate", "IsActive" };
         public int ProjectId { get; set; }
         [Required]
         [UniqueProjectAttribute]

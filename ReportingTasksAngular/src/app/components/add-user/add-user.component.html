@@ -44,7 +44,20 @@
       <p *ngFor="let err of obj.values(formGroup.controls['Password'].errors)">{{err}}</p>
   </div>
 
+  <div class="group">
+    <select class="inputMaterial" formControlName="UserKindId" >
+      <option  *ngFor="let item of userKinds" >{{item.KindUserName}}</option>
+      
+    </select>
 
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>UserKindId</label>
+  </div>
+
+  <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
+    <p *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)">{{err}}</p>
+  </div>
 
   <div class="group">
     <select class="inputMaterial" formControlName="TeamLeaderId">
@@ -62,20 +75,7 @@
   </div>
 
 
-  <div class="group">
-    <select class="inputMaterial" formControlName="UserKindId">
-      <option  *ngFor="let item of userKinds" >{{item.KindUserName}}</option>
-      
-    </select>
 
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>UserKindId</label>
-  </div>
-
-  <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
-    <p *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)">{{err}}</p>
-  </div>
 
 
 <button id="buttonlogintoregister" (click)=submitAdd() [disabled]="formGroup.invalid">Add</button>

@@ -47,7 +47,7 @@
 <!-- עובדים נוספים -->
 <p>other worker to this project</p>
 <div *ngFor="let item of usersToAdd">
-    <!-- <input type="checkbox" name={{item.UserName}} value={{item.UserName}} id={{item.UserName}} (change)=addCheckedWorker(item.UserId,event.target)> -->
+   
     <input type="checkbox" name={{item.UserName}} value={{item.UserId}} id={{item.UserName}} (change)=addCheckedWorker($event)>
     <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
   </div>
@@ -94,7 +94,7 @@
 
 
         <div class="group">
-            <input class="inputMaterial" type="date" formControlName="BeginingDate">
+            <input class="inputMaterial" type="date" formControlName="BeginingDate" (change)="ValidateStartDate()">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>BeginingDate</label>
@@ -104,10 +104,12 @@
             <p *ngFor="let err of obj.values(formGroup.controls['BeginingDate'].errors)">{{err}}</p>
           </div>
 
-
+          <div *ngIf="starterror.isError" class="alert alert-danger">
+            {{ starterror.errorMessage }}
+         </div>
 
           <div class="group">
-              <input class="inputMaterial" type="date" formControlName="FinishDate">
+              <input class="inputMaterial" type="date" formControlName="FinishDate" (change)="ValidateDates()">
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>FinishDate</label>
@@ -117,19 +119,15 @@
               <p *ngFor="let err of obj.values(formGroup.controls['FinishDate'].errors)">{{err}}</p>
             </div>
 
-
+            <div *ngIf="error.isError" class="alert alert-danger">
+              {{ error.errorMessage }}
+           </div>
     <!-- <button id="buttonlogintoregister" (click)=Submit() [disabled]="formGroup.invalid">Add</button> -->
 
-    <button id="buttonlogintoregister" (click)=Submit()>Add</button>
+    <button id="buttonlogintoregister" (click)=Submit()  [disabled]="formGroup.invalid||error.isError==true||starterror.isError==true">Add</button>
   </div>
 </form>
 
 
-<!-- <form> 
-<div *ngFor="let item of usersToAdd">
-  <input type="checkbox" name={{item.UserName}} value={{item.UserName}} id={{item.UserName}}>
-  <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
-</div>
 
-</form> -->
 

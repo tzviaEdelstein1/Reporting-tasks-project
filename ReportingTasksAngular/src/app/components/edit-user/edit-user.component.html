@@ -1,6 +1,4 @@
 
-
-
 <html>
   <form [formGroup]="formGroup">
 <div class="box">
@@ -17,9 +15,6 @@
   <span class="bar"></span>
   <label>The User</label>
 </div>
-
-
-
 
 
   
@@ -46,8 +41,6 @@
     <div *ngIf="formGroup.controls['UserEmail'].errors&&formGroup.controls['UserEmail'].touched">
         <p *ngFor="let err of obj.values(formGroup.controls['UserEmail'].errors)">{{err}}</p>
     </div>
-
-
 
 
 

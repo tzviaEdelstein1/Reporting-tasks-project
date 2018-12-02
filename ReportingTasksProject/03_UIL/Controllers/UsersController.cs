@@ -20,7 +20,7 @@ namespace _03_UIL.Controllers
         [Route("api/Users/GetAllUsers")]
         public HttpResponseMessage GetAllUsers()
 
-       {
+        {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<List<User>>(LogicUser.GetAllUsers(), new JsonMediaTypeFormatter())
@@ -76,7 +76,7 @@ namespace _03_UIL.Controllers
             if (password == body)
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new ObjectContent<User>(user,new JsonMediaTypeFormatter())
+                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
                 };
             else
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");

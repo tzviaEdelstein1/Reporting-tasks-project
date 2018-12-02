@@ -32,7 +32,7 @@ export class AddProjectComponent implements OnInit {
     let formGroupConfig = {
       ProjectName: new FormControl("", this.createValidatorArr("ProjectName", 3, 15)),
       ClientName: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
-      TeamLeader: new FormControl("", this.createValidatorArr("TeamLeader", 0, 1000)),
+      TeamLeader: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
       DevelopersHours: new FormControl("", this.createValidatorArr("DevelopersHours", 0, 1000)),
       QAhours: new FormControl("", this.createValidatorArr("QAhours", 0, 1000)),
       UiUxHours: new FormControl("", this.createValidatorArr("UiUxHours", 0, 1000)),
@@ -64,7 +64,7 @@ export class AddProjectComponent implements OnInit {
     debugger;
     this.teamLeaderId = this.allUsers.find(t => t.UserName == this.formGroup.value["TeamLeader"]).UserId;
     console.log("team", this.teamLeaderId);
-    this.usersToAdd = this.allUsers.filter(u => u.UserId != this.teamLeaderId && u.TeamLeaderId != this.teamLeaderId);
+    this.usersToAdd = this.allUsers.filter(u => u.UserId != this.teamLeaderId && u.TeamLeaderId != this.teamLeaderId && u.UserKindId != 1);
   }
 
 
@@ -77,17 +77,52 @@ export class AddProjectComponent implements OnInit {
       this.checkboxes.push(event.target.value);
 
   }
+  starterror: any = { isError: false, errorMessage: '' };
+  error: any = { isError: false, errorMessage: '' };
+  ValidateStartDate() {
+    const today =  new Date();
+    if (new Date(this.formGroup.controls['BeginingDate'].value) < new Date(today.setDate(today.getDate() - 1))) {
+    
+      this.starterror = {
+        isError: true, errorMessage: 'Start Date cant before today'
+      }
+    }
+    else {
+      this.starterror = {
+        isError: false, errorMessage: ''
 
+      }
+    }
+  }
+  ValidateDates() {
+    if (new Date(this.formGroup.controls['BeginingDate'].value) > new Date(this.formGroup.controls['FinishDate'].value)) {
+      this.error = {
+        isError: true, errorMessage: 'End Date cant before start date'
+      };
+    }
+    else {
+      this.error = {
+        isError: false, errorMessage: ''
+
+      }
+    }
+  }
   workerToProject: WorkerToProject;
   Submit() {
     debugger;
+    
+   
+    
     this.currentId = Number.parseInt(localStorage.getItem("currentUser"));
     console.log("currentId", this.currentId);
     console.log("this.formGroup.value.ProjectName", this.formGroup.value.ProjectName);
     this.newProject = new Project();
     this.newProject.ProjectName = this.formGroup.value.ProjectName;
     this.newProject.ClientName = this.formGroup.value.ClientName;
-    this.newProject.TeamLeaderId = this.allUsers.find(u => u.UserName == this.formGroup.value.TeamLeader).UserId;
+    if (this.formGroup.value.TeamLeader)
+      this.newProject.TeamLeaderId = this.allUsers.find(u => u.UserName == this.formGroup.value.TeamLeader).UserId;
+    else
+      this.newProject.TeamLeaderId = 0;
     this.newProject.DevelopersHours = this.formGroup.value.DevelopersHours;
     this.newProject.QaHours = this.formGroup.value.QAhours;
     this.newProject.UiUxHours = this.formGroup.value.UiUxHours;
@@ -99,14 +134,17 @@ export class AddProjectComponent implements OnInit {
 
     this.projectService.AddProject(this.newProject, this.currentId).subscribe(res => {
       console.log("res", res);
+      alert("The project was added successfuly!");
+      if (this.checkboxes) {
+        this.checkboxes.forEach(ch => {
+          this.workerToProject = new WorkerToProject();
+          this.workerToProject.ProjectId = res.ProjectId;
+          this.workerToProject.UserId = Number.parseInt(ch);
+          this.workerToProject.Hours = 0;
+          this.workerToProjectService.AddWorkerToProject(this.workerToProject, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => console.log("res2", res))
+        });
+      }
 
-      this.checkboxes.forEach(ch => {
-        this.workerToProject = new WorkerToProject();
-        this.workerToProject.ProjectId = res.ProjectId;
-        this.workerToProject.UserId =Number.parseInt(ch);
-        this.workerToProject.Hours = 0;
-        this.workerToProjectService.AddWorkerToProject(this.workerToProject, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => console.log("res2", res))
-      });
 
 
     });

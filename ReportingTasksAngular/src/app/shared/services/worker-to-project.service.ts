@@ -9,6 +9,13 @@ import { Project } from '../models/Project';
 })
 export class WorkerToProjectService {
   constructor(private http: HttpClient) { }
+  
+Get(): Observable<WorkerToProject[]>{
+  return this.http.get("http://localhost:56028/api/WorkerToProject/GetAllWorkersToProject")
+  .map((res: WorkerToProject[]) => res)
+  .catch((r: HttpErrorResponse) => Observable.throw(r));
+
+}
 
   AddWorkerToProject(workerToProject: WorkerToProject, userId: number) {
     return this.http.post("http://localhost:56028/api/WorkerToProject/" + userId, workerToProject);

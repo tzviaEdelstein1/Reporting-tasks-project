@@ -169,6 +169,11 @@ namespace ReportingTasksWinform
         {
 
         }
+
+        private void AddUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -44,6 +44,7 @@ export class UserService {
   }
 
   AddNewUser(user:User,userId:number):Observable<User>{
+   
     return this.http.post("http://localhost:56028/api/Users/"+userId,user) .map((res:User)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));;
 
@@ -59,6 +60,7 @@ DeleteUser(id:number,userId:number){
 }
 
 GetUserById(id:number):Observable<User>{
+ 
   return this.http.get("http://localhost:56028/api/Users/GetUserById/"+id)
   .map((res:User)=>res)
   .catch((r:HttpErrorResponse)=>Observable.throw(r));

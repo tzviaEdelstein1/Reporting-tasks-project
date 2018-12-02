@@ -22,7 +22,7 @@ export class EditUserComponent implements OnInit {
   editUser:User;
   constructor(private userservice: UserService,private userkindservice:UserKindService) { }
 
-  ngOnInit() {
+ ngOnInit() {
 
     let formGroupConfig = {
       EditUser: new FormControl(""),
@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit {
 
       TeamLeaderId: new FormControl("", this.createValidatorArr("TeamLeaderId", 0, 1000)),
       UserKindId: new FormControl("", this.createValidatorArr("UserKindId", 0, 1000)),
-    };
+ };
 
 
     this.formGroup = new FormGroup(formGroupConfig);
@@ -53,9 +53,8 @@ export class EditUserComponent implements OnInit {
   FillFields(event) {
     console.log("event", event);
     this.editUser = this.allUsers.find(u=>u.UserName==event.target.value);
-    
     this.formGroup.controls['UserName'].setValue(this.editUser.UserName);
-    this.formGroup.controls['UserEmail'].setValue(this.editUser.UserName);
+    this.formGroup.controls['UserEmail'].setValue(this.editUser.UserEmail);
     this.formGroup.controls['TeamLeaderId'].setValue(this.teamLeaders.find(t=>t.UserId==this.editUser.TeamLeaderId).UserName);
    
     this.formGroup.controls['UserKindId'].setValue(this.userKinds.find(u => u.KindUserId==this.editUser.UserKindId).KindUserName);
@@ -74,7 +73,9 @@ export class EditUserComponent implements OnInit {
     this.editUser.TeamLeaderId=this.teamLeaders.find(t=>t.UserName==this.formGroup.value.TeamLeaderId).UserId;
     this.editUser.UserKindId=this.userKinds.find(k=>k.KindUserName==this.formGroup.value.UserKindId).KindUserId;
 
-this.userservice.EditUser(this.editUser,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("edit-res",res)});
+this.userservice.EditUser(this.editUser,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("edit-res",res);
+alert("The user was edited successfuly!")
+});
 
 
   }

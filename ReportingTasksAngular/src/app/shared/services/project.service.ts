@@ -12,6 +12,7 @@ export class ProjectService {
   constructor(private http:HttpClient) { }
 
   AddProject(project:Project,userId:number):Observable<Project>{
+    debugger;
     return this.http.post("http://localhost:56028/api/Projects/"+userId,project) .map((res:Project)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));;
   }
