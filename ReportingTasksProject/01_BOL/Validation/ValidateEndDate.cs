@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace _01_BOL.Validation
 {
-   public class ValidateEndDate: ValidationAttribute
+    public class ValidateEndDate : ValidationAttribute
     {
 
         override protected ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -19,7 +21,7 @@ namespace _01_BOL.Validation
             object propertyValue = property.GetValue(instance);
             DateTime.TryParse(propertyValue.ToString(), out DateTime StartDate);
 
-            if ((DateTime)value<(DateTime)StartDate)
+            if ((DateTime)value > (DateTime)StartDate)
             {
                 return null;
 
@@ -28,3 +30,4 @@ namespace _01_BOL.Validation
         }
     }
 }
+

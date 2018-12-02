@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,7 +127,11 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 361);
             this.panel1.TabIndex = 9;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Login
             // 
@@ -134,7 +140,7 @@
             this.ClientSize = new System.Drawing.Size(847, 472);
             this.Controls.Add(this.panel1);
             this.Name = "Login";
-            this.Text = "Form1";
+            this.Text = "Form1";      
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -151,6 +157,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

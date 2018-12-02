@@ -9,6 +9,7 @@ namespace ReportingTasksWinform.Models
 {
    public class ActualHours
     {
+        public static readonly string[] FieldNames = { "CountHours", "date" };
         [Required]
         public int ActualHoursId { get; set; }
         [Required]

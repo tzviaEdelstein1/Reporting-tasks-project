@@ -34,7 +34,7 @@ namespace ReportingTasksWinform.Reqests
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpResponse.StatusCode == HttpStatusCode.Created)
                 {
-                    MessageBox.Show("ok");
+             
                     return true;
                 }
                 else

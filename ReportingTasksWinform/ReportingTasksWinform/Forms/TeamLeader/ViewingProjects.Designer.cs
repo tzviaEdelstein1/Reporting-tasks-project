@@ -38,18 +38,18 @@
             this.labelFinishDate = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelTeamLeader = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.labelTeamLeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -157,7 +157,37 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(330, 326);
             this.panel1.TabIndex = 17;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // labelTeamLeader
+            // 
+            this.labelTeamLeader.AutoSize = true;
+            this.labelTeamLeader.Location = new System.Drawing.Point(172, 288);
+            this.labelTeamLeader.Name = "labelTeamLeader";
+            this.labelTeamLeader.Size = new System.Drawing.Size(62, 13);
+            this.labelTeamLeader.TabIndex = 39;
+            this.labelTeamLeader.Text = "team leader";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(78, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 23);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Project Details";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label15.Location = new System.Drawing.Point(33, 281);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 23);
+            this.label15.TabIndex = 35;
+            this.label15.Text = "team leader";
             // 
             // label10
             // 
@@ -181,38 +211,16 @@
             this.label16.TabIndex = 36;
             this.label16.Text = "client name";
             // 
-            // label15
+            // label11
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label15.Location = new System.Drawing.Point(33, 281);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(103, 23);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "team leader";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label14.Location = new System.Drawing.Point(14, 118);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(139, 23);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "devalopers hours";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label13.Location = new System.Drawing.Point(43, 143);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 23);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Qa hours";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label11.Location = new System.Drawing.Point(43, 217);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(93, 23);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "date start";
             // 
             // label12
             // 
@@ -225,16 +233,27 @@
             this.label12.TabIndex = 32;
             this.label12.Text = "UI/UX";
             // 
-            // label11
+            // label13
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label11.Location = new System.Drawing.Point(43, 217);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 23);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "date start";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label13.Location = new System.Drawing.Point(43, 143);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 23);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Qa hours";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label14.Location = new System.Drawing.Point(14, 118);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(139, 23);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "devalopers hours";
             // 
             // label17
             // 
@@ -246,17 +265,6 @@
             this.label17.Size = new System.Drawing.Size(111, 23);
             this.label17.TabIndex = 30;
             this.label17.Text = "name project";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(78, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 23);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Project Details";
             // 
             // label2
             // 
@@ -279,15 +287,7 @@
             this.label3.Size = new System.Drawing.Size(123, 23);
             this.label3.TabIndex = 39;
             this.label3.Text = "choose project";
-            // 
-            // labelTeamLeader
-            // 
-            this.labelTeamLeader.AutoSize = true;
-            this.labelTeamLeader.Location = new System.Drawing.Point(172, 288);
-            this.labelTeamLeader.Name = "labelTeamLeader";
-            this.labelTeamLeader.Size = new System.Drawing.Size(62, 13);
-            this.labelTeamLeader.TabIndex = 39;
-            this.labelTeamLeader.Text = "team leader";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // ViewingProjects
             // 

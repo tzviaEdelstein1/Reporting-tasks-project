@@ -1,86 +1,83 @@
 
+<form [formGroup]="formGroup">
+  <div class="box">
+    <h1 id="logintoregister">AddNewUser</h1>
 
-
-<html>
-  <form [formGroup]="formGroup">
-<div class="box">
-  <h1 id="logintoregister">AddNewUser</h1>
-  
-<div class="group">      
-  <input class="inputMaterial" type="text"  formControlName="UserName">
-  <span class="highlight"></span>
-  <span class="bar"></span>
-  <label>UserName</label>
-  </div>
-
-  <div *ngIf="formGroup.controls['UserName'].errors&&formGroup.controls['UserName'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['UserName'].errors)">{{err}}</p>
-  </div>
-
-
-
-  <div class="group">      
-    <input class="inputMaterial" type="text"  formControlName="UserEmail">
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>UserEmail</label>
+    <div class="group">
+      <input class="inputMaterial" type="text" formControlName="UserName">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>UserName</label>
+      <div *ngIf="formGroup.controls['UserName'].errors&&formGroup.controls['UserName'].touched">
+        <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserName'].errors)"></p-message>
+      </div>
     </div>
+
   
-    <div *ngIf="formGroup.controls['UserEmail'].errors&&formGroup.controls['UserEmail'].touched">
-        <p *ngFor="let err of obj.values(formGroup.controls['UserEmail'].errors)">{{err}}</p>
+
+
+
+    <div class="group">
+      <input class="inputMaterial" type="text" formControlName="UserEmail">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>UserEmail</label>
+      <div *ngIf="formGroup.controls['UserEmail'].errors&&formGroup.controls['UserEmail'].touched">
+        <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserEmail'].errors)"></p-message>
+      </div>
+  
     </div>
 
 
 
 
-<div class="group">      
-  <input class="inputMaterial" type="password"  formControlName="Password">
-  <span class="highlight"></span>
-  <span class="bar"></span>
-  <label>Password</label>
-  </div>
 
-  <div *ngIf="formGroup.controls['Password'].errors&&formGroup.controls['Password'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['Password'].errors)">{{err}}</p>
-  </div>
-
-
-
-  <div class="group">
-    <select class="inputMaterial" formControlName="TeamLeaderId">
-      <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
+    <div class="group">
+      <input class="inputMaterial" type="password" formControlName="Password">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
       
-    </select>
+    <div *ngIf="formGroup.controls['Password'].errors&&formGroup.controls['Password'].touched">
+      <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['Password'].errors)"></p-message>
+    </div>
 
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>TeamLeader</label>
-  </div>
+    </div>
 
-  <div *ngIf="formGroup.controls['TeamLeaderId'].errors&&formGroup.controls['TeamLeaderId'].touched">
-    <p *ngFor="let err of obj.values(formGroup.controls['TeamLeaderId'].errors)">{{err}}</p>
-  </div>
+    <div class="group">
+      <select class="inputMaterial" formControlName="UserKindId">
+        <option *ngFor="let item of userKinds">{{item.KindUserName}}</option>
 
+      </select>
 
-  <div class="group">
-    <select class="inputMaterial" formControlName="UserKindId">
-      <option  *ngFor="let item of userKinds" >{{item.KindUserName}}</option>
-      
-    </select>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>UserKind</label>
+      <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
+        <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)"></p-message>
+      </div>
+    </div>
 
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>UserKindId</label>
-  </div>
-
-  <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
-    <p *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)">{{err}}</p>
-  </div>
-
-
-<button id="buttonlogintoregister" (click)=submitAdd() [disabled]="formGroup.invalid">Add</button>
   
-</div>
+
+    <div class="group">
+      <select class="inputMaterial" formControlName="TeamLeaderId">
+        <option *ngFor="let item of teamLeaders">{{item.UserName}}</option>
+
+      </select>
+
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>TeamLeader</label>
+      <div *ngIf="formGroup.controls['TeamLeaderId'].errors&&formGroup.controls['TeamLeaderId'].touched">
+        <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['TeamLeaderId'].errors)"></p-message>
+      </div>
+  
+    </div>
+
+   
+    <button id="buttonlogintoregister" (click)=submitAdd() [disabled]="formGroup.invalid">Add</button>
+
+  </div>
 </form>
-
-</html>
+<p-toast></p-toast>

@@ -30,14 +30,13 @@
         {
             this.comboBoxUsers = new System.Windows.Forms.ComboBox();
             this.numericCountHours = new System.Windows.Forms.NumericUpDown();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericCountHours)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +44,7 @@
             // comboBoxUsers
             // 
             this.comboBoxUsers.FormattingEnabled = true;
-            this.comboBoxUsers.Location = new System.Drawing.Point(218, 67);
+            this.comboBoxUsers.Location = new System.Drawing.Point(198, 125);
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(145, 21);
             this.comboBoxUsers.TabIndex = 0;
@@ -53,22 +52,15 @@
             // 
             // numericCountHours
             // 
-            this.numericCountHours.Location = new System.Drawing.Point(218, 118);
+            this.numericCountHours.Location = new System.Drawing.Point(198, 171);
             this.numericCountHours.Name = "numericCountHours";
             this.numericCountHours.Size = new System.Drawing.Size(87, 20);
             this.numericCountHours.TabIndex = 1;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(205, 161);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(126, 20);
-            this.dateTimePicker1.TabIndex = 2;
-            // 
             // comboBoxProjects
             // 
             this.comboBoxProjects.FormattingEnabled = true;
-            this.comboBoxProjects.Location = new System.Drawing.Point(205, 202);
+            this.comboBoxProjects.Location = new System.Drawing.Point(200, 85);
             this.comboBoxProjects.Name = "comboBoxProjects";
             this.comboBoxProjects.Size = new System.Drawing.Size(120, 21);
             this.comboBoxProjects.TabIndex = 7;
@@ -91,29 +83,18 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label10.Location = new System.Drawing.Point(118, 198);
+            this.label10.Location = new System.Drawing.Point(113, 81);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 23);
             this.label10.TabIndex = 23;
             this.label10.Text = "Project";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label5.Location = new System.Drawing.Point(139, 160);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 23);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "date";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label6.Location = new System.Drawing.Point(43, 115);
+            this.label6.Location = new System.Drawing.Point(43, 171);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(145, 23);
             this.label6.TabIndex = 25;
@@ -124,7 +105,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label7.Location = new System.Drawing.Point(75, 67);
+            this.label7.Location = new System.Drawing.Point(66, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 23);
             this.label7.TabIndex = 26;
@@ -134,19 +115,29 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.buttonUpdate);
             this.panel1.Controls.Add(this.comboBoxProjects);
-            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.numericCountHours);
             this.panel1.Controls.Add(this.comboBoxUsers);
             this.panel1.Location = new System.Drawing.Point(175, 40);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(446, 428);
             this.panel1.TabIndex = 27;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label3.Location = new System.Drawing.Point(78, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(298, 23);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "choose project and worker to update";
             // 
             // UpdateHours
             // 
@@ -168,13 +159,12 @@
 
         private System.Windows.Forms.ComboBox comboBoxUsers;
         private System.Windows.Forms.NumericUpDown numericCountHours;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBoxProjects;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -35,7 +35,30 @@ namespace _02_BLL
 
             return DBaccess.RunReader(query, func);
         }
+        public static List<ActualHours> GetActualHoursByUserId(int userId)
+        {
+            string query = $"SELECT * FROM tasks.actual_hours where user_id={userId}";
+            Func<MySqlDataReader, List<ActualHours>> func = (reader) =>
+            {
+                List<ActualHours> actualHours = new List<ActualHours>();
+                while (reader.Read())
+                {
+                    actualHours.Add(new ActualHours
+                    {
+                        ActualHoursId = reader.GetInt32(0),
+                        UserId = reader.GetInt32(1),
+                        ProjectId = reader.GetInt32(2),
+                        CountHours = reader.GetInt32(3),
+                        date = reader.GetDateTime(4),
 
+
+                    });
+                }
+                return actualHours;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
         public static List<ActualHours> GetActualHoursByUserIdOnMonth(string UserName, int month, int year)
         {
             string query = $"SELECT * FROM tasks.actual_hours a JOIN tasks.users u ON a.user_id=u.user_id where (u.user_name={UserName} and MONTH(a.work_date)={month} and YEAR(a.work_date)={year});";

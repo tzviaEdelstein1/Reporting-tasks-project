@@ -2,12 +2,6 @@
 using ReportingTasksWinform.Reqests;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ReportingTasksWinform
@@ -37,9 +31,9 @@ namespace ReportingTasksWinform
                 foreach (var item in workersHours)
                 {
                     allocatedHours.Add(item.Name, Convert.ToInt32(item.allocatedHours));
-                    //if (item.Hours !=)
+             
                     workedHours.Add((float)item.Hours);
-                    //else workedHours.Add(0);
+
                 }
                 chart1.Series[0].Points.DataBindXY(allocatedHours.Keys, allocatedHours.Values);
                 chart1.Series[1].Points.DataBindXY(allocatedHours.Keys, workedHours);

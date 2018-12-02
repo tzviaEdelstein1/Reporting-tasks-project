@@ -55,6 +55,7 @@ export class UserService {
   }
 
 DeleteUser(id:number,userId:number){
+  debugger;
   return this.http.delete("http://localhost:56028/api/Users/"+id+"/"+userId);
 }
 

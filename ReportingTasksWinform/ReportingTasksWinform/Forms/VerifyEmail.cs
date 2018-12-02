@@ -1,15 +1,6 @@
-﻿using Newtonsoft.Json;
-using ReportingTasksWinform.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
+﻿using System;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ReportingTasksWinform.Forms
@@ -34,7 +25,7 @@ namespace ReportingTasksWinform.Forms
                 this.Close();
                 VerifyPassword verifyPassword = new VerifyPassword();
                 verifyPassword.Show();
-             
+
             }
             else
                 MessageBox.Show("error");

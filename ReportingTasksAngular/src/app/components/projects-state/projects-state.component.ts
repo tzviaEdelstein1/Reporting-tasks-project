@@ -41,4 +41,12 @@ this.projectservice.GetWorkersAndHoursByProjectId(this.selectetProject.ProjectId
    
   }
 
+  NotActive(){
+    if(this.selectetProject){
+var changeActive=confirm("Are you sure ")
+    }
+    else
+    {alert("Choose project!!!")}
+  }
+
 }

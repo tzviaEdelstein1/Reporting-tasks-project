@@ -7,25 +7,24 @@
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>ProjectName</label>
+      <div *ngIf="formGroup.controls['ProjectName'].errors&&formGroup.controls['ProjectName'].touched">
+        <p-message *ngFor="let err of obj.values(formGroup.controls['ProjectName'].errors)" severity="error" [text]=err></p-message>
+      </div>
     </div>
 
-    <div *ngIf="formGroup.controls['ProjectName'].errors&&formGroup.controls['ProjectName'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['ProjectName'].errors)">{{err}}</p>
-    </div>
-
-
-
+ 
     <div class="group">
       <input class="inputMaterial" type="text" formControlName="ClientName">
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>ClientName</label>
-    </div>
-
+      
     <div *ngIf="formGroup.controls['ClientName'].errors&&formGroup.controls['ClientName'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['ClientName'].errors)">{{err}}</p>
+      <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['ClientName'].errors)"></p-message>
+    </div>
     </div>
 
+  
 
 
     <div class="group">
@@ -37,17 +36,16 @@
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>TeamLeader</label>
+      <div *ngIf="formGroup.controls['TeamLeader'].errors&&formGroup.controls['TeamLeader'].touched">
+        <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['TeamLeader'].errors)"></p-message>
+      </div>
     </div>
 
-    <div *ngIf="formGroup.controls['TeamLeader'].errors&&formGroup.controls['TeamLeader'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['TeamLeader'].errors)">{{err}}</p>
-    </div>
-
-
+   
 <!-- עובדים נוספים -->
 <p>other worker to this project</p>
 <div *ngFor="let item of usersToAdd">
-    <!-- <input type="checkbox" name={{item.UserName}} value={{item.UserName}} id={{item.UserName}} (change)=addCheckedWorker(item.UserId,event.target)> -->
+   
     <input type="checkbox" name={{item.UserName}} value={{item.UserId}} id={{item.UserName}} (change)=addCheckedWorker($event)>
     <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
   </div>
@@ -60,10 +58,11 @@
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>DevelopersHours</label>
+      
+    <div *ngIf="formGroup.controls['DevelopersHours'].errors&&formGroup.controls['DevelopersHours'].touched">
+      <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['DevelopersHours'].errors)"></p-message>
     </div>
 
-    <div *ngIf="formGroup.controls['DevelopersHours'].errors&&formGroup.controls['DevelopersHours'].touched">
-      <p *ngFor="let err of obj.values(formGroup.controls['DevelopersHours'].errors)">{{err}}</p>
     </div>
 
 
@@ -72,11 +71,12 @@
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>QAhours</label>
-      </div>
-  
+          
       <div *ngIf="formGroup.controls['QAhours'].errors&&formGroup.controls['QAhours'].touched">
-        <p *ngFor="let err of obj.values(formGroup.controls['QAhours'].errors)">{{err}}</p>
+          <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['QAhours'].errors)"></p-message>
+        </div>
       </div>
+
 
 
 
@@ -85,51 +85,53 @@
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>UiUxHours</label>
+          <div *ngIf="formGroup.controls['UiUxHours'].errors&&formGroup.controls['UiUxHours'].touched">
+              <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UiUxHours'].errors)"></p-message>
+          </div>
         </div>
     
-        <div *ngIf="formGroup.controls['UiUxHours'].errors&&formGroup.controls['UiUxHours'].touched">
-          <p *ngFor="let err of obj.values(formGroup.controls['UiUxHours'].errors)">{{err}}</p>
-        </div>
+      
 
 
 
         <div class="group">
-            <input class="inputMaterial" type="date" formControlName="BeginingDate">
+            <input class="inputMaterial" type="date" formControlName="BeginingDate" (change)="ValidateStartDate()">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>BeginingDate</label>
+            <div *ngIf="formGroup.controls['BeginingDate'].errors&&formGroup.controls['BeginingDate'].touched">
+                <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['BeginingDate'].errors)"></p-message>
+            
+            
+              </div>
+              <p-message  severity="error" [text]=starterror.errorMessage  *ngIf="starterror.isError"></p-message>
+              <div *ngIf="starterror.isError" class="alert alert-danger">
+                {{ starterror.errorMessage }}
+             </div>
           </div>
       
-          <div *ngIf="formGroup.controls['BeginingDate'].errors&&formGroup.controls['BeginingDate'].touched">
-            <p *ngFor="let err of obj.values(formGroup.controls['BeginingDate'].errors)">{{err}}</p>
-          </div>
-
+        
 
 
           <div class="group">
-              <input class="inputMaterial" type="date" formControlName="FinishDate">
+              <input class="inputMaterial" type="date" formControlName="FinishDate" (change)="ValidateDates()">
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>FinishDate</label>
+              <div *ngIf="formGroup.controls['FinishDate'].errors&&formGroup.controls['FinishDate'].touched">
+                  <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['FinishDate'].errors)"></p-message>
+                </div>
+                <p-message  severity="error" [text]=error.errorMessage   *ngIf="error.isError" ></p-message> 
+            <div *ngIf="error.isError" class="alert alert-danger">
+                {{ error.errorMessage }}
+             </div>
             </div>
         
-            <div *ngIf="formGroup.controls['FinishDate'].errors&&formGroup.controls['FinishDate'].touched">
-              <p *ngFor="let err of obj.values(formGroup.controls['FinishDate'].errors)">{{err}}</p>
-            </div>
-
+            
 
     <!-- <button id="buttonlogintoregister" (click)=Submit() [disabled]="formGroup.invalid">Add</button> -->
 
-    <button id="buttonlogintoregister" (click)=Submit()>Add</button>
+    <button id="buttonlogintoregister" (click)=Submit()  [disabled]="formGroup.invalid||error.isError==true||starterror.isError==true">Add</button>
   </div>
 </form>
-
-
-<!-- <form> 
-<div *ngFor="let item of usersToAdd">
-  <input type="checkbox" name={{item.UserName}} value={{item.UserName}} id={{item.UserName}}>
-  <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
-</div>
-
-</form> -->
-
+<p-toast></p-toast>

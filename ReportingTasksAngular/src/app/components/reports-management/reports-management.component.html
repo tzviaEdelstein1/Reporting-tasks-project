@@ -1,4 +1,10 @@
+
+
 <input type="button"(click)="exportToExcel()" value="ExpotToExcel">
+<div id="filterDiv">
+
+</div>
+<div id="datesFilterGroup">
 <div>
     <h3>Start Date</h3>
     <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="startDateValue" yearRange="2000:2030" (onSelect)="onChangeStartDate()"></p-calendar>
@@ -7,8 +13,11 @@
     <h3>End Date</h3>
     <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="endDateValue" yearRange="2000:2030" (onSelect)="onChangeEndDate()"></p-calendar>
 </div>
+</div>
+<div id="selectGroup">
 <div class="group">
-    <select class="inputMaterial" (change)="onChangeUser($event.target.value)">
+    <select class="inputMaterial" (change)="onChangeUser($event.target.value)" id="allUsers">
+            <option>allUsers</option>
       <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
       
     </select>
@@ -18,7 +27,8 @@
     <label>allUsers</label>
   </div>
   <div class="group">
-    <select class="inputMaterial" (change)="onChangeTeamLeader($event.target.value)">
+    <select class="inputMaterial" (change)="onChangeTeamLeader($event.target.value)" id="allTeamLeaders">
+            <option>allTeamLeaders</option>
       <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
       
     </select>
@@ -28,7 +38,8 @@
     <label>allTeamLeaders</label>
   </div>
   <div class="group">
-    <select class="inputMaterial"  (change)="onChangeProject($event.target.value)">
+    <select class="inputMaterial"  (change)="onChangeProject($event.target.value)" id="allProjects">
+            <option>allProjects</option>
       <option  *ngFor="let item of allProjects" >{{item.ProjectName}}</option>
       
     </select>
@@ -37,7 +48,7 @@
     <span class="bar"></span>
     <label>allProjects</label>
   </div>
-
+</div>
 
 <p-treeTable [value]="filterd">
     <ng-template pTemplate="header">

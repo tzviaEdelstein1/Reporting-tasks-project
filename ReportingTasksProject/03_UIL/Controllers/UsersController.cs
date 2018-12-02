@@ -26,6 +26,26 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<User>>(LogicUser.GetAllUsers(), new JsonMediaTypeFormatter())
             };
         }
+        [HttpPut]
+        [Route("api/Users/CheckUserIp")]
+        public HttpResponseMessage CheckUserIp([FromBody] string ip)
+        {
+            List<User> users = LogicUser.GetAllUsers();
+            user = users.FirstOrDefault(u => u.UserIP == ip);
+
+            if (user != null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
+                };
+
+            }
+
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
+
+        }
         [HttpGet]
         [Route("api/Users/GetUsersForTeamLeader/{TeamLeaderId}")]
         public HttpResponseMessage GetUsersForTeamLeader(int TeamLeaderId)
@@ -132,7 +152,19 @@ namespace _03_UIL.Controllers
             }
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
         }
+        // GET: api/Users/wewe/11234
+        [HttpPut]
+        [Route("api/users/Logout/{userId}")]
+        public HttpResponseMessage Logout(int userId)
 
+        {
+            return (LogicUser.UpdateUserIp(userId)) ?
+                      new HttpResponseMessage(HttpStatusCode.OK) :
+                      new HttpResponseMessage(HttpStatusCode.BadRequest)
+                      {
+                          Content = new ObjectContent<String>("Can not update in DB", new JsonMediaTypeFormatter())
+                      };
+        }
         // POST: api/Users
         [HttpPost]
         [Route("api/Users/{userId}")]

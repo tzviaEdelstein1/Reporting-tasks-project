@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace _02_BLL
     {//changeeeeeeeee
         public static List<Project> GetAllProjects()
 
-        {//ff
+        {
             try
             {
                 string query = $"SELECT p.*,user_id,user_name FROM tasks.projects P  JOIN tasks.users u ON u.user_id=p.team_leader_id ";
@@ -33,7 +34,8 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
-                            User = new User() { UserId = reader.GetInt32(9), UserName = reader.GetString(10) }
+                            IsActive = reader.GetBoolean(9),
+                            User = new User() { UserId = reader.GetInt32(10), UserName = reader.GetString(11) }
                         });
                     }
                     return projects;
@@ -53,7 +55,7 @@ namespace _02_BLL
         {
             try
             {
-                string query = $"SELECT * FROM tasks.projects p JOIN TASKS.worker_to_project w ON p.project_id=w.project_id WHERE user_id={userId}";
+                string query = $"SELECT * FROM tasks.projects p JOIN TASKS.worker_to_project w ON p.project_id=w.project_id WHERE user_id={userId} AND is_active=1";
                 Func<MySqlDataReader, List<Project>> func = (reader) =>
                 {
                     List<Project> projects = new List<Project>();
@@ -70,6 +72,7 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
+                            IsActive = reader.GetBoolean(9),
                         });
                     }
                     return projects;
@@ -90,7 +93,7 @@ namespace _02_BLL
             {
                 string query = $" SELECT a.project_id,project_name,hours,sum(count_houers)" +
  $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id JOIN TASKS.worker_to_project w ON w.project_id = a.project_id" +
- $" WHERE a.user_id = {userId} group by a.project_id,a.user_id";
+ $" WHERE a.user_id = {userId} AND is_active=1 group by a.project_id,a.user_id";
 
                 Func<MySqlDataReader, List<Unknown>> func = (reader) =>
                 {
@@ -125,8 +128,8 @@ namespace _02_BLL
                 string query = $"SELECT a.project_id,project_name,hours,sum(count_houers) " +
 $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id " +
  $" JOIN TASKS.worker_to_project w ON w.project_id = a.project_id " +
- $"WHERE a.user_id ={userId} AND YEAR(date)={ DateTime.Now.Year} " +
-                $" AND MONTH(date)={ DateTime.Now.Month}"+
+ $"WHERE is_active=1 AND a.user_id ={userId} AND YEAR(date)={ DateTime.Now.Year} " +
+                $" AND MONTH(date)={ DateTime.Now.Month}" +
                 $" group by a.user_id,a.project_id";
                 Func<MySqlDataReader, List<Unknown>> func = (reader) =>
                 {
@@ -254,7 +257,12 @@ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id
             if (isAbleTo != null)
 
             {
-                string query = $"UPDATE tasks.projects SET  project_name='{project.ProjectName}',client_name='{project.ClientName}',team_leader_id={project.TeamLeaderId},develope_hours={project.DevelopersHours},qa_hours={project.QaHours},ui/ux_hours={project.UiUxHours},start_date='{project.StartDate}',finish_date='{project.FinishDate}' WHERE (project_id={project.ProjectId})";
+                int num = 0;
+                if (project.IsActive == true)
+                    num = 1;
+                else
+                    num = 0;
+                string query = $"UPDATE tasks.projects SET  project_name='{project.ProjectName}',client_name='{project.ClientName}',team_leader_id={project.TeamLeaderId},develope_hours={project.DevelopersHours},qa_hours={project.QaHours},`ui/ux_hours`={project.UiUxHours},is_active={num} WHERE (project_id={project.ProjectId})";
                 return DBaccess.RunNonQuery(query) == 1;
             }
             else return false;
@@ -271,3 +279,4 @@ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id
 
     }
 }
+

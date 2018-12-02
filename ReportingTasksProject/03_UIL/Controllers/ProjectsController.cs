@@ -22,6 +22,15 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects(), new JsonMediaTypeFormatter())
             };
         }
+        [Route("api/Projects/GetActiveProjects")]
+        [HttpGet]
+        public HttpResponseMessage GetActiveProjects()
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<Project>>(LogicProjects.GetAllProjects().Where(p => p.IsActive = true).ToList(), new JsonMediaTypeFormatter())
+            };
+        }
         //get the projects by teamleader id
         [Route("api/Projects/{teamLeaderId}")]
         [HttpGet]
@@ -29,14 +38,14 @@ namespace _03_UIL.Controllers
         {
             List<Project> projects = LogicProjects.GetAllProjects();
             projects = projects.Where(u => u.TeamLeaderId == teamLeaderId).ToList();
-            if(projects.Count>0)
-            return new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new ObjectContent<List<Project>>( projects, new JsonMediaTypeFormatter())
-            };
+            if (projects.Count > 0)
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new ObjectContent<List<Project>>(projects, new JsonMediaTypeFormatter())
+                };
             else
             {
-               return new HttpResponseMessage(HttpStatusCode.BadRequest)
+                return new HttpResponseMessage(HttpStatusCode.BadRequest)
                 {
                     Content = new ObjectContent<String>("there is not projects", new JsonMediaTypeFormatter())
                 };
@@ -106,7 +115,7 @@ namespace _03_UIL.Controllers
                 if (LogicProjects.AddProject(value, userId))
                 {
                     List<User> users = LogicWorkerToProject.getUsersByTeamLeaderId(value.TeamLeaderId);
-                    
+
                     var id = LogicProjects.getProjectId(value.ProjectName);
                     value.ProjectId = id;
                     foreach (var item in users)
@@ -116,7 +125,7 @@ namespace _03_UIL.Controllers
 
                     return Request.CreateResponse(HttpStatusCode.Created, value);
                 }
-                  
+
                 else
                 {
                     new HttpResponseMessage(HttpStatusCode.BadRequest)
@@ -142,6 +151,7 @@ namespace _03_UIL.Controllers
 
         //    // PUT: api/Projects
         [Route("api/Projects/{userId}")]
+        [HttpPut]
         public HttpResponseMessage Put([FromBody]Project value, [FromUri]int userId)
         {
 
@@ -171,3 +181,4 @@ namespace _03_UIL.Controllers
 
     }
 }
+

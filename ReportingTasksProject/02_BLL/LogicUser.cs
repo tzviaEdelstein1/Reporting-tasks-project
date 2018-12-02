@@ -28,6 +28,8 @@ namespace _02_BLL
                         Password = reader.GetString(3),
                         TeamLeaderId = reader.GetInt32(4),
                         UserKindId = reader.GetInt32(5),
+                        UserIP=reader.GetString(6)
+                   
                     });
                 }
                 return users;
@@ -35,7 +37,13 @@ namespace _02_BLL
 
             return DBaccess.RunReader(query, func);
         }
-
+   
+        public static bool CheckUserIp(string userIp)
+        {
+            string query = $"select user_ip from  tasks.users where user_ip={userIp}";
+            return DBaccess.RunNonQuery(query) == 1;
+        }
+        
         public static List<User> GetUserById(int userId)
         {
             string query = $"SELECT * FROM tasks.users WHERE user_id={userId}";
@@ -139,25 +147,41 @@ namespace _02_BLL
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo = DBaccess.RunScalar(queryChecking);
             if (isAbleTo != null)
-
             {
+                //delete the rows in actualHours
+                string query1 = $"DELETE FROM tasks.actual_hours WHERE user_id={id}";
+                DBaccess.RunNonQuery(query1);
+
+                //delete the rows in worker to project table 
+
+                 query1 = $"DELETE FROM tasks.worker_to_project  WHERE  user_id={id}";
+                     DBaccess.RunNonQuery(query1) ;
+                                                           
                 string query = $"DELETE FROM tasks.users  WHERE  user_id={id}";
                 return DBaccess.RunNonQuery(query) == 1;
             }
             else return false;
         }
-
+        //cccccccccccccccccccccccccccccccc
+        public static bool UpdateUserIp(int userId)
+        {
+         
+                string query = $"UPDATE tasks.users SET user_ip='0' WHERE user_id={userId}";
+                return DBaccess.RunNonQuery(query) == 1;
+  
+        }
+        //changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
         public static bool UpdateUser(User user, int userId)
         {
-            string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
-            var isAbleTo = DBaccess.RunScalar(queryChecking);
-            if (isAbleTo != null)
+            //string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
+            //var isAbleTo = DBaccess.RunScalar(queryChecking);
+            //if (isAbleTo != null)
 
-            {
-                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId} WHERE user_id={user.UserId}";
+            //{
+                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId},user_ip='{user.UserIP}' WHERE user_id={user.UserId}";
                 return DBaccess.RunNonQuery(query) == 1;
-            }
-            else return false;
+            //}
+            //else return false;
         }
         public static bool UpdatePassword(User user)
         {        

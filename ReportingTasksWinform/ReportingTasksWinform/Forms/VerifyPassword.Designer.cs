@@ -66,7 +66,6 @@
             this.label3.Text = "A verification code \r\nhas been sent to you\r\n Please enter it here to identify it " +
     "as you";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // panel1
             // 

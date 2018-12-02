@@ -12,7 +12,7 @@ namespace ReportingTasksWinform.Validation
 
         override protected ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (DateTime.Parse(value.ToString()) >= DateTime.Now)
+            if (DateTime.Parse(value.ToString()) >= DateTime.Now.AddDays(-1))
             {
                 return null;
 

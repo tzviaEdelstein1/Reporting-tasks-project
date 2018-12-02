@@ -11,14 +11,22 @@ export class ProjectService {
 
   constructor(private http:HttpClient) { }
 
-  AddProject(project:Project,userId:number):Observable<Project>{
-    return this.http.post("http://localhost:56028/api/Projects/"+userId,project) .map((res:Project)=>res)
-    .catch((r:HttpErrorResponse)=>Observable.throw(r));;
+  AddProject(project:Project,userId:number):Observable<any>{
+    return this.http.post("http://localhost:56028/api/Projects/"+userId,project).map((res:Project)=>res)
+    .catch((r:any)=>"error");
   }
   GetAllProjects():Observable<Project[]>{
     return this.http.get("http://localhost:56028/api/Projects")
     .map((res:Project[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
+  }
+
+  GetActiveProjects(){
+    return this.http.get("http://localhost:56028/api/Projects/GetActiveProjects")
+    .map((res:Project[])=>res)
+    .catch((r:HttpErrorResponse)=>Observable.throw(r));
+
+    
   }
   GetProjectsByTeamLeaderId(teamLeaderId:number):Observable<Project[]>  {
    
@@ -57,8 +65,13 @@ export class ProjectService {
     .map((res:HelpProjectsAndHours[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));   
   }
- 
+UpdateProject(project:Project,id:number)
+{
+  return this.http.put("http://localhost:56028/api/Projects/"+id,project);
+}
 
+
+  
 
 }
 

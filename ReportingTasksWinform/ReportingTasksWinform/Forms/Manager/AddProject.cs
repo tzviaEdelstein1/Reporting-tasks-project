@@ -1,19 +1,12 @@
-﻿using System;
+﻿using ReportingTasksWinform.Models;
+using ReportingTasksWinform.Reqests;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Web.Script.Serialization;
-using ReportingTasksWinform.Models;
-using Newtonsoft.Json;
-using ReportingTasksWinform.Reqests;
-using System.ComponentModel.DataAnnotations;
 
 namespace ReportingTasksWinform
 {
@@ -26,7 +19,6 @@ namespace ReportingTasksWinform
         {
             InitializeComponent();
         }
-
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
 
@@ -47,25 +39,22 @@ namespace ReportingTasksWinform
             Project pro;
             if (Validator.TryValidateObject(project, validationContext, results, true))
             {
-              pro = ProjectsRequst.AddProject(project);
+                pro = ProjectsRequst.AddProject(project);
                 if (pro != null)
                 {
-                    MessageBox.Show("update success");
+                  
                     addWorkersToProject(pro.ProjectId);
                 }
                 else
                     MessageBox.Show("update filed");
+                this.Close();
             }
             else
             {
                 MessageBox.Show(string.Join(",\n", results.Select(p => p.ErrorMessage)));
             }
 
-
-          
-            
         }
-
         private void addWorkersToProject(int projectId)
         {
             WorkerToProject workerToProject = new WorkerToProject();
@@ -77,14 +66,13 @@ namespace ReportingTasksWinform
             }
 
         }
-
         private void AddProject_Load(object sender, EventArgs e)
         {
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
             //fill comboBox With teamLeaders
-         teamLeaders=UserRequsts.GetAllTeamLeaders();
+            teamLeaders = UserRequsts.GetAllTeamLeaders();
             comboBoxTeamLeader.DataSource = teamLeaders;
             comboBoxTeamLeader.ValueMember = "UserId";
             comboBoxTeamLeader.DisplayMember = "UserName";
@@ -94,18 +82,12 @@ namespace ReportingTasksWinform
 
 
         }
-
         private void comboBoxTeamLeader_SelectedIndexChanged(object sender, EventArgs e)
         {
             var teamLeaderId = (comboBoxTeamLeader.SelectedItem as User).UserId;
-            usersToChoose = allUsers.Where(u => u.TeamLeaderId != teamLeaderId && u.UserId != teamLeaderId).ToList();
+            usersToChoose = allUsers.Where(u => u.TeamLeaderId != teamLeaderId && u.UserId != teamLeaderId&&u.UserKindId!=1).ToList();
             listBoxUsers.DataSource = usersToChoose;
             listBoxUsers.DisplayMember = "UserName";
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

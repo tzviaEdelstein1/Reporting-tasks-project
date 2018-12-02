@@ -53,7 +53,6 @@ teamLeaderInput:string="";
 
     this.fillDate();
     this.treeTableService.GetTreeTable().subscribe(res => {
-
       this.treeTable = res;
 
       //     this.treeTable.forEach(element => {
@@ -87,7 +86,7 @@ teamLeaderInput:string="";
     //get all users from service
       this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
     //get all projects from service
-   this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
+   this.projectService.GetActiveProjects().subscribe(res=>{this.allProjects=res;})
 //get all team leaders 
 this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
@@ -132,11 +131,11 @@ this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
   checkFilter() {
     this.filterd = this.files1;
-    if (this.projectInput != "") {
+    if (this.projectInput != ""&&this.projectInput!="allProjects") {
       this.ChangeProject();
 
     }
-    if (this.userInput != "") {
+    if (this.userInput != ""&&this.userInput!="allUsers") {
       this.ChangeUser();
 
     }
@@ -146,7 +145,7 @@ this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
     if (this.endDateValue != null) {
       this.ChangeEndDate();
     }
-    if(this.projectInput!="")
+    if(this.teamLeaderInput!=""&&this.teamLeaderInput!="allTeamLeaders")
     {
       this.ChangeTeamLeader();
     }
@@ -161,6 +160,7 @@ this.checkFilter();
     this.filterd = this.filterd.filter(t => t.data["teamLeader"] == this.teamLeaderInput);
   }
   onChangeProject(event: any) {
+
     this.projectInput = event;
     this.checkFilter();
 

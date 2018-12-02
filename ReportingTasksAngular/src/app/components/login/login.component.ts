@@ -96,4 +96,5 @@ console.log("rrrrrrrr",this.pass);
       f => f.value && f.value.length < min ? { "val": `${cntName} is min ${min} chars` } : null
     ];
   }
+
 }

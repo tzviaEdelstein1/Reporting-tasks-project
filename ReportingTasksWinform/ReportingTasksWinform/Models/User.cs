@@ -15,11 +15,13 @@ namespace ReportingTasksWinform.Models
         [Required]
         [EmailAddress]
         public string UserEmail { get; set; }
-        [Required]
-        [MinLength(5), MaxLength(10)]
+     
+        [MinLength(5)]
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]
         public int UserKindId { get; set; }
+
+        public string UserIP { get; set; }
     }
 }
