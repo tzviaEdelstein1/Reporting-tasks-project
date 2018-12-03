@@ -24,14 +24,14 @@ export class TimerComponent implements OnInit {
 
   time: number;
   allYourProjectsAndHoursDetails: HelpProjectsAndHours[] = [];
-  constructor(private projectservice:ProjectService,private hoursservice:HoursService) {
+  constructor(private projectservice: ProjectService, private hoursservice: HoursService) {
 
-    
+
     setInterval(() => {
       this.now = new Date();
     }, 1);
 
-   }
+  }
 
   ngOnInit() {
     this.projectservice.GetProjectsAndHoursByUserId(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
@@ -96,7 +96,7 @@ export class TimerComponent implements OnInit {
       this.newActualHours.date = this.now;
 
       this.hoursservice.AddActualHours(this.newActualHours).subscribe(res => {
-
+        this.hoursservice.subject.next("jj");
         debugger;
         this.projectservice.GetProjectsAndHoursByUserId(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
           res => {

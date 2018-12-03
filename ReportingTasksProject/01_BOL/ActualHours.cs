@@ -9,7 +9,7 @@ namespace BOL
 {
   public  class ActualHours
     {
-        [Required]
+       
         public int ActualHoursId { get; set; }
         [Required]
         public int UserId { get; set; }

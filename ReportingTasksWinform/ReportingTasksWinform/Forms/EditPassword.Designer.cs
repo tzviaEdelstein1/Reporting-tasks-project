@@ -86,6 +86,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "EditPassword";
             this.Text = "EditPassword";
+
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -36,53 +36,73 @@ import { SendEmailService } from './shared/services/send-email.service';
 import { ChartsModule } from 'ng2-charts';
 import { StatusGraphForMonthComponent } from './components/status-graph-for-month/status-graph-for-month.component';
 import { YourTasksDataComponent } from './components/your-tasks-data/your-tasks-data.component';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';   
-import {TreeTableModule} from 'primeng/treetable';
-import {TreeNode} from 'primeng/api';
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
+import { MenuItem, MessageService } from 'primeng/api';
+import { TreeTableModule } from 'primeng/treetable';
+import { TreeNode } from 'primeng/api';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { VerifyPasswordComponent } from './components/verify-password/verify-password.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CalendarModule } from 'primeng/calendar';
 import * as shajs from 'sha.js';
 import { ExportExcelService } from './shared/services/export-excel.service';
-import { CalendarModule } from 'primeng/primeng';
+import { ChangeProjectStateComponent } from './components/change-project-state/change-project-state.component';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ToastModule } from 'primeng/toast';
+
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MenuModule } from '@progress/kendo-angular-menu';
 import { AuthGuard } from './shared/auth.guard';
 import { AuthTeam } from './shared/auth.team';
 import { AuthWorker } from './shared/auth.worker';
+
 const routes: Routes = [
-  
+
   { path: '', component: LoginComponent },
-  {path:'forgetPassword',component:ForgetPasswordComponent},
-  {path:'verifyPassword',component:VerifyPasswordComponent},
-  {path:'newPassword/:id',component:NewPasswordComponent},
-  { path: 'managers', component: ManagersComponent,canActivate:[AuthGuard], children: [
-    
+  { path: 'forgetPassword', component: ForgetPasswordComponent },
+  { path: 'verifyPassword', component: VerifyPasswordComponent },
+  { path: 'newPassword/:id', component: NewPasswordComponent },
+  {
+    path: 'managers', component: ManagersComponent,canActivate:[AuthGuard], children: [
+
       { path: 'addProject', component: AddProjectComponent },
       { path: 'reportsManagement', component: ReportsManagementComponent },
       { path: 'teamManagement', component: TeamLeadersComponent },
-      {path: 'userManagement', component: UserManagementComponent, children: [
-          { path: 'addUser', component: AddUserComponent },
-          { path: 'deleteUser', component: DeleteUserComponent },
-          { path: 'editUser', component: EditUserComponent }
-        ]
-      },
-     
+      { path: 'changeProjectState', component: ChangeProjectStateComponent },
+
+      // {path: 'userManagement', component: UserManagementComponent, children: [
+      { path: 'addUser', component: AddUserComponent },
+      { path: 'deleteUser', component: DeleteUserComponent },
+      { path: 'editUser', component: EditUserComponent }
+      // ]
+      // },
+
 
     ]
   },
-  { path: 'team-leaders', component: TeamLeadersComponent ,canActivate:[AuthTeam],children:[
-    {path:'hoursStatusGraph',component:HoursStatusGraphComponent},
-    {path:'projectsState',component:ProjectsStateComponent},
-    {path:'retroHours',component:RetrohoursComponent},
-  ]},
-  { path: 'other-workers', component: OtherWorkerComponent,canActivate:[AuthWorker] ,children:[
-    {path:'tasksData',component:YourTasksDataComponent},
-    {path:'monthGraph',component:StatusGraphForMonthComponent},
-    {path:'sendMessage',component:SendEmailComponent},
-  ]},
+  {
+    path: 'team-leaders', component: TeamLeadersComponent,canActivate:[AuthTeam], children: [
+      { path: 'hoursStatusGraph', component: HoursStatusGraphComponent },
+      { path: 'projectsState', component: ProjectsStateComponent },
+      { path: 'retroHours', component: RetrohoursComponent },
+    ]
+  },
+  {
+    path: 'other-workers', component: OtherWorkerComponent,canActivate:[AuthWorker] , children: [
+      { path: 'tasksData', component: YourTasksDataComponent },
+      { path: 'monthGraph', component: StatusGraphForMonthComponent },
+      { path: 'sendMessage', component: SendEmailComponent },
+    ]
+  },
 
-  
+
 
 ]
 
@@ -110,16 +130,19 @@ const routes: Routes = [
     ForgetPasswordComponent,
     VerifyPasswordComponent,
     NewPasswordComponent,
-   
+    ChangeProjectStateComponent,
+
 
 
 
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(routes),ChartsModule, HttpModule,
-     FormsModule, ReactiveFormsModule , HttpClientModule,TreeTableModule, BrowserAnimationsModule,CalendarModule
+    BrowserModule, RouterModule.forRoot(routes), ChartsModule, HttpModule,
+    FormsModule, ReactiveFormsModule, HttpClientModule, TreeTableModule, BrowserAnimationsModule, CalendarModule, InputsModule, ButtonsModule, DialogsModule, LabelModule, DropDownsModule, ToastModule, MessagesModule,
+    MessageModule,
+    MenuModule,
   ],
-  providers: [UserService, ProjectService,UserKindService,WorkerToProjectService,HoursService,SendEmailService,ExportExcelService],
+  providers: [UserService, ProjectService, UserKindService, WorkerToProjectService, HoursService, SendEmailService, ExportExcelService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

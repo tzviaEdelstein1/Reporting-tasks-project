@@ -116,7 +116,6 @@
             this.AddUser.TabIndex = 0;
             this.AddUser.Text = "AddUser";
             this.AddUser.UseVisualStyleBackColor = true;
-            this.AddUser.Click += new System.EventHandler(this.AddUser_Click);
             // 
             // panel3
             // 
@@ -248,7 +247,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label10.Location = new System.Drawing.Point(521, 23);
+            this.label10.Location = new System.Drawing.Point(500, 24);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(182, 23);
             this.label10.TabIndex = 38;
@@ -267,7 +266,7 @@
             this.panel2.Controls.Add(this.buttonUpdate);
             this.panel2.Controls.Add(this.textBoxEmailEdit);
             this.panel2.Controls.Add(this.textBoxUserNameEdit);
-            this.panel2.Location = new System.Drawing.Point(141, 23);
+            this.panel2.Location = new System.Drawing.Point(120, 24);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(361, 306);
             this.panel2.TabIndex = 38;
@@ -349,7 +348,7 @@
             // comboBoxAllUsers
             // 
             this.comboBoxAllUsers.FormattingEnabled = true;
-            this.comboBoxAllUsers.Location = new System.Drawing.Point(525, 62);
+            this.comboBoxAllUsers.Location = new System.Drawing.Point(504, 63);
             this.comboBoxAllUsers.Name = "comboBoxAllUsers";
             this.comboBoxAllUsers.Size = new System.Drawing.Size(154, 21);
             this.comboBoxAllUsers.TabIndex = 33;
@@ -371,7 +370,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.comboBoxAllUsersRemove);
             this.panel1.Controls.Add(this.buttonRemove);
-            this.panel1.Location = new System.Drawing.Point(256, 28);
+            this.panel1.Location = new System.Drawing.Point(171, 45);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(309, 278);
             this.panel1.TabIndex = 26;

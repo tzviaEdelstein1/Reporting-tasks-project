@@ -6,7 +6,7 @@
 * Font : Google Font - Lato
 *
 */
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+/* @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -38,8 +38,8 @@ p {
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background-color: white;
-  color: #1d4177;
+  background-color: #848484;
+  color: #f4f4f4;
   -webkit-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
   -moz-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
@@ -90,7 +90,7 @@ p {
 }
 
 /* Medias Queries */
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   .navbar {
     justify-content: center;
   }
@@ -118,7 +118,7 @@ p {
     margin: 0 15px 5px 0;
   }
 }
-/* Animation */
+
 @keyframes animSlide {
   0% {
     opacity: 0;
@@ -126,4 +126,5 @@ p {
   100% {
     opacity: 1;
   }
-}
+} */
+body a {color:white;}

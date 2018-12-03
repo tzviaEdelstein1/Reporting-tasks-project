@@ -20,6 +20,25 @@ export class YourTasksDataComponent implements OnInit {
         console.warn("my", this.allYourProjectsAndHoursDetails);
       }
     )
+
+
+
+    this.hoursservice.subject.subscribe(
+      {
+        next: (v: string) => {
+          this.projectservice.GetProjectsAndHoursByUserId(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
+            res => {
+
+              this.allYourProjectsAndHoursDetails = res;
+              console.warn("my", this.allYourProjectsAndHoursDetails);
+            }
+          )
+        }
+      }
+    );
+
+
+
   }
 
 }

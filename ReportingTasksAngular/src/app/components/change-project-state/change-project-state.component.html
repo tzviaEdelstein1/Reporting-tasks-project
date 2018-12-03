@@ -1,0 +1,39 @@
+<p>
+  change-project-state works!
+</p>
+<!-- <div class="ui-g-12"><p-checkbox name="groupname" value="val1"label="New York"checked ></p-checkbox></div>
+<div class="ui-g-12"><p-checkbox name="groupname" value="val2" label="New York2"(onChange)="changeState(9)"></p-checkbox></div>
+<div *ngFor="let item of projects">
+  <div class="ui-g-12"><p-checkbox name="groupname" value=item.ProjectName [label]=item.ProjectName (onChange)="changeState(item.ProjectId)" ></p-checkbox></div>
+</div> -->
+
+<div *ngFor="let item of projects">
+<label>{{item.ProjectName}}</label>
+
+<div class="container" *ngIf="item.IsActive==true">
+  <div class="box-checkbox">
+    <input  type="checkbox" name="checkbox1" id="'checkbox1'+{{item.ProjectName}}" checked (change)="changeState(item.ProjectId)">
+    <span class="box-checkbox__text">Is Active</span>
+    <label class="box-checkbox__label" for="'checkbox1'+{{item.ProjectName}}"></label>
+  </div>
+</div>
+
+<!-- <div class="container" *ngIf="item.IsActive==true">
+  <div class="box-checkbox">
+    <input class="box-checkbox__input" type="checkbox" name="checkbox1" id="'checkbox1'+{{item.ProjectName}}" checked (change)="changeState(item.ProjectId)">
+    <span class="box-checkbox__text">Is Active</span>
+    <label class="box-checkbox__label" for="'checkbox1'+{{item.ProjectName}}"></label>
+  </div>
+</div> -->
+
+ <div class="container" *ngIf="item.IsActive==false">
+  <div class="box-checkbox">
+    <input  type="checkbox" name="checkbox1" id="'checkbox1'+{{item.ProjectName}}"  (change)="changeState(item.ProjectId)">
+    <span class="box-checkbox__text">Is Active</span>
+    <label class="box-checkbox__label" for="'checkbox1'+{{item.ProjectName}}"></label>
+  </div>
+</div>
+
+</div>
+
+<input type="button" value="Update" (click)="Update()">

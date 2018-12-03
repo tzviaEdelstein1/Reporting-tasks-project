@@ -1,1 +1,324 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
+
+html{
+  /* background-color: #333; */
+  font-family: "Roboto";
+}
+
+/* BOX LOGIN */
+.box{
+	position: relative;
+	margin: auto;
+  /* height: 365px; */
+  max-height: 816px;
+  top: 40px;
+	left: 0;
+	z-index: 200;
+	right: 0;
+	width:400px;
+	color:#666;
+	padding:10px 0px;
+	border-radius: 10px;
+	background:rgba(255,255,255,1);
+	border-top: 2px solid #C0C0C0;
+	border-bottom: 2px solid #F00;
+  margin-bottom: 100px;
+}
+.box h1{
+	text-align:center;
+	font-size:30px;
+}
+
+.show{
+	display:none;
+}
+
+.box button,input[type=button]{
+	background:#FF4747;
+	border:0;
+	color:#fff;
+	padding:10px;
+	font-size:20px;
+	width:330px;
+	margin:20px auto;
+	display:block;
+	cursor:pointer;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	border-radius: 10px;
+}
+
+.box button:active,input[type=button]:active{
+	background:#27ae60;
+}
+
+.box button:hover,input[type=button]:hover{
+	background:#FF2020;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.box p{
+	font-size:14px;
+	text-align:center;
+}
+
+#textchange{
+	cursor:pointer;
+	color:#666;
+    font-size:15px;
+	text-align:center;
+}
+
+.group 			  { 
+  position:relative; 
+  margin-bottom: 35px; 
+  margin-left: 40px;
+}
+
+.inputMaterial 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+.inputMaterial:focus 		{ outline:none;}
+
+/* LABEL ======================================= */
+
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  /* position:absolute; */
+  pointer-events:none;
+  /* left:5px;
+  top:10px; */
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.inputMaterial:focus ~ label, .inputMaterial:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#FF0000;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:315px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#FF0000; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+  width:50%;
+}
+
+
+/* active state */
+.inputMaterial:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+a{
+  color: #ff4747;
+  text-decoration: none;
+  position: relative;
+  /* left: 33%; */
+  font-size: 14px;
+}
+
+a:hover{
+  color: black;
+}
+.logout{
+  position: initial;
+
+  font-size: 18px;
+}
+
+
+/*navbar
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  line-height: 2em;
+  background-color: #8484842b;
+}
+
+a {
+  color: inherit;
+ 
+}
+body a {color:white;}
+p {
+  color: inherit;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #848484;
+  color: #f4f4f4;
+  -webkit-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  -moz-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+.navbar a {
+  text-decoration: none;
+  margin: 0 15px;
+}
+.navbar a:hover {
+  color: #ff4757;
+  transition: color .5s;
+}
+
+.navbar-brand {
+  float: left;
+  display: contents;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+.content {
+  font-size: 15px;
+  text-align: justify;
+  background-color: white;
+  padding: 35px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  -moz-box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
+  margin: 50px 50px;
+  animation: animSlide 2s;
+}
+.content .title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  text-align: left;
+}
+.content .title i {
+  font-size: 20px;
+  margin: 0 15px 5px 0;
+}
+.content .image {
+  max-width: 100%;
+  border-radius: 5px;
+  animation: animSlide 2s;
+}
+
+/* Medias Queries */
+@media screen and (max-width: 500px) {
+  .navbar {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 335px) {
+  .navbar-brand {
+    display: block;
+  }
+
+  .navbar {
+    justify-content: flex-end;
+  }
+}
+@media screen and (max-width: 715px) {
+  .content {
+    margin: 20px 10px;
+  }
+  .content .title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+  .content .title i {
+    font-size: 20px;
+    margin: 0 15px 5px 0;
+  }
+}
+/* Animation */
+@keyframes animSlide {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*dialog*/
+/* 
+ :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            color: #ffffff;
+            background: #FC466B;
+            background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+            background: linear-gradient(to right, #3F5EFB, #FC466B);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-close-icon {
+            color: #ffffff;
+        } */
+
+
+        h1,h2,h3{
+          text-align: center;
+        }

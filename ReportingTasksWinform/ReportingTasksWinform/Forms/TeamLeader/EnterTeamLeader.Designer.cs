@@ -28,29 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuChar = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateHours = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewingProjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 31);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(875, 542);
-            this.tabControl1.TabIndex = 4;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(867, 516);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Hellow";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnLogout
             // 
@@ -62,26 +46,63 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuChar,
+            this.updateHours,
+            this.viewingProjects});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(918, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuChar
+            // 
+            this.menuChar.Name = "menuChar";
+            this.menuChar.Size = new System.Drawing.Size(42, 20);
+            this.menuChar.Text = "char";
+            this.menuChar.Click += new System.EventHandler(this.menuChar_Click);
+            // 
+            // updateHours
+            // 
+            this.updateHours.Name = "updateHours";
+            this.updateHours.Size = new System.Drawing.Size(89, 20);
+            this.updateHours.Text = "update hours";
+            this.updateHours.Click += new System.EventHandler(this.updateHours_Click);
+            // 
+            // viewingProjects
+            // 
+            this.viewingProjects.Name = "viewingProjects";
+            this.viewingProjects.Size = new System.Drawing.Size(102, 20);
+            this.viewingProjects.Text = "viewingProjects";
+            this.viewingProjects.Click += new System.EventHandler(this.viewingProjects_Click);
+            // 
             // EnterTeamLeader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 585);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "EnterTeamLeader";
             this.Text = "EnterTeamLeader";
-            this.Load += new System.EventHandler(this.EnterTeamLeader_Load);
-            this.tabControl1.ResumeLayout(false);
+            //this.Load += new System.EventHandler(this.EnterTeamLeader_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuChar;
+        private System.Windows.Forms.ToolStripMenuItem updateHours;
+        private System.Windows.Forms.ToolStripMenuItem viewingProjects;
     }
 }

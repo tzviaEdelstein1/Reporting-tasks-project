@@ -10,7 +10,7 @@ namespace ReportingTasksWinform.Models
 {
    public class Project
     {
-        public static  readonly string[] FieldNames = { "ProjectName", "ClientName", "TeamLeaderName","Hours","ActualHours","Precent", "StartDate", "FinishDate", "IsActive" };
+        public static readonly string[] FieldNames = { "ProjectName", "ClientName", "TeamLeaderName", "Hours", "ActualHours", "Precent", "StartDate", "FinishDate", "IsActive" };
         public int ProjectId { get; set; }
         [Required]
         [UniqueProjectAttribute]
@@ -31,7 +31,9 @@ namespace ReportingTasksWinform.Models
         [Required]
         [ValidateEndDate]
         public DateTime FinishDate { get; set; }
+     
         public User User { get; set; }
         public bool IsActive { get; set; }
+
     }
 }

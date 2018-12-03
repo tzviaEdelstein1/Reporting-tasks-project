@@ -19,7 +19,7 @@ namespace ReportingTasksWinform.Validation
             object propertyValue = property.GetValue(instance);
             DateTime.TryParse(propertyValue.ToString(), out DateTime StartDate);
 
-            if ((DateTime)value> (DateTime)StartDate)
+            if ((DateTime)value >(DateTime)StartDate)
             {
                 return null;
 

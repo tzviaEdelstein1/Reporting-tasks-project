@@ -1,17 +1,25 @@
 <header class="navbar">
 
-  <a (click)="LogOut()">LogOut</a>
+  <a (click)="LogOut()" class="logout">LogOut</a>
     <a  class="navbar-brand">
       Hello Manager
     </a>
     <nav class="navbar-navigation">
       <a routerLink="addProject"routerLinkActive="active">Add Project</a>
       <a routerLink="reportsManagement"routerLinkActive="active">Reports Management</a>
-      <a routerLink="userManagement"routerLinkActive="active">User Management</a>
-      <a routerLink="teamManagement"routerLinkActive="active">Team Management</a>
-
+       
+ 
+      <a routerLink="changeProjectState"routerLinkActive="active">Change Project State</a>
+      <div class="dropdown"style="display: inline" >
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">User Management<b class="caret" ></b></a>
+        <ul class="dropdown-menu">
+            <li> <a routerLink="addUser"routerLinkActive="active">Add User</a></li>
+            <li> <a routerLink="editUser"routerLinkActive="active">Edit User</a></li>
+            <li> <a routerLink="deleteUser"routerLinkActive="active">Delete User</a></li>
+        </ul>
+      </div>
     </nav>
-
+</header>
    
-  </header>
+    
   <router-outlet></router-outlet>

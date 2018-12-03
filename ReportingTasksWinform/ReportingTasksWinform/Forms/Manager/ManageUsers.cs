@@ -1,20 +1,14 @@
-﻿using Newtonsoft.Json;
-using ReportingTasksWinform.Models;
+﻿using ReportingTasksWinform.Models;
+using ReportingTasksWinform.Reqests;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using ReportingTasksWinform.Reqests;
-using System.ComponentModel.DataAnnotations;
 
 namespace ReportingTasksWinform
 {
@@ -83,7 +77,7 @@ namespace ReportingTasksWinform
         {
 
 
-          
+
             int teamLeaderid;
             if (comboBoxTeamLeader.SelectedIndex > -1)
             {
@@ -166,11 +160,6 @@ namespace ReportingTasksWinform
         }
 
         private void comboBoxAllUsersRemove_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddUser_Click(object sender, EventArgs e)
         {
 
         }

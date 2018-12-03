@@ -226,3 +226,6 @@ C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\0
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Cors.dll
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.dll
 C:\Users\seldat\Documents\GitHub\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.xml
+C:\Users\seldat\Desktop\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Cors.dll
+C:\Users\seldat\Desktop\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.dll
+C:\Users\seldat\Desktop\Reporting-tasks-project\ReportingTasksProject\03_UIL\bin\System.Web.Http.Cors.xml

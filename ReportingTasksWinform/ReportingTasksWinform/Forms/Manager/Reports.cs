@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
 using ReportingTasksWinform.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -16,7 +18,7 @@ namespace ReportingTasksWinform.Forms.Manager
     public partial class Reports : Form
     {
         string kind;
-
+        List<ExportToExcel> exportToExcelList = new List<ExportToExcel>();
         static List<TreeTable> newTreeTables = new List<TreeTable>();
         static List<TreeTable> treeTables = new List<TreeTable>();
         List<DetailsWorkerInProjects> detailsByKind;
@@ -36,11 +38,11 @@ namespace ReportingTasksWinform.Forms.Manager
             this.radVirtualGrid1.TableElement.RowHeight = 60;
             expandTimer.Interval = 1000;
             expandTimer.Tick += expandTimer_Tick;
-         
+
 
             allProjects = Reqests.ProjectsRequst.GetAllProjects();
-            allProjects.Add(new Project() {ProjectId=0,  ProjectName = "All Projects" });
-            
+            allProjects.Add(new Project() { ProjectId = 0, ProjectName = "All Projects" });
+
             projects_combobox.SelectedIndexChanged -= new EventHandler(projects_combobox_SelectedIndexChanged);
             projects_combobox.DataSource = allProjects;
             projects_combobox.ValueMember = "ProjectId";
@@ -50,7 +52,7 @@ namespace ReportingTasksWinform.Forms.Manager
 
             workers_combo.SelectedIndexChanged -= new EventHandler(projects_combobox_SelectedIndexChanged);
             allWorkers = Reqests.UserRequsts.GetAllUsers();
-            allWorkers.Add(new User(){ UserId = 0, UserName = "All Workers" });
+            allWorkers.Add(new User() { UserId = 0, UserName = "All Workers" });
             workers_combo.DataSource = allWorkers;
             workers_combo.ValueMember = "UserId";
             workers_combo.DisplayMember = "UserName";
@@ -69,7 +71,7 @@ namespace ReportingTasksWinform.Forms.Manager
         private void Reports_Load(object sender, EventArgs e)
         {
 
-          
+
         }
         #region Populate Data
 
@@ -79,7 +81,7 @@ namespace ReportingTasksWinform.Forms.Manager
         //    this.radVirtualGrid1.ColumnCount = 5;
         //}
 
-       private void loadTable(Telerik.WinControls.UI.VirtualGridCellValueNeededEventArgs e)
+        private void loadTable(Telerik.WinControls.UI.VirtualGridCellValueNeededEventArgs e)
         {
             if (e.ViewInfo == this.radVirtualGrid1.MasterViewInfo)
             {
@@ -496,13 +498,13 @@ namespace ReportingTasksWinform.Forms.Manager
                 }
                 else
                 {
-                    if (e.ChildViewInfo.HierarchyLevel ==2)
+                    if (e.ChildViewInfo.HierarchyLevel == 2)
                     {
                         e.ChildViewInfo.ColumnCount = DetailsWorkerInProjects.FieldNames.Length;
                         e.ChildViewInfo.RowCount = treeTables[e.ViewInfo.ParentRowIndex].DetailsWorkerInProjects.Count;
                     }
                     //
-                    else if (e.ChildViewInfo.HierarchyLevel ==1)
+                    else if (e.ChildViewInfo.HierarchyLevel == 1)
                     {
                         e.ChildViewInfo.ColumnCount = 4;
                         e.ChildViewInfo.RowCount = 3;
@@ -515,7 +517,7 @@ namespace ReportingTasksWinform.Forms.Manager
 
                     else
                     {
-                        e.ChildViewInfo.ColumnCount =0;
+                        e.ChildViewInfo.ColumnCount = 0;
                         e.ChildViewInfo.RowCount = 0;
                     }
                 }
@@ -536,7 +538,7 @@ namespace ReportingTasksWinform.Forms.Manager
             {
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 treeTables = JsonConvert.DeserializeObject<List<TreeTable>>(content);
-                newTreeTables= JsonConvert.DeserializeObject<List<TreeTable>>(content);
+                newTreeTables = JsonConvert.DeserializeObject<List<TreeTable>>(content);
 
             }
             else MessageBox.Show("error");
@@ -553,22 +555,22 @@ namespace ReportingTasksWinform.Forms.Manager
         {
 
         }
-        Project selectedProject=null;
-        User selectedWorker=null;
-        User selectedTeam=null;
+        Project selectedProject = null;
+        User selectedWorker = null;
+        User selectedTeam = null;
         DateTime selectedStartDate;
         DateTime selectedFinishDate;
         DateTime date;
         //להעלות למעלה
         private void projects_combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedProject =projects_combobox.SelectedItem as Project;
+            selectedProject = projects_combobox.SelectedItem as Project;
             selectedWorker = workers_combo.SelectedItem as User;
-            selectedTeam=Teams_combo.SelectedItem as User;
+            selectedTeam = Teams_combo.SelectedItem as User;
             filter();
 
         }
-  
+
         private void monthCalendar_start_DateChanged(object sender, DateRangeEventArgs e)
         {
             selectedStartDate = monthCalendar_start.SelectionRange.Start;
@@ -601,7 +603,150 @@ namespace ReportingTasksWinform.Forms.Manager
 
             this.radVirtualGrid1.TableElement.SynchronizeRows();
         }
+        private void exportToExcel()
+        {
+            treeTables.ForEach(treeTable =>
+            {
+                ExportToExcel toExcel = new ExportToExcel()
+                {
+                    Name = treeTable.Project.ProjectName,
+                    StartDate = treeTable.Project.StartDate,
+                    FinishDate = treeTable.Project.FinishDate,
+                    Hours = treeTable.Project.DevelopersHours+ treeTable.Project.QaHours + treeTable.Project.UiUxHours,
+                    Date = null,
+                    CountHours = 0,
+                    Customer = treeTable.Project.ClientName,
+                    TeamLeaderName = treeTable.Project.User.UserName
+                };
+                exportToExcelList.Add(toExcel);
+                treeTable.DetailsWorkerInProjects.ForEach(details =>
+                {
+                    ExportToExcel toExcelWorker = new ExportToExcel()
+                    {
+                        Name = details.Name,
+                        StartDate = null,
+                        FinishDate = null,
+                        Hours = details.Hours,
+                        Date = null,
+                        CountHours =null,
+                        Customer = " ",
+                        TeamLeaderName = details.TeamLeaderName
+                    };
+                    exportToExcelList.Add(toExcelWorker);
+                    details.ActualHours.ForEach(actualHours =>
+                    {
+                        ExportToExcel toExcelActualHours = new ExportToExcel()
+                        {
+                            Name =" ",
+                            StartDate =null,
+                            FinishDate = null,
+                            Hours =null,
+                            Date =actualHours.date,
+                            CountHours = actualHours.CountHours,
+                            Customer = " ",
+                            TeamLeaderName = ""
+                        };
+                        exportToExcelList.Add(toExcelActualHours);
+                    });
+                });
+
+            });
+            ConvertToDataTable(exportToExcelList);
+        }
+        public System.Data.DataTable ConvertToDataTable<T>(IList<T> data)
+        {
+
+            PropertyDescriptorCollection properties =
+
+            TypeDescriptor.GetProperties(typeof(T));
+
+            System.Data.DataTable table = new System.Data.DataTable();
+
+            foreach (PropertyDescriptor prop in properties)
+
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+
+            foreach (T item in data)
+
+            {
+
+                DataRow row = table.NewRow();
+
+                foreach (PropertyDescriptor prop in properties)
+
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+
+                table.Rows.Add(row);
+
+            }
+            ExportToExcel(table);
+            return table;
+
+        }
+     
+            // Export DataTable into an excel file with field names in the header line
+            // - Save excel file without ever making it visible if filepath is given
+            // - Don't save excel file, just make it visible if no filepath is given
+            public  void ExportToExcel(System.Data.DataTable tbl, string excelFilePath = null)
+            {
+                try
+                {
+                    if (tbl == null || tbl.Columns.Count == 0)
+                        throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                    // load excel, and create a new workbook
+                    var excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    excelApp.Workbooks.Add();
+
+                // single worksheet
+                Microsoft.Office.Interop.Excel._Worksheet workSheet = excelApp.ActiveSheet;
+
+                    // column headings
+                    for (var i = 0; i < tbl.Columns.Count; i++)
+                    {
+                        workSheet.Cells[1, i + 1] = tbl.Columns[i].ColumnName;
+                    }
+
+                    // rows
+                    for (var i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        // to do: format datetime values before printing
+                        for (var j = 0; j < tbl.Columns.Count; j++)
+                        {
+                            workSheet.Cells[i + 2, j + 1] = tbl.Rows[i][j];
+                        }
+                    }
+
+                    // check file path
+                    if (!string.IsNullOrEmpty(excelFilePath))
+                    {
+                        try
+                        {
+                            workSheet.SaveAs(excelFilePath);
+                            excelApp.Quit();
+                            MessageBox.Show("Excel file saved!");
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                                                + ex.Message);
+                        }
+                    }
+                    else
+                    { // no file path is given
+                        excelApp.Visible = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ExportToExcel: \n" + ex.Message);
+                }
+            
+        }
+
+        private void ExportBtn_Click(object sender, EventArgs e)
+        {
+            exportToExcel();
+        }
     }
 }
-
-

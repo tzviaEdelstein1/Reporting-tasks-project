@@ -41,19 +41,21 @@ export class ReportsManagementComponent implements OnInit {
   projectInput: string = "";
   userInput: string = "";
 teamLeaderInput:string="";
+filterFiles:any[]=[];
   constructor(private treeTableService: TreeTableService, private userService: UserService, private projectService: ProjectService, private exportExcelService: ExportExcelService) {
   }
   exportToExcel() {
     var arr = [];
-    this.filterd.forEach(v => arr.push(v.data));
+    debugger;
+   arr=this.filterFilesToExport();
     this.exportExcelService.export(arr);
   }
   ngOnInit() {
+
+
     this.fillDate();
     this.treeTableService.GetTreeTable().subscribe(res => {
-
       this.treeTable = res;
-
       //     this.treeTable.forEach(element => {
       //       console.log("element",element); 
       //       debugger;
@@ -63,21 +65,16 @@ teamLeaderInput:string="";
       // }
       //   })
       // });
-
-
       this.cols = [
         { field: 'name', header: 'Name' },
         { field: 'teamLeader', header: 'TeamLeader' },
         { field: 'hours', header: 'Hours' },
         { field: 'actualHours', header: 'ActualHours' },
+        { field: 'date', header: 'Date' },
         { field: 'percent', header: 'Percent' },
         { field: 'customer', header: 'Customer' },
         { field: 'startDate', header: 'Start' },
         { field: 'endDate', header: 'End' },
-        { field: 'days', header: 'Days' },
-        { field: 'workedDays', header: 'Worked' },
-        { field: 'daysPercent', header: 'Percent' },
-        { field: 'state', header: 'State' }
 
       ];
       this.initProjectsInfo();
@@ -85,7 +82,7 @@ teamLeaderInput:string="";
     //get all users from service
       this.userService.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
     //get all projects from service
-this.projectService.GetAllProjects().subscribe(res=>{this.allProjects=res;})
+   this.projectService.GetActiveProjects().subscribe(res=>{this.allProjects=res;})
 //get all team leaders 
 this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
@@ -130,11 +127,11 @@ this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
   }
   checkFilter() {
     this.filterd = this.files1;
-    if (this.projectInput != "") {
+    if (this.projectInput != ""&&this.projectInput!="allProjects") {
       this.ChangeProject();
 
     }
-    if (this.userInput != "") {
+    if (this.userInput != ""&&this.userInput!="allUsers") {
       this.ChangeUser();
 
     }
@@ -144,7 +141,7 @@ this.userService.GetTeamLeaders().subscribe(res=>{this.teamLeaders=res})
     if (this.endDateValue != null) {
       this.ChangeEndDate();
     }
-    if(this.teamLeaderInput!="")
+    if(this.teamLeaderInput!=""&&this.teamLeaderInput!="allTeamLeaders")
     {
       this.ChangeTeamLeader();
     }
@@ -159,13 +156,13 @@ this.checkFilter();
     this.filterd = this.filterd.filter(t => t.data["teamLeader"] == this.teamLeaderInput);
   }
   onChangeProject(event: any) {
-    debugger;
+
     this.projectInput = event;
     this.checkFilter();
 
   }
   ChangeProject() {
-debugger;
+
     this.filterd = this.filterd.filter(t => t.data["name"] == this.projectInput);
     console.log(this.filterd);
   }
@@ -195,42 +192,20 @@ debugger;
     this.checkFilter();
   }
   getProjectInfo(project: TreeTable) {
-    //let projectDays: number = this.baseService.dateDiffInDays(project.startDate, project.endDate);
-    // let date = new Date();
-    // if (date > project.endDate)
-    //   date = project.endDate;
-    // let workedDays: number = this.baseService.dateDiffInDays(project.startDate, date);
-    // let daysPercent: number = workedDays / projectDays;
-
-    // let projectPresenseHours: number = this.projectService.getPresenceHours(project);
-    // let projectPercentHours: number = this.projectService.getPercentHours(project);
-    // let state: string;
-
-    // if (projectPercentHours == daysPercent)
-    //   state = "good";
-    // else
-    //   if (projectPercentHours > daysPercent)
-    //     state = "excellent";
-    //   else
-    //     state = "bad"
     let hours = project.Project.QaHours + project.Project.UiUxHours + project.Project.DevelopersHours;
     let actualhorsForProject = this.getActualHoursForProject(project);
-    // console.log("hh", this.teamLeader);
     let root = {
       data: {
         name: project.Project.ProjectName,
         teamLeader: project.Project.User.UserName,
         hours: hours,
-        // presence: this.baseService.toShortNumber(projectPresenseHours),
+      
         percent: this.getPrecentOfNumbers(hours, actualhorsForProject),
         customer: project.Project.ClientName,
-        startDate: project.Project.StartDate,
-        endDate: project.Project.FinishDate,
+        startDate:this.getShorerDate( project.Project.StartDate),
+        endDate: this.getShorerDate(project.Project.FinishDate),
         actualHours: actualhorsForProject
-        // days: projectDays,
-        // workedDays: workedDays,
-        // daysPercent: this.baseService.toPercent(daysPercent),
-        // state: state
+
       },
       children: []
     };
@@ -241,8 +216,7 @@ debugger;
         hours: project.Project.DevelopersHours,
         actualHours: actualHoursForDepartment,
         percent: this.getPrecentOfNumbers(hours, actualHoursForDepartment),
-        // presence: this.baseService.toShortNumber(presenceHoursForDepartment),
-        // percent: departmentHours.numHours > 0 ? this.baseService.toPercent(presenceHoursForDepartment / departmentHours.numHours) : '-'
+       
       },
 
       children: [
@@ -261,12 +235,30 @@ debugger;
             hours: worker.Hours,
             percent: this.getPrecentOfNumbers(hours, actualHoursforWorker),
             teamLeader: worker.TeamLeaderName
-            // presence: this.baseService.toShortNumber(presenceHoursForWorker),
-            // percent: worker.workerHours.length ? this.baseService.toPercent(presenceHoursForWorker / worker.workerHours[0].numHours) : '-'
-          }
+        
+          },
+          children:[]
         };
+       worker.ActualHours.forEach(actualHours=>
+        {
+          let workerActualHoursNode={
+            data:{
+              actualHours:actualHours.CountHours,          
+              date:this.getShorerDate(actualHours.date)
+            }
+          }
+          debugger;
+          workerNode.children.push(workerActualHoursNode)
+        }
+        );
+     
+      
         departmentNode.children.push(workerNode);
+
+
       }
+
+
     })
     root.children.push(departmentNode);
     let actualHoursForDepartment1 = this.getActualHoursForDepartment(project, "QaHours");
@@ -276,8 +268,7 @@ debugger;
         hours: project.Project.QaHours,
         actualHours: actualHoursForDepartment1,
         percent: this.getPrecentOfNumbers(hours, actualHoursForDepartment1),
-        // presence: this.baseService.toShortNumber(presenceHoursForDepartment),
-        // percent: departmentHours.numHours > 0 ? this.baseService.toPercent(presenceHoursForDepartment / departmentHours.numHours) : '-'
+       
       },
 
       children: [
@@ -295,10 +286,24 @@ debugger;
             hours: worker.Hours,
             percent: this.getPrecentOfNumbers(hours, actualHoursforWorker),
             teamLeader: worker.TeamLeaderName
-            // presence: this.baseService.toShortNumber(presenceHoursForWorker),
-            // percent: worker.workerHours.length ? this.baseService.toPercent(presenceHoursForWorker / worker.workerHours[0].numHours) : '-'
-          }
+        
+          },
+          children:[]
+         
         };
+        worker.ActualHours.forEach(actualHours=>
+          {
+            let workerActualHoursNode={
+              data:{
+                actualHours:actualHours.CountHours,          
+                date:this.getShorerDate(actualHours.date)
+              }
+            }
+            debugger;
+            workerNode.children.push(workerActualHoursNode)
+          }
+          );
+        
         departmentNode1.children.push(workerNode);
       }
     })
@@ -310,8 +315,7 @@ debugger;
         hours: project.Project.UiUxHours,
         actualHours: actualHoursForDepartment2,
         percent: this.getPrecentOfNumbers(hours, actualHoursForDepartment2),
-        // presence: this.baseService.toShortNumber(presenceHoursForDepartment),
-        // percent: departmentHours.numHours > 0 ? this.baseService.toPercent(presenceHoursForDepartment / departmentHours.numHours) : '-'
+      
       },
       children: [
 
@@ -328,10 +332,22 @@ debugger;
             percent: this.getPrecentOfNumbers(hours, actualHoursforWorker),
             teamLeader: worker.TeamLeaderName,
             hours: worker.Hours
-            // presence: this.baseService.toShortNumber(presenceHoursForWorker),
-            // percent: worker.workerHours.length ? this.baseService.toPercent(presenceHoursForWorker / worker.workerHours[0].numHours) : '-'
-          }
+     
+          },
+          children:[]
         };
+        worker.ActualHours.forEach(actualHours=>
+          {
+            let workerActualHoursNode={
+              data:{
+                actualHours:actualHours.CountHours,          
+                date:this.getShorerDate(actualHours.date)
+              }
+            }
+            debugger;
+            workerNode.children.push(workerActualHoursNode)
+          }
+          );
         departmentNode2.children.push(workerNode);
       }
     })
@@ -354,7 +370,98 @@ debugger;
     treeTable.DetailsWorkerInProjects.forEach(worker => { worker.ActualHours.forEach(ah => count += ah.CountHours) });
     return count;
   }
-  getPrecentOfNumbers(num1: number, num2: number) {
-    return (num2 / num1) * 100 + '%';
+  getPrecentOfNumbers(num1: number, num2: number) 
+  {
+debugger; 
+    var c= (num2 / num1) * 100+"%";
+  var x= parseFloat(c).toFixed(3)
+  if(x=="0.000")
+    return c;
+    return x+"%";
   }
-}
+
+  getShorerDate(date:Date)
+  {
+debugger;
+var d=new  Date( date)
+  return d.toLocaleDateString();
+  }
+  //Export to excel
+  //In order to export to Excel, you need a flat list of data suitable for the filter 
+  filterFilesToExport() {
+    debugger;
+    for (var i = 0; i < this.filterd.length; i++) {
+     
+        //push project
+        let project: any = {
+          name:this.filterd[i].data["name"],
+          teamLeader:this.filterd[i].data["teamLeader"],
+          hours:this.filterd[i].data["hours"],
+        
+          percent:this.filterd[i].data["percent"],
+          customer: this.filterd[i].data["customer"],
+          startDate:this.filterd[i].data["startDate"],
+          endDate:this.filterd[i].data["endDate"],
+          actualHours: this.filterd[i].data["actualHours"],
+          date:""
+        }
+    
+        this.filterFiles.push(project);             
+          for (var j = 0; j < this.filterd[i].children.length; j++) {
+            //push department
+            let department: any = {
+              name:this.filterd[i].children[j].data["name"],
+              teamLeader:" ",
+              hours:this.filterd[i].children[j].data["hours"],
+            
+              percent:this.filterd[i].children[j].data["percent"],
+              customer: " ",
+              startDate:" ",
+              endDate:" ",
+              actualHours: this.filterd[i].children[j].data["actualHours"],
+              date:""
+
+            }
+            this.filterFiles.push(department);
+
+            for (var l = 0; l < this.filterd[i].children[j].children.length; l++) {
+              //push presence
+              let presence: any = {
+                name:this.filterd[i].children[j].children[l].data["name"],
+                teamLeader:this.filterd[i].children[j].children[l].data["teamLeader"],
+                hours:this.filterd[i].children[j].children[l].data["hours"],
+              
+                percent:this.filterd[i].children[j].children[l].data["napercentme"],
+                customer: " ",
+                startDate:" ",
+                endDate:" ",
+                actualHours: this.filterd[i].children[j].children[l].data["actualHours"],
+                date:""
+              }
+              this.filterFiles.push(presence);
+            
+              for (var k = 0; k< this.filterd[i].children[j].children[l].children.length;k++) {
+                //push presence
+                let presence: any = {
+                  name:" ",
+                  teamLeader:" ",
+                  hours: " ",
+                
+                  percent:" ",
+                  customer: " ",
+                  startDate:" ",
+                  endDate:" ",
+                  actualHours: this.filterd[i].children[j].children[l].children[k].data["actualHours"],
+                  date:this.filterd[i].children[j].children[l].children[k].data["date"]
+                }
+                this.filterFiles.push(presence);
+              
+            }
+          }
+        }
+      }
+      return this.filterFiles;
+    }
+  }
+
+// }

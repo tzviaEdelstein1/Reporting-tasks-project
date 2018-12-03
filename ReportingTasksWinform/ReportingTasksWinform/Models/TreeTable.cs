@@ -8,14 +8,7 @@ namespace ReportingTasksWinform.Models
 {
   public  class TreeTable
     {
-      
         public Project Project { get; set; }
         public List<DetailsWorkerInProjects> DetailsWorkerInProjects { get; set; }
-        public TreeTable()
-        {
-            this.Project = new Project();
-            this.DetailsWorkerInProjects = new List<DetailsWorkerInProjects>();
-
-        }
     }
 }

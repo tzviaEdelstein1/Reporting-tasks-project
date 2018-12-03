@@ -1,55 +1,52 @@
 <html>
-  <form >
-<div class="box">
-  <h1 id="logintoregister">Project State</h1>
+<form>
+  <div class="box">
+    <h1 id="logintoregister">Project State</h1>
 
-<p>Choose the project :</p>
-<div class="group">
-  <select class="inputMaterial"  (change)=selectProject($event)>
-    <option  *ngFor="let item of yourProjects" >{{item.ProjectName}}</option>
-    
-  </select>
+    <p>Choose the project :</p>
+    <div class="group">
+      <select class="inputMaterial" (change)=selectProject($event)>
+        <option *ngFor="let item of yourProjects">{{item.ProjectName}}</option>
+      </select>
 
-  <span class="highlight"></span>
-  <span class="bar"></span>
-  <label>Project</label>
-</div>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Project</label>
+    </div>
 
-<label>Project Name:  {{selectetProject.ProjectName}}</label><br><br>
-<label>Client Name:  {{selectetProject.ClientName}}</label><br><br>
-<label>Project Name:  {{selectetProject.ProjectName}}</label><br><br>
-<label>Developers Hours:  {{selectetProject.DevelopersHours}}</label><br><br>
-<label>Qa Hours:  {{selectetProject.QaHours}}</label><br><br>
-<label>UiUx Hours:  {{selectetProject.UiUxHours}}</label><br><br>
-<label>Start Date:  {{selectetProject.StartDate}}</label><br><br>
-<label>Finish Date:  {{selectetProject.FinishDate}}</label><br><br>
-</div>
-
+    <label>Project Name: {{selectetProject.ProjectName}}</label><br><br>
+    <label>Client Name: {{selectetProject.ClientName}}</label><br><br>
+    <label>Project Name: {{selectetProject.ProjectName}}</label><br><br>
+    <label>Developers Hours: {{selectetProject.DevelopersHours}}</label><br><br>
+    <label>Qa Hours: {{selectetProject.QaHours}}</label><br><br>
+    <label>UiUx Hours: {{selectetProject.UiUxHours}}</label><br><br>
+    <label>Start Date: {{selectetProject.StartDate}}</label><br><br>
+    <label>Finish Date: {{selectetProject.FinishDate}}</label><br><br>
+  </div>
 
 
-<table class="employees-table">
-  <thead class="employees-table-head">
-    <tr>
-      <th>Worker Name</th>
-      <th>Hours</th> 
-      <th>Actual Hours</th>
-      
-    </tr>
-  </thead>
-  <tbody class="employees-table-body">
-    <tr *ngFor="let item of workersAndHours">
-      <td >{{item.Name}}</td>
-      <td >{{item.Hours}}</td>
-      <td >{{item.allocatedHours}}</td>
-    </tr>
-    
-    
-  </tbody>
-</table>
 
+  <table class="employees-table">
+    <thead class="employees-table-head">
+      <tr>
+        <th>Worker Name</th>
+        <th>Hours</th>
+        <th>Actual Hours</th>
+
+      </tr>
+    </thead>
+    <tbody class="employees-table-body">
+      <tr *ngFor="let item of workersAndHours">
+        <td>{{item.Name}}</td>
+        <td>{{item.Hours}}</td>
+        <td>{{item.allocatedHours}}</td>
+      </tr>
+
+
+    </tbody>
+  </table>
 
 </form>
 
 
 </html>
-

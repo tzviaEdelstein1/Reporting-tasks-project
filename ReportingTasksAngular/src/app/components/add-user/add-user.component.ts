@@ -5,6 +5,8 @@ import { UserKind } from '../../shared/models/UserKind';
 import { UserKindService } from '../../shared/services/user-kind.service';
 import { FormGroup, FormControl, ValidatorFn } from '@angular/forms';
 import sha256 from 'async-sha256';
+import { WorkerToProjectService } from 'src/app/shared/services/worker-to-project.service';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -20,7 +22,7 @@ export class AddUserComponent implements OnInit {
   obj: typeof Object = Object;
  newUser:User;
 
-  constructor(private userservice:UserService,private userkindservice:UserKindService) { 
+  constructor(private userservice:UserService,private userkindservice:UserKindService, private workerToProjectService: WorkerToProjectService,private messageService: MessageService) { 
 
 
     let formGroupConfig = {
@@ -55,8 +57,9 @@ this.teamLeaders.push(this.emptyTeam);
 
 
   createValidatorArr(cntName: string, min: number, max: number): Array<ValidatorFn> {
-
+    var EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return [
+          f=>cntName=="UserEmail"&& !EMAIL_REGEXP.test(f.value)?{ "val": `${cntName} is not valid` }:null,
       f => !f.value ? { "val": `${cntName} is required` } : null,
       f => f.value && f.value.length > max ? { "val": `${cntName} is max ${max} chars` } : null,
       f => f.value && f.value.length < min ? { "val": `${cntName} is min ${min} chars` } : null
@@ -74,6 +77,9 @@ this.teamLeaders.push(this.emptyTeam);
     this.newUser.TeamLeaderId=this.teamLeaders.find(t=>t.UserName==this.formGroup.value.TeamLeaderId).UserId;
     this.newUser.UserKindId=this.userKinds.find(k=>k.KindUserName==this.formGroup.value.UserKindId).KindUserId;
 
-    this.userservice.AddNewUser(this.newUser,Number.parseInt( localStorage.getItem("currentUser"))).subscribe(res=>{console.log("new",res);alert("The user was added successfuly!!")});
+    this.userservice.AddNewUser(this.newUser,Number.parseInt( localStorage.getItem("currentUser"))).subscribe(res=>{console.log("new",res);this.showSuccess()});
   }
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Success Message', detail:'"The user was added successfuly!!"'});
+}
 }

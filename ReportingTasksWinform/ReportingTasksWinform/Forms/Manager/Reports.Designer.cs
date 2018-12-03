@@ -39,6 +39,7 @@
             this.monthCalendar_finish = new System.Windows.Forms.MonthCalendar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.ExportBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.radVirtualGrid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,11 +148,24 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Finish Date";
             // 
+            // ExportBtn
+            // 
+            this.ExportBtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ExportBtn.Font = new System.Drawing.Font("Aharoni", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.ExportBtn.Location = new System.Drawing.Point(12, 78);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(185, 45);
+            this.ExportBtn.TabIndex = 12;
+            this.ExportBtn.Text = "Export to excel";
+            this.ExportBtn.UseVisualStyleBackColor = false;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
+            // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1210, 627);
+            this.Controls.Add(this.ExportBtn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.monthCalendar_finish);
@@ -173,7 +187,7 @@
         }
 
         #endregion
-       // private Telerik.WinControls.UI.RadPivotGrid radPivotGrid1;
+        // private Telerik.WinControls.UI.RadPivotGrid radPivotGrid1;
         private Telerik.WinControls.UI.RadVirtualGrid radVirtualGrid1;
         private System.Windows.Forms.ComboBox projects_combobox;
         private System.Windows.Forms.ComboBox workers_combo;
@@ -185,5 +199,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar_finish;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ExportBtn;
     }
 }

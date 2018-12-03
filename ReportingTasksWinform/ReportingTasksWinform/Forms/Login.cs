@@ -1,17 +1,14 @@
 ﻿using Newtonsoft.Json;
 using ReportingTasksWinform.Forms;
 using ReportingTasksWinform.Models;
+using ReportingTasksWinform.Reqests;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ReportingTasksWinform
@@ -19,12 +16,29 @@ namespace ReportingTasksWinform
     public partial class Login : Form
     {
         User user;
-
+        string ip = string.Empty;
         public Login()
         {
             InitializeComponent();
+            ip = GetLocalIPAddress();
+            user = UserRequsts.checkUserIp(ip);
+            if (user != null)
+            {
+                checkState();
+            }
         }
-
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
         static string sha256(string password)
         {
             var crypt = new SHA256Managed();
@@ -36,9 +50,9 @@ namespace ReportingTasksWinform
             }
             return hash;
         }
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
+
             string userName = textBoxUserName.Text;
             string password = sha256(textBoxPassword.Text);
             try
@@ -53,29 +67,13 @@ namespace ReportingTasksWinform
                 }
 
 
-                Global.UserName = user.UserName;
-                Global.UserId = user.UserId;
                 MessageBox.Show(user.UserName);
-                textBoxUserName.Text = "";
-                textBoxPassword.Text = "";
-                if (user.UserKindId == 1)
-
-                {
-                    EnterManager enterManager = new EnterManager();
-                    enterManager.Show();
-                }
-                if (user.UserKindId == 2)
-
-                {
-                    EnterTeamLeader enterTeamLeader = new EnterTeamLeader();
-                    enterTeamLeader.Show();
-                }
-                if (user.UserKindId == 3 || user.UserKindId == 4 || user.UserKindId == 5)
-
-                {
-                    EnterWorkers enterWorkers = new EnterWorkers();
-                    enterWorkers.Show();
-                }
+                textBoxUserName.Text = string.Empty;
+                textBoxPassword.Text = string.Empty;
+                checkState();
+                ip = GetLocalIPAddress();
+                user.UserIP = ip;
+                UserRequsts.UpdateUser(user);
             }
 
             catch (Exception)
@@ -85,17 +83,37 @@ namespace ReportingTasksWinform
             }
 
         }
+        private void checkState()
+        {
+            this.Opacity = 0.0f;
 
+            this.ShowInTaskbar = false;
+            Global.UserName = user.UserName;
+            Global.UserId = user.UserId;
+            if (user.UserKindId == 1)
+
+            {
+                EnterManager enterManager = new EnterManager(this);
+                enterManager.Show();
+            }
+            if (user.UserKindId == 2)
+
+            {
+                EnterTeamLeader enterTeamLeader = new EnterTeamLeader(this);
+                enterTeamLeader.Show();
+            }
+            if (user.UserKindId == 3 || user.UserKindId == 4 || user.UserKindId == 5)
+
+            {
+                EnterWorkers enterWorkers = new EnterWorkers(this);
+                enterWorkers.Show();
+            }
+        }
         private void buttonEditPassword_Click(object sender, EventArgs e)
         {
             VerifyEmail verifyEmail = new VerifyEmail();
             verifyEmail.Show();
 
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
         }
     }

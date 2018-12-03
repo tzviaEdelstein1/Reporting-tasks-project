@@ -15,7 +15,26 @@ namespace ReportingTasksWinform.Reqests
 {
     public class UserRequsts
     {
+        public static User GetUserById(int id)
+        {
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+            User user = new User();
+            try
+            {
 
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/GetUserById/" + id);
+                response = (HttpWebResponse)request.GetResponse();
+
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                user = JsonConvert.DeserializeObject<User>(content);
+            }
+            catch (Exception ex)
+            { MessageBox.Show(ex.ToString()); }
+
+            return user;
+        }
 
         public static List<User> GetAllTeamLeaders()
         {
@@ -67,6 +86,58 @@ namespace ReportingTasksWinform.Reqests
                 MessageBox.Show("error");
             return usersUnderTeamLeader;
         }
+        public static User checkUserIp(string ip)
+        {
+            ip = ip.ToString();
+            User user = new User();
+            User user1 = new User();
+            try
+            {
+
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/CheckUserIp");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "PUT";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = new JavaScriptSerializer().Serialize(ip);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    {
+                        var result = streamReader.ReadToEnd();
+                        if (result!=null)
+                        {
+                          
+                            user1 = JsonConvert.DeserializeObject<User>(result);
+                            return user1;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+
+                }
+          
+            }
+            catch (Exception ex)
+            {
+
+
+                return null;
+            }
+         
+        }
+
+
+
 
         public static bool UpdateUser(User user)
         {
@@ -99,6 +170,49 @@ namespace ReportingTasksWinform.Reqests
                     }
 
                 }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+
+            }
+        }
+        public static bool  Logout()
+        {
+         
+            User user = new User();
+            user.UserId = Global.UserId;
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/users/Logout/" + Global.UserId);
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "PUT";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = new JavaScriptSerializer().Serialize(user);
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    {
+                        var result = streamReader.ReadToEnd();
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                            return true;
+                        else
+                            return false;
+                    }
+
+                }
+                Global.UserId = 0;
+                Global.UserName = null;
             }
             catch (Exception ex)
             {
@@ -184,6 +298,8 @@ namespace ReportingTasksWinform.Reqests
 
             }
         }
+
+       
         public static bool RemoveUser(int idUser)
         {
             try
@@ -192,7 +308,10 @@ namespace ReportingTasksWinform.Reqests
                 request.Method = "DELETE";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
+                { MessageBox.Show("removed user success");
                     return true;
+                   
+                }
                 else
                     return false;
             }

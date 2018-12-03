@@ -1,12 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
-html{
-  background-color: #333;
-  font-family: "Roboto";
-}
-body{
-    background-color: #333;
-}
 /* BOX LOGIN */
 .box{
 	position: relative;
@@ -21,7 +13,7 @@ body{
 	padding:10px 0px;
 	border-radius: 10px;
 	background:rgba(255,255,255,1);
-	border-top: 2px solid #C0C0C0;
+border: 2px solid #C0C0C0;
 	border-bottom: 2px solid #F00;
   margin-bottom: 100px;
 }

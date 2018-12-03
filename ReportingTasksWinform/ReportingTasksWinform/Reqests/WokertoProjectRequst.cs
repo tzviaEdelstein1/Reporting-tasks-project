@@ -1,4 +1,5 @@
-﻿using ReportingTasksWinform.Models;
+﻿using Newtonsoft.Json;
+using ReportingTasksWinform.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,25 @@ namespace ReportingTasksWinform.Reqests
 {
     public class WokrerToProjectRequst
     {
+        public static List<WorkerToProject> GetWorkersToProjects()
+        {
+            HttpWebRequest request;
+            HttpWebResponse response;
+            string content;
+            List<WorkerToProject> workersToProject = new List<WorkerToProject>();
+            try
+            {
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/WorkerToProject/GetAllWorkersToProject");
+                response = (HttpWebResponse)request.GetResponse();
+
+                content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                workersToProject = JsonConvert.DeserializeObject<List<WorkerToProject>>(content);
+            }
+            catch (Exception ex)
+            { MessageBox.Show(ex.ToString()); }
+
+            return workersToProject;
+        }
         public static bool AddWorkerToProject(WorkerToProject workerToProject)
         {
             try
@@ -34,7 +54,7 @@ namespace ReportingTasksWinform.Reqests
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (httpResponse.StatusCode == HttpStatusCode.Created)
                 {
-                    MessageBox.Show("ok");
+             
                     return true;
                 }
                 else

@@ -8,9 +8,9 @@ namespace ReportingTasksWinform.Models
 {
   public  class DetailsWorkerInProjects
     {
-        public static readonly string[] FieldNames = { "TeamLeaderName", "Name",  "Hours", "ActualHours","Precent"};
-        public int UserId { get; set; }
+        public static readonly string[] FieldNames = { "TeamLeaderName", "Name", "Hours", "ActualHours", "Precent" };
         public string TeamLeaderName { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Kind { get; set; }
         public int Hours { get; set; }
