@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _01_BOL.Validation
 {
-   public class ValidateStartDate: ValidationAttribute
+    public class ValidateStartDate : ValidationAttribute
     {
 
         override protected ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -22,12 +22,13 @@ namespace _01_BOL.Validation
             string query = $"SELECT project_id FROM tasks.projects WHERE project_id={ProjectId}";
             var q1 = DBaccess.RunScalar(query);
 
-            if (DateTime.Parse(value.ToString()) >= DateTime.Now.AddDays(-1)|| query!=null)
+            if (DateTime.Parse(value.ToString()) >= DateTime.Now || query != null)
             {
                 return null;
 
             }
-                return new ValidationResult("Date start has to be bigger than today");      
+            return new ValidationResult("Date start has to be bigger than today");
         }
     }
 }
+

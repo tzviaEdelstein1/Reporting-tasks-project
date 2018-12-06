@@ -35,7 +35,7 @@ namespace _02_BLL
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
                             IsActive = reader.GetBoolean(9),
-                            User =new User() { UserId=reader.GetInt32(10),UserName=reader.GetString(11)}
+                            User = new User() { UserId = reader.GetInt32(10), UserName = reader.GetString(11) }
                         }
 
                     });
@@ -58,12 +58,12 @@ namespace _02_BLL
                     while (reader.Read())
                     {
                         item.DetailsWorkerInProjects.Add(new DetailsWorkerInProjects()
-                        { 
+                        {
                             Hours = reader.GetInt32(0),
                             Kind = reader.GetString(1),
                             Name = reader.GetString(2),
                             UserId = reader.GetInt32(3),
-                            TeamLeaderName=reader.GetString(4)
+                            TeamLeaderName = reader.GetString(4)
                         });
                     }
                     return treeTables;
@@ -94,7 +94,7 @@ namespace _02_BLL
                                 CountHours = reader.GetInt32(3),
                                 date = reader.GetDateTime(4)
 
-                            }  );
+                            });
                         }
                         return treeTables;
                     };
@@ -107,4 +107,3 @@ namespace _02_BLL
 
 
 }
-

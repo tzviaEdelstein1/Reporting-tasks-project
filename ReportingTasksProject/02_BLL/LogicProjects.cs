@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace _02_BLL
                             UiUxHours = reader.GetInt32(6),
                             StartDate = reader.GetDateTime(7),
                             FinishDate = reader.GetDateTime(8),
-                            IsActive =reader.GetBoolean(9),
+                            IsActive = reader.GetBoolean(9),
                             User = new User() { UserId = reader.GetInt32(10), UserName = reader.GetString(11) }
                         });
                     }
@@ -128,7 +129,7 @@ namespace _02_BLL
 $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id " +
  $" JOIN TASKS.worker_to_project w ON w.project_id = a.project_id " +
  $"WHERE is_active=1 AND a.user_id ={userId} AND YEAR(date)={ DateTime.Now.Year} " +
-                $" AND MONTH(date)={ DateTime.Now.Month}"+
+                $" AND MONTH(date)={ DateTime.Now.Month}" +
                 $" group by a.user_id,a.project_id";
                 Func<MySqlDataReader, List<Unknown>> func = (reader) =>
                 {
@@ -278,3 +279,4 @@ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id
 
     }
 }
+

@@ -23,16 +23,18 @@ namespace BOL
         public int DevelopersHours { get; set; }
         [Required]      
         public int QaHours { get; set; }
-        [Required]   
+        [Required]
+      
         public int UiUxHours { get; set; }
         [ValidateStartDate]
         [Required]
         public DateTime StartDate { get; set; }
         [Required]
-        //[ValidateEndDate]
         public DateTime FinishDate { get; set; }
         public User User { get; set; }
+
         public bool IsActive { get; set; }
+
 
     }
 }

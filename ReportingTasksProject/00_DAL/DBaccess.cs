@@ -9,11 +9,12 @@ namespace DAL
 {
     public static class DBaccess
     {
-        
-        static MySqlConnection Connection = new MySqlConnection(@"SERVER=127.0.0.1;PORT=3306;UID=root;persistsecurityinfo=True;DATABASE=tasks;SslMode = none");
+
+        static MySqlConnection Connection = new MySqlConnection(@"SERVER=127.0.0.1;PORT=3306;pwd=1234;UID=root;persistsecurityinfo=True;DATABASE=tasks;SslMode = none");
 
         public static int? RunNonQuery(string query)
-        {lock(Connection)
+        {
+            lock (Connection)
             {
                 try
                 {
@@ -33,13 +34,13 @@ namespace DAL
                     }
                 }
             }
-            
+
 
         }
 
         public static object RunScalar(string query)
         {
-            lock(Connection)
+            lock (Connection)
             {
                 try
                 {
@@ -59,12 +60,13 @@ namespace DAL
                     }
                 }
             }
-          
+
 
         }
 
         public static List<T> RunReader<T>(string query, Func<MySqlDataReader, List<T>> func)
-        {lock (Connection)
+        {
+            lock (Connection)
             {
                 try
                 {
@@ -88,8 +90,9 @@ namespace DAL
             }
 
         }
-        public static T RunOneReader<T>(string query, Func<MySqlDataReader,T> func)
-        {lock(Connection)
+        public static T RunOneReader<T>(string query, Func<MySqlDataReader, T> func)
+        {
+            lock (Connection)
             {
                 try
                 {
@@ -110,7 +113,7 @@ namespace DAL
                     }
                 }
             }
-          
+
 
         }
 

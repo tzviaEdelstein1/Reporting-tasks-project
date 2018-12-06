@@ -11,21 +11,7 @@ using System.Web.Http;
 namespace _03_UIL.Controllers
 {
     public class WorkerToProjectController : ApiController
-    {
-
-
-        [HttpGet]
-        [Route("api/WorkerToProject/GetAllWorkersToProject")]
-        public HttpResponseMessage GetAllWorkersToProject()
-
-        {
-            return new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new ObjectContent<List<WorkerToProject>>(LogicWorkerToProject.GetAllWorkersToProject(), new JsonMediaTypeFormatter())
-            };
-        }
-
-        [HttpGet]
+    {  [HttpGet]
         [Route("api/WorkerToProject/GetProjectsbyUserName/{userName}")]
         public HttpResponseMessage GetProjectsbyUserName(string userName)
         {

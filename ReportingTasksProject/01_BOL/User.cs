@@ -18,12 +18,12 @@ namespace BOL
         [Required]
         [EmailAddress]
         public string UserEmail { get; set; }
-        [Required]
+
        
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]
         public int UserKindId { get; set; }
-
+        public string UserIP { get; set; }
     }
 }
