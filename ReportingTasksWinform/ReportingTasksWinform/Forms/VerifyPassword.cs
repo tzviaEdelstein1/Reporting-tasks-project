@@ -10,9 +10,11 @@ namespace ReportingTasksWinform.Forms
 {
     public partial class VerifyPassword : Form
     {
-        public VerifyPassword()
+        string userName;
+        public VerifyPassword(string userName)
         {
             InitializeComponent();
+            this.userName = userName;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -20,7 +22,7 @@ namespace ReportingTasksWinform.Forms
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
-            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/VerifyPassword/" + tbPassword.Text);
+            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Users/VerifyPassword/" + tbPassword.Text+"/"+userName);
             response = (HttpWebResponse)request.GetResponse();
             if (response.StatusCode == HttpStatusCode.OK)
             {

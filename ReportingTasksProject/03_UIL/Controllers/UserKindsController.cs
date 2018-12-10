@@ -12,6 +12,10 @@ namespace _03_UIL.Controllers
 {
     public class UserKindsController : ApiController
     {  // GET: api/UserKinds
+
+        //change route---------------------------------
+        [HttpGet]
+        [Route("api/UserKinds/Get")]
         public HttpResponseMessage Get()
 
         {

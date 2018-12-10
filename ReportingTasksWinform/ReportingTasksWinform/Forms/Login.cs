@@ -57,11 +57,13 @@ namespace ReportingTasksWinform
             string password = sha256(textBoxPassword.Text);
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/users/" + userName + "/" + password);
+          //  HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/Login/"+ userName +"/" + password);
+          HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/users/Login/" + userName + "/" + password);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     string content = new StreamReader(response.GetResponseStream()).ReadToEnd();
+
 
                     user = JsonConvert.DeserializeObject<User>(content);
                 }

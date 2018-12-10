@@ -44,10 +44,11 @@ namespace ReportingTasksWinform
                 {
                   
                     addWorkersToProject(pro.ProjectId);
+                    this.Close();
                 }
                 else
                     MessageBox.Show("update filed");
-                this.Close();
+           
             }
             else
             {

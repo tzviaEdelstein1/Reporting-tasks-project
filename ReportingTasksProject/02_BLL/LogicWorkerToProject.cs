@@ -67,7 +67,7 @@ namespace _02_BLL
         
             public static List<WorkerToProject> GetWorkersToProjectByProjectId(int projectId)
         {
-            string query = $"SELECT * FROM tasks.worker_to_project WHERE project_id={projectId};";
+            string query = $"SELECT * FROM tasks.worker_to_project WHERE project_id={projectId}";
             Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
             {
                 List<WorkerToProject> workerToProjects = new List<WorkerToProject>();

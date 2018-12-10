@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/Unknown.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/UserKindToAccess.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/Project.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/WorkerToProject.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/UserController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/User.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/DetailsWorkerInProjects.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/ActualHours.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/TreeTableController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/ProjectsController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/SendEmailController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/Access.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/HoursController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/includes.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/UserKindsController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/WorkerToProjectController.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/UserKind.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Controllers/index.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Models/TreeTable.php</file>
+            <file>file:/C:/xampp/htdocs/ReportingTasksPhp/Connection/DbAccess.php</file>
+        </group>
+    </open-files>
+</project-private>

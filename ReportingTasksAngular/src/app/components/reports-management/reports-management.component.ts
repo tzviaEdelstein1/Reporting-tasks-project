@@ -12,6 +12,7 @@ import { User } from '../../shared/models/User';
 import { ProjectService } from '../../shared/services/project.service';
 import { CalendarModule } from 'primeng/calendar';
 import { ExportExcelService } from '../../shared/services/export-excel.service';
+import { numberSymbols } from '@telerik/kendo-intl';
 
 @Component({
   selector: 'app-reports-management',
@@ -55,6 +56,7 @@ filterFiles:any[]=[];
 
     this.fillDate();
     this.treeTableService.GetTreeTable().subscribe(res => {
+      debugger;
       this.treeTable = res;
       //     this.treeTable.forEach(element => {
       //       console.log("element",element); 
@@ -191,15 +193,17 @@ this.checkFilter();
     this.userInput = event;
     this.checkFilter();
   }
+  
   getProjectInfo(project: TreeTable) {
-    let hours = project.Project.QaHours + project.Project.UiUxHours + project.Project.DevelopersHours;
+    
+    let hours =project.Project.QaHours+ project.Project.UiUxHours +project.Project.DevelopersHours;
     let actualhorsForProject = this.getActualHoursForProject(project);
     let root = {
       data: {
         name: project.Project.ProjectName,
         teamLeader: project.Project.User.UserName,
         hours: hours,
-      
+     
         percent: this.getPrecentOfNumbers(hours, actualhorsForProject),
         customer: project.Project.ClientName,
         startDate:this.getShorerDate( project.Project.StartDate),
@@ -226,7 +230,7 @@ this.checkFilter();
     project.DetailsWorkerInProjects.forEach(worker => {
 
 
-      if (worker.Kind == "Developers") {
+      if (worker.Kind == "developer") {
         let actualHoursforWorker = this.getCountHours(worker)
         let workerNode = {
           data: {
@@ -323,7 +327,7 @@ this.checkFilter();
     };
 
     project.DetailsWorkerInProjects.forEach(worker => {
-      if (worker.Kind == "UI/UX") {
+      if (worker.Kind == "ui/ux") {
         let actualHoursforWorker = this.getCountHours(worker)
         let workerNode = {
           data: {

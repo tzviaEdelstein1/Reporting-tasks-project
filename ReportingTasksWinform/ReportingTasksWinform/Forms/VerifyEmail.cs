@@ -22,8 +22,9 @@ namespace ReportingTasksWinform.Forms
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 MessageBox.Show("ok");
+                VerifyPassword verifyPassword = new VerifyPassword(tbUserName.Text);
                 this.Close();
-                VerifyPassword verifyPassword = new VerifyPassword();
+               
                 verifyPassword.Show();
 
             }

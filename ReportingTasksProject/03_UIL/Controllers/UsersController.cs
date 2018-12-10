@@ -77,9 +77,9 @@ namespace _03_UIL.Controllers
 
             if (user != null)
             {
-                string email = user.UserEmail;
+               
 
-                SendEmail(email);
+                SendEmail(user);
                 return new HttpResponseMessage(HttpStatusCode.OK);
 
             }
@@ -90,10 +90,13 @@ namespace _03_UIL.Controllers
         }
 
         [HttpGet]
-        [Route("api/Users/VerifyPassword/{password}")]
-        public HttpResponseMessage VerifyPassword(string password)
+        [Route("api/Users/VerifyPassword/{password}/{userName}")]
+        public HttpResponseMessage VerifyPassword(string password,string userName)
         {
-            if (password == body)
+          List<User>users=LogicUser.GetAllUsers();
+            User user=users.FirstOrDefault(u => u.UserName == userName);
+            var verifyPassword = user.VerifyPassword;
+            if (password == verifyPassword)
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new ObjectContent<User>(user,new JsonMediaTypeFormatter())
@@ -102,15 +105,16 @@ namespace _03_UIL.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
 
         }
-        private void SendEmail(string email)
+        private void SendEmail(User user)
         {
+            string email = user.UserEmail;
             List<User> users = LogicUser.GetAllUsers();
             try
             {
                 string subject = "Email Subject";
 
-                body = CreatePassword(6); ;
-
+                user.VerifyPassword= CreatePassword(6); ;
+                LogicUser.UpdateUser(user,user.UserId);
                 string FromMail = "reporting.manage@gmail.com";
                 string emailTo = email;
                 MailMessage mail = new MailMessage();
@@ -118,7 +122,7 @@ namespace _03_UIL.Controllers
                 mail.From = new MailAddress(FromMail);
                 mail.To.Add(emailTo);
                 mail.Subject = subject;
-                mail.Body = body;
+                mail.Body = user.VerifyPassword;
                 SmtpServer.UseDefaultCredentials = true;
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new NetworkCredential("reporting.manage@gmail.com", "0533121776");
@@ -130,15 +134,12 @@ namespace _03_UIL.Controllers
 
                 var x = ex.Message;
             }
-
-
-
         }
-
         // GET: api/Users/wewe/11234
-        [Route("users/{userName}/{password}")]
-        public HttpResponseMessage Get(string userName, string password)
-
+        //שיניתי את הניתוב---------------------------------------------------------
+        [HttpGet]
+        [Route("api/users/Login/{userName}/{password}")]
+        public HttpResponseMessage Login(string userName, string password)
         {
             User user = new User();
             List<User> users = LogicUser.SignIn(userName, password);
@@ -156,7 +157,6 @@ namespace _03_UIL.Controllers
         [HttpPut]
         [Route("api/users/Logout/{userId}")]
         public HttpResponseMessage Logout(int userId)
-
         {
             return (LogicUser.UpdateUserIp(userId)) ?
                       new HttpResponseMessage(HttpStatusCode.OK) :
@@ -165,10 +165,11 @@ namespace _03_UIL.Controllers
                           Content = new ObjectContent<String>("Can not update in DB", new JsonMediaTypeFormatter())
                       };
         }
+        //change route-----------------------------------------------------------------------
         // POST: api/Users
         [HttpPost]
-        [Route("api/Users/{userId}")]
-        public HttpResponseMessage Post([FromBody]User value, [FromUri]int userId)
+        [Route("api/Users/AddUser/{userId}")]
+        public HttpResponseMessage AddUser([FromBody]User value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
@@ -179,7 +180,6 @@ namespace _03_UIL.Controllers
                        Content = new ObjectContent<String>("Can not add to DB", new JsonMediaTypeFormatter())
                    };
             };
-
             List<string> ErrorList = new List<string>();
 
             //if the code reached this part - the user is not valid
@@ -260,13 +260,11 @@ namespace _03_UIL.Controllers
                         Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
                     };
         }
-
+   [HttpGet]
         [Route("api/Users/GetUserById/{userId}")]
-        [HttpGet]
+     
         public HttpResponseMessage GetUserById(int userId)
         {
-
-
             User user = new User();
             List<User> users = LogicUser.GetUserById(userId);
             if (users.Count > 0)
@@ -280,7 +278,6 @@ namespace _03_UIL.Controllers
             return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "error");
 
         }
-
         public string CreatePassword(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -292,7 +289,5 @@ namespace _03_UIL.Controllers
             }
             return res.ToString();
         }
-
-
     }
 }

@@ -45,20 +45,20 @@ namespace _03_UIL.Controllers
 
 
 
-        [HttpGet]
-        [Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
-        public HttpResponseMessage GetWorkerbyProjectName(string projectname)
+        //[HttpGet]
+        //[Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
+        //public HttpResponseMessage GetWorkerbyProjectName(string projectname)
 
-        {
-            return new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new ObjectContent<List<User>>(LogicWorkerToProject.GetWorkerbyProjectName(projectname), new JsonMediaTypeFormatter())
-            };
-        }
+        //{
+        //    return new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new ObjectContent<List<User>>(LogicWorkerToProject.GetWorkerbyProjectName(projectname), new JsonMediaTypeFormatter())
+        //    };
+        //}
         // POST: api/Users
-        
-        [Route("api/WorkerToProject/{userId}")]
-        public HttpResponseMessage Post([FromBody]WorkerToProject value, [FromUri]int userId)
+        //change route----------------------------------------------------------------------------
+        [Route("api/WorkerToProject/AddWorkerToProject/{userId}")]
+        public HttpResponseMessage AddWorkerToProject([FromBody]WorkerToProject value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {

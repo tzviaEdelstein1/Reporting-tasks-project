@@ -13,15 +13,17 @@ export class UserService {
   constructor(private http: HttpClient){ }
 
   Login(userName: string, password: string):Observable<User>  {
-   
-    return this.http.get("http://localhost:56028/users/"+userName+"/"+password)
+    //return this.http.get("http://localhost:56028/users/"+userName+"/"+password)
+    let url="http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/Login/"+ userName +"/" + password;
+    return this.http.get(url)
     .map((res:User)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
 
   }
   GetAllUsers():Observable<User[]>  {
-   
-    return this.http.get("http://localhost:56028/api/Users/GetAllUsers")
+   let url="http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/GetAllUsers"
+    // return this.http.get("http://localhost:56028/api/Users/GetAllUsers")
+      return this.http.get(url)
     .map((res:User[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
 

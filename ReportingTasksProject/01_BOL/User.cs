@@ -25,5 +25,6 @@ namespace BOL
         [Required]
         public int UserKindId { get; set; }
         public string UserIP { get; set; }
+        public string VerifyPassword { get; set; }
     }
 }

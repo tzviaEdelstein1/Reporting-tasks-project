@@ -12,7 +12,9 @@ export class TreeTableService {
 
 
   GetTreeTable():Observable<TreeTable[]>  { 
-    return this.http.get("http://localhost:56028/api/TreeTable")
+    debugger;
+  // return this.http.get("http://localhost:56028/api/TreeTable")
+  return this.http.get("http://localhost:8080/ReportingTasksPhp/Controllers/index.php/treeTable/TreeTable")
     .map((res:TreeTable[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
 

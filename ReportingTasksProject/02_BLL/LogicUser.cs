@@ -28,7 +28,8 @@ namespace _02_BLL
                         Password = reader.GetString(3),
                         TeamLeaderId = reader.GetInt32(4),
                         UserKindId = reader.GetInt32(5),
-                        UserIP=reader.GetString(6)
+                        UserIP=reader.GetString(6),
+                        VerifyPassword=reader.GetString(7)
                    
                     });
                 }
@@ -178,7 +179,7 @@ namespace _02_BLL
             //if (isAbleTo != null)
 
             //{
-                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId},user_ip='{user.UserIP}' WHERE user_id={user.UserId}";
+                string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId},user_ip='{user.UserIP}', verify_password='{user.VerifyPassword}' WHERE user_id={user.UserId}";
                 return DBaccess.RunNonQuery(query) == 1;
             //}
             //else return false;
