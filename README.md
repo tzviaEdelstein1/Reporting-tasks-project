@@ -17,9 +17,11 @@
     * Password - string -  minLength: 6, maxLength:10, reqiered
     * TeamLeaderId -int, optional
     * UserKindId-int,requiered
+    *  UserIP- string,optional
+    *  VerifyPassword- string,optional
 * UserKind:
     * KindUserId - int, requiered,unique, identity
-     * KindUserName - string, requiered,
+    * KindUserName - string, requiered,
  * Access:
     * AccessId - int, requiered,unique, identity
     * AccessName - string, reqiered
@@ -37,6 +39,7 @@
     * Ui/UxHours -int,reqiered 
     * StartDate -date,reqiered 
     * FinishDate -date,reqiered 
+    * IsActive-boolean defult true
  * WorkerToProject:
     * WorkerToProjectId - int, requiered,unique, identity
     * UserId - int, requiered
@@ -48,13 +51,43 @@
     * ProjectId - int, requiered 
     * CountHours - double, requiered 
     * date - date, requiered
+*  Unknown:
+   * Id -int,optional
+   *  Name -string,requierd
+   * Date-date optional
+   * Hours -double
+   * allocatedHours-double
+* DetailsWorkerInProjects:
+   * UserId-int 
+   *   TeamLeaderName-string
+   *   Name-string 
+   *   Kind-string 
+   *   Hours -int
+   *   List<ActualHours> ActualHours-list of actualHours
+* TreeTable:
+   * Project-Project
+   * DetailsWorkerInProjects- List<DetailsWorkerInProjects>  
 
-
+ 
 ### Controllers
 * User controller:
     * Get -getAllUsers.
          We will return all the users from the db.
-    
+    * Get -GetUsersForTeamLeader.
+      requierd data: 
+         * TeamLeaderId 
+         We will return all the matching users from the db.
+    * Get -GetTeamLeaders.
+         We will return all the matching users from the db.
+     * Get -VerifyEmail.
+      requierd data: 
+         * userName 
+         * password
+         We will check if the user is exists with the same password if valid we will return the user,Else - we will return a matching error 
+    * Get -VerifyPassword.
+      requierd data: 
+         * userName 
+         We will check if the user is exists and send him an email
     * Post - Register.    
          requierd data: 
            * User
@@ -72,7 +105,14 @@
          requierd data: 
          * User
      If there is in the db user object whith the same user_id and the new user object is valid - we will update the user in the db to this user, Else - we will return matching error.
-
+    * Put - EditPassword
+         requierd data: 
+         * User
+     If there is in the db user object whith the same user_id and the new user object is valid - we will update the user in the db to this user, Else - we will return matching error.
+    * Put - CheckUserIp
+         requierd data: 
+         * Ip
+     If there is in the db user object whith the same user_ip - we will return the user, Else - we will return matching error.
     * Delete - remove user
          requierd data: 
         * UserId

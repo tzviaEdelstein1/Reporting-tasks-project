@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/User';
   styleUrls: ['./verify-password.component.css']
 })
 export class VerifyPasswordComponent implements OnInit {
-
+userName:any;
   formGroup: FormGroup;
   obj: typeof Object = Object;
   constructor(private userservice: UserService, private route: ActivatedRoute,
@@ -25,6 +25,8 @@ export class VerifyPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userName = this.route.snapshot.paramMap.get('id');
+    console.log("cccc",this.userName);
   }
   submitLogin() {
 
@@ -32,7 +34,8 @@ export class VerifyPasswordComponent implements OnInit {
     console.log(this.formGroup.controls);
 
     try {
-      this.userservice.VerifyPassword(this.formGroup.value.userPassword).subscribe(res => {
+      console.log( "sss",this.userName);
+      this.userservice.VerifyPassword(this.formGroup.value.userPassword,this.userName).subscribe(res => {
         if (res != 'error') {
         
           console.log("good", res)

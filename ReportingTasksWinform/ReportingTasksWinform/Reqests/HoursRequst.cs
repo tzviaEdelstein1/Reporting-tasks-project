@@ -16,7 +16,7 @@ namespace ReportingTasksWinform.Reqests
         {
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Hours/" + Global.UserId);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Hours/AddActualHours/" + Global.UserId);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;

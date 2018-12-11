@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 namespace _02_BLL
 {
     public class LogicProjects
-    {//changeeeeeeeee
+    {
         public static List<Project> GetAllProjects()
 
         {
@@ -204,7 +204,7 @@ $"FROM tasks.actual_hours a JOIN tasks.projects p ON a.project_id = p.project_id
                                $" VALUES ('{project.ProjectName}','{project.ClientName}'," +
                                $"'{project.TeamLeaderId}',{project.DevelopersHours},{project.QaHours},{project.UiUxHours}," +
                                $"'{project.StartDate.Year}-{project.StartDate.Month}-{project.StartDate.Day}','{project.FinishDate.Year}-{project.FinishDate.Month}-{project.FinishDate.Day}')";
-                //string query = $"INSERT INTO tasks.projects(`project_name`, `client_name`, `team_leader_id`, `develope_hours`,`qa_hours`,`ui/ux_hours`,`start_date`,`finish_date`) VALUES ('{project.ProjectName}','{project.ClientName}','{project.TeamLeaderId}','{project.DevelopersHours}','{project.QaHours}','{project.UiUxHours}','{project.StartDate}','{project.FinishDate}')";
+               
                 return DBaccess.RunNonQuery(query) == 1;
 
             }

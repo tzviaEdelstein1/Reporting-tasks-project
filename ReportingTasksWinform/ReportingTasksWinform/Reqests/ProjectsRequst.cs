@@ -19,7 +19,7 @@ namespace ReportingTasksWinform.Reqests
             string result = "";
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Projects/" + Global.UserId);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Projects/AddProject/" + Global.UserId);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -70,7 +70,7 @@ namespace ReportingTasksWinform.Reqests
             List<Project> ProjectsForteamLeader = new List<Project>();
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/" + Global.UserId);
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetProjectsByTeamId/" + Global.UserId);
                 response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -94,7 +94,7 @@ namespace ReportingTasksWinform.Reqests
            
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects");
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/Projects/GetAllProjects");
                 response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

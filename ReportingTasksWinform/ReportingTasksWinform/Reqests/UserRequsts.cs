@@ -144,7 +144,7 @@ namespace ReportingTasksWinform.Reqests
 
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/" + Global.UserId);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/UpdateUser/" + Global.UserId);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "PUT";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -269,7 +269,7 @@ namespace ReportingTasksWinform.Reqests
         {
             try
             {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/" + Global.UserId);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:56028/api/Users/AddUser/" + Global.UserId);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -304,7 +304,7 @@ namespace ReportingTasksWinform.Reqests
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://localhost:56028/api/Users/" + idUser + "/" + Global.UserId);
+                WebRequest request = WebRequest.Create("http://localhost:56028/api/Users/Delete/" + idUser + "/" + Global.UserId);
                 request.Method = "DELETE";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)

@@ -30,7 +30,7 @@ export class AddProjectComponent implements OnInit {
     let formGroupConfig = {
       ProjectName: new FormControl("", this.createValidatorArr("ProjectName", 3, 15)),
       ClientName: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
-      TeamLeader: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
+      TeamLeader: new FormControl("", this.createValidatorArr("TeamLeader", 3, 15)),
       DevelopersHours: new FormControl("", this.createValidatorArr("DevelopersHours", 0, 1000)),
       QAhours: new FormControl("", this.createValidatorArr("QAhours", 0, 1000)),
       UiUxHours: new FormControl("", this.createValidatorArr("UiUxHours", 0, 1000)),

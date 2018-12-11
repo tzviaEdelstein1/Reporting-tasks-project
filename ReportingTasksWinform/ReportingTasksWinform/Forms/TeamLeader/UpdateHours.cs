@@ -240,6 +240,7 @@ namespace ReportingTasksWinform
 
                 MessageBox.Show("eror");
             }
+            if(workerToProject!=null)
             numericCountHours.Value = workerToProject.Hours;
         }
         int sumAllActual = 0;

@@ -67,7 +67,7 @@ const routes: Routes = [
 
   { path: '', component: LoginComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
-  { path: 'verifyPassword', component: VerifyPasswordComponent },
+  { path: 'verifyPassword/:id', component: VerifyPasswordComponent },
   { path: 'newPassword/:id', component: NewPasswordComponent },
   {
     path: 'managers', component: ManagersComponent,canActivate:[AuthGuard], children: [

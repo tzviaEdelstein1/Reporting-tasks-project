@@ -165,6 +165,7 @@
             this.comboBoxAllUsers.Name = "comboBoxAllUsers";
             this.comboBoxAllUsers.Size = new System.Drawing.Size(154, 21);
             this.comboBoxAllUsers.TabIndex = 39;
+            this.comboBoxAllUsers.SelectedIndexChanged += new System.EventHandler(this.comboBoxAllUsers_SelectedIndexChanged_1);
             // 
             // EditUser
             // 

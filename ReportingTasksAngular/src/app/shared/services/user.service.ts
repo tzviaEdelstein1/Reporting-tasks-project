@@ -3,8 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/catch';
 import { Project } from '../models/Project';
+import 'rxjs/Rx';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,14 @@ export class UserService {
 
   constructor(private http: HttpClient){ }
 
-  Login(userName: string, password: string):Observable<User>  {
+  Login(userName: string, password: string):Observable<any>  {
+
     //return this.http.get("http://localhost:56028/users/"+userName+"/"+password)
     let url="http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/Login/"+ userName +"/" + password;
     return this.http.get(url)
     .map((res:User)=>res)
-    .catch((r:HttpErrorResponse)=>Observable.throw(r));
+    .catch((r:any)=>'0');
+
 
   }
   GetAllUsers():Observable<User[]>  {
@@ -69,15 +72,18 @@ GetUserById(id:number):Observable<User>{
 
 
 VerifyUserName(userName:string){
-  return this.http.get("http://localhost:56028/api/Users/VerifyEmail/"+userName)
+  debugger;
+  //return this.http.get("http://localhost:56028/api/Users/VerifyEmail/"+userName)
+    return this.http.get("http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/VerifyEmail/"+userName)
   .map((res:any)=>"ok")
   .catch((res:any)=>"error");
  
 }
 
-VerifyPassword(pass:string):Observable<any>
-{
-  return this.http.get("http://localhost:56028/api/Users/VerifyPassword/"+pass)
+VerifyPassword(pass:string,userName:string):Observable<any>
+{ return this.http.get(" http://localhost:8080/ReportingTasksPhp/Controllers/index.php/users/VerifyPassword/"+pass+"/"+userName)
+ 
+  //return this.http.get("http://localhost:56028/api/Users/VerifyPassword/"+pass+"/"+userName)
   .map((res:User)=>res)
   .catch((r:HttpErrorResponse)=>'error');
 }

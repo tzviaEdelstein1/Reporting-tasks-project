@@ -13,7 +13,8 @@ namespace _03_UIL.Controllers
 {
     public class ProjectsController : ApiController
     {
-        // GET: api/Projects
+        [Route("api/Projects/GetAllProjects")]
+        [HttpGet]
         public HttpResponseMessage Get()
 
         {
@@ -32,9 +33,9 @@ namespace _03_UIL.Controllers
             };
         }
         //get the projects by teamleader id
-        [Route("api/Projects/{teamLeaderId}")]
+        [Route("api/Projects/GetProjectsByTeamId/{teamLeaderId}")]
         [HttpGet]
-        public HttpResponseMessage Get(int teamLeaderId)
+        public HttpResponseMessage GetProjectsByTeamId(int teamLeaderId)
         {
             List<Project> projects = LogicProjects.GetAllProjects();
             projects = projects.Where(u => u.TeamLeaderId == teamLeaderId).ToList();
@@ -106,9 +107,10 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<Unknown>>(LogicProjects.GetProjectsAndHoursByTeamLeaderId(teamLeaderId), new JsonMediaTypeFormatter())
             };
         }
-        [Route("api/Projects/{userId}")]
+
+        [Route("api/Projects/AddProject/{userId}")]
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]Project value, [FromUri]int userId)
+        public HttpResponseMessage AddProject([FromBody]Project value, [FromUri]int userId)
         {
             if (ModelState.IsValid)
             {
@@ -149,10 +151,9 @@ namespace _03_UIL.Controllers
 
         }
 
-        //    // PUT: api/Projects
-        [Route("api/Projects/{userId}")]
+        [Route("api/Projects/UpdateProject/{userId}")]
         [HttpPut]
-        public HttpResponseMessage Put([FromBody]Project value, [FromUri]int userId)
+        public HttpResponseMessage UpdateProject([FromBody]Project value, [FromUri]int userId)
         {
 
             if (ModelState.IsValid)
@@ -167,7 +168,7 @@ namespace _03_UIL.Controllers
 
             List<string> ErrorList = new List<string>();
 
-            //if the code reached this part - the user is not valid
+            //if the code reached this part - the Project is not valid
             foreach (var item in ModelState.Values)
                 foreach (var err in item.Errors)
                     ErrorList.Add(err.ErrorMessage);

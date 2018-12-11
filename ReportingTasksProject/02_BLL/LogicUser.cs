@@ -118,31 +118,6 @@ namespace _02_BLL
             return DBaccess.RunReader(query, func);
         }
 
-
-        //public static string GetUser(int id)
-        //{
-        //    string query = $"SELECT user FROM tasks.users WHERE user_id={id}";
-
-        //    Func<MySqlDataReader, User> func = (reader) =>
-        //    {
-        //        User user = new User();
-        //      if(reader.Read())
-        //        {
-
-        //            user.UserName = reader.GetString(1);
-        //            user.UserEmail = reader.GetString(2);
-        //            user.UserKindId = reader.GetInt32(5);
-        //            user.Password = reader.GetString(3);
-        //            user.TeamLeaderId = reader.GetInt32(4);
-
-        //        }
-        //        return user;
-
-        //    };
-
-        //    return DBaccess.RunOneReader(query, func);
-        //}
-
         public static bool RemoveUser(int id, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
@@ -163,7 +138,7 @@ namespace _02_BLL
             }
             else return false;
         }
-        //cccccccccccccccccccccccccccccccc
+
         public static bool UpdateUserIp(int userId)
         {
          
@@ -171,18 +146,11 @@ namespace _02_BLL
                 return DBaccess.RunNonQuery(query) == 1;
   
         }
-        //changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        public static bool UpdateUser(User user, int userId)
-        {
-            //string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
-            //var isAbleTo = DBaccess.RunScalar(queryChecking);
-            //if (isAbleTo != null)
 
-            //{
+        public static bool UpdateUser(User user, int userId)
+        {       
                 string query = $"UPDATE tasks.users SET user_name='{user.UserName}', user_email='{user.UserEmail}',password='{user.Password}',team_leader_id={user.TeamLeaderId},user_kind_id={user.UserKindId},user_ip='{user.UserIP}', verify_password='{user.VerifyPassword}' WHERE user_id={user.UserId}";
                 return DBaccess.RunNonQuery(query) == 1;
-            //}
-            //else return false;
         }
         public static bool UpdatePassword(User user)
         {        

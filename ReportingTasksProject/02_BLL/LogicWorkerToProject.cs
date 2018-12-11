@@ -11,10 +11,30 @@ namespace _02_BLL
 {
     public class LogicWorkerToProject
     {
+        public static List<WorkerToProject> GetAllWorkersToProject()
+        {
+            string query = $"SELECT * FROM tasks.worker_to_project";
+            Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
+            {
+                List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
+                while (reader.Read())
+                {
+                    workerToProjects.Add(new WorkerToProject
+                    {
+                        WorkerToProjectId = reader.GetInt32(0),
+                        UserId = reader.GetInt32(1),
+                        ProjectId = reader.GetInt32(2),
+                        Hours = reader.GetInt32(3),
 
+                    });
+                }
+                return workerToProjects;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
         public static List<Project> GetProjectsbyUserName(string userName)
         {
-
             string query = $"SELECT * FROM tasks.projects p JOIN tasks.worker_to_project w on p.project_id = w.project_id WHERE w.user_id =(SELECT user_id FROM tasks.users WHERE user_name='{userName}')";
             Func<MySqlDataReader, List<Project>> func = (reader) =>
             {
@@ -64,8 +84,8 @@ namespace _02_BLL
 
             return DBaccess.RunReader(query, func);
         }
-        
-            public static List<WorkerToProject> GetWorkersToProjectByProjectId(int projectId)
+
+        public static List<WorkerToProject> GetWorkersToProjectByProjectId(int projectId)
         {
             string query = $"SELECT * FROM tasks.worker_to_project WHERE project_id={projectId}";
             Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
@@ -79,7 +99,7 @@ namespace _02_BLL
                         UserId = reader.GetInt32(1),
                         ProjectId = reader.GetInt32(2),
                         Hours = reader.GetInt32(3),
-   
+
                     });
                 }
                 return workerToProjects;
@@ -110,7 +130,7 @@ namespace _02_BLL
             return DBaccess.RunReader(query, func);
         }
 
-        public static bool AddWorkerToProject(WorkerToProject workerToProject,int userId)
+        public static bool AddWorkerToProject(WorkerToProject workerToProject, int userId)
         {
             string queryChecking = $" select * from tasks.userkind_to_access where(access_id=2 and user_kind_id=(select user_kind_id from tasks.users where (user_id={userId})))";
             var isAbleTo = DBaccess.RunScalar(queryChecking);
@@ -124,28 +144,28 @@ namespace _02_BLL
                 return false;
         }
         public static bool UpdateWorkerToProject(WorkerToProject workerToProject)
-        {//אין בדיקת הרשאות
+        {
             string query = $"UPDATE tasks.worker_to_project SET user_id='{workerToProject.UserId}',project_id='{workerToProject.ProjectId}',hours={workerToProject.Hours} WHERE worker_to_project_id={workerToProject.WorkerToProjectId}";
             return DBaccess.RunNonQuery(query) == 1;
         }
 
         public static bool RemoveWorkerToProject(int id)
-        {//אין בדיקת הרשאות
+        {
             string query = $"DELETE FROM tasks.worker_to_project WHERE  project_id={id}";
             return DBaccess.RunNonQuery(query) == 1;
         }
-       
-        public static bool AddWorkersByTeamLeaderId(int projectId,int userId)
-        {//אין בדיקת הרשאות
+
+        public static bool AddWorkersByTeamLeaderId(int projectId, int userId)
+        {
 
 
-                string query = $" INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`) VALUES ('{userId}','{projectId}')";
-                return DBaccess.RunNonQuery(query) == 1;
+            string query = $" INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`) VALUES ('{userId}','{projectId}')";
+            return DBaccess.RunNonQuery(query) == 1;
 
-       
 
-         
-          
+
+
+
         }
 
         public static List<User> getUsersByTeamLeaderId(int teamLeaderId)

@@ -11,7 +11,7 @@ export class SendEmailService {
 
   SendEmail(body:string)  {
    
-    return this.http.get("http://localhost:56028/api/SendEmail/"+body);
+    return this.http.get("http://localhost:8080/ReportingTasksPhp/Controllers/index.php/SendEmail/SendEmail/"+body);
  
 
   }

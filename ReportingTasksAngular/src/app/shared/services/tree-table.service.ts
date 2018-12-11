@@ -7,17 +7,12 @@ import { TreeTable } from '../models/TreeTable';
   providedIn: 'root'
 })
 export class TreeTableService {
-
   constructor(private http: HttpClient) { }
-
-
   GetTreeTable():Observable<TreeTable[]>  { 
-    debugger;
+
   // return this.http.get("http://localhost:56028/api/TreeTable")
-  return this.http.get("http://localhost:8080/ReportingTasksPhp/Controllers/index.php/treeTable/TreeTable")
+  return this.http.get("http://localhost:8080/ReportingTasksPhp/Controllers/index.php/treeTable/GetTreeTable")
     .map((res:TreeTable[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
-
   }
-
 }

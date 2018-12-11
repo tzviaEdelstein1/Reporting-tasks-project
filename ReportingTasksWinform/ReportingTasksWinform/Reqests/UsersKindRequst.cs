@@ -20,7 +20,7 @@ namespace ReportingTasksWinform.Reqests
             HttpWebResponse response;
             string content;
 
-            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/UserKinds");
+            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/UserKinds/Get");
             response = (HttpWebResponse)request.GetResponse();
             content = new StreamReader(response.GetResponseStream()).ReadToEnd();
             usersKind = JsonConvert.DeserializeObject<List<UserKind>>(content);

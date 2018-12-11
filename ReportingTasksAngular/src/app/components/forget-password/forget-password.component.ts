@@ -37,7 +37,7 @@ export class ForgetPasswordComponent implements OnInit {
       this.userservice.VerifyUserName(this.formGroup.value.userName).subscribe(res => {
         if (res == "ok")
 
-          this.router.navigateByUrl('/verifyPassword');
+          this.router.navigateByUrl('/verifyPassword/'+this.formGroup.value.userName);
         else
           alert("Your user name doesnt exist")
 

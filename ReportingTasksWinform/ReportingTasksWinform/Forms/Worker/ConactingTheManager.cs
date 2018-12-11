@@ -25,7 +25,7 @@ namespace ReportingTasksWinform
             string content;
             try
             {
-                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/" + textBox1.Text);
+                request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/SendEmail/SendEmail/" + textBox1.Text);
                 response = (HttpWebResponse)request.GetResponse();
                 content = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 users = JsonConvert.DeserializeObject<List<User>>(content);

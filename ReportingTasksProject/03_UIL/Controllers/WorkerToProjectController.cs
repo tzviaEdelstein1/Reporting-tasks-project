@@ -30,7 +30,16 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<WorkerToProject>>(LogicWorkerToProject.GetWorkersToProjectByProjectId(projectId), new JsonMediaTypeFormatter())
             };
         }
+        [HttpGet]
+        [Route("api/WorkerToProject/GetAllWorkersToProject")]
+        public HttpResponseMessage GetAllWorkersToProject()
 
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<List<WorkerToProject>>(LogicWorkerToProject.GetAllWorkersToProject(), new JsonMediaTypeFormatter())
+            };
+        }
         [HttpGet]
         [Route("api/WorkerToProject/GetWorkerToProjectByPidAndUid/{userId}/{projectId}")]
         public HttpResponseMessage GetWorkerToProjectByPidAndUid(int userId, int projectId)
@@ -42,21 +51,6 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<WorkerToProject>(LogicWorkerToProject.GetWorkersToProjectByProjectId(projectId).FirstOrDefault(u => u.UserId == userId), new JsonMediaTypeFormatter())
             };
         }
-
-
-
-        //[HttpGet]
-        //[Route("api/WorkerToProject/GetWorkerbyProjectName/{projectname}")]
-        //public HttpResponseMessage GetWorkerbyProjectName(string projectname)
-
-        //{
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new ObjectContent<List<User>>(LogicWorkerToProject.GetWorkerbyProjectName(projectname), new JsonMediaTypeFormatter())
-        //    };
-        //}
-        // POST: api/Users
-        //change route----------------------------------------------------------------------------
         [Route("api/WorkerToProject/AddWorkerToProject/{userId}")]
         public HttpResponseMessage AddWorkerToProject([FromBody]WorkerToProject value, [FromUri]int userId)
         {
@@ -81,8 +75,9 @@ namespace _03_UIL.Controllers
             };
 
         }
-        // PUT: api/ WorkerToProject
-        public HttpResponseMessage Put([FromBody]WorkerToProject value)
+        [HttpPut]
+        [Route("api/WorkerToProject/UpdateWorkerToProject")]
+        public HttpResponseMessage UpdateWorkerToProject([FromBody]WorkerToProject value)
         {
 
             if (ModelState.IsValid)
@@ -97,7 +92,7 @@ namespace _03_UIL.Controllers
 
             List<string> ErrorList = new List<string>();
 
-            //if the code reached this part - the user is not valid
+            //if the code reached this part - the Project is not valid
             foreach (var item in ModelState.Values)
                 foreach (var err in item.Errors)
                     ErrorList.Add(err.ErrorMessage);
@@ -106,16 +101,6 @@ namespace _03_UIL.Controllers
             {
                 Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
             };
-        }
-        // DELETE: api/WorkerToProject/5
-        public HttpResponseMessage Delete(int id)
-        {
-            return (LogicWorkerToProject.RemoveWorkerToProject(id)) ?
-                    new HttpResponseMessage(HttpStatusCode.OK) :
-                    new HttpResponseMessage(HttpStatusCode.BadRequest)
-                    {
-                        Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
-                    };
         }
 
 

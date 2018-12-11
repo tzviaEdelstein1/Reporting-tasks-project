@@ -55,14 +55,14 @@ debugger;
 console.log("rrrrrrrr",this.pass);
    
     console.log(this.formGroup.value);
-    console.log(this.formGroup.controls);
-    alert(this.formGroup.status);
+    console.log(this.formGroup.controls); 
     try
      {
       this.userservice.Login(this.formGroup.value.userName,this.pass).subscribe(res => {
         console.warn(res);
-        if (res != null) {
-          alert("login succees");
+        if(res=="0")
+        { alert("Login failed!!!");}
+       else if (res != null) {
           this.newUser=res;
           console.warn("new", this.newUser);
           console.warn("kind"+res.UserKindId);
@@ -83,9 +83,6 @@ console.log("rrrrrrrr",this.pass);
     catch (e) {
       alert("Login failed!!!");
     }
-
-
-
 
   }
 

@@ -88,5 +88,10 @@ namespace ReportingTasksWinform.Forms.Manager
             }
 
         }
+
+        private void comboBoxAllUsers_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

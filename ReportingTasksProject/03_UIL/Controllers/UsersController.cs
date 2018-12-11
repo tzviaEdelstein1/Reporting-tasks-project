@@ -15,12 +15,11 @@ namespace _03_UIL.Controllers
     public class UsersController : ApiController
     {
         static User user = new User();
-        static string body;
         [HttpGet]
         [Route("api/Users/GetAllUsers")]
         public HttpResponseMessage GetAllUsers()
 
-       {
+        {
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ObjectContent<List<User>>(LogicUser.GetAllUsers(), new JsonMediaTypeFormatter())
@@ -77,7 +76,7 @@ namespace _03_UIL.Controllers
 
             if (user != null)
             {
-               
+
 
                 SendEmail(user);
                 return new HttpResponseMessage(HttpStatusCode.OK);
@@ -91,15 +90,15 @@ namespace _03_UIL.Controllers
 
         [HttpGet]
         [Route("api/Users/VerifyPassword/{password}/{userName}")]
-        public HttpResponseMessage VerifyPassword(string password,string userName)
+        public HttpResponseMessage VerifyPassword(string password, string userName)
         {
-          List<User>users=LogicUser.GetAllUsers();
-            User user=users.FirstOrDefault(u => u.UserName == userName);
+            List<User> users = LogicUser.GetAllUsers();
+            User user = users.FirstOrDefault(u => u.UserName == userName);
             var verifyPassword = user.VerifyPassword;
             if (password == verifyPassword)
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new ObjectContent<User>(user,new JsonMediaTypeFormatter())
+                    Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
                 };
             else
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
@@ -113,8 +112,8 @@ namespace _03_UIL.Controllers
             {
                 string subject = "Email Subject";
 
-                user.VerifyPassword= CreatePassword(6); ;
-                LogicUser.UpdateUser(user,user.UserId);
+                user.VerifyPassword = CreatePassword(6); ;
+                LogicUser.UpdateUser(user, user.UserId);
                 string FromMail = "reporting.manage@gmail.com";
                 string emailTo = email;
                 MailMessage mail = new MailMessage();
@@ -135,8 +134,6 @@ namespace _03_UIL.Controllers
                 var x = ex.Message;
             }
         }
-        // GET: api/Users/wewe/11234
-        //שיניתי את הניתוב---------------------------------------------------------
         [HttpGet]
         [Route("api/users/Login/{userName}/{password}")]
         public HttpResponseMessage Login(string userName, string password)
@@ -153,7 +150,6 @@ namespace _03_UIL.Controllers
             }
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
         }
-        // GET: api/Users/wewe/11234
         [HttpPut]
         [Route("api/users/Logout/{userId}")]
         public HttpResponseMessage Logout(int userId)
@@ -165,8 +161,6 @@ namespace _03_UIL.Controllers
                           Content = new ObjectContent<String>("Can not update in DB", new JsonMediaTypeFormatter())
                       };
         }
-        //change route-----------------------------------------------------------------------
-        // POST: api/Users
         [HttpPost]
         [Route("api/Users/AddUser/{userId}")]
         public HttpResponseMessage AddUser([FromBody]User value, [FromUri]int userId)
@@ -195,8 +189,8 @@ namespace _03_UIL.Controllers
         }
 
         [HttpPut]
-        [Route("api/Users/{userId}")]
-        public HttpResponseMessage Put([FromBody]User value, [FromUri]int userId)
+        [Route("api/Users/UpdateUser/{userId}")]
+        public HttpResponseMessage UpdateUser([FromBody]User value, [FromUri]int userId)
         {
 
             if (ModelState.IsValid)
@@ -248,9 +242,8 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
             };
         }
-        //    // DELETE: api/Users/5
         [HttpDelete]
-        [Route("api/Users/{id}/{userId}")]
+        [Route("api/Users/Delete/{id}/{userId}")]
         public HttpResponseMessage Delete(int id, int userId)
         {
             return (LogicUser.RemoveUser(id, userId)) ?
@@ -260,9 +253,9 @@ namespace _03_UIL.Controllers
                         Content = new ObjectContent<String>("Can not remove from DB", new JsonMediaTypeFormatter())
                     };
         }
-   [HttpGet]
+        [HttpGet]
         [Route("api/Users/GetUserById/{userId}")]
-     
+
         public HttpResponseMessage GetUserById(int userId)
         {
             User user = new User();

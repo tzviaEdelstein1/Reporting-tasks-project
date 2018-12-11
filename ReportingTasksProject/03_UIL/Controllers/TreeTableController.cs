@@ -14,7 +14,9 @@ namespace _03_UIL.Controllers
     public class TreeTableController : ApiController
     {
 
-        // GET: api/TreeTable
+        
+        [HttpGet]
+        [Route("api/TreeTable/GetTreeTable")]
         public HttpResponseMessage Get()
 
         {

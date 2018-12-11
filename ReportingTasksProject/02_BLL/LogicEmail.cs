@@ -9,9 +9,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-
 namespace _02_BLL
-//הוספתי
 {
     public class LogicEmail
     {
@@ -88,7 +86,6 @@ namespace _02_BLL
 
                 string FromMail = "reporting.manage@gmail.com";
                 string emailTo = to;
-                // users.FirstOrDefault(user => user.UserKindId == 1).UserEmail;
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 

@@ -16,12 +16,11 @@ namespace _03_UIL.Controllers
 
 
         [HttpGet]
-        [Route("api/SendEmail/{emailBody}")]
+        [Route("api/SendEmail/SendEmail/{emailBody}")]
         public void SendEmail(string emailBody)
-        {//לטפל בזה שיגיע למנהל עצמו...
-            //List<User>users=LogicSendEmail.SendEmail(userId);
-
-            _02_BLL.LogicEmail.SendEmail("Email Subject", emailBody, "zvia.edl@gmail.com");
+        {
+           User user =LogicUser.GetAllUsers().FirstOrDefault(u => u.UserKindId == 1);
+            _02_BLL.LogicEmail.SendEmail("Email Subject", emailBody, user.UserEmail);
         }
 
 

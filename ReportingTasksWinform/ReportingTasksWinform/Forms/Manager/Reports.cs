@@ -532,7 +532,7 @@ namespace ReportingTasksWinform.Forms.Manager
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
-            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/TreeTable");
+            request = (HttpWebRequest)WebRequest.Create(@"http://localhost:56028/api/TreeTable/GetTreeTable");
             response = (HttpWebResponse)request.GetResponse();
             if (response.StatusCode == HttpStatusCode.OK)
             {

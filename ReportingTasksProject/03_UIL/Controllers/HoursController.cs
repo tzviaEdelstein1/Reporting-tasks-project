@@ -13,39 +13,11 @@ namespace _03_UIL.Controllers
     public class HoursController : ApiController
     {
 
-        // Get - get actual hours count to project requierd data: * ProjectId If the ProjectId is exist, we will return all the hours that belong to it, Else - we will return matching error.
-        //לבדוק אם משתמשים בפונקציה????????????????????????????
-        //[HttpGet]
-        //[Route("api/GetActualHoursByProjectId/{projectId}")]
-        //public HttpResponseMessage GetActualHoursByProjectId(string projectId)
 
-        //{//- לבדוק מחזיר  null למה?
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new ObjectContent<List<ActualHours>>(LogicHours.GetActualHoursByProjectId(projectId), new JsonMediaTypeFormatter())
-        //    };
-        //}
-
-
-        // Get - get hours on month to user requierd data: * UserId If the UserId is exist, we will return all the hours that belong to him, Else - we will return matching error.
-        //צריך לשנות ברידמי ולבדוק לבדוק אם משתמשים????????????
-        //[HttpGet]
-        //[Route("api/GetActualHoursByUserIdOnMonth/{UserName}/{month}/{year}")]
-        //public HttpResponseMessage GetActualHoursByUserIdOnMonth(string UserName, int month,int year)
-
-        //{
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new ObjectContent<List<ActualHours>>(LogicHours.GetActualHoursByUserIdOnMonth(UserName, month,year), new JsonMediaTypeFormatter())
-        //    };
-        //}
-
-            //change route----------------------------------------------
-        // POST: api/Hours
         [HttpPost]
         [Route("api/Hours/AddActualHours/{userId}")]
         public HttpResponseMessage AddActualHours([FromBody]ActualHours value,[FromUri]int userId)
-        {//לבדוק אם עובד
+        {
             if (ModelState.IsValid)
             {
                 return (LogicHours.AddActualHours(value, userId)) ?
@@ -58,7 +30,7 @@ namespace _03_UIL.Controllers
 
             List<string> ErrorList = new List<string>();
 
-            //if the code reached this part - the user is not valid
+            //if the code reached this part - the ActualHours is not valid
             foreach (var item in ModelState.Values)
                 foreach (var err in item.Errors)
                     ErrorList.Add(err.ErrorMessage);
@@ -69,19 +41,7 @@ namespace _03_UIL.Controllers
             };
 
         }
-        //לבדוק אם התשמשנו?????????????????????????????????
-        //Get - get hours to project by user kind (Example:get all the QA hours that have done to project 1) requierd data: * ProjectId * UserKindId 
-        //We will select and return all the hours that belongs to this project (project id is equals to ProjectId) and their user(get it by user id) kind is UserKindId. If we wont find we will return matching error;
-        //[HttpGet]
-        //[Route("api/GetActualHoursByUserKindToProject/{ProjectName}/{UserKindName}")]
-        //public HttpResponseMessage GetActualHoursByUserKindToProject(string ProjectName, string UserKindName)
 
-        //{
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new ObjectContent<List<ActualHours>>(LogicHours.GetActualHoursByUserKindToProject(ProjectName, UserKindName), new JsonMediaTypeFormatter())
-        //    };
-        //}
 
 
     }
