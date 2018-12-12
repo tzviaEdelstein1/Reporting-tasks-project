@@ -7,7 +7,7 @@ import { UserService } from '../../shared/services/user.service';
 import { ProjectService } from '../../shared/services/project.service';
 import { WorkerToProjectService } from '../../shared/services/worker-to-project.service';
 import { WorkerToProject } from '../../shared/models/WorkerToProject';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -25,7 +25,7 @@ export class AddProjectComponent implements OnInit {
   teamLeaderId: number;
   currentId: number;
   checkboxes: any[] = [];
-  constructor(private userservice: UserService, private projectService: ProjectService, private workerToProjectService: WorkerToProjectService,private messageService: MessageService) {
+  constructor(private userservice: UserService, private projectService: ProjectService, private workerToProjectService: WorkerToProjectService, private messageService: MessageService) {
 
     let formGroupConfig = {
       ProjectName: new FormControl("", this.createValidatorArr("ProjectName", 3, 15)),
@@ -79,8 +79,8 @@ export class AddProjectComponent implements OnInit {
   error: any = { isError: false, errorMessage: '' };
   ValidateStartDate() {
     debugger;
-    const today=new Date();
-    if (new Date(this.formGroup.controls['BeginingDate'].value) < new Date(today.setDate(today.getDate()-1))) {
+    const today = new Date();
+    if (new Date(this.formGroup.controls['BeginingDate'].value) < new Date(today.setDate(today.getDate() - 1))) {
       this.starterror = {
         isError: true, errorMessage: 'Start Date cant before today'
       }
@@ -109,7 +109,7 @@ export class AddProjectComponent implements OnInit {
   workerToProject: WorkerToProject;
   Submit() {
     debugger;
-    
+
     this.currentId = Number.parseInt(localStorage.getItem("currentUser"));
     console.log("currentId", this.currentId);
     console.log("this.formGroup.value.ProjectName", this.formGroup.value.ProjectName);
@@ -127,8 +127,9 @@ export class AddProjectComponent implements OnInit {
     this.newProject.FinishDate = this.formGroup.value.FinishDate;
 
     console.log("newproj", this.newProject);
-
+    debugger;
     this.projectService.AddProject(this.newProject, this.currentId).subscribe(res => {
+      debugger;
       console.log("res", res);
       this.showSuccess();
       if (this.checkboxes) {
@@ -144,6 +145,6 @@ export class AddProjectComponent implements OnInit {
 
   }
   showSuccess() {
-    this.messageService.add({severity:'success', summary: 'Success Message', detail:'Project successfully added'});
-}
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Project successfully added' });
+  }
 }

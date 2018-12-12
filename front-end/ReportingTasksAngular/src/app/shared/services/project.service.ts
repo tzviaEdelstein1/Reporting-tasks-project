@@ -13,6 +13,7 @@ export class ProjectService {
   constructor(private http:HttpClient,private globalService:GlobalService) { }
 
   AddProject(project:Project,userId:number):Observable<any>{
+    debugger;
     // return this.http.post("http://localhost:56028/api/Projects/"+userId,project).map((res:Project)=>res)
     return this.http.post(this.globalService.path+"Projects/AddProject"+userId,project).map((res:Project)=>res)
     .catch((r:any)=>"error");
@@ -73,6 +74,7 @@ export class ProjectService {
   }
 UpdateProject(project:Project,id:number)
 {
+
  // return this.http.put("http://localhost:56028/api/Projects/"+id,project);
   return this.http.put(this.globalService.path+"Projects/UpdateProject/"+id,project);
 }
@@ -81,8 +83,3 @@ UpdateProject(project:Project,id:number)
   
 
 }
-
-
-
-
-
