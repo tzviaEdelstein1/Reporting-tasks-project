@@ -41,7 +41,12 @@
        ```
        PS: don't forgot to replace my-gmail-id and my-gmail-password in above code.
        Also remember to restart the server using the XAMMP control panel so the changes take effect.
-
+## Using libraries
+   * in angular platform we use:
+     * [primeng] (https://www.primefaces.org/primeng/#/setup);
+     * [bootsrap] (https://getbootstrap.com/docs/3.3/getting-started/);
+   * in winform platform we use:
+     * [Teleric] (https://docs.telerik.com/devtools/winforms/getting-started);  
 
 ## System diagram:
 ![picture](step1.png)
@@ -251,7 +256,7 @@
         * currentUserId
     If the user that his id equal to the currentUserId has the access to delete  WorkerToProject records, and a WorkerToProject with the same id to the WorkerToProject id is found, we will delete this WorkerToProject from the db, Else - we will return matching error.
 * SendEmail controller:
- * Get -send email     
+   * Get -send email     
 ***
 ## WinForms + Angular
 ![picture](step2.png)   
