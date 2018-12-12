@@ -43,10 +43,10 @@
        Also remember to restart the server using the XAMMP control panel so the changes take effect.
 ## Using libraries
    * in angular platform we use:
-     * [primeng] (https://www.primefaces.org/primeng/#/setup);
-     * [bootsrap] (https://getbootstrap.com/docs/3.3/getting-started/);
+     * [primeng](https://www.primefaces.org/primeng/#/setup)
+     * [bootsrap] (https://getbootstrap.com/docs/3.3/getting-started/)
    * in winform platform we use:
-     * [Teleric] (https://docs.telerik.com/devtools/winforms/getting-started);  
+     * [Teleric] (https://docs.telerik.com/devtools/winforms/getting-started)  
 
 ## System diagram:
 ![picture](step1.png)
