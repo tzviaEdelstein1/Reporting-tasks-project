@@ -1,4 +1,5 @@
 <?php
+
 require_once '../Models/User.php';
 require_once '../Models/Access.php';
 require_once '../Models/ActualHours.php';
@@ -23,13 +24,18 @@ if ($connection->connect_errno) {
 
 class db_access {
 
-   static function run_non_query($query) {
+    static function run_non_query($query, $flag = 0) {
         global $connection;
         try {
             $connection->query($query);
-            echo "Newly Created Author Id:" . $connection->insert_id;
-//            return $connection->insert_id;
-        } catch (Exception $ex) {
+
+            //echo "Newly Created Author Id:" . $connection->insert_id;
+            if ($flag == 1)
+                return $connection->insert_id;
+            else
+            { echo 1;}
+        } 
+        catch (Exception $ex) {
             echo $ex;
         }
     }
@@ -42,38 +48,38 @@ class db_access {
         $ClientModel = array();
         $i = 0;
         while ($singleRowFromQuery = $resultObj->fetch_array(MYSQLI_ASSOC)) {
-          
+
             switch ($model) {
                 case "User":
-                  array_push($objects,new User($singleRowFromQuery));
+                    array_push($objects, new User($singleRowFromQuery));
                     break;
                 case "Access":
-               array_push($objects,new Access($singleRowFromQuery));
+                    array_push($objects, new Access($singleRowFromQuery));
                     break;
                 case "ActualHours":
-                     array_push($objects,new ActualHours($singleRowFromQuery));
+                    array_push($objects, new ActualHours($singleRowFromQuery));
                     break;
                 case "DetailsWorkerInProjects":
-                  array_push($objects,new DetailsWorkerInProjects($singleRowFromQuery));
+                    array_push($objects, new DetailsWorkerInProjects($singleRowFromQuery));
                     break;
                 case "Project":
-                   array_push($objects,new Project($singleRowFromQuery));
+                    array_push($objects, new Project($singleRowFromQuery));
                     break;
                 case "TreeTable":
-                    array_push($objects,new TreeTable($singleRowFromQuery));
+                    array_push($objects, new TreeTable($singleRowFromQuery));
                     break;
                 case "Unknown":
-            array_push($objects,new Unknown($singleRowFromQuery));
+                    array_push($objects, new Unknown($singleRowFromQuery));
                     break;
                 case "UserKind":
-                    array_push($objects,new UserKind($singleRowFromQuery));
+                    array_push($objects, new UserKind($singleRowFromQuery));
                     break;
                 case "UserKindToAccess":
-                      array_push($objects,new UserKindToAccess($singleRowFromQuery));
-                 
+                    array_push($objects, new UserKindToAccess($singleRowFromQuery));
+
                     break;
                 case "WorkerToProject":
-                      array_push($objects,new WorkerToProject($singleRowFromQuery));
+                    array_push($objects, new WorkerToProject($singleRowFromQuery));
                     break;
                 default:
                     break;

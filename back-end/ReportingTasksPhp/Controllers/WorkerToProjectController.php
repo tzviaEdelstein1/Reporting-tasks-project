@@ -4,7 +4,11 @@ require_once '../Connection/DbAccess.php';
 
 //require'../Models/User.php';
 function runFunctionWorkerToProject($method, $params, $entityBody) {
+
     switch ($method) {
+        case "GetAllWorkersToProject":
+            GetAllWorkersToProject();
+            break;
         case "GetProjectsbyUserName":GetProjectsbyUserName($params[6]);
             break;
         case "GetWorkersToProjectByProjectId":GetWorkersToProjectByProjectId($params[6]);
@@ -32,7 +36,7 @@ function GetWorkersToProjectByProjectId($projectId) {
 
 function GetWorkerToProjectByPidAndUid($projectId, $userId) {
     $query = "SELECT * FROM tasks.worker_to_project WHERE project_id='$projectId' AND user_id='$userId'";
-    echo json_encode(db_access::run_reader($query, "WorkerToProject"));
+    echo json_encode(db_access::run_reader($query, "WorkerToProject")[0]);
 }
 
 function AddWorkerToProject($entityBody) {
@@ -56,4 +60,9 @@ function UpdateWorkerToProject($entityBody){
 
       db_access::run_non_query($query);
       echo  0;
+}
+
+function GetAllWorkersToProject(){
+    $query = "SELECT * FROM tasks.worker_to_project";
+    echo json_encode(db_access::run_reader($query, "WorkerToProject"));
 }

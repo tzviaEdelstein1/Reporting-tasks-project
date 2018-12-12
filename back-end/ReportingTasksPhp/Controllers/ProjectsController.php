@@ -7,8 +7,8 @@ require_once '../Models/User.php';
 function runFunctionProject($method, $params, $entityBody) {
 
     switch ($method) {
-        case "getAllProjects":
-            getAllProjects();
+        case "GetAllProjects":
+            GetAllProjects();
             break;
         case "GetActiveProjects":
             GetActiveProjects();
@@ -40,7 +40,7 @@ function runFunctionProject($method, $params, $entityBody) {
     }
 }
 
-function getAllProjects() {
+function GetAllProjects() {
 
 
     $query = "SELECT * FROM tasks.projects";
@@ -103,9 +103,10 @@ function GetProjectsAndHoursByTeamLeaderId($teamId) {
 }
 
 function AddProject($entityBody) {
+    
     //echo $entityBody;
     $decoded_input = json_decode($entityBody, true);
-
+    print_r($decoded_input);
     $ProjectName = $decoded_input["ProjectName"];
     $ClientName = $decoded_input["ClientName"];
     $TeamLeaderId = $decoded_input["TeamLeaderId"];
@@ -118,7 +119,8 @@ function AddProject($entityBody) {
 
 
     $query2 = "INSERT INTO `tasks`.`projects` (`project_name`, `client_name`, `team_leader_id`, `develope_hours`, `qa_hours`, `ui/ux_hours`, `start_date`, `finish_date`, `is_active`) VALUES ('$ProjectName', '$ClientName', '$TeamLeaderId', '$DevelopersHours', '$QaHours', '$UiUxHours', '$StartDate', '$FinishDate', '$IsActive');";
-    $newProjectId=  db_access::run_non_query($query2);
+    echo $query2;
+    $newProjectId=  db_access::run_non_query($query2,1);
  
     $query3 = "SELECT user_id FROM tasks.users WHERE team_leader_id='$TeamLeaderId'";
     $usersToProject = json_encode(db_access::run_reader($query3, "User"));
@@ -134,7 +136,7 @@ function AddProject($entityBody) {
     }
 }
 function UpdateProject($entityBody){
-   
+   file_put_contents("test.txt","upppppppppppppppppdate"+"  ");
     $decoded_input = json_decode($entityBody, true);
     
     $ProjectId=$decoded_input["ProjectId"];

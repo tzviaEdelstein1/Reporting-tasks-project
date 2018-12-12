@@ -1,7 +1,7 @@
 <?php
 require_once '../Connection/DbAccess.php';
 function runFunctionUserKinds($method, $params,$entityBody) {
-    echo $method;
+
     switch ($method) {
         case "Get":
             Get();          
