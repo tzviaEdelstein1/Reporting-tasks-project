@@ -9,7 +9,7 @@ class Unknown implements JsonSerializable {
 
     public function __construct($sqlRaw_) {
 
-//ל נבדק על כל הסוגיםא 
+
         $this->Id = $sqlRaw_['id'];
         $this->Name = $sqlRaw_['obj_name'];
         $this->Hours = $sqlRaw_['hours'];

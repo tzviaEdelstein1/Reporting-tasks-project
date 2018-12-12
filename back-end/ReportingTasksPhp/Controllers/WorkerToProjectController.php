@@ -2,7 +2,6 @@
 
 require_once '../Connection/DbAccess.php';
 
-//require'../Models/User.php';
 function runFunctionWorkerToProject($method, $params, $entityBody) {
 
     switch ($method) {
@@ -48,6 +47,7 @@ function AddWorkerToProject($entityBody) {
     db_access::run_non_query($query);
 }
 function UpdateWorkerToProject($entityBody){
+   
      $decoded_input = json_decode($entityBody, true);
     
     $WorkerToProjectId=$decoded_input["WorkerToProjectId"];

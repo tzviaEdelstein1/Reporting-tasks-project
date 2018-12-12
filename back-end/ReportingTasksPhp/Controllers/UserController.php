@@ -3,8 +3,6 @@
 $user;
 
 require_once '../Connection/DbAccess.php';
-require '../Models/Globaly.php';
-//require'../Models/User.php';
 function runFunctionUser($method, $params, $entityBody) {
     switch ($method) {
         case "GetAllUsers":GetAllUsers();
@@ -15,7 +13,7 @@ function runFunctionUser($method, $params, $entityBody) {
             break;
         case "VerifyEmail":VerifyEmail($params[6]);
             break;
-        case "VerifyPassword":VerifyPassword($params[6],$params[7]);
+        case "VerifyPassword":VerifyPassword($params[6], $params[7]);
             break;
         case "GetUserById":GetUserById($params[6]);
             break;
@@ -31,7 +29,7 @@ function runFunctionUser($method, $params, $entityBody) {
             DeleteUser($params[6]);
             break;
         case "EditPassword":
-            file_put_contents("test.txt", "EditPassword" );
+            file_put_contents("test.txt", "EditPassword");
             EditPassword($entityBody);
             break;
         case "CheckUserIp":
@@ -45,38 +43,38 @@ function runFunctionUser($method, $params, $entityBody) {
             break;
     }
 }
+
 function GetAllUsers() {
     $query = "SELECT * FROM tasks.users";
     echo json_encode(db_access::run_reader($query, "User"));
 }
 
-function GetTeamLeaders() 
-{
+function GetTeamLeaders() {
     $query = "SELECT * FROM tasks.users WHERE user_kind_id=2";
     echo json_encode(db_access::run_reader($query, "User"));
 }
+
 function GetUsersForTeamLeader($teamLeaderId) {
     $query = "SELECT * FROM tasks.users where team_leader_id='$teamLeaderId'";
-      echo json_encode(db_access::run_reader($query, "User"));
+    echo json_encode(db_access::run_reader($query, "User"));
 }
+
 function VerifyEmail($userName) {
 
     $query = "SELECT * FROM tasks.users where user_name='$userName'";
     $GLOBALS["user"] = json_encode(db_access::run_reader($query, "User")[0]);
     $userJson = $GLOBALS["user"];
-  
-       
-    sendEmailTo($userJson);
 
+
+    sendEmailTo($userJson);
 }
+
 function sendEmailTo($userJson) {
     $userJson = json_decode($GLOBALS["user"], true);
     $emailTo = $userJson["UserEmail"];
-  
-//    $userJson["VerifyPassword"] = generatePassword();
-$userJson["VerifyPassword"] = generatePassword();
-mail($emailTo, "My subject",$userJson["VerifyPassword"]);
-//file_put_contents("test.txt", $userJson["VerifyPassword"] );
+    $userJson["VerifyPassword"] = generatePassword();
+    mail($emailTo, "My subject", $userJson["VerifyPassword"]);
+
     UpdateUserVerifyPassword($userJson);
 }
 
@@ -88,26 +86,25 @@ function generatePassword($length = 8) {
         $index = rand(0, $count - 1);
         $result .= mb_substr($chars, $index, 1);
     }
-//    echo $result;
+
     return $result;
 }
 
-
 function VerifyPassword($password, $userName) {
-    
-   $query = "SELECT * FROM tasks.users WHERE user_name='$userName'";
-   $user=json_encode(db_access::run_reader($query, "User")[0]);
-   $userJson= json_decode($user,true);
-   if($password==$userJson["VerifyPassword"])
-   {
-       file_put_contents("test.txt", "iffff" );
-       echo $user;
-   }
+
+    $query = "SELECT * FROM tasks.users WHERE user_name='$userName'";
+    $user = json_encode(db_access::run_reader($query, "User")[0]);
+    $userJson = json_decode($user, true);
+    if ($password == $userJson["VerifyPassword"]) {
+        file_put_contents("test.txt", "iffff");
+        echo $user;
+    }
 }
+
 function UpdateUserVerifyPassword($entityBody) {
     $decoded_input = $entityBody;
     $UserId = $decoded_input["UserId"];
-          
+
 
     $UserName = $decoded_input["UserName"];
     $UserEmail = $decoded_input["UserEmail"];
@@ -116,12 +113,12 @@ function UpdateUserVerifyPassword($entityBody) {
     $VerifyPassword = $decoded_input["VerifyPassword"];
 
     $query = "UPDATE `tasks`.`users` SET `user_name` = '$UserName', `user_email` = '$UserEmail', `team_leader_id` = '$TeamLeaderId', `user_kind_id` = '$UserKindId', verify_password='$VerifyPassword' WHERE (`user_id` = '$UserId')";
-   db_access::run_non_query($query);
+    db_access::run_non_query($query);
 }
-function AddUser($entityBody)
-{
-     $decoded_input = json_decode($entityBody, true);    
-    
+
+function AddUser($entityBody) {
+    $decoded_input = json_decode($entityBody, true);
+
     $UserName = $decoded_input["UserName"];
     $UserEmail = $decoded_input["UserEmail"];
     $Password = $decoded_input["Password"];
@@ -130,35 +127,35 @@ function AddUser($entityBody)
 
 
     $query = "INSERT INTO tasks.users(`user_name`, `user_email`, `password`, `team_leader_id`, `user_kind_id`) VALUES ('$UserName','$UserEmail','$Password',$TeamLeaderId,$UserKindId)";
-    echo db_access::run_non_query($query,1);
+    echo db_access::run_non_query($query, 1);
 }
+
 function GetUserById($userId) {
-   
+
     $query = "SELECT * FROM tasks.users WHERE user_id='$userId'";
     $user = db_access::run_reader($query, "User");
-    echo json_encode($user);
+    echo json_encode($user[0]);
     if ($user != NULL) {
         return $user[0];
     }
 }
-function Login($userName,$password) {
-    if($userName and $password)
-{
-//    $password = hash('sha256',$password);
- $query = "SELECT * FROM tasks.users WHERE user_name='$userName' and password='$password'";
-   $user=db_access::run_reader($query, "User")[0]; 
-echo json_encode($user);
 
+function Login($userName, $password) {
+    if ($userName and $password) {
+
+        $query = "SELECT * FROM tasks.users WHERE user_name='$userName' and password='$password'";
+        $user = db_access::run_reader($query, "User")[0];
+        echo json_encode($user);
     }
 }
 
 function UpdateUser($entityBody) {
-    
+
     $decoded_input = json_decode($entityBody, true);
-   
+
     $UserId = $decoded_input["UserId"];
 
-//    file_put_contents("test.txt", $UserId+" " );
+
     $UserName = $decoded_input["UserName"];
     $UserEmail = $decoded_input["UserEmail"];
 
@@ -166,12 +163,11 @@ function UpdateUser($entityBody) {
     $UserKindId = $decoded_input["UserKindId"];
 
 
-    
+
     $query = "UPDATE `tasks`.`users` SET `user_name` = '$UserName', `user_email` = '$UserEmail', `team_leader_id` = '$TeamLeaderId', `user_kind_id` = '$UserKindId' WHERE (`user_id` = '$UserId');";
-    //echo $query;
-   
+
+
     db_access::run_non_query($query);
-    
 }
 
 function DeleteUser($id) {
@@ -184,10 +180,9 @@ function DeleteUser($id) {
     echo 0;
 }
 
-//לא בדקתי עם אנגולר
 function EditPassword($entityBody) {
-    
-    file_put_contents("test.txt", "EditPass"+" " );
+
+    file_put_contents("test.txt", "EditPass" + " ");
     $decoded_input = json_decode($entityBody, true);
 
     $UserId = $decoded_input["UserId"];
@@ -195,9 +190,8 @@ function EditPassword($entityBody) {
     $query = "UPDATE tasks.users SET password='$Password' WHERE user_id='$UserId'";
 
     db_access::run_non_query($query);
-  
 }
-//לא נבדק בקליינט---רק לווינפורם 
+
 function CheckUserIp($ip) {
     $query = "SELECT * FROM tasks.users WHERE user_ip=$ip";
     $user = db_access::run_reader($query, "User");
@@ -210,23 +204,3 @@ function CheckUserIp($ip) {
 function Logout($param) {
     //רק בווינפורם לכן לא עשינו לבינתיים
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -32,11 +32,11 @@ function runFunctionProject($method, $params, $entityBody) {
             GetProjectsAndHoursByTeamLeaderId($params[6]);
             break;
         case "AddProject":
-             AddProject($entityBody);
-             break;
-         case "UpdateProject":
-             UpdateProject($entityBody);
-             break;
+            AddProject($entityBody);
+            break;
+        case "UpdateProject":
+            UpdateProject($entityBody);
+            break;
     }
 }
 
@@ -103,10 +103,9 @@ function GetProjectsAndHoursByTeamLeaderId($teamId) {
 }
 
 function AddProject($entityBody) {
-    
-    //echo $entityBody;
+
+   
     $decoded_input = json_decode($entityBody, true);
-    print_r($decoded_input);
     $ProjectName = $decoded_input["ProjectName"];
     $ClientName = $decoded_input["ClientName"];
     $TeamLeaderId = $decoded_input["TeamLeaderId"];
@@ -116,31 +115,29 @@ function AddProject($entityBody) {
     $StartDate = $decoded_input["StartDate"];
     $FinishDate = $decoded_input["FinishDate"];
     $IsActive = 1;
-
-
     $query2 = "INSERT INTO `tasks`.`projects` (`project_name`, `client_name`, `team_leader_id`, `develope_hours`, `qa_hours`, `ui/ux_hours`, `start_date`, `finish_date`, `is_active`) VALUES ('$ProjectName', '$ClientName', '$TeamLeaderId', '$DevelopersHours', '$QaHours', '$UiUxHours', '$StartDate', '$FinishDate', '$IsActive');";
-    echo $query2;
-    $newProjectId=  db_access::run_non_query($query2,1);
- 
+
+    $newProjectId = db_access::run_non_query($query2, 1);
+
     $query3 = "SELECT user_id FROM tasks.users WHERE team_leader_id='$TeamLeaderId'";
     $usersToProject = json_encode(db_access::run_reader($query3, "User"));
-    $arrUsers=json_decode($usersToProject, true);
-    $i=0;
-    while ($i<count($arrUsers))
-    {
-    $userId=$arrUsers[$i]["UserId"];
-    $addWorkerQuery="INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`, `hours`) VALUES ('$userId', '$newProjectId', '0');";
-    echo  db_access::run_non_query($addWorkerQuery);
-    $i++;
-    
+    $arrUsers = json_decode($usersToProject, true);
+    $i = 0;
+    while ($i < count($arrUsers)) {
+        $userId = $arrUsers[$i]["UserId"];
+        $addWorkerQuery = "INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`, `hours`) VALUES ('$userId', '$newProjectId', '0');";
+        echo db_access::run_non_query($addWorkerQuery);
+        $i++;
     }
 }
-function UpdateProject($entityBody){
-   file_put_contents("test.txt","upppppppppppppppppdate"+"  ");
+
+function UpdateProject($entityBody) {
+
     $decoded_input = json_decode($entityBody, true);
-    
-    $ProjectId=$decoded_input["ProjectId"];
-//    file_put_contents("test.txt", __LINE__+"  ");
+
+    $ProjectId = $decoded_input["ProjectId"];
+
+
     $ProjectName = $decoded_input["ProjectName"];
     $ClientName = $decoded_input["ClientName"];
     $TeamLeaderId = $decoded_input["TeamLeaderId"];
@@ -150,14 +147,16 @@ function UpdateProject($entityBody){
     $StartDate = $decoded_input["StartDate"];
     $FinishDate = $decoded_input["FinishDate"];
     $IsActive = $decoded_input["IsActive"];
-if($IsActive=="false")
-    $active=1;
-else {
-$active=0;
-}  
+    $Is = json_decode($IsActive);
+        
+    if ($Is == true)
+        $active = 1;
+    else {
+        $active = 0;
+    }
 
-   $query="UPDATE `tasks`.`projects` SET `project_name` = '".$ProjectName."', `client_name` = '".$ClientName."', `team_leader_id` = '".$TeamLeaderId."', `develope_hours` = '".$DevelopersHours."', `qa_hours` = '".$QaHours."', `ui/ux_hours` = '".$UiUxHours."', `start_date` = '".$StartDate."', `finish_date` = '".$FinishDate."',`is_active` = '".$active."' WHERE (`project_id` = '".$ProjectId."');";
-   file_put_contents("test.txt", $query);
-   db_access::run_non_query($query,$entityBody);
-echo  0;
+    $query = "UPDATE `tasks`.`projects` SET `project_name` = '" . $ProjectName . "', `client_name` = '" . $ClientName . "', `team_leader_id` = '" . $TeamLeaderId . "', `develope_hours` = '" . $DevelopersHours . "', `qa_hours` = '" . $QaHours . "', `ui/ux_hours` = '" . $UiUxHours . "', `start_date` = '" . $StartDate . "', `finish_date` = '" . $FinishDate . "',`is_active` = '" . $active . "' WHERE (`project_id` = '" . $ProjectId . "');";
+
+    db_access::run_non_query($query, $entityBody);
+ 
 }

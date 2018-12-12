@@ -1,7 +1,5 @@
 <?php
 $treeTable;
-//require '../Connection/DbAccess.php';
-//require_once '../Models/TreeTable.php';
 require_once'../Connection/DbAccess.php';
 function runFunctionTreeTable($method, $params) {
     switch ($method) {

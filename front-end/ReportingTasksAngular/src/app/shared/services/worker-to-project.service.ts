@@ -56,9 +56,9 @@ export class WorkerToProjectService {
   }
 
   EditWorkerToProject(workerToProject: WorkerToProject) {
-
-    return this.http.put("http://localhost:56028/api/WorkerToProject", workerToProject);
-
+debugger;
+    // return this.http.put("http://localhost:56028/api/WorkerToProject", workerToProject);
+    return this.http.put(this.globalService.path+"WorkerToProject/UpdateWorkerToProject", workerToProject);
   }
   Get(): Observable<WorkerToProject[]>{
     return this.http.get(this.globalService.path+"WorkerToProject/GetAllWorkersToProject")
