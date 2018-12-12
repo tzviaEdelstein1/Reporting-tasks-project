@@ -11,8 +11,8 @@ html{
 .box{
 	position: relative;
 	margin: auto;
-  /* height: 365px; */
-  max-height: 816px;
+ 
+  max-height: 900px;
   top: 40px;
 	left: 0;
 	z-index: 200;
@@ -74,7 +74,7 @@ html{
 
 .group 			  { 
   position:relative; 
-  margin-bottom: 35px; 
+  margin-bottom: 4px;
   margin-left: 40px;
 }
 

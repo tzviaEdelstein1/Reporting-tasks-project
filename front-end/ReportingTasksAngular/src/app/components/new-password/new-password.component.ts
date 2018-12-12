@@ -29,15 +29,24 @@ export class NewPasswordComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("nnnnnnnnnnnn",this.id);
-    this.userservice.GetUserById(this.id).subscribe(res=>{this.user=res;
+    this.userservice.GetUserById(this.id).subscribe(res=>{
+    
+      this.user=res;
     console.log("user",this.user);
     });
 
   }
 
  async submitLogin() {
-   this.user.Password=await sha256(this.formGroup.value.userPassword);
-   this.userservice.EditPassword(this.user).subscribe(res=>{console.log("ress",res);
+
+   let password=await sha256(this.formGroup.value.userPassword);
+
+   this.user.Password=password;
+ 
+   this.userservice.EditPassword(this.user).subscribe(res=>
+    
+    {
+      console.log("ress",res);
    alert("Created new password succeed");
    this.router.navigateByUrl('');
   })

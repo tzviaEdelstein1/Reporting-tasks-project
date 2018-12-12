@@ -12,7 +12,6 @@ import sha256 from 'async-sha256';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   newUser: User;
   formGroup: FormGroup;
   obj: typeof Object = Object;
@@ -50,7 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
    async submitLogin() {
-debugger;
  this.pass=await sha256(this.formGroup.value.userPassword);
 console.log("rrrrrrrr",this.pass);
    

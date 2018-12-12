@@ -5,7 +5,7 @@ export class User {
     public Password:string;
     public TeamLeaderId:number;
     public UserKindId:number;
-       
+    public VerifyPassword:number; 
         constructor(){}
         
     }

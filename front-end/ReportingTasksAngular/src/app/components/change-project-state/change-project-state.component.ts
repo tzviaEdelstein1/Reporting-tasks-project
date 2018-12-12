@@ -10,8 +10,10 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 export class ChangeProjectStateComponent implements OnInit {
   projects: Project[] = [];
   projectsToUpdate: number[] = [];
-  valuesToUpdate:string[]=[];
+  valuesToUpdate:boolean[]=[];
   flag: boolean;
+  public checked: boolean = true;
+  notChecked:boolean=false;
   constructor(private projectservice: ProjectService) { }
 
   ngOnInit() {
@@ -21,13 +23,12 @@ export class ChangeProjectStateComponent implements OnInit {
   state: any;
 
   changeState(itemId: number) {
-debugger;
+
     let project = this.projects.find(p => p.ProjectId == itemId);
     console.log("project", project);
     this.state = project.IsActive;
    this.projectsToUpdate.push(project.ProjectId);
-   let state=this.state==0?"1":"0";
-   this.valuesToUpdate.push(state);
+   this.valuesToUpdate.push(!this.state);
    
   }
 
@@ -36,7 +37,7 @@ debugger;
 
 for(var i=0;i<this.projectsToUpdate.length;i++)
 {
-debugger;
+
  var p=new Project();
   p=this.projects.find(r=>r.ProjectId==this.projectsToUpdate[i]);
   p.IsActive=this.valuesToUpdate[i];

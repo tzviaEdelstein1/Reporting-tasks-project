@@ -96,11 +96,11 @@ VerifyPassword(pass:string,userName:string):Observable<any>
 
 
 EditPassword(user:User){
-  debugger;
+
   //return this.http.put("http://localhost:56028/api/Users/EditPassword",user)
   return this.http.put(this.globalService.path+"Users/EditPassword",user)
-  .map((res:User)=>'ok')
-  .catch((r:any)=>'error');
+  .map((res:any)=>"ok")
+  .catch((res:any)=>"e");
 
   
 }

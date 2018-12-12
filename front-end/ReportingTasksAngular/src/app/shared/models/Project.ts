@@ -11,7 +11,7 @@ export class Project {
     public StartDate: Date;
     public FinishDate: Date;
     public User: User;
-    public IsActive:string;
+    public IsActive:boolean;
     
 
         constructor(){}
