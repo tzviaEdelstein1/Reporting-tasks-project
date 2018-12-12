@@ -135,51 +135,55 @@
 * Project controller:
     * Get - get all Projects
       We will return all the projects that exist in the db.
+    * Get - Get Active Projects
+      We will return all the matching projects
+     * Get - GetProjectsByTeamId
+       requierd data: 
+         * TeamLeaderId 
+      We will return all the matching projects
+    * Get - GetProjectsByUserId
+       requierd data: 
+         * UserId 
+      We will return all the matching projects
+    * Get - GetProjectsAndHoursByUserId
+       requierd data: 
+         * UserId 
+      We will return all the matching projects and the hours to this project
+    * Get - GetProjectsAndHoursByUserIdAccordingTheMonth
+       requierd data: 
+         * UserId 
+      We will return all the matching projects and the hours to this project
+    * Get - GetProjectsAndHoursByTeamLeaderId
+       requierd data: 
+         * TeamId 
+      We will return all the matching projects and the hours to this project
     * Post - add project    
          requierd data: 
         * Project
         * currentUserId
-
-    If the user that his id equal to the currentUserId has the access to add new project, and the project id valid - we will add the new project to the db, Else - we will return a matching error.
+       If the user that his id equal to the currentUserId has the access to add new project, and the project id valid - we will add the new project to the db, Else - we will    return a matching error.
 
     * Put - update project
          requierd data: 
          * Project
-        *currentUserId
+         * currentUserId
+         
     If the user that his id equal to the currentUserId has the accessto update  projects, and a project with the same id to the project date is found, we will update this project to the new project object, Else - we will return matching error.
     * Delete 
          requierd data: 
           * ProjectId
     If there is the db project with id that equals ProjectId - we will delete it from the db, Else - we will return matching error.
-    * Get - get projects by team leader id
-        requierd data: 
-        * TeamLeaderId
-    If user with id -TeamLeaderId is exist in the db , we will return all the projects that belongs to him, Else - we will return matching error.
-
-    
-
 * Hours controller:
-    * Get - get actual hours count to project
-        requierd data: 
-           * ProjectId
-     If the ProjectId is exist, we will return all the hours that belong to it, Else - we will return matching error.
-
-    * Get - get hours on month to user
-        requierd data: 
-           * UserId
-     If the UserId is exist, we will return all the hours that belong to him, Else - we will return matching error.
-
+    
     * Post - add 
         requierd data: 
            * ActualHours (object)
      If the ActualHours object is valid, we will add it to the db, Else we will return matchig error.
-    * Get - get hours to project by user kind (Example:get all the QA hours that have done to project 1)
-         requierd data: 
-           * ProjectId
-           * UserKindId
-       We will select and return all the hours that belongs to this project (project id is equals to ProjectId) and their user(get it by user id) kind is UserKindId. If we wont find we will return matching error;
 
-
+* TreeTable controller:
+  * Get - get all Tree Table
+      We will return all the Tree Table that exist 
+      this will return data for the reports.
 * WorkerToProject controller:
     * Get - get projects by UserId
         requierd data: 
@@ -189,6 +193,13 @@
         requierd data: 
            * ProjectId
        We will return all the workers that belong to the project with id ProjectId or matching error.
+    * Get - GetWorkerToProjectByPidAndUid
+        requierd data: 
+           * ProjectId
+           * UserId
+       We will return all the workers that belong to the project with id ProjectId and UserId or matching error.
+    * Get - get all workers      
+       We will return all the workers in the db.
     * Post - add new worker to project
         requierd data: 
            * WorkerToProject (object)
@@ -203,6 +214,8 @@
         * WorkerToProjectId
         * currentUserId
     If the user that his id equal to the currentUserId has the access to delete  WorkerToProject records, and a WorkerToProject with the same id to the WorkerToProject id is found, we will delete this WorkerToProject from the db, Else - we will return matching error.
+* SendEmail controller:
+ * Get -send email     
 ***
 ## WinForms +  Angular
 ![picture](step2.png)   
