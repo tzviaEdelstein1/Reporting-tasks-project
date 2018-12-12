@@ -1,12 +1,50 @@
 # Reporting-tasks-project
 ## Using this technologies:
 * Web api
+* My sql
+* PHP
 * WinForms
 * Angular
+## install the app:
+  1. Run the `ReportingTasksProject` project.(the web api one)  This is the server.
+
+  2.  Run the `php` server by 
+        ```sh 
+        shift+f6
+        ```
+        on the index.php page
+
+  3. Run `ng serve` for a dev server, if you want to run the angular project. Navigate to `http://localhost:4200/`. 
+      shoose which server you want to: the web api or the php one. 
+      you can choose it in the `global` page
+  4. Run the winform project  
+  5. [Run the `mySql` code](https://) 
+
+   * important thing in order to `send email` ip php platporm you have to change afew thing in the xampp files 
+     in "C:\xampp\php\php.ini" find [mail function] and change 
+     ```sh
+       SMTP=smtp.gmail.com
+       smtp_port=587
+       sendmail_from = my-gmail-id@gmail.com
+       sendmail_path = "\"C:\xampp\sendmail\sendmail.exe\" -t"
+       ```
+       now Open C:\xampp\sendmail\sendmail.ini. Replace all the existing code in sendmail.ini with following code
+       ```sh
+       [sendmail]   
+       smtp_server=smtp.gmail.com
+       smtp_port=587
+       error_logfile=error.log
+       debug_logfile=debug.log
+       auth_username=my-gmail-id@gmail.com
+       auth_password=my-gmail-password
+       force_sender=my-gmail-id@gmail.com
+       ```
+       PS: don't forgot to replace my-gmail-id and my-gmail-password in above code.
+       Also remember to restart the server using the XAMMP control panel so the changes take effect.
+
 
 ## System diagram:
 ![picture](step1.png)
-
 ***
 ## Web api
 ### Models
@@ -67,8 +105,6 @@
 * TreeTable:
    * Project-Project
    * DetailsWorkerInProjects- List<DetailsWorkerInProjects>  
-
- 
 ### Controllers
 * User controller:
     * Get -getAllUsers.
@@ -217,7 +253,7 @@
 * SendEmail controller:
  * Get -send email     
 ***
-## WinForms +  Angular
+## WinForms + Angular
 ![picture](step2.png)   
 ![picture](step3.png)   
 ![picture](step4.png)   

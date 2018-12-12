@@ -32,11 +32,11 @@ namespace ReportingTasksWinform.Forms.Manager
             string content;
 
             teamLeaders = UserRequsts.GetAllTeamLeaders();
+
             //fill comboBox with team leaders
             comboBoxTeamLeader.DataSource = teamLeaders;
             comboBoxTeamLeader.ValueMember = "UserId";
             comboBoxTeamLeader.DisplayMember = "UserName";
-
 
 
             //fill comboBox with userKinds

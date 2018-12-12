@@ -72,6 +72,7 @@ namespace ReportingTasksWinform
             HttpWebRequest request;
             HttpWebResponse response;
             string content;
+
             //fill comboBox With teamLeaders
             teamLeaders = UserRequsts.GetAllTeamLeaders();
             comboBoxTeamLeader.DataSource = teamLeaders;

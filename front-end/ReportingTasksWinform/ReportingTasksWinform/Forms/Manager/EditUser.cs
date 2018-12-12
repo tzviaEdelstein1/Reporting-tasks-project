@@ -60,18 +60,21 @@ namespace ReportingTasksWinform.Forms.Manager
             comboBoxUserKindEdit.SelectedValue = (comboBoxAllUsers.SelectedItem as User).UserKindId;
         }
         private void buttonUpdate_Click_1(object sender, EventArgs e)
-        { var teamLeader=0;
+        {
+            var teamLeader = 0;
             if (comboBoxTeamLeaderEdit.SelectedValue != null)
                 teamLeader = (int)comboBoxTeamLeaderEdit.SelectedValue;
             else
                 teamLeader = 0;
-            user = new User() { UserEmail = textBoxEmailEdit.Text, UserName = textBoxUserNameEdit.Text, TeamLeaderId =teamLeader, UserKindId = (int)comboBoxUserKindEdit.SelectedValue };
+            user = new User() { UserEmail = textBoxEmailEdit.Text, UserName = textBoxUserNameEdit.Text, TeamLeaderId = teamLeader, UserKindId = (int)comboBoxUserKindEdit.SelectedValue };
             user.UserId = (int)comboBoxAllUsers.SelectedValue;
             var validationContext = new ValidationContext(user, null, null);
             var results = new List<ValidationResult>();
 
+            //check if model is valid
             if (Validator.TryValidateObject(user, validationContext, results, true))
             {
+                //if valid
                 if (UserRequsts.UpdateUser(user))
                 {
                     MessageBox.Show("update success");
@@ -79,7 +82,7 @@ namespace ReportingTasksWinform.Forms.Manager
                 }
                 else
                     MessageBox.Show("update filed");
-             
+
 
             }
             else
@@ -89,9 +92,5 @@ namespace ReportingTasksWinform.Forms.Manager
 
         }
 
-        private void comboBoxAllUsers_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
