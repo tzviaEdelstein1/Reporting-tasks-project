@@ -60,7 +60,7 @@ export class RetrohoursComponent implements OnInit {
 
     try {
       this.flagHours = false;
-      let kindId = this.selectedWorker.UserKindId;
+      let kindId =this.selectedWorker.UserKindId;
       this.allWorkersToProject = this.allWorkersToProject.filter(p => p.ProjectId == this.selectedProject.ProjectId);
 
       this.allWorkersToProject.forEach(element => {
@@ -75,6 +75,7 @@ export class RetrohoursComponent implements OnInit {
       this.selectedWorkerToProject.Hours = this.formGroup.value.hours;
       switch (kindId) {
         case 3:
+        debugger;
           if (this.selectedProject.DevelopersHours < this.sumAllActual + this.formGroup.value.hours) {
             alert("Exceeded the hours allotted for development for this project");
             this.flagHours = true;

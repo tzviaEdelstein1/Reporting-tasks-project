@@ -6,6 +6,7 @@
 <label>Choose the user you wants to delete:</label>
 <div class="group">
   <select class="inputMaterial" formControlName="DeleteUser" >
+      <option></option>
     <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
     
   </select>

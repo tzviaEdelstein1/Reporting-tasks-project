@@ -35,6 +35,7 @@
 
     <div class="group">
       <select class="inputMaterial" formControlName="TeamLeader"(change)="FillUsersToAdd()">
+          <option></option>
         <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
         
       </select>

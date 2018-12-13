@@ -42,7 +42,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(194, 84);
+            this.chart1.Location = new System.Drawing.Point(12, 12);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -52,7 +52,7 @@
             series2.Name = "Hours";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(374, 284);
+            this.chart1.Size = new System.Drawing.Size(862, 506);
             this.chart1.TabIndex = 16;
             this.chart1.Text = "chart1";
             // 

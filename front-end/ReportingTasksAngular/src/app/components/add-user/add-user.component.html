@@ -43,6 +43,7 @@
 
     <div class="group">
       <select class="inputMaterial" formControlName="UserKindId">
+          <option></option>
         <option *ngFor="let item of userKinds">{{item.KindUserName}}</option>
 
       </select>
@@ -59,6 +60,7 @@
 
     <div class="group">
       <select class="inputMaterial" formControlName="TeamLeaderId">
+          <option></option>
         <option *ngFor="let item of teamLeaders">{{item.UserName}}</option>
 
       </select>

@@ -6,6 +6,7 @@
 <p>Choose the worker :</p>
 <div class="group">
   <select class="inputMaterial"  (change)=selectWorker($event)>
+      <option></option>
     <option  *ngFor="let item of workers" >{{item.UserName}}</option>
     
   </select>
@@ -20,6 +21,9 @@
 
 <div class="group">
   <select class="inputMaterial"  (change)=selectProject($event)>
+      <option></option>
+        
+  
     <option  *ngFor="let item of projects" >{{item.ProjectName}}</option>
     
   </select>

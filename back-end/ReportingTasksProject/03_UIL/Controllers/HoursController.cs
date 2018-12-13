@@ -15,7 +15,7 @@ namespace _03_UIL.Controllers
 
 
         [HttpPost]
-        [Route("api/Hours/AddActualHours/{userId}")]
+        [Route("api/ActualHours/AddActualHours/{userId}")]
         public HttpResponseMessage AddActualHours([FromBody]ActualHours value,[FromUri]int userId)
         {
             if (ModelState.IsValid)

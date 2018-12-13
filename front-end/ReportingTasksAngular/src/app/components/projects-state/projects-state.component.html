@@ -6,6 +6,7 @@
     <p>Choose the project :</p>
     <div class="group">
       <select class="inputMaterial" (change)=selectProject($event)>
+        <option></option>
         <option *ngFor="let item of yourProjects">{{item.ProjectName}}</option>
       </select>
 

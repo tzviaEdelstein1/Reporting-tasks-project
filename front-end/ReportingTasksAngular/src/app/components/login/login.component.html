@@ -6,7 +6,7 @@
   <input class="inputMaterial" type="text"  formControlName="userName">
   <span class="highlight"></span>
   <span class="bar"></span>
-  <label>Username</label>
+  <label>User name</label>
   
   <div *ngIf="formGroup.controls['userName'].errors&&formGroup.controls['userName'].touched">
   <p-message  severity="error" [text]=err  *ngFor="let err of obj.values(formGroup.controls['userName'].errors)"></p-message>
