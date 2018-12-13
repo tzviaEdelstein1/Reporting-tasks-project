@@ -64,7 +64,7 @@ GetUserById(id:number):Observable<User>{
 VerifyUserName(userName:string){
   return this.http.get(this.globalService.path+"Users/VerifyEmail/"+userName)
   .map((res:any)=>"ok")
-  .catch((res:any)=>"error");
+  .catch((res:any)=>"e");
  
 }
 
@@ -75,7 +75,7 @@ VerifyPassword(pass:string,userName:string):Observable<any>
  
   //return this.http.get("http://localhost:56028/api/Users/VerifyPassword/"+pass+"/"+userName)
   .map((res:User)=>res)
-  .catch((r:HttpErrorResponse)=>"error");
+  .catch((r:HttpErrorResponse)=>"e");
 }
 
 

@@ -55,6 +55,18 @@ body {
 }
 
 
+.proj{
+  width: 16%;
+  float: left;
+}
+.lab{
+  margin-left: 89px;
+}
 
+.bton{
+  position: absolute;
+  bottom: 10%;
+  left: 40%;
+}
 
 

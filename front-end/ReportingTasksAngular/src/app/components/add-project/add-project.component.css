@@ -10,7 +10,7 @@ height: 1000px;
   left: 0;
   z-index: 200;
   right: 0;
-  width: 800px;
+  width: 51%;
   color: #666;
   padding: 10px 0px;
   border-radius: 10px;
@@ -25,7 +25,7 @@ height: 1000px;
   width: 30%;
   left: 62%;
   /* top: -34%; */
-  margin-top: -22%;
+  margin-top: -75%;
 
 /* position: relative;
           left: 60%;

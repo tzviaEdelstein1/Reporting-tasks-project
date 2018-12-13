@@ -69,12 +69,15 @@ export class AddUserComponent implements OnInit {
   }
 
   async submitAdd() {
-
+debugger;
     this.newUser = new User();
     this.newUser.UserName = this.formGroup.value.UserName;
     this.newUser.UserEmail = this.formGroup.value.UserEmail;
     this.newUser.Password = await sha256(this.formGroup.value.Password);
-    this.newUser.TeamLeaderId = this.teamLeaders.find(t => t.UserName == this.formGroup.value.TeamLeaderId).UserId;
+if(this.teamLeaders.find(t => t.UserName == this.formGroup.value.TeamLeaderId).UserId)
+    this.newUser.TeamLeaderId =this.teamLeaders.find(t => t.UserName == this.formGroup.value.TeamLeaderId).UserId;
+    else
+    this.newUser.TeamLeaderId =0;
     this.newUser.UserKindId = this.userKinds.find(k => k.KindUserName == this.formGroup.value.UserKindId).KindUserId;
 
     this.userservice.AddNewUser(this.newUser, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => { console.log("new", res); this.showSuccess() });

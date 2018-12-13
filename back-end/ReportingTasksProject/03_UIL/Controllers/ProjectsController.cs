@@ -156,27 +156,13 @@ namespace _03_UIL.Controllers
         public HttpResponseMessage UpdateProject([FromBody]Project value, [FromUri]int userId)
         {
 
-            if (ModelState.IsValid)
-            {
-                return (LogicProjects.UpdateProject(value, userId)) ?
+             return (LogicProjects.UpdateProject(value, userId)) ?
                     new HttpResponseMessage(HttpStatusCode.OK) :
                     new HttpResponseMessage(HttpStatusCode.BadRequest)
                     {
                         Content = new ObjectContent<String>("Can not update in DB", new JsonMediaTypeFormatter())
                     };
-            };
-
-            List<string> ErrorList = new List<string>();
-
-            //if the code reached this part - the Project is not valid
-            foreach (var item in ModelState.Values)
-                foreach (var err in item.Errors)
-                    ErrorList.Add(err.ErrorMessage);
-
-            return new HttpResponseMessage(HttpStatusCode.BadRequest)
-            {
-                Content = new ObjectContent<List<string>>(ErrorList, new JsonMediaTypeFormatter())
-            };
+      
         }
 
 

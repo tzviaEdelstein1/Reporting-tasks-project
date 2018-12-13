@@ -48,11 +48,14 @@ deleteUserId:number;
   }
 
   submitDelete(){
-debugger;
+
 this.deleteUserId=this.allUsers.find(u=>u.UserName==this.formGroup.value.DeleteUser).UserId;
   
 this.userservice.DeleteUser(this.deleteUserId,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("dell",res);this.showSuccess();});
 
+debugger;
+this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
+this.allUsers=this.allUsers.filter(u=>u.UserKindId!=2);
   }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success Message', detail:'Employee successfully removed'});
