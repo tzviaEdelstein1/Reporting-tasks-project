@@ -1142,7 +1142,7 @@ ail":"worker2@gmail.com","ManagerId":21},{"Id":24,"Name":"Worker3","UserName":"w
 w3","Password":"","JobId":5,"EMail":"worker3@gmail.com","ManagerId":21},{"Id":25
 ,"Name":"Worker4","UserName":"ww4","Password":"","JobId":3,"EMail":"worker4@gmai
 l.com","ManagerId":21}]* Connection #0 to host localhost left intact
-```
+
 ***
 ## WinForms + Angular: Screenshots
 
