@@ -47,9 +47,6 @@
      * [bootsrap](https://getbootstrap.com/docs/3.3/getting-started/)
    * in winform platform we use:
      * [Teleric](https://docs.telerik.com/devtools/winforms/getting-started)  
-
-## System diagram:
-![picture](step1.png)
 ***
 ## Web api
 ### Models
