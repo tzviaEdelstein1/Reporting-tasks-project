@@ -29,14 +29,13 @@ import { HoursStatusGraphComponent } from './components/hours-status-graph/hours
 import { ProjectsStateComponent } from './components/projects-state/projects-state.component';
 import { RetrohoursComponent } from './components/retrohours/retrohours.component';
 import { HoursService } from './shared/services/hours.service';
-import { timer } from 'rxjs';
 import { SendEmailComponent } from './components/send-email/send-email.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { SendEmailService } from './shared/services/send-email.service';
 import { ChartsModule } from 'ng2-charts';
 import { StatusGraphForMonthComponent } from './components/status-graph-for-month/status-graph-for-month.component';
 import { YourTasksDataComponent } from './components/your-tasks-data/your-tasks-data.component';
-import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
+
 import { MenuItem, MessageService } from 'primeng/api';
 import { TreeTableModule } from 'primeng/treetable';
 import { TreeNode } from 'primeng/api';
@@ -46,7 +45,7 @@ import { NewPasswordComponent } from './components/new-password/new-password.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CalendarModule } from 'primeng/calendar';
-import * as shajs from 'sha.js';
+
 import { ExportExcelService } from './shared/services/export-excel.service';
 import { ChangeProjectStateComponent } from './components/change-project-state/change-project-state.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
@@ -78,12 +77,11 @@ const routes: Routes = [
       { path: 'teamManagement', component: TeamLeadersComponent },
       { path: 'changeProjectState', component: ChangeProjectStateComponent },
 
-      // {path: 'userManagement', component: UserManagementComponent, children: [
+   
       { path: 'addUser', component: AddUserComponent },
       { path: 'deleteUser', component: DeleteUserComponent },
       { path: 'editUser', component: EditUserComponent }
-      // ]
-      // },
+    
 
 
     ]

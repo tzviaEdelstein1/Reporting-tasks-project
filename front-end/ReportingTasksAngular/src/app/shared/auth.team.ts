@@ -10,17 +10,12 @@ user:User;
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (localStorage.getItem('currentUser')) {
-            // this.userservice.GetUserById(Number.parseInt(localStorage.getItem('currentUser'))).subscribe(res=>{
-                
-            //     this.user=res;
-            //     if(this.user.UserKindId==2)
+         
             return true;
-            // });
             
             
         }
 
-        // not logged in so redirect to login page with the return url
         this.router.navigate(['']);
         return false;
     }

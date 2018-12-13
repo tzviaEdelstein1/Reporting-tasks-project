@@ -10,7 +10,7 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 export class ChangeProjectStateComponent implements OnInit {
   projects: Project[] = [];
   projectsToUpdate: number[] = [];
-  valuesToUpdate:string[]=[];
+  valuesToUpdate: string[] = [];
   flag: boolean;
   constructor(private projectservice: ProjectService) { }
 
@@ -21,28 +21,27 @@ export class ChangeProjectStateComponent implements OnInit {
   state: any;
 
   changeState(itemId: number) {
-debugger;
+    debugger;
     let project = this.projects.find(p => p.ProjectId == itemId);
     console.log("project", project);
     this.state = project.IsActive;
-   this.projectsToUpdate.push(project.ProjectId);
-   let state=this.state==0?"1":"0";
-   this.valuesToUpdate.push(state);
-   
+    this.projectsToUpdate.push(project.ProjectId);
+    let state = this.state == 0 ? "1" : "0";
+    this.valuesToUpdate.push(state);
+
   }
 
 
   Update() {
 
-for(var i=0;i<this.projectsToUpdate.length;i++)
-{
-debugger;
- var p=new Project();
-  p=this.projects.find(r=>r.ProjectId==this.projectsToUpdate[i]);
-  p.IsActive=this.valuesToUpdate[i];
-  p.User=null;
-  this.projectservice.UpdateProject(p,Number.parseInt(localStorage.getItem("currentUser")))
-  .subscribe(res=>{debugger;alert("Changes were saved successfully ")});
-}
+    for (var i = 0; i < this.projectsToUpdate.length; i++) {
+      debugger;
+      var p = new Project();
+      p = this.projects.find(r => r.ProjectId == this.projectsToUpdate[i]);
+      p.IsActive = this.valuesToUpdate[i];
+      p.User = null;
+      this.projectservice.UpdateProject(p, Number.parseInt(localStorage.getItem("currentUser")))
+        .subscribe(res => { debugger; alert("Changes were saved successfully ") });
+    }
   }
 }

@@ -1,5 +1,7 @@
 <form [formGroup]="formGroup" >
+   
   <div class="box">
+    <div style="width: 56%">
     <h1 id="logintoregister">Add New Project</h1>
 
     <div class="group">
@@ -11,7 +13,11 @@
         <p-message *ngFor="let err of obj.values(formGroup.controls['ProjectName'].errors)" severity="error" [text]=err></p-message>
       </div>
     </div>
-
+    <!-- position: relative;
+    width: 40%;
+    /* direction: rtl; */
+    left: 72%;
+    top: -1%; -->
  
     <div class="group">
       <input class="inputMaterial" type="text" formControlName="ClientName">
@@ -40,15 +46,6 @@
         <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['TeamLeader'].errors)"></p-message>
       </div>
     </div>
-
-   
-<!-- עובדים נוספים -->
-<p>other worker to this project</p>
-<div *ngFor="let item of usersToAdd">
-   
-    <input type="checkbox" name={{item.UserName}} value={{item.UserId}} id={{item.UserName}} (change)=addCheckedWorker($event)>
-    <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
-  </div>
 
 
 
@@ -126,12 +123,17 @@
                 {{ error.errorMessage }}
              </div>
             </div>
-        
-            
-
-    <!-- <button id="buttonlogintoregister" (click)=Submit() [disabled]="formGroup.invalid">Add</button> -->
-
-    <button id="buttonlogintoregister" (click)=Submit()  [disabled]="formGroup.invalid||error.isError==true||starterror.isError==true">Add</button>
+            <button id="buttonlogintoregister" (click)=Submit()  [disabled]="formGroup.invalid||error.isError==true||starterror.isError==true">Add</button>
+          </div>
+            <div id="workers">
+                <p>other worker to this project</p>
+                <div *ngFor="let item of usersToAdd">
+                   
+                    <input type="checkbox" name={{item.UserName}} value={{item.UserId}} id={{item.UserName}} (change)=addCheckedWorker($event)>
+                    <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
+                  </div>
+                </div>
+ 
   </div>
 </form>
 <p-toast></p-toast>

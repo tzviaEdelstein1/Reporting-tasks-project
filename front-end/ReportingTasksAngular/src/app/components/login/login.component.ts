@@ -50,17 +50,15 @@ export class LoginComponent implements OnInit {
 
    async submitLogin() {
  this.pass=await sha256(this.formGroup.value.userPassword);
-console.log("rrrrrrrr",this.pass);
-   
+console.log("rrrrrrrr",this.pass); 
     console.log(this.formGroup.value);
     console.log(this.formGroup.controls);
-    alert(this.formGroup.status);
+
     try
      {
       this.userservice.Login(this.formGroup.value.userName,this.pass).subscribe(res => {
         console.warn(res);
-        if (res != null) {
-          alert("login succees");
+        if (res != null) {    
           this.newUser=res;
           console.warn("new", this.newUser);
           console.warn("kind"+res.UserKindId);
@@ -77,6 +75,7 @@ console.log("rrrrrrrr",this.pass);
         else
           alert("Login failed!!!");
       })
+
     }
     catch (e) {
       alert("Login failed!!!");

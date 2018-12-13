@@ -258,9 +258,26 @@
 * SendEmail controller:
    * Get -send email     
 ***
-## WinForms + Angular
-![picture](step2.png)   
-![picture](step3.png)   
-![picture](step4.png)   
-![picture](step5.png)   
+## WinForms + Angular: Screenshots
+### Entering screenshots:
+![picture](Imgs/Login.PNG)   
+![picture](Imgs/ForgetPassword.PNG)   
+![picture](Imgs/VerifyPassword.PNG)   
+![picture](Imgs/EditPassword.PNG)   
+### Manager screenshots:
+![picture](Imgs/EnterManager.PNG)   
+![picture](Imgs/AddProject.PNG) 
+![picture](Imgs/Reports.PNG)   
+  #### Users managment:  
+![picture](Imgs/AddUser.PNG)   
+![picture](Imgs/EditUser.PNG)   
+![picture](Imgs/DeleteUser.PNG)   
+### Teamleader screenshots:
+![picture](Imgs/EnterTeam.PNG)   
+![picture](Imgs/TeamChar.PNG)   
+![picture](Imgs/UpdateHours.PNG)   
+![picture](Imgs/ViewingProjects.PNG)  
 
+### Worker screenshots:
+![picture](Imgs/EnterWorker.PNG)   
+![picture](Imgs/ConectingToManager.PNG)   

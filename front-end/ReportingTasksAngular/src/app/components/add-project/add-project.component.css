@@ -5,12 +5,12 @@
 .box[_ngcontent-c2] {
   position: relative;
   margin: auto;
-  /* height: 800px; */
+height: 1000px;
   top: 40px;
   left: 0;
   z-index: 200;
   right: 0;
-  width: 400px;
+  width: 800px;
   color: #666;
   padding: 10px 0px;
   border-radius: 10px;
@@ -18,4 +18,46 @@
   border: 2px solid #C0C0C0;
   border-bottom: 2px solid #F00;
   margin-bottom: 100px;
+}
+#workers
+{
+  position: relative;
+  width: 30%;
+  left: 62%;
+  /* top: -34%; */
+  margin-top: -22%;
+
+/* position: relative;
+          left: 60%;
+          width: 31%;
+          margin-top:-216px" */
+}
+.group {
+  position: relative;
+  margin-bottom: 4px;
+  margin-left: 40px;
+  width: 45%;
+}
+#all{
+ position:relative;
+ left: 60%;
+ width: 31%;
+ margin-top:-216px
+}
+.box button, input[type=button] {
+  background: #FF4747;
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+  width: 330px;
+  margin: 20px auto;
+  display: block;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 10px;
+  /* top: 23px; */
+  position: relative;
+  /* top: 18%; */
+  left: -6%;
 }

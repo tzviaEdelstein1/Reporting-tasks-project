@@ -12,8 +12,6 @@ export class UserKindService {
   constructor(private http:HttpClient,private globalService:GlobalService) { }
 
   GetAllKinds():Observable<UserKind[]>  {
-   
-    //return this.http.get("http://localhost:56028/api/UserKinds")
     return this.http.get(this.globalService.path+"UserKinds/Get")
     .map((res:UserKind[])=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));
