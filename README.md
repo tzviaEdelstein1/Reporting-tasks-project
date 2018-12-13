@@ -264,15 +264,15 @@
 
 ### Get Request
 ```
-curl -X GET -v http://localhost:59628/api/getAllWorkers
+curl -X GET -v http://localhost:56028/api/getAllWorkers
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getAllWorkers HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -302,15 +302,15 @@ obId":4,"EMail":"safdsa@fdsa.fc","ManagerId":21}]* Connection #0 to host localho
 st left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/GetPresence
+curl -X GET -v http://localhost:56028/api/GetPresence
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/GetPresence HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -399,15 +399,15 @@ ectName":"pr2","Date":"2018-11-28T00:00:00","Start":"09:24:00","End":"09:24:03"}
 host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getAllManagers
+curl -X GET -v http://localhost:56028/api/getAllManagers
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getAllManagers HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -430,15 +430,15 @@ word":"","JobId":2,"EMail":"team@gmail.com","ManagerId":1}]* Connection #0 to ho
 st localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getProjectDeatails/21
+curl -X GET -v http://localhost:56028/api/getProjectDeatails/21
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getProjectDeatails/21 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -467,15 +467,15 @@ er":"nnn","DevelopHours":300,"QAHours":250,"UiUxHours":100,"StartDate":"2018-02-
 left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getWorkersDeatails/21
+curl -X GET -v http://localhost:56028/api/getWorkersDeatails/21
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getWorkersDeatails/21 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -502,15 +502,15 @@ gggg","Password":"","JobId":4,"EMail":"safdsa@fdsa.fc","ManagerId":21}]* Connect
 ion #0 to host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getWorkersHours/7
+curl -X GET -v http://localhost:56028/api/getWorkersHours/7
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getWorkersHours/7 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -533,15 +533,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGdldFdvcmtlcnNIb3Vyc1w3?=
 ours":"8:43","AllocatedHours":6.4}]* Connection #0 to host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getWorkerHours/21/22
+curl -X GET -v http://localhost:56028/api/getWorkerHours/21/22
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getWorkerHours/21/22 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -564,15 +564,15 @@ dHours":18.0,"Hours":"08:12:01"},{"Id":60,"Name":"tr1","AllocatedHours":0.0,"Hou
 rs":""}]* Connection #0 to host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getWorkerDetails/22
+curl -X GET -v http://localhost:56028/api/getWorkerDetails/22
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getWorkerDetails/22 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -593,15 +593,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGdldFdvcmtlckRldGFpbHNcMjI=?=
 er1@gmail.com","ManagerId":21}* Connection #0 to host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getProject/7
+curl -X GET -v http://localhost:56028/api/getProject/7
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getProject/7 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -622,14 +622,14 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGdldFByb2plY3RcNw==?=
 ```
 ### Put Request (not valid data)
 ```
-curl -v -X PUT -H "Content-type: application/json" -d "{\"Id\":\"7\",\"Name\":\"Malki\", \"UserName\":\"ggggg\",\"Password\":\"mmmggg\" , \"JobId\":\"3\",\"EMail\":\"sjafjkl@df.vaf\", \"ManagerId\":\"21\"}"  http://localhost:59628/api/UpdateWorker
+curl -v -X PUT -H "Content-type: application/json" -d "{\"Id\":\"7\",\"Name\":\"Malki\", \"UserName\":\"ggggg\",\"Password\":\"mmmggg\" , \"JobId\":\"3\",\"EMail\":\"sjafjkl@df.vaf\", \"ManagerId\":\"21\"}"  http://localhost:56028/api/UpdateWorker
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > PUT /api/UpdateWorker HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -652,14 +652,14 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXFVwZGF0ZVdvcmtlcg==?=
 "Can not update in DB"* Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X PUT -H "Content-type: application/json" -d "{\"projectWorkerId\":\"1\",\"numHours\":\"30\"}"  http://localhost:59628/api/updateWorkerHours
+curl -v -X PUT -H "Content-type: application/json" -d "{\"projectWorkerId\":\"1\",\"numHours\":\"30\"}"  http://localhost:56028/api/updateWorkerHours
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > PUT /api/updateWorkerHours HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -683,14 +683,14 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXHVwZGF0ZVdvcmtlckhvdXJz?=
 ```
 ### Put Request (valid data)
 ```
-curl -v -X PUT -H "Content-type: application/json" -d "{\"Id\":\"27\",\"Name\":\"Malki\", \"UserName\":\"1ggg\",\"Password\":\"mmmggg\" , \"JobId\":\"3\",\"EMail\":\"sjafjkl@df.vaf\", \"ManagerId\":\"21\"}"  http://localhost:59628/api/UpdateWorker
+curl -v -X PUT -H "Content-type: application/json" -d "{\"Id\":\"27\",\"Name\":\"Malki\", \"UserName\":\"1ggg\",\"Password\":\"mmmggg\" , \"JobId\":\"3\",\"EMail\":\"sjafjkl@df.vaf\", \"ManagerId\":\"21\"}"  http://localhost:56028/api/UpdateWorker
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > PUT /api/UpdateWorker HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -712,14 +712,14 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXFVwZGF0ZVdvcmtlcg==?=
 * Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X PUT -H "Content-type: application/json" -d "{\"projectWorkerId\":\"48\",\"numHours\":\"30\"}"  http://localhost:59628/api/updateWorkerHours
+curl -v -X PUT -H "Content-type: application/json" -d "{\"projectWorkerId\":\"48\",\"numHours\":\"30\"}"  http://localhost:56028/api/updateWorkerHours
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > PUT /api/updateWorkerHours HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -743,15 +743,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXHVwZGF0ZVdvcmtlckhvdXJz?=
 
 ### Post Request (not valid data)
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"UserName\":\"DDD\", \"Password\":\"444444\"}"  http://localhost:59628/api/login
+curl -v -X POST -H "Content-type: application/json" -d "{\"UserName\":\"DDD\", \"Password\":\"444444\"}"  http://localhost:56028/api/login
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/login HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -774,7 +774,7 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGxvZ2lu?=
 "Can not log in"* Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"Name\":\"tryProject\", \"Customer\":\"nnn\",\"TeamLeaderId\":\"11\" , \"DevelopHours\":\"300\",\"QAHours\":\"250\", \"UiUxHours\":\"100\",\"StartDate\":\"2018-02-02\",\"EndDate\":\"2018-07-07\"}"  http://localhost:59628/api/addProject
+curl -v -X POST -H "Content-type: application/json" -d "{\"Name\":\"tryProject\", \"Customer\":\"nnn\",\"TeamLeaderId\":\"11\" , \"DevelopHours\":\"300\",\"QAHours\":\"250\", \"UiUxHours\":\"100\",\"StartDate\":\"2018-02-02\",\"EndDate\":\"2018-07-07\"}"  http://localhost:56028/api/addProject
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
@@ -782,23 +782,23 @@ Note: Unnecessary use of -X or --request, POST is already inferred.
 * TCP_NODELAY set
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
-* connect to ::1 port 59628 failed: Connection refused
-* connect to 127.0.0.1 port 59628 failed: Connection refused
-* Failed to connect to localhost port 59628: Connection refused
+* connect to ::1 port 56028 failed: Connection refused
+* connect to 127.0.0.1 port 56028 failed: Connection refused
+* Failed to connect to localhost port 56028: Connection refused
 * Closing connection 0
-curl: (7) Failed to connect to localhost port 59628: Connection refused
+curl: (7) Failed to connect to localhost port 56028: Connection refused
 ```
 ```
 curl -v -X POST -H "Content-type: application/json" -d "{\"Name\":\"Gila\",\"UserName\":\"gggg\",\
-"Password\":\"gggggg\",\"JobId\":\"4\",\"EMail\":\"safdsa@fdsaf\",\"ManagerId\":\"11\"}"  http://localhost:59628/api/addWorker
+"Password\":\"gggggg\",\"JobId\":\"4\",\"EMail\":\"safdsa@fdsaf\",\"ManagerId\":\"11\"}"  http://localhost:56028/api/addWorker
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/addWorker HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -821,15 +821,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGFkZFdvcmtlcg==?=
 "Can not add to DB"* Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"idProjectWorker\":\"7\",\"hour\":\"8\","isFirst\":\"true\"}"  http://localhost:59628/api/updateStartHour
+curl -v -X POST -H "Content-type: application/json" -d "{\"idProjectWorker\":\"7\",\"hour\":\"8\","isFirst\":\"true\"}"  http://localhost:56028/api/updateStartHour
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/updateHours HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -850,19 +850,19 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXHVwZGF0ZUhvdXJz?=
 < Content-Length: 196
 <
 {"Message":"No HTTP resource was found that matches the request URI 'http://loca
-lhost:59628/api/updateHours'.","MessageDetail":"No type was found that matches t
+lhost:56028/api/updateHours'.","MessageDetail":"No type was found that matches t
 he controller named 'updateHours'."}* Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"sub\":\"malky8895\",\"body\":\"ddd\",\"id\":\"9\"}"  http://localhost:59628/api/SendMsg
+curl -v -X POST -H "Content-type: application/json" -d "{\"sub\":\"malky8895\",\"body\":\"ddd\",\"id\":\"9\"}"  http://localhost:56028/api/SendMsg
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/SendMsg HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -885,15 +885,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXFNlbmRNc2c=?=
 
 ### Post Request (valid data)
 ```
-curl-7.61.0-win64-mingw\bin>curl -v -X POST -H "Content-type: application/json" -d "{\"UserName\":\"mm\", \"Password\":\"6773ea887f0e3f1c34b01936aaf9687b16a04c6f9e65e4afbfce7bb7f76b0857\"}"  http://localhost:59628/api/login
+curl-7.61.0-win64-mingw\bin>curl -v -X POST -H "Content-type: application/json" -d "{\"UserName\":\"mm\", \"Password\":\"6773ea887f0e3f1c34b01936aaf9687b16a04c6f9e65e4afbfce7bb7f76b0857\"}"  http://localhost:56028/api/login
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/login HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -919,15 +919,15 @@ gmail.com","ManagerId":null}* Connection #0 to host localhost left intact
 ```
 C:\Users\administrator.NB\Desktop\curl-7.61.0-win64-mingw\bin>curl -v -X POST -H
  "Content-type: application/json" -d "{\"Name\":\"tr1\", \"Customer\":\"nnn\",\"TeamLeaderId\":\"21\" 
- , \"DevelopHours\":\"300\",\"QAHours\":\"250\", \"UiUxHours\":\"100\",\"StartDate\":\"2018-02-02\",\"EndDate\":\"2018-07-07\"}"  http://localhost:59628/api/addProject
+ , \"DevelopHours\":\"300\",\"QAHours\":\"250\", \"UiUxHours\":\"100\",\"StartDate\":\"2018-02-02\",\"EndDate\":\"2018-07-07\"}"  http://localhost:56028/api/addProject
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/addProject HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -950,15 +950,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGFkZFByb2plY3Q=?=
 ```
 ```
 C:\Users\administrator.NB\Desktop\curl-7.61.0-win64-mingw\bin>curl -v -X POST -H "Content-type: application/json" -d "{\"Name\":\"Gila\",\"UserName\":\"gggg\",\
-"Password\":\"gggggg\",\"JobId\":\"4\",\"EMail\":\"safdsa@fdsa.fc\",\"ManagerId\":\"21\"}"  http://localhost:59628/api/addWorker
+"Password\":\"gggggg\",\"JobId\":\"4\",\"EMail\":\"safdsa@fdsa.fc\",\"ManagerId\":\"21\"}"  http://localhost:56028/api/addWorker
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/addWorker HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -980,20 +980,20 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGFkZFdvcmtlcg==?=
 * Connection #0 to host localhost left intact
 ```
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"idProjectWorker\":\"22\",\"hour\":\"8\","isFirst\":\"true\"}"  http://localhost:59628/api/updateStartHour
+curl -v -X POST -H "Content-type: application/json" -d "{\"idProjectWorker\":\"22\",\"hour\":\"8\","isFirst\":\"true\"}"  http://localhost:56028/api/updateStartHour
 ```
 ```
 ```
 ```
-curl -v -X POST -H "Content-type: application/json" -d "{\"sub\":\"malky8895\",\"body\":\"ddd\",\"id\":\"22\"}"  http://localhost:59628/api/SendMsg
+curl -v -X POST -H "Content-type: application/json" -d "{\"sub\":\"malky8895\",\"body\":\"ddd\",\"id\":\"22\"}"  http://localhost:56028/api/SendMsg
 ```
 ```
 Note: Unnecessary use of -X or --request, POST is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > POST /api/SendMsg HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 > Content-type: application/json
@@ -1016,14 +1016,14 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXFNlbmRNc2c=?=
 ```
 ### Delete Request (not valid data)
 ```
-curl -X DELETE -v http://localhost:59628/api/deleteWorker/8
+curl -X DELETE -v http://localhost:56028/api/deleteWorker/8
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > DELETE /api/deleteWorker/8 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -1044,15 +1044,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGRlbGV0ZVdvcmtlclw4?=
 ```
 ### Delete Request (valid data)
 ```
-curl -X GET -v http://localhost:59628/api/getAllWorkers
+curl -X GET -v http://localhost:56028/api/getAllWorkers
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getAllWorkers HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -1082,14 +1082,14 @@ JobId":3,"EMail":"sjafjkl@df.vaf","ManagerId":21}]* Connection #0 to host localh
 ost left intact
 ```
 ```
-curl -X DELETE -v http://localhost:59628/api/deleteWorker/27
+curl -X DELETE -v http://localhost:56028/api/deleteWorker/27
 ```
 ```
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > DELETE /api/deleteWorker/27 HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
@@ -1108,15 +1108,15 @@ mFnbWVudDJcVGFza01hbmFnbWVudFxVSUxcYXBpXGRlbGV0ZVdvcmtlclwyNw==?=
 * Connection #0 to host localhost left intact
 ```
 ```
-curl -X GET -v http://localhost:59628/api/getAllWorkers
+curl -X GET -v http://localhost:56028/api/getAllWorkers
 ```
 ```
 Note: Unnecessary use of -X or --request, GET is already inferred.
 *   Trying ::1...
 * TCP_NODELAY set
-* Connected to localhost (::1) port 59628 (#0)
+* Connected to localhost (::1) port 56028 (#0)
 > GET /api/getAllWorkers HTTP/1.1
-> Host: localhost:59628
+> Host: localhost:56028
 > User-Agent: curl/7.61.0
 > Accept: */*
 >
