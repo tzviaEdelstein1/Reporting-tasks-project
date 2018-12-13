@@ -258,7 +258,7 @@
 * SendEmail controller:
    * Get -send email   
 ***  
-```
+
 
 # Test api with `curl`
 
