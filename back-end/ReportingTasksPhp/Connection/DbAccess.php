@@ -84,11 +84,10 @@ class db_access {
                 default:
                     break;
             }
-//            $i++;
         }
-//        header('Content-type: application/json'); 
+
         return $objects;
-//        die(json_encode($ClientModel));
+
     }
 
     static function run_scalar($query) {

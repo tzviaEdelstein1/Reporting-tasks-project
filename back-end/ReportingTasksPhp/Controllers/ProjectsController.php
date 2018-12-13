@@ -37,6 +37,10 @@ function runFunctionProject($method, $params, $entityBody) {
         case "UpdateProject":
             UpdateProject($entityBody);
             break;
+           case "getProjectId":
+            getProjectId($params[6]);
+            break;
+        
     }
 }
 
@@ -104,7 +108,7 @@ function GetProjectsAndHoursByTeamLeaderId($teamId) {
 
 function AddProject($entityBody) {
 
-   
+
     $decoded_input = json_decode($entityBody, true);
     $ProjectName = $decoded_input["ProjectName"];
     $ClientName = $decoded_input["ClientName"];
@@ -126,9 +130,16 @@ function AddProject($entityBody) {
     while ($i < count($arrUsers)) {
         $userId = $arrUsers[$i]["UserId"];
         $addWorkerQuery = "INSERT INTO `tasks`.`worker_to_project` (`user_id`, `project_id`, `hours`) VALUES ('$userId', '$newProjectId', '0');";
-        echo db_access::run_non_query($addWorkerQuery);
+        db_access::run_non_query($addWorkerQuery);
         $i++;
     }
+    
+    getProjectId($newProjectId);
+}
+
+function getProjectId($id) {
+    $query = "SELECT * FROM tasks.projects WHERE project_id='$id'";
+    echo  json_encode(db_access::run_reader($query, "Project")[0]);
 }
 
 function UpdateProject($entityBody) {
@@ -148,7 +159,7 @@ function UpdateProject($entityBody) {
     $FinishDate = $decoded_input["FinishDate"];
     $IsActive = $decoded_input["IsActive"];
     $Is = json_decode($IsActive);
-        
+
     if ($Is == true)
         $active = 1;
     else {
@@ -158,5 +169,4 @@ function UpdateProject($entityBody) {
     $query = "UPDATE `tasks`.`projects` SET `project_name` = '" . $ProjectName . "', `client_name` = '" . $ClientName . "', `team_leader_id` = '" . $TeamLeaderId . "', `develope_hours` = '" . $DevelopersHours . "', `qa_hours` = '" . $QaHours . "', `ui/ux_hours` = '" . $UiUxHours . "', `start_date` = '" . $StartDate . "', `finish_date` = '" . $FinishDate . "',`is_active` = '" . $active . "' WHERE (`project_id` = '" . $ProjectId . "');";
 
     db_access::run_non_query($query, $entityBody);
- 
 }

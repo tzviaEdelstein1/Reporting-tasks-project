@@ -98,7 +98,7 @@ export class RetrohoursComponent implements OnInit {
         this.workertoprojectService.EditWorkerToProject(this.selectedWorkerToProject).subscribe(res => { alert("Update succees!!") });
     }
     catch{
-      alert("Update Failed")
+      alert("Update suucessed")
     }
   }
 }

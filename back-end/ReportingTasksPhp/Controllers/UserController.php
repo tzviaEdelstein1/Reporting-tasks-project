@@ -200,7 +200,3 @@ function CheckUserIp($ip) {
     else
         echo "error";
 }
-
-function Logout($param) {
-    //רק בווינפורם לכן לא עשינו לבינתיים
-}
