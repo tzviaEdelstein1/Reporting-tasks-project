@@ -18,7 +18,7 @@
       shoose which server you want to: the web api or the php one. 
       you can choose it in the `global` page
   4. Run the winform project  
-  5. [Run the `mySql` code](https://) 
+  5. [Run the `mySql` code](https://github.com/tzviaEdelstein1/Reporting-tasks-project/blob/master/sqlScript.md) 
 
    * important thing in order to `send email` ip php platporm you have to change afew thing in the xampp files 
      in "C:\xampp\php\php.ini" find [mail function] and change 
