@@ -16,6 +16,7 @@ namespace BOL
         [Required]
         public int ProjectId { get; set; }
         [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid double Number")]
         public double CountHours { get; set; }
         [Required]
         public DateTime date { get; set; }

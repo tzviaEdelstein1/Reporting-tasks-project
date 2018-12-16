@@ -15,7 +15,7 @@ namespace BOL
         public int UserId { get; set; }
         [Required]
         public int ProjectId { get; set; }
-      
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Hours { get; set; }
     }
 }

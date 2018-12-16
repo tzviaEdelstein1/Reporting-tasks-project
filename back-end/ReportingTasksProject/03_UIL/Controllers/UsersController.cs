@@ -165,6 +165,13 @@ namespace _03_UIL.Controllers
         [Route("api/Users/AddUser/{userId}")]
         public HttpResponseMessage AddUser([FromBody]User value, [FromUri]int userId)
         {
+            var re = Request;
+            var headers = re.Headers;
+
+            if (headers.Contains("userId"))
+            {
+                string token = headers.GetValues("userId").First();
+            }
             if (ModelState.IsValid)
             {
                 return (LogicUser.AddUser(value, userId)) ?

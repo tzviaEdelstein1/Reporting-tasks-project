@@ -14,17 +14,23 @@ namespace BOL
         public int ProjectId { get; set; }
         [Required]
        [UniqueProjectAttribute]
+        [RegularExpression("[a-zA-Z]", ErrorMessage = "only alphabet")]
         public string ProjectName { get; set; }
+        [RegularExpression("[a-zA-Z]", ErrorMessage = "only alphabet")]
         [Required]
         public string ClientName { get; set; }
         [Required]
         public int TeamLeaderId { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+
         [Required]
         public int DevelopersHours { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         [Required]      
         public int QaHours { get; set; }
         [Required]
-      
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
+
         public int UiUxHours { get; set; }
         [ValidateStartDate]
         [Required]

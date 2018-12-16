@@ -45,6 +45,15 @@ namespace _03_UIL.Controllers
         public HttpResponseMessage GetWorkerToProjectByPidAndUid(int userId, int projectId)
 
         {
+            var re = Request;
+            var headers = re.Headers;
+
+            if (headers.Contains("Custom"))
+            {
+                string token = headers.GetValues("Custom").First();
+            }
+
+            //return null;
 
             return new HttpResponseMessage(HttpStatusCode.OK)
             {

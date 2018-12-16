@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
 import 'rxjs/add/operator/map';
@@ -41,7 +41,10 @@ export class UserService {
   }
 
   AddNewUser(user:User,userId:number):Observable<any>{
-    return this.http.post(this.globalService.path+"Users/AddUser/"+userId,user) .map((res:any)=>res)
+ 
+    return this.http.post(this.globalService.path+"Users/AddUser/"+userId,user, {
+      headers: new HttpHeaders().set('userId',userId.toString()),
+    }) .map((res:any)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));;
 
   }

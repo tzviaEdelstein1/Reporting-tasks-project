@@ -14,12 +14,13 @@ namespace BOL
         [Required]
         [UniqueUserAttribute]
         [MinLength(2),MaxLength(10)]
+        [RegularExpression("[a-zA-Z]", ErrorMessage = "only alphabet")]
         public string UserName { get; set; }
         [Required]
         [EmailAddress]
         public string UserEmail { get; set; }
 
-       
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Only Alphabets and Numbers allowed.")]
         public string Password { get; set; }
         public int TeamLeaderId { get; set; }
         [Required]
