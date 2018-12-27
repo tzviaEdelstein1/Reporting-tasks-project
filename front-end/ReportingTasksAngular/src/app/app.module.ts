@@ -62,39 +62,40 @@ import { AuthGuard } from './shared/auth.guard';
 import { AuthTeam } from './shared/auth.team';
 import { AuthWorker } from './shared/auth.worker';
 import { GlobalService } from './shared/services/global.service';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'verifyPassword/:id', component: VerifyPasswordComponent },
   { path: 'newPassword/:id', component: NewPasswordComponent },
   {
-    path: 'managers', component: ManagersComponent,canActivate:[AuthGuard], children: [
+    path: 'managers', component: ManagersComponent, canActivate: [AuthGuard], children: [
 
       { path: 'addProject', component: AddProjectComponent },
       { path: 'reportsManagement', component: ReportsManagementComponent },
       { path: 'teamManagement', component: TeamLeadersComponent },
       { path: 'changeProjectState', component: ChangeProjectStateComponent },
 
-   
+
       { path: 'addUser', component: AddUserComponent },
       { path: 'deleteUser', component: DeleteUserComponent },
       { path: 'editUser', component: EditUserComponent }
-    
+
 
 
     ]
   },
   {
-    path: 'team-leaders', component: TeamLeadersComponent,canActivate:[AuthTeam], children: [
+    path: 'team-leaders', component: TeamLeadersComponent, canActivate: [AuthTeam], children: [
       { path: 'hoursStatusGraph', component: HoursStatusGraphComponent },
       { path: 'projectsState', component: ProjectsStateComponent },
       { path: 'retroHours', component: RetrohoursComponent },
     ]
   },
   {
-    path: 'other-workers', component: OtherWorkerComponent,canActivate:[AuthWorker] , children: [
+    path: 'other-workers', component: OtherWorkerComponent, canActivate: [AuthWorker], children: [
       { path: 'tasksData', component: YourTasksDataComponent },
       { path: 'monthGraph', component: StatusGraphForMonthComponent },
       { path: 'sendMessage', component: SendEmailComponent },
@@ -130,6 +131,7 @@ const routes: Routes = [
     VerifyPasswordComponent,
     NewPasswordComponent,
     ChangeProjectStateComponent,
+    HomeComponent,
 
 
 
@@ -141,7 +143,7 @@ const routes: Routes = [
     MessageModule,
     MenuModule,
   ],
-  providers: [UserService, ProjectService, UserKindService, WorkerToProjectService, HoursService, SendEmailService, ExportExcelService, MessageService,GlobalService],
+  providers: [UserService, ProjectService, UserKindService, WorkerToProjectService, HoursService, SendEmailService, ExportExcelService, MessageService, GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

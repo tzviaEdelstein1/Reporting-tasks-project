@@ -44,7 +44,7 @@ export class UserService {
  
     return this.http.post(this.globalService.path+"Users/AddUser/"+userId,user, {
       headers: new HttpHeaders().set('userId',userId.toString()),
-    }) .map((res:any)=>res)
+    }) .map((res:Response)=>res)
     .catch((r:HttpErrorResponse)=>Observable.throw(r));;
 
   }

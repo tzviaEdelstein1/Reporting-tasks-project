@@ -172,10 +172,13 @@ namespace _03_UIL.Controllers
             {
                 string token = headers.GetValues("userId").First();
             }
+            var response = Request.CreateResponse(HttpStatusCode.OK, new JsonMediaTypeFormatter());
+            // Set headers for paging
+            response.Headers.Add("secret", "nn");
             if (ModelState.IsValid)
             {
                 return (LogicUser.AddUser(value, userId)) ?
-                   new HttpResponseMessage(HttpStatusCode.Created) :
+                  response:
                    new HttpResponseMessage(HttpStatusCode.BadRequest)
                    {
                        Content = new ObjectContent<String>("Can not add to DB", new JsonMediaTypeFormatter())

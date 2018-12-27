@@ -14,9 +14,9 @@ namespace BOL
         public int ProjectId { get; set; }
         [Required]
        [UniqueProjectAttribute]
-        [RegularExpression("[a-zA-Z]", ErrorMessage = "only alphabet")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string ProjectName { get; set; }
-        [RegularExpression("[a-zA-Z]", ErrorMessage = "only alphabet")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         [Required]
         public string ClientName { get; set; }
         [Required]

@@ -1,4 +1,5 @@
-<html>
+
+ 
   <form [formGroup]="formGroup">
 <div class="box">
   <h1 id="logintoregister">Login</h1>
@@ -23,12 +24,8 @@
   </div>
 
   </div>
-
- 
   <a routerLink="forgetPassword"routerLinkActive="active">Forget Your Password?</a>
 <button id="buttonlogintoregister" (click)=submitLogin() [disabled]="formGroup.invalid">Login</button>
   
 </div>
 </form>
-
-</html>

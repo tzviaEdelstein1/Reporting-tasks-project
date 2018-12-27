@@ -1,0 +1,21 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+
+.image{
+    height: 100%;
+    background: #50c5cf;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    transform: skew(10deg);
+    margin-left: -6%; 
+     width: 80%;
+}
+.image img{
+    display: -webkit-box;
+    transform: skew(-10deg);
+}

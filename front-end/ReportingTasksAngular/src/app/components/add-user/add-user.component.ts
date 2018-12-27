@@ -80,7 +80,7 @@ if(this.teamLeaders.find(t => t.UserName == this.formGroup.value.TeamLeaderId).U
     this.newUser.TeamLeaderId =0;
     this.newUser.UserKindId = this.userKinds.find(k => k.KindUserName == this.formGroup.value.UserKindId).KindUserId;
 
-    this.userservice.AddNewUser(this.newUser, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => { console.log("new", res); this.showSuccess() });
+    this.userservice.AddNewUser(this.newUser, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => { console.log("new", res);console.log("headers",res.headers); this.showSuccess() });
   }
 
   showSuccess() {
