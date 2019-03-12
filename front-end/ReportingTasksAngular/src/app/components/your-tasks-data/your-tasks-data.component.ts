@@ -13,11 +13,12 @@ export class YourTasksDataComponent implements OnInit {
   constructor(private projectservice: ProjectService, private hoursservice: HoursService) { }
 
   ngOnInit() {
+    debugger;
     this.projectservice.GetProjectsAndHoursByUserId(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
       res => {
 
         this.allYourProjectsAndHoursDetails = res;
-        console.warn("my", this.allYourProjectsAndHoursDetails);
+        console.log("my", this.allYourProjectsAndHoursDetails);
       }
     )
 

@@ -49,37 +49,36 @@ export class LoginComponent implements OnInit {
   }
 
    async submitLogin() {
+     debugger;
  this.pass=await sha256(this.formGroup.value.userPassword);
 console.log("rrrrrrrr",this.pass); 
     console.log(this.formGroup.value);
     console.log(this.formGroup.controls);
 
-    try
-     {
       this.userservice.Login(this.formGroup.value.userName,this.pass).subscribe(res => {
-        console.warn(res);
-        if (res != null) {    
-          this.newUser=res;
-          console.warn("new", this.newUser);
-          console.warn("kind"+res.UserKindId);
-         localStorage.setItem("currentUser",this.newUser.UserId.toString());
-          if(res.UserKindId==1)
-          this.router.navigateByUrl('/managers');
-          else if(res.UserKindId==2)
-          this.router.navigateByUrl('/team-leaders');
-          else
-          this.router.navigateByUrl('/other-workers');
-
+        if(res=="user is not exists")
+        {
+          alert(res);
+        }
+        else{
+          if (res != null) {    
+            this.newUser=res;
+           localStorage.setItem("currentUser",this.newUser.UserId.toString());
+            if(res.UserKindId==1)
+            this.router.navigateByUrl('/managers');
+            else if(res.UserKindId==2)
+            this.router.navigateByUrl('/team-leaders');
+            else
+            this.router.navigateByUrl('/other-workers');
+  
+          }
         }
 
-        else
-          alert("Login failed!!!");
+
+
+      
       })
 
-    }
-    catch (e) {
-      alert("Login failed!!!");
-    }
 
 
 

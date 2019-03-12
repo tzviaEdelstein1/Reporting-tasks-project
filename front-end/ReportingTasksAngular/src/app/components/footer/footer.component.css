@@ -1,0 +1,14 @@
+footer{
+    height: 15%;
+    border-top: solid 1px  #666;;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /* background-color: red; */
+    color: #666;
+    text-align: center;
+}

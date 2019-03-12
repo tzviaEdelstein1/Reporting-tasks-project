@@ -1,13 +1,16 @@
 <html>
   <form [formGroup]="formGroup" >
 <div class="box">
-  <h1 id="logintoregister">Retro Hours Of Your Workers:</h1>
+    <div id="header">
+        <div id="cont-lock"><i class="material-icons lock">Retro Hours Of Your Workers:</i></div>
+        <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+      </div> 
 
 <p>Choose the worker :</p>
 <div class="group">
-  <select class="inputMaterial"  (change)=selectWorker($event)>
-      <option></option>
-    <option  *ngFor="let item of workers" >{{item.UserName}}</option>
+  <select class="inputMaterial"  (change)=selectWorker($event) formControlName="worker">
+      <option disabled>select worker</option>
+    <option  *ngFor="let item of workersName" [value]="item.UserId">{{item.User.UserName}}</option>
     
   </select>
 
@@ -20,11 +23,10 @@
 
 
 <div class="group">
-  <select class="inputMaterial"  (change)=selectProject($event)>
-      <option></option>
-        
-  
-    <option  *ngFor="let item of projects" >{{item.ProjectName}}</option>
+  <select class="inputMaterial"  (change)=selectProject($event) formControlName="project">
+      <option disabled>select project</option>
+   
+    <option  *ngFor="let item of workerprojects" [value]="item.ProjectId">{{item.Project.ProjectName}}</option>
     
   </select>
 
@@ -43,7 +45,7 @@
 </div>
 
 
-<input type="submit" value="Update" (click)="onSubmit()">
+<input type="submit" value="Update" id="buttonlogintoregister" (click)="onSubmit()">
 </div>
 
 

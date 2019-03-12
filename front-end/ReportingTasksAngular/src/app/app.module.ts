@@ -63,6 +63,7 @@ import { AuthTeam } from './shared/auth.team';
 import { AuthWorker } from './shared/auth.worker';
 import { GlobalService } from './shared/services/global.service';
 import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -132,6 +133,7 @@ const routes: Routes = [
     NewPasswordComponent,
     ChangeProjectStateComponent,
     HomeComponent,
+    FooterComponent,
 
 
 

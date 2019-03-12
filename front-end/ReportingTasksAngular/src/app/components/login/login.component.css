@@ -30,7 +30,7 @@ body{
     background-color: #333;
 }
 /* BOX LOGIN */
-.box{
+/* .box{
 	position: relative;
 	margin: auto;
 	height: 365px;
@@ -50,13 +50,13 @@ body{
 .box h1{
 	text-align:center;
 	font-size:30px;
-}
+} */
 
 .show{
 	display:none;
 }
 
-.box button{
+/* .box button{
 	background:#FF4747;
 	border:0;
 	color:#fff;
@@ -79,7 +79,7 @@ body{
 	background:#FF2020;
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
-}
+} */
 
 .box p{
 	font-size:14px;
@@ -133,7 +133,7 @@ label 				 {
 }
 
 /* BOTTOM BARS ================================= */
-.bar 	{ position:relative; display:block; width:315px; }
+/* .bar 	{ position:relative; display:block; width:315px; }
 .bar:before, .bar:after 	{
   content:'';
   height:2px; 
@@ -144,26 +144,26 @@ label 				 {
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
-}
-.bar:before {
+} */
+/* .bar:before {
   left:50%;
 }
 .bar:after {
   right:50%; 
-}
+} */
 
 /* active state */
-.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+/* .inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
   width:50%;
-}
+} */
 
 
 /* active state */
-.inputMaterial:focus ~ .highlight {
+/* .inputMaterial:focus ~ .highlight {
   -webkit-animation:inputHighlighter 0.3s ease;
   -moz-animation:inputHighlighter 0.3s ease;
   animation:inputHighlighter 0.3s ease;
-}
+} */
 
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
@@ -178,7 +178,12 @@ label 				 {
 	from { background:#5264AE; }
   to 	{ width:0; background:transparent; }
 }
-a{
+#forget_password{
+
+  color: #dc3545;
+  padding: 113px;
+}
+/* a{
   color: #ff4747;
   text-decoration: none;
   position: relative;
@@ -189,3 +194,5 @@ a{
 a:hover{
   color: black;
 }
+
+ */

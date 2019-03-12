@@ -13,10 +13,10 @@ export class UserService {
 
   constructor(private http: HttpClient,private globalService:GlobalService){ }
 
-  Login(userName: string, password: string):Observable<User>  {
+  Login(userName: string, password: string):Observable<any>  {
     return this.http.get(this.globalService.path+"Users/Login/"+ userName +"/" + password)
-    .map((res:User)=>res)
-    .catch((r:HttpErrorResponse)=>Observable.throw(r));
+    .map((res:any)=>res)
+  
 
   }
   GetAllUsers():Observable<User[]>  {
@@ -50,11 +50,11 @@ export class UserService {
   }
 
   EditUser(user:User,userId:number){
-    return this.http.put(this.globalService.path+"Users/UpdateUser",user);
+    return this.http.put(this.globalService.path+"Users/UpdateUser/"+userId,user);
   }
 
 DeleteUser(id:number,userId:number){
-  return this.http.delete(this.globalService.path+"Users/DeleteUser/"+id+"/"+userId);
+  return this.http.delete(this.globalService.path+"Users/Delete/"+id+"/"+userId);
 }
 
 GetUserById(id:number):Observable<User>{
@@ -88,8 +88,12 @@ EditPassword(user:User){
   return this.http.put(this.globalService.path+"Users/EditPassword",user)
   .map((res:any)=>"ok")
   .catch((res:any)=>"e");
-
-  
+}
+CheckIfTeamIsAbleToDelete(userId:number)
+{
+  return this.http.get(this.globalService.path+"Users/CheckIfTeamIsAbleToDelete/"+userId)
+  .map((res:boolean)=>res)
+  .catch((r:HttpErrorResponse)=>Observable.throw(r));
 }
 }
 

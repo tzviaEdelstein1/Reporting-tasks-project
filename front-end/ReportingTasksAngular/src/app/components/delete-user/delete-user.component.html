@@ -1,12 +1,14 @@
 
   <form [formGroup]="formGroup">
 <div class="box">
-  <h1 id="logintoregister">DeleteUser</h1>
-
+    <div id="header">
+        <div id="cont-lock"><i class="material-icons lock">DeleteUser</i></div>
+        <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+      </div> 
 <label>Choose the user you wants to delete:</label>
 <div class="group">
   <select class="inputMaterial" formControlName="DeleteUser" >
-      <option></option>
+      <option disabled></option>
     <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
     
   </select>

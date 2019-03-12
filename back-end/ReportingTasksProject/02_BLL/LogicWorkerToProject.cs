@@ -107,6 +107,52 @@ namespace _02_BLL
 
             return DBaccess.RunReader(query, func);
         }
+        public static List<WorkerToProject> GetWorkersToProjectByProjectIdAndUserId(int projectId,int userId)
+        {
+            string query = $"SELECT * FROM tasks.worker_to_project WHERE project_id={projectId} and user_id={userId}";
+            Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
+            {
+                List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
+                while (reader.Read())
+                {
+                    workerToProjects.Add(new WorkerToProject
+                    {
+                        WorkerToProjectId = reader.GetInt32(0),
+                        UserId = reader.GetInt32(1),
+                        ProjectId = reader.GetInt32(2),
+                        Hours = reader.GetInt32(3),
+
+                    });
+                }
+                return workerToProjects;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
+
+        public static List<WorkerToProject> GetWorkersHoursByTeam(int teamId)
+        {
+            string query = $"SELECT w.*,user_name,project_name FROM tasks.worker_to_project w join tasks.users u on w.user_id=u.user_id join tasks.projects p on w.project_id=p.project_id where u.team_leader_id={teamId};";
+            Func<MySqlDataReader, List<WorkerToProject>> func = (reader) =>
+            {
+                List<WorkerToProject> workerToProjects = new List<WorkerToProject>();
+                while (reader.Read())
+                {
+                    workerToProjects.Add(new WorkerToProject
+                    {
+                        WorkerToProjectId = reader.GetInt32(0),
+                        UserId = reader.GetInt32(1),
+                        ProjectId = reader.GetInt32(2),
+                        Hours = reader.GetInt32(3),
+                        User=new User() { UserName=reader.GetString(4)},
+                        Project=new Project() { ProjectName=reader.GetString(5)}
+                    });
+                }
+                return workerToProjects;
+            };
+
+            return DBaccess.RunReader(query, func);
+        }
         public static List<WorkerToProject> GetWorkersToProjectByUserId(int userId)
         {
             string query = $"SELECT * FROM tasks.worker_to_project WHERE user_id={userId};";

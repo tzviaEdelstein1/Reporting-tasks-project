@@ -1,12 +1,16 @@
 <html>
 <form>
   <div class="box">
-    <h1 id="logintoregister">Project State</h1>
-
+    <div id="header">
+      <div id="cont-lock"><i class="material-icons lock">Project State</i></div>
+      <div id="bottom-head">
+        <h1 id="logintoregister"></h1>
+      </div>
+    </div>
     <p>Choose the project :</p>
     <div class="group">
       <select class="inputMaterial" (change)=selectProject($event)>
-        <option></option>
+        <option disabled></option>
         <option *ngFor="let item of yourProjects">{{item.ProjectName}}</option>
       </select>
 
@@ -51,7 +55,3 @@
 
 
 </html>
-
-
-
-

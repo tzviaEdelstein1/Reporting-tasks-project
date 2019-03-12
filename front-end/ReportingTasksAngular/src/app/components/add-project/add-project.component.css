@@ -2,7 +2,7 @@
 .checklabel{
   position: inherit;
 }
-.box[_ngcontent-c2] {
+/* .box[_ngcontent-c2] {
   position: relative;
   margin: auto;
 height: 1000px;
@@ -18,20 +18,14 @@ height: 1000px;
   border: 2px solid #C0C0C0;
   border-bottom: 2px solid #F00;
   margin-bottom: 100px;
-}
-#workers
+} */
+/* #workers
 {
   position: relative;
   width: 30%;
   left: 62%;
-  /* top: -34%; */
   margin-top: -75%;
-
-/* position: relative;
-          left: 60%;
-          width: 31%;
-          margin-top:-216px" */
-}
+} */
 .group {
   position: relative;
   margin-bottom: 4px;
@@ -44,7 +38,7 @@ height: 1000px;
  width: 31%;
  margin-top:-216px
 }
-.box button, input[type=button] {
+/* .box button, input[type=button] {
   background: #FF4747;
   border: 0;
   color: #fff;
@@ -56,8 +50,24 @@ height: 1000px;
   cursor: pointer;
   transition: all 0.4s;
   border-radius: 10px;
-  /* top: 23px; */
+
   position: relative;
-  /* top: 18%; */
+
   left: -6%;
+} */
+.projectForm{
+  /* display: flex; */
+  /* width: 700px;
+  max-width: 1001px;
+  max-height: 1075px; */
+}
+ .formInputs{
+  display: flex;
+  margin: 3px;
+} 
+#workers{
+  padding-left: 76px;
+} 
+.box{
+  width: 813px;
 }

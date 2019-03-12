@@ -1,9 +1,13 @@
 <form [formGroup]="formGroup" >
    
-  <div class="box">
-    <div style="width: 56%">
-    <h1 id="logintoregister">Add New Project</h1>
+  <div class="box projectForm" >
 
+   <div id="header">
+          <div id="cont-lock"><i class="material-icons lock">Add New Project</i></div>
+          <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+        </div> 
+        <div class="formInputs">
+        <div>
     <div class="group">
       <input class="inputMaterial" type="text" formControlName="ProjectName">
       <span class="highlight"></span>
@@ -18,7 +22,7 @@
     /* direction: rtl; */
     left: 72%;
     top: -1%; -->
- 
+
     <div class="group">
       <input class="inputMaterial" type="text" formControlName="ClientName">
       <span class="highlight"></span>
@@ -30,12 +34,9 @@
     </div>
     </div>
 
-  
-
-
     <div class="group">
       <select class="inputMaterial" formControlName="TeamLeader"(change)="FillUsersToAdd()">
-          <option></option>
+          <option disabled></option>
         <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
         
       </select>
@@ -106,11 +107,7 @@
               <div *ngIf="starterror.isError" class="alert alert-danger">
                 {{ starterror.errorMessage }}
              </div>
-          </div>
-      
-        
-
-
+          </div>      
           <div class="group">
               <input class="inputMaterial" type="date" formControlName="FinishDate" (change)="ValidateDates()">
               <span class="highlight"></span>
@@ -125,6 +122,8 @@
              </div>
             </div>
             <button id="buttonlogintoregister" (click)=Submit()  [disabled]="formGroup.invalid||error.isError==true||starterror.isError==true">Add</button>
+  
+        
           </div>
             <div id="workers">
                 <p>other worker to this project</p>
@@ -134,7 +133,9 @@
                     <label class="checklabel" for={{item.UserName}}>{{item.UserName}}</label> 
                   </div>
                 </div>
- 
-  </div>
+              </div>
+          </div>
+       
 </form>
+
 <p-toast></p-toast>

@@ -1,10 +1,21 @@
 
+<header class="navbar">
+
+   
+  <a  class="navbar-brand">
+    Hello User
+  </a>
+ 
+</header>
  
   <form [formGroup]="formGroup">
 <div class="box">
-  <h1 id="logintoregister">Login</h1>
+    <div id="header">
+        <div id="cont-lock"><i class="material-icons lock">Please Sign In</i></div>
+        <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+      </div> 
 <div class="group">      
-  <input class="inputMaterial" type="text"  formControlName="userName">
+  <input class="inputMaterial" type="text"  formControlName="userName" >
   <span class="highlight"></span>
   <span class="bar"></span>
   <label>User name</label>
@@ -15,7 +26,7 @@
   </div>
 
 <div class="group">      
-  <input class="inputMaterial" type="password"  formControlName="userPassword">
+  <input class="inputMaterial" type="password"  formControlName="userPassword" >
   <span class="highlight"></span>
   <span class="bar"></span>
   <label>Password</label>
@@ -24,7 +35,7 @@
   </div>
 
   </div>
-  <a routerLink="forgetPassword"routerLinkActive="active">Forget Your Password?</a>
+  <a id="forget_password" routerLink="/forgetPassword"routerLinkActive="active">Forget Your Password?</a>
 <button id="buttonlogintoregister" (click)=submitLogin() [disabled]="formGroup.invalid">Login</button>
   
 </div>

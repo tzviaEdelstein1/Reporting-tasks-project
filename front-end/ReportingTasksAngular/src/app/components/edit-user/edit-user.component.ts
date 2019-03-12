@@ -30,7 +30,7 @@ export class EditUserComponent implements OnInit {
       UserName: new FormControl("", this.createValidatorArr("UserName", 3, 15)),
       UserEmail: new FormControl("", this.createValidatorArr("UserEmail", 4, 1000)),
 
-      TeamLeaderId: new FormControl("", this.createValidatorArr("TeamLeaderId", 0, 1000)),
+      TeamLeaderId: new FormControl(""),
       UserKindId: new FormControl("", this.createValidatorArr("UserKindId", 0, 1000)),
     };
 
@@ -38,7 +38,7 @@ export class EditUserComponent implements OnInit {
     this.formGroup = new FormGroup(formGroupConfig);
 
     this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
-    this.userservice.GetTeamLeaders().subscribe(res => { this.teamLeaders = res; });
+    this.userservice.GetTeamLeaders().subscribe(res => {debugger; this.teamLeaders = res; });
     this.userkindservice.GetAllKinds().subscribe(res => { this.userKinds = res; });
   }
 
@@ -61,8 +61,11 @@ export class EditUserComponent implements OnInit {
     this.editUser = this.allUsers.find(u => u.UserName == event.target.value);
     this.formGroup.controls['UserName'].setValue(this.editUser.UserName);
     this.formGroup.controls['UserEmail'].setValue(this.editUser.UserEmail);
+    debugger;
+    if(this.editUser.UserKindId!=2)
     this.formGroup.controls['TeamLeaderId'].setValue(this.teamLeaders.find(t => t.UserId == this.editUser.TeamLeaderId).UserName);
-
+else
+this.formGroup.controls['TeamLeaderId'].setValue("");
     this.formGroup.controls['UserKindId'].setValue(this.userKinds.find(u => u.KindUserId == this.editUser.UserKindId).KindUserName);
 
 
@@ -75,8 +78,10 @@ export class EditUserComponent implements OnInit {
     debugger;
     this.editUser.UserName = this.formGroup.value.UserName;
     this.editUser.UserEmail = this.formGroup.value.UserEmail;
-
+if(this.editUser.UserKindId!=2)
     this.editUser.TeamLeaderId = this.teamLeaders.find(t => t.UserName == this.formGroup.value.TeamLeaderId).UserId;
+    else
+    this.editUser.TeamLeaderId =0;
     this.editUser.UserKindId = this.userKinds.find(k => k.KindUserName == this.formGroup.value.UserKindId).KindUserId;
 
     this.userservice.EditUser(this.editUser, Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => {

@@ -1,13 +1,17 @@
 
 <form [formGroup]="formGroup">
   <div class="box">
-    <h1 id="logintoregister">Add New User</h1>
+      <div id="header">
+          <div id="cont-lock"><i class="material-icons lock">Add New User</i></div>
+          <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+        </div> 
+ 
 
     <div class="group">
       <input class="inputMaterial" type="text" formControlName="UserName">
       <span class="highlight"></span>
       <span class="bar"></span>
-      <label>UserName</label>
+      <label>User Name</label>
       <div *ngIf="formGroup.controls['UserName'].errors&&formGroup.controls['UserName'].touched">
         <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserName'].errors)"></p-message>
       </div>
@@ -18,7 +22,7 @@
       <input class="inputMaterial" type="text" formControlName="UserEmail">
       <span class="highlight"></span>
       <span class="bar"></span>
-      <label>UserEmail</label>
+      <label>User Email</label>
       <div *ngIf="formGroup.controls['UserEmail'].errors&&formGroup.controls['UserEmail'].touched">
         <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserEmail'].errors)"></p-message>
       </div>
@@ -42,15 +46,15 @@
     </div>
 
     <div class="group">
-      <select class="inputMaterial" formControlName="UserKindId">
-          <option></option>
+      <select class="inputMaterial" formControlName="UserKindId" (change)="onChange($event.target.value)">
+          <option disabled></option>
         <option *ngFor="let item of userKinds">{{item.KindUserName}}</option>
 
       </select>
 
       <span class="highlight"></span>
       <span class="bar"></span>
-      <label>UserKind</label>
+      <label>User Kind</label>
       <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
         <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)"></p-message>
       </div>
@@ -59,8 +63,8 @@
   
 
     <div class="group">
-      <select class="inputMaterial" formControlName="TeamLeaderId">
-          <option></option>
+      <select class="inputMaterial" formControlName="TeamLeaderId" >
+          <option disabled></option>
         <option *ngFor="let item of teamLeaders">{{item.UserName}}</option>
 
       </select>
@@ -76,7 +80,16 @@
 
    
     <button id="buttonlogintoregister" (click)=submitAdd() [disabled]="formGroup.invalid">Add</button>
-
+  
+    <!-- <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-4">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input class="input_text" type="text" pInputText placeholder="User name">         
+            </div>
+        </div>
+      </div> -->
+      
   </div>
 </form>
 <p-toast></p-toast>

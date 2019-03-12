@@ -5,7 +5,7 @@
     
     <div class="form">
       <select (change)="SelectProject($event)" class="inputMaterial">
-          <option></option>
+          <option disabled></option>
         <option *ngFor="let item of allYourProjectsAndHoursDetails">{{item.Name}}</option>
       </select>
 

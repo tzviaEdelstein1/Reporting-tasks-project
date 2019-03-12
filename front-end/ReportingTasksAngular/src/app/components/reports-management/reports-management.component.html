@@ -17,7 +17,7 @@
 <div id="selectGroup">
 <div class="group">
     <select class="inputMaterial" (change)="onChangeUser($event.target.value)" id="allUsers">
-            <option></option>
+            <option disabled></option>
             <option>allUsers</option>
       <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
       
@@ -29,7 +29,7 @@
   </div>
   <div class="group">
     <select class="inputMaterial" (change)="onChangeTeamLeader($event.target.value)" id="allTeamLeaders">
-            <option></option>
+            <option disabled></option>
             <option>allTeamLeaders</option>
       <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
       
@@ -41,7 +41,7 @@
   </div>
   <div class="group">
     <select class="inputMaterial"  (change)="onChangeProject($event.target.value)" id="allProjects">
-            <option></option>
+            <option disabled></option>
             <option>allProjects</option>
       <option  *ngFor="let item of allProjects" >{{item.ProjectName}}</option>
       

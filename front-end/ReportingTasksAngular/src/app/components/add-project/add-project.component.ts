@@ -26,11 +26,11 @@ export class AddProjectComponent implements OnInit {
   currentId: number;
   checkboxes: any[] = [];
   constructor(private userservice: UserService, private projectService: ProjectService, private workerToProjectService: WorkerToProjectService, private messageService: MessageService) {
-
+   
     let formGroupConfig = {
       ProjectName: new FormControl("", this.createValidatorArr("ProjectName", 3, 15)),
       ClientName: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
-      TeamLeader: new FormControl("", this.createValidatorArr("ClientName", 3, 15)),
+      TeamLeader: new FormControl("", this.createValidatorArr("TeamLeader", 3, 15)),
       DevelopersHours: new FormControl("", this.createValidatorArr("DevelopersHours", 0, 1000)),
       QAhours: new FormControl("", this.createValidatorArr("QAhours", 0, 1000)),
       UiUxHours: new FormControl("", this.createValidatorArr("UiUxHours", 0, 1000)),
@@ -42,6 +42,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.warn("all", this.allUsers) });
     this.userservice.GetTeamLeaders().subscribe(res => {
       this.teamLeaders = res;

@@ -41,6 +41,17 @@ namespace _03_UIL.Controllers
             };
         }
         [HttpGet]
+        [Route("api/WorkerToProject/GetWorkersHoursByTeam/{teamId}")]
+        public HttpResponseMessage GetWorkersHoursByTeam(int teamId)
+
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+
+                Content = new ObjectContent<List<WorkerToProject>>(LogicWorkerToProject.GetWorkersHoursByTeam(teamId), new JsonMediaTypeFormatter())
+            };
+        }
+        [HttpGet]
         [Route("api/WorkerToProject/GetWorkerToProjectByPidAndUid/{userId}/{projectId}")]
         public HttpResponseMessage GetWorkerToProjectByPidAndUid(int userId, int projectId)
 
@@ -57,7 +68,7 @@ namespace _03_UIL.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new ObjectContent<WorkerToProject>(LogicWorkerToProject.GetWorkersToProjectByProjectId(projectId).FirstOrDefault(u => u.UserId == userId), new JsonMediaTypeFormatter())
+                Content = new ObjectContent<WorkerToProject>(LogicWorkerToProject.GetWorkersToProjectByProjectIdAndUserId(projectId,userId).FirstOrDefault(), new JsonMediaTypeFormatter())
             };
         }
         [Route("api/WorkerToProject/AddWorkerToProject/{userId}")]

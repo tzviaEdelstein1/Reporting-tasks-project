@@ -44,7 +44,14 @@ namespace _02_BLL
             string query = $"select user_ip from  tasks.users where user_ip={userIp}";
             return DBaccess.RunNonQuery(query) == 1;
         }
-        
+        public static bool CheckIfTeamIsAbleToDelete(int userId)
+        {
+            string query = $" SELECT if( count(*)>0,1,0) " +
+             $"from  tasks.users u join tasks.projects p on u.user_id=p.team_leader_id" +
+             $" where p.team_leader_id={userId}";
+            return  DBaccess.RunScalar(query).ToString()=="1";
+        }
+
         public static List<User> GetUserById(int userId)
         {
             string query = $"SELECT * FROM tasks.users WHERE user_id={userId}";

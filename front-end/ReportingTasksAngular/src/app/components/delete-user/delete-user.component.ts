@@ -27,8 +27,10 @@ deleteUserId:number;
 
 
     this.formGroup = new FormGroup(formGroupConfig);
-    this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
-    this.allUsers=this.allUsers.filter(u=>u.UserKindId!=2)
+    this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers);
+   this.allUsers=this.allUsers.filter(u=>u.UserKindId!=1);
+  });
+   
    }
 
    public close(status) {
@@ -47,17 +49,30 @@ deleteUserId:number;
 
   }
 
-  submitDelete(){
-
-this.deleteUserId=this.allUsers.find(u=>u.UserName==this.formGroup.value.DeleteUser).UserId;
-  
-this.userservice.DeleteUser(this.deleteUserId,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("dell",res);this.showSuccess();});
-
+  submitDelete()
+  { 
 debugger;
-this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
-this.allUsers=this.allUsers.filter(u=>u.UserKindId!=2);
+this.deleteUserId=this.allUsers.find(u=>u.UserName==this.formGroup.value.DeleteUser).UserId;
+ var bool;
+ this.userservice.CheckIfTeamIsAbleToDelete(this.deleteUserId).subscribe(res=>{
+   bool=res;
+ if(!bool)
+{
+  debugger;
+this.userservice.DeleteUser(this.deleteUserId,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("dell",res);this.showSuccess();});
+this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers);
+this.allUsers=this.allUsers.filter(u=>u.UserKindId!=1); });
+
+}
+else
+this.showError();
+});
+
   }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success Message', detail:'Employee successfully removed'});
+}
+showError() {
+  this.messageService.add({severity:'error', summary: 'Error Message', detail:'Can not delete team leader with projects Remove the projects from the team head'});
 }
 }

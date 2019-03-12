@@ -2,12 +2,17 @@
 <html>
   <form [formGroup]="formGroup">
 <div class="box">
-  <h1 id="logintoregister">EditUser</h1>
+    <div id="header">
+        <div id="cont-lock"><i class="material-icons lock">EditUser</i></div>
+        <div id="bottom-head"><h1 id="logintoregister"></h1></div>
+      </div> 
+<!-- 
+  <h1 id="logintoregister">EditUser</h1> -->
 
 <label>Choose the user you wants to edit:</label>
 <div class="group">
   <select class="inputMaterial" formControlName="EditUser" (change)="FillFields($event)">
-      <option></option>
+      <option disabled></option>
     <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
     
   </select>
@@ -49,7 +54,7 @@
 
   <div class="group">
     <select class="inputMaterial" formControlName="TeamLeaderId">
-        <option></option>
+        <option disabled></option>
       <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
       
     </select>
@@ -67,14 +72,14 @@
 
   <div class="group">
     <select class="inputMaterial" formControlName="UserKindId">
-        <option></option>
+        <option disabled></option>
       <option  *ngFor="let item of userKinds" >{{item.KindUserName}}</option>
       
     </select>
 
     <span class="highlight"></span>
     <span class="bar"></span>
-    <label>UserKindId</label>
+    <label>UserKind</label>
     <div *ngIf="formGroup.controls['UserKindId'].errors&&formGroup.controls['UserKindId'].touched">
       <p-message  severity="error" [text]=err *ngFor="let err of obj.values(formGroup.controls['UserKindId'].errors)"></p-message>
     </div>

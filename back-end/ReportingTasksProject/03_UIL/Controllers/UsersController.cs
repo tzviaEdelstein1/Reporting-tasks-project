@@ -66,7 +66,16 @@ namespace _03_UIL.Controllers
                 Content = new ObjectContent<List<User>>(LogicUser.GetTeamLeaders(), new JsonMediaTypeFormatter())
             };
         }
+        [HttpGet]
+        [Route("api/Users/CheckIfTeamIsAbleToDelete/{userId}")]
+        public HttpResponseMessage CheckIfTeamIsAbleToDelete(int userId)
 
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ObjectContent<bool>(LogicUser.CheckIfTeamIsAbleToDelete(userId), new JsonMediaTypeFormatter())
+            };
+        }
         [HttpGet]
         [Route("api/Users/VerifyEmail/{userName}")]
         public HttpResponseMessage VerifyEmail(string userName)
@@ -148,7 +157,7 @@ namespace _03_UIL.Controllers
                     Content = new ObjectContent<User>(user, new JsonMediaTypeFormatter())
                 };
             }
-            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
+            return Request.CreateResponse(HttpStatusCode.OK, "user is not exists");
         }
         [HttpPut]
         [Route("api/users/Logout/{userId}")]

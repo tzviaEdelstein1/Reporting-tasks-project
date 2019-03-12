@@ -21,7 +21,10 @@ export class StatusGraphForMonthComponent implements OnInit {
   ngOnInit() {
 
     this.projectService.GetProjectsAndHoursByUserIdAccordingTheMonth(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
-      res=>{this.ProjectsAndHours=res;
+      
+      res=>{
+        debugger;
+        this.ProjectsAndHours=res;
         console.log(res);
         
       for(var i=0;i<this.ProjectsAndHours.length;i++){

@@ -1,6 +1,6 @@
 <div>
   <div style="display: block">
-    <canvas baseChart
+    <canvas  class="canvas" baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
@@ -8,6 +8,6 @@
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
-  </div>
+  
 </div>
 
