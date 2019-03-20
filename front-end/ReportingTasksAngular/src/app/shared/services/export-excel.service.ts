@@ -9,7 +9,6 @@ const EXCEL_EXTENSION = '.xlsx';
 export class ExportExcelService {
 
  export(readyToExport:any[]) {
-   debugger;
 
   const workBook = XLSX.utils.book_new(); // create a new blank book
   const workSheet = XLSX.utils.json_to_sheet(readyToExport);

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BOL.Access">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Access.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.ActualHours">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAgARAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ActualHours.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.Project">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAACAAIgGAAAAAAABAAAEAAAQAAAAEAAIAA=</HashCode>
+      <FileName>Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.User">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAgAAAAAEAACAQAACAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.UserKind">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>UserKind.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.UserKindToAccess">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>UserKindToAccess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BOL.WorkerToProject">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAwAAAAAAAACAgABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WorkerToProject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_01_BOL.DetailsWorkerInProjects">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABQAAAAAAAAAAwAAAAAQAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DetailsWorkerInProjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_01_BOL.TreeTable">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TreeTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_01_BOL.Unknown">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Unknown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

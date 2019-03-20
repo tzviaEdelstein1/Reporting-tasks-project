@@ -11,6 +11,7 @@ namespace _02_BLL
 {
     public class LogicUserKinds
     {
+        //get the users kind in the system
         public static List<UserKind> GetAllUserKinds()
         {
             try

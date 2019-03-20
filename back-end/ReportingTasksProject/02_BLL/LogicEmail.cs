@@ -12,7 +12,8 @@ using System.Timers;
 namespace _02_BLL
 {
     public class LogicEmail
-    {
+    { 
+        //timer to send email
         public static async Task BeginTimer()
         {
             SendAlerts();
@@ -24,7 +25,6 @@ namespace _02_BLL
         public static async void SendAlerts()
         {
 
-
             List<Project> projects = new List<Project>();
 
             DateTime date = DateTime.Today.AddDays(1);
@@ -32,6 +32,7 @@ namespace _02_BLL
             string tommorowDate = $"'{date.Year}-{date.Month}-{date.Day}'";
             List<string> emails = new List<string>();
             string query = $"SELECT * FROM tasks.projects where finish_date={tommorowDate} and is_active=1";
+            //fill the relevant projects in list
             Func<MySqlDataReader, List<Project>> func = (reader) =>
             {
 
@@ -54,7 +55,7 @@ namespace _02_BLL
             };
 
             DBaccess.RunReader(query, func);
-
+            //get the emails
             foreach (var item in projects)
             {
                 string query2 = $"SELECT U.user_email FROM tasks.users U JOIN tasks.worker_to_project WP ON U.user_id=WP.user_id WHERE WP.project_id={item.ProjectId} and WP.hours >(SELECT sum(count_houers) FROM tasks.actual_hours where user_id=U.user_id and project_id={item.ProjectId})";
@@ -83,7 +84,7 @@ namespace _02_BLL
             try
             {
 
-
+                //adrress of the system email
                 string FromMail = "reporting.manage@gmail.com";
                 string emailTo = to;
                 MailMessage mail = new MailMessage();

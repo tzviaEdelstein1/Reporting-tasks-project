@@ -443,7 +443,9 @@ p {
         h1,h2,h3{
           text-align: center;
         }
-
+.logo{
+  width: 100px;
+}
 
 
         
