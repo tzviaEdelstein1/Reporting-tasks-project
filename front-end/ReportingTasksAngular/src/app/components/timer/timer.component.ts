@@ -85,7 +85,7 @@ export class TimerComponent implements OnInit {
 
 
   StopTimer() {
-    debugger;
+ 
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.time = this.timerHours + this.timerMinutes / 60;
@@ -97,9 +97,9 @@ export class TimerComponent implements OnInit {
       this.newActualHours.date = this.now;
 
       this.hoursservice.AddActualHours(this.newActualHours).subscribe(res => {
-        debugger;
+      
         this.hoursservice.subject.next("jj");
-        debugger;
+     
         this.projectservice.GetProjectsAndHoursByUserId(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
           res => {
 

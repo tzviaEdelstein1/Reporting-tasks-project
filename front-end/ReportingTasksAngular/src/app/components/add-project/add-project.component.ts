@@ -60,7 +60,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   FillUsersToAdd() {
-    debugger;
+
     this.teamLeaderId = this.allUsers.find(t => t.UserName == this.formGroup.value["TeamLeader"]).UserId;
     console.log("team", this.teamLeaderId);
     this.usersToAdd = this.allUsers.filter(u => u.UserId != this.teamLeaderId && u.TeamLeaderId != this.teamLeaderId && u.UserKindId != 1);
@@ -69,7 +69,7 @@ export class AddProjectComponent implements OnInit {
 
 
   addCheckedWorker(event) {
-    debugger;
+ 
     console.warn("event", event);
 
     if (event.target.checked == true)
@@ -79,7 +79,7 @@ export class AddProjectComponent implements OnInit {
   starterror: any = { isError: false, errorMessage: '' };
   error: any = { isError: false, errorMessage: '' };
   ValidateStartDate() {
-    debugger;
+
     const today = new Date();
     if (new Date(this.formGroup.controls['BeginingDate'].value) < new Date(today.setDate(today.getDate() - 1))) {
       this.starterror = {
@@ -94,7 +94,7 @@ export class AddProjectComponent implements OnInit {
     }
   }
   ValidateDates() {
-    debugger;
+
     if (new Date(this.formGroup.controls['BeginingDate'].value) > new Date(this.formGroup.controls['FinishDate'].value)) {
       this.error = {
         isError: true, errorMessage: 'End Date cant before start date'
@@ -109,7 +109,7 @@ export class AddProjectComponent implements OnInit {
   }
   workerToProject: WorkerToProject;
   Submit() {
-    debugger;
+
 
     this.currentId = Number.parseInt(localStorage.getItem("currentUser"));
     console.log("currentId", this.currentId);
@@ -128,9 +128,9 @@ export class AddProjectComponent implements OnInit {
     this.newProject.FinishDate = this.formGroup.value.FinishDate;
 
     console.log("newproj", this.newProject);
-    debugger;
+
     this.projectService.AddProject(this.newProject, this.currentId).subscribe(res => {
-      debugger;
+  
       console.log("res", res);
       this.showSuccess();
       if (this.checkboxes) {

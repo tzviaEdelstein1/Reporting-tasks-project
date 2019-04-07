@@ -39,7 +39,7 @@ export class WorkerToProjectService {
     return this.http.put(this.globalService.path+"WorkerToProject/UpdateWorkerToProject", workerToProject);
   }
   Get( teamId:number): Observable<WorkerToProject[]>{
-    debugger;
+
     return this.http.get(this.globalService.path+"WorkerToProject/GetWorkersHoursByTeam/"+teamId)
     .map((res: WorkerToProject[]) => res)
     .catch((r: HttpErrorResponse) => Observable.throw(r));

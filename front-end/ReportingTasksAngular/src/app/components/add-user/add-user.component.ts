@@ -52,7 +52,7 @@ export class AddUserComponent implements OnInit {
 
     });
     this.userkindservice.GetAllKinds().subscribe(res => {
-      debugger; this.userKinds = res;
+ this.userKinds = res;
     
       // this.userKinds= this.userKinds.filter(res=>res.KindUserName!="manager"); 
     });
@@ -73,7 +73,7 @@ export class AddUserComponent implements OnInit {
   }
 
   async submitAdd() {
-debugger;
+
     this.newUser = new User();
     this.newUser.UserName = this.formGroup.value.UserName;
     this.newUser.UserEmail = this.formGroup.value.UserEmail;

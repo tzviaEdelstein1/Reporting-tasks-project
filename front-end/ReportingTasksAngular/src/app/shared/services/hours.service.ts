@@ -14,7 +14,7 @@ export class HoursService {
   subject = new Subject();
 
   AddActualHours(actual: ActualHours): Observable<any> {
-    debugger;
+
 
     return this.http.post(this.globalService.path+"ActualHours/AddActualHours/" + Number.parseInt(localStorage.getItem("currentUser")), actual)
     .map((res: any) => res)

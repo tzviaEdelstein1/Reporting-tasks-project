@@ -28,7 +28,7 @@ export class ProjectService {
     
   }
   GetProjectsByTeamLeaderId(teamLeaderId:number):Observable<Project[]>  {
-   debugger;
+
   
     return this.http.get(this.globalService.path+"Projects/GetProjectsByTeamId/"+teamLeaderId)
     .map((res:Project[])=>res)
@@ -69,7 +69,7 @@ UpdateProject(project:Project,id:number)
 
 
 AddProject(project:Project,userId:number):Observable<any>{
-  debugger;
+
 
   return this.http.post(this.globalService.path+"Projects/AddProject/"+userId,project).map((res:Project)=>res)
   .catch((r:any)=>"e");

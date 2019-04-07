@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
    async submitLogin() {
-     debugger;
+  
  this.pass=await sha256(this.formGroup.value.userPassword);
 console.log("rrrrrrrr",this.pass); 
     console.log(this.formGroup.value);

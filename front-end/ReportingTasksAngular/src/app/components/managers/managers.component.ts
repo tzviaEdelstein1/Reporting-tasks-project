@@ -21,7 +21,7 @@ export class ManagersComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
   public onSelect({ item }): void {
-    debugger;
+ 
     if (!item.items) {
         this.router.navigate([ item.path ]);
     }

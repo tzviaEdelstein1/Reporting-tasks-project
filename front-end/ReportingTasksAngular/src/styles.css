@@ -49,12 +49,12 @@ body{
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   overflow: hidden;
   border-top: 2px solid #C0C0C0;
-  border-bottom: 29px solid #ff4747;
+  border-bottom: 29px solid#dc3545;;
   font-family: 'Lato', sans-serif;
   
 }
 #header{
-  background: #ff4747;
+  background:#dc3545;;
   position: relative;
   height: 75px;
   width: 100%;
@@ -80,7 +80,7 @@ body{
 }
 #bottom-head{
   position: relative;
-background: #ff4747;
+background:#dc3545;;
   height: 10px;
 }
 
@@ -138,7 +138,7 @@ background: #ff4747;
 .box button,input[type=button],input[type=submit]{
 	background: #cfd8dc;
 	border:0;
-	color: #ff4747;
+	color:#dc3545;;
 	padding:10px;
 	font-size: 16px;
   font-weight: 300;
@@ -152,12 +152,12 @@ background: #ff4747;
 }
 
 .box button:active,input[type=button]:active,input[type=submit]:active{
-	background: #ff4747;
+	background: #dc3545;;
   color: #263238;
 }
 
 .box button:hover,input[type=button]:hover,input[type=submit]:hover{
-		background:#ff4747;
+		background:#dc3545;;
   color: #FFF;
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
@@ -210,7 +210,7 @@ label 				 {
 .inputMaterial:focus ~ label, .inputMaterial:valid ~ label 		{
   top:-20px;
   font-size:14px;
-  color:#FF0000;
+  color:#dc3545;
 }
 
 /* BOTTOM BARS ================================= */
@@ -221,7 +221,7 @@ label 				 {
   width:0;
   bottom:1px; 
   position:absolute;
-  background:#FF0000; 
+  background :#dc3545;
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
@@ -260,7 +260,7 @@ label 				 {
   to 	{ width:0; background:transparent; }
 }
 a{
-  color: #ff4747;
+  color:#dc3545;
   text-decoration: none;
   position: relative;
   /* left: 33%; */
@@ -335,12 +335,13 @@ p {
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.04);
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  border-bottom: 2px solid #dc3545;;
+  margin-bottom: 5px;
+  /* border-bottom: 2px solid #dc3545;; */
 }
 .navbar a {
   text-decoration: none;
   margin: 0 15px;
-  color: #dc3545;
+  color:#dc3545;
 }
 .navbar a:hover {
   
@@ -446,6 +447,9 @@ p {
 .logo{
   width: 100px;
 }
-
+.page-header-1 {
+  background-color: #dc3545;
+  min-height: 3rem;
+}
 
         

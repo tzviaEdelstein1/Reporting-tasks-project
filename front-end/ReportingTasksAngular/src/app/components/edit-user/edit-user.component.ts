@@ -38,7 +38,7 @@ export class EditUserComponent implements OnInit {
     this.formGroup = new FormGroup(formGroupConfig);
 
     this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers) });
-    this.userservice.GetTeamLeaders().subscribe(res => {debugger; this.teamLeaders = res; });
+    this.userservice.GetTeamLeaders().subscribe(res => { this.teamLeaders = res; });
     this.userkindservice.GetAllKinds().subscribe(res => { this.userKinds = res; });
   }
 
@@ -61,7 +61,7 @@ export class EditUserComponent implements OnInit {
     this.editUser = this.allUsers.find(u => u.UserName == event.target.value);
     this.formGroup.controls['UserName'].setValue(this.editUser.UserName);
     this.formGroup.controls['UserEmail'].setValue(this.editUser.UserEmail);
-    debugger;
+
     if(this.editUser.UserKindId!=2)
     this.formGroup.controls['TeamLeaderId'].setValue(this.teamLeaders.find(t => t.UserId == this.editUser.TeamLeaderId).UserName);
 else
@@ -75,7 +75,7 @@ this.formGroup.controls['TeamLeaderId'].setValue("");
 
 
   submitEdit() {
-    debugger;
+  
     this.editUser.UserName = this.formGroup.value.UserName;
     this.editUser.UserEmail = this.formGroup.value.UserEmail;
 if(this.editUser.UserKindId!=2)

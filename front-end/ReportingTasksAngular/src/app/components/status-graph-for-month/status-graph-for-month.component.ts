@@ -23,7 +23,7 @@ export class StatusGraphForMonthComponent implements OnInit {
     this.projectService.GetProjectsAndHoursByUserIdAccordingTheMonth(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(
       
       res=>{
-        debugger;
+     
         this.ProjectsAndHours=res;
         console.log(res);
         

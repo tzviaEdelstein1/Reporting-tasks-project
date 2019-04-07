@@ -73,7 +73,7 @@ VerifyUserName(userName:string){
 
 
 VerifyPassword(pass:string,userName:string):Observable<any>
-{ debugger;
+{
   return this.http.get(this.globalService.path+"Users/VerifyPassword/"+pass+"/"+userName)
  
   //return this.http.get("http://localhost:56028/api/Users/VerifyPassword/"+pass+"/"+userName)

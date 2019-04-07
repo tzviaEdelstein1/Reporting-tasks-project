@@ -38,7 +38,7 @@ deleteUserId:number;
     if(status=="yes")
     {
       this.submitDelete();
-      debugger;
+
       }
   }
 
@@ -51,14 +51,14 @@ deleteUserId:number;
 
   submitDelete()
   { 
-debugger;
+
 this.deleteUserId=this.allUsers.find(u=>u.UserName==this.formGroup.value.DeleteUser).UserId;
  var bool;
  this.userservice.CheckIfTeamIsAbleToDelete(this.deleteUserId).subscribe(res=>{
    bool=res;
  if(!bool)
 {
-  debugger;
+
 this.userservice.DeleteUser(this.deleteUserId,Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res=>{console.log("dell",res);this.showSuccess();});
 this.userservice.GetAllUsers().subscribe(res => { this.allUsers = res; console.log("this.allUsers", this.allUsers);
 this.allUsers=this.allUsers.filter(u=>u.UserKindId!=1); });

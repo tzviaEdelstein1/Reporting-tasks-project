@@ -33,7 +33,7 @@ export class RetrohoursComponent implements OnInit {
 
   ngOnInit() {
     this.workertoprojectService.Get(Number.parseInt(localStorage.getItem("currentUser"))).subscribe(res => {
-      debugger;
+
       this.allWorkersToProject = res;
       for (var i = 0; i < this.allWorkersToProject.length; i++) {
         for (var j = 0; j < this.workersName.length; j++) {

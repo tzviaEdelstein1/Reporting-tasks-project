@@ -47,7 +47,7 @@ export class ReportsManagementComponent implements OnInit {
   }
   exportToExcel() {
     var arr = [];
-    debugger;
+
     arr = this.filterFilesToExport();
     this.exportExcelService.export(arr);
   }
@@ -56,7 +56,7 @@ export class ReportsManagementComponent implements OnInit {
 
     this.fillDate();
     this.treeTableService.GetTreeTable().subscribe(res => {
-      debugger;
+    
       this.treeTable = res;
 
       this.cols = [
@@ -242,7 +242,7 @@ export class ReportsManagementComponent implements OnInit {
               date: this.getShorerDate(actualHours.date)
             }
           }
-          debugger;
+     
           workerNode.children.push(workerActualHoursNode)
         }
         );
@@ -293,7 +293,7 @@ export class ReportsManagementComponent implements OnInit {
               date: this.getShorerDate(actualHours.date)
             }
           }
-          debugger;
+       
           workerNode.children.push(workerActualHoursNode)
         }
         );
@@ -337,7 +337,7 @@ export class ReportsManagementComponent implements OnInit {
               date: this.getShorerDate(actualHours.date)
             }
           }
-          debugger;
+
           workerNode.children.push(workerActualHoursNode)
         }
         );
@@ -364,7 +364,7 @@ export class ReportsManagementComponent implements OnInit {
     return count;
   }
   getPrecentOfNumbers(num1: number, num2: number) {
-    debugger;
+  
     var c = (num2 / num1) * 100 + "%";
     var x = parseFloat(c).toFixed(3)
     if (x == "0.000")
@@ -373,13 +373,13 @@ export class ReportsManagementComponent implements OnInit {
   }
 
   getShorerDate(date: Date) {
-    debugger;
+
     var d = new Date(date)
     return d.toLocaleDateString();
   }
   //Export to excel
   filterFilesToExport() {
-    debugger;
+  
     for (var i = 0; i < this.filterd.length; i++) {
 
       //push project

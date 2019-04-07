@@ -1,34 +1,32 @@
 
 
-<input type="button"(click)="exportToExcel()" value="ExpotToExcel">
-<div id="filterDiv">
 
-</div>
-<div id="datesFilterGroup">
-<div>
-    <h3>Start Date</h3>
+<div id="filterDiv">
+<div id="rowForm">
+        <input type="button"(click)="exportToExcel()" value="ExpotToExcel">
+
+<div class="new">
+  <label> Start Date</label>
     <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="startDateValue" yearRange="2000:2030" (onSelect)="onChangeStartDate()"></p-calendar>
 </div>
-<div>
-    <h3>End Date</h3>
+<div class="new">
+    <label>End Date</label>
     <p-calendar  view="month" dateFormat="mm/yy" [yearNavigator]="true" [(ngModel)]="endDateValue" yearRange="2000:2030" (onSelect)="onChangeEndDate()"></p-calendar>
 </div>
-</div>
-<div id="selectGroup">
-<div class="group">
-    <select class="inputMaterial" (change)="onChangeUser($event.target.value)" id="allUsers">
+
+
+<div class="new">
+        <label>Users</label>
+    <select class="formControl" (change)="onChangeUser($event.target.value)" id="allUsers">
             <option disabled></option>
             <option>allUsers</option>
-      <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>
-      
+      <option  *ngFor="let item of allUsers" >{{item.UserName}}</option>   
     </select>
-
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>allUsers</label>
-  </div>
-  <div class="group">
-    <select class="inputMaterial" (change)="onChangeTeamLeader($event.target.value)" id="allTeamLeaders">
+   
+</div>
+  <div class="new"> 
+       <label>TeamLeaders</label>
+    <select class="formControl" (change)="onChangeTeamLeader($event.target.value)" id="allTeamLeaders">
             <option disabled></option>
             <option>allTeamLeaders</option>
       <option  *ngFor="let item of teamLeaders" >{{item.UserName}}</option>
@@ -37,10 +35,11 @@
 
     <span class="highlight"></span>
     <span class="bar"></span>
-    <label>allTeamLeaders</label>
+  
   </div>
-  <div class="group">
-    <select class="inputMaterial"  (change)="onChangeProject($event.target.value)" id="allProjects">
+  <div class="new">
+        <label>Projects</label>
+    <select class="formControl"  (change)="onChangeProject($event.target.value)" id="allProjects">
             <option disabled></option>
             <option>allProjects</option>
       <option  *ngFor="let item of allProjects" >{{item.ProjectName}}</option>
@@ -49,10 +48,10 @@
 
     <span class="highlight"></span>
     <span class="bar"></span>
-    <label>allProjects</label>
+
   </div>
 </div>
-
+</div>
 <p-treeTable [value]="filterd">
     <ng-template pTemplate="header">
         <tr>

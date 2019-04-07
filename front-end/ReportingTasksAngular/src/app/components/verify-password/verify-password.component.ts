@@ -37,7 +37,7 @@ userName:any;
     try {
       console.log( "sss",this.userName);
       this.userservice.VerifyPassword(this.formGroup.value.userPassword,this.userName).subscribe(res => {
-        debugger;
+      
         if (res != 'error') {
         
           console.log("good", res)
